@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist/* && tsc && mv dist/out-tsc/src/lit dist/out-tsc/lit  && mv dist/out-tsc/src/angular dist/out-tsc/angular && mv dist/out-tsc/src/react dist/out-tsc/react",
-    "package": "node --max-old-space-size=4400 && npm run build"
+    "package": "node --max-old-space-size=4400 && npm run build",
+    "publish-package": "cd dist/out-tsc && npm publish"
   },
   "dependencies": {
     "@cypress/mount-utils": "^4.0.0",
@@ -57,5 +58,6 @@
   "engines": {
     "npm": ">=6.0.0",
     "node": ">=14.18.0"
-  }
+  },
+  "files": ["dist/out-tsc"]
 }
