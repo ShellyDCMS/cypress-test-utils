@@ -1,7 +1,7 @@
 {
   "name": "dell-cypress-test-utils",
   "description": "Test Automation Utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -58,6 +58,5 @@
   "engines": {
     "npm": ">=6.0.0",
     "node": ">=14.18.0"
-  },
-  "files": ["dist/out-tsc"]
+  }
 }
