@@ -27,11 +27,9 @@ As you can see, all test levels use the *same* driver, meaning that if the featu
 ## Usage
 This library provides an API to interact with UI elements - `CypressHelper` that combines the common features. 
 To add it to your repo use
-`npm i -D @def/test-utils`
+`npm i -D dell-cypress-test-utils`
 or
-`yarn add -D @def/test-utils`
-
-## [Cypress Knowlege Base](https://confluence.cec.lab.emc.com/display/eCDM/Cypress+KB)
+`yarn add -D dell-cypress-test-utils`
 
 ## Developing
 1. Set up the repo -  `npm i`
