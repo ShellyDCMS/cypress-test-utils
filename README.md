@@ -20,7 +20,7 @@ This means that the API will not focus on implementation, but on the actual acti
 For example, a user doesn't mouseUp, he/she hovers.
 
 ## Examples
-In the [examples](/examples) folder you can find 3 small apps; an angular app, a lit app and a react app.
+In the [examples](https://github.com/ShellyDCMS/cypress-test-utils-examples/tree/main/examples) repo you can find 3 small apps; an angular app, a lit app and a react app.
 Each app contains a driver that uses helpers, component tests, integration tests and e2e tests.
 As you can see, all test levels use the *same* driver, meaning that if the feature's implementation changes, you'll need to change the driver alone, not the tests.
 
