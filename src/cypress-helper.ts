@@ -5,6 +5,10 @@
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-until";
+var dirtyChai = require('dirty-chai');
+var expect = chai.expect
+chai.use(dirtyChai);
+
 import { StringMatcher } from "cypress/types/net-stubbing";
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
