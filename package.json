@@ -1,5 +1,5 @@
 {
-  "name": "dell-cypress-test-utils",
+  "name": "@dcms/cypress-test-utils",
   "description": "Test Automation Utilities",
   "version": "1.0.3",
   "author": "Shelly Goldblit",
