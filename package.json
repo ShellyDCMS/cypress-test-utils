@@ -1,5 +1,5 @@
 {
-  "name": "@dcms/cypress-test-utils",
+  "name": "@shellygo/cypress-test-utils",
   "description": "Test Automation Utilities",
   "version": "1.0.3",
   "author": "Shelly Goldblit",
