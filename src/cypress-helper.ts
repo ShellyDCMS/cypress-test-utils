@@ -5,7 +5,7 @@
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-until";
-var dirtyChai = require('dirty-chai');
+import dirtyChai from 'dirty-chai'
 var expect = chai.expect
 chai.use(dirtyChai);
 
