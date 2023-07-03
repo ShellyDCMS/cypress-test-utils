@@ -5,6 +5,9 @@
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rm -rf dist/* && tsc && mv dist/out-tsc/src/lit dist/out-tsc/lit  && mv dist/out-tsc/src/angular dist/out-tsc/angular && mv dist/out-tsc/src/react dist/out-tsc/react && cp README.md dist/out-tsc",
     "package": "node --max-old-space-size=4400 && npm run build",
