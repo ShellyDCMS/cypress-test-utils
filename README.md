@@ -32,14 +32,6 @@ or
 `yarn add -D dell-cypress-test-utils`
 
 ## Developing
-1. Set up the repo -  `npm i`
+1. Set up the repo -  `yarn`
 2. Build the project - `npm run build` 
-3. Run tests - `npm run test`
 
-## Road map
-- ~~Add React Component support~~ - done
-- ~~Add examples for each fremwork (angular, lit, react)~~ - done
-- Add coverage report examples
-- branding, documentation, more examples
-- add some FAQs
-- Add API testing and performance testing examples
