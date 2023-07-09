@@ -11,6 +11,9 @@ import { MountConfig } from "cypress/angular";
  */
 export class CypressAngularComponentHelper<T> {
   private fixture: any;
+  /**
+   * enables mounting of an Angular component
+   **/ 
   public when = {
     /**
      * mount an angular component
