@@ -4,6 +4,7 @@
 /// <reference types="cypress" />
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
+import 'cypress-wait-if-happens';
 import "cypress-wait-until";
 
 import { StringMatcher } from "cypress/types/net-stubbing";
@@ -123,6 +124,20 @@ export class CypressHelper {
      * Wait for a specific request to complete.
      */
     waitForResponse: (alias: string) => cy.wait(`@${alias}`),
+    /**
+     * @example
+     * helper.when.waitUntil(() =>
+     *   helper.get.elementByTestId(selector, index).should("be.visible")
+     * );
+     */
+    /**
+     * Wait for a last request to complete.
+     */
+    waitForLastCall: (alias: string, timeout : number = 1000) => cy.waitIfHappens({
+        alias: `@${alias}`,
+        timeout,
+        lastCall: true
+      }),
     /**
      * @example
      * helper.when.waitUntil(() =>
