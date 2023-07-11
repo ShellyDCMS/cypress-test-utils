@@ -20,7 +20,6 @@ export class CypressReactComponentHelper {
   public when = {
     /**
      * Mount a react component
-     * @see example {@link https://eos2git.cec.lab.emc.com/data-manager/test-utils/blob/8c3d553c9b7c63005c4f681324257e93f03af442/examples/react/pokemon-catalog/src/pokemon-catalog/pokemon-catalog.component.driver.tsx#L42}
      * @param type
      * @param props
      * @param children
