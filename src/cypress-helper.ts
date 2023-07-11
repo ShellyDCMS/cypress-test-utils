@@ -35,11 +35,16 @@ export class CypressHelper {
     });
   };
 
+  /**
+   * @property given - The given property will hold methods which will allow us to set pre-conditions before something takes place.
+   * This is a classic place to have methods which will set the inputs which are going to be passed down to our component.
+   */
   public given = {
     /**
      * Use interceptAndMockResponse to stub and intercept HTTP requests and responses.
      * @example
      * // adds token to response header
+     * ```ts
      * helper.given.interceptAndMockResponse({
      *   url: '** /sysmgmt/2015/bmc/session',
      *   response: {
@@ -49,9 +54,10 @@ export class CypressHelper {
      *   },
      *   alias: 'login'
      * })
-     *
+     * ```
      * @example
      * // mocks response to login request
+     * ```ts
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /login",
@@ -60,9 +66,11 @@ export class CypressHelper {
      *     token: 'token'
      *   }
      * })
+     * ```
      *
      * @example
      * // mocks network error
+     * ```ts
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /avamars",
@@ -71,15 +79,17 @@ export class CypressHelper {
      *     forceNetworkError: true
      *   }
      * })
-     *
-     * * @example
+     * ```
+     * @example
      * // mocks network error
+     * ```ts
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /image.png",
      *   alias: "image",
      *   response: { headers: 404 }
      * })
+     * ```
      */
     interceptAndMockResponse: (options: {
       url: StringMatcher;
@@ -109,6 +119,9 @@ export class CypressHelper {
       cy.spy(obj, method).as(`${String(method)}Spy`)
   };
 
+  /**
+   * @property when - The when property will hold methods of “events” which will take place like render, click, hover, etc.
+   */
   public when = {
     /**
      * Visit a given url
@@ -125,12 +138,6 @@ export class CypressHelper {
      */
     waitForResponse: (alias: string) => cy.wait(`@${alias}`),
     /**
-     * @example
-     * helper.when.waitUntil(() =>
-     *   helper.get.elementByTestId(selector, index).should("be.visible")
-     * );
-     */
-    /**
      * Wait for a last request to complete.
      */
     waitForLastCall: (alias: string, timeout : number = 1000) => cy.waitIfHappens({
@@ -140,9 +147,11 @@ export class CypressHelper {
       }),
     /**
      * @example
+     * ```ts
      * helper.when.waitUntil(() =>
      *   helper.get.elementByTestId(selector, index).should("be.visible")
      * );
+     * ```
      */
     // @ts-ignore
     waitUntil: (checkFunction, options?) =>
@@ -151,8 +160,10 @@ export class CypressHelper {
      * Fires native system click event.
      *
      * @example
+     * ```ts
      * <button data-cy="move-right">Move</button>
      * helper.when.click('move-right')
+     * ```
      */
     click: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).realClick(),
@@ -172,7 +183,9 @@ export class CypressHelper {
     /**
      * Fires native hover event. Yes, it can test :hover preprocessor.
      * @example
+     * ```ts
      * helper.when.hover('consent-terms-agree')
+     * ```
      */
     hover: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).realHover(),
@@ -180,9 +193,11 @@ export class CypressHelper {
      * Move time after overriding a native time function with helper.when.clock().
      * helper.when.clock() must be called before helper.when.tick()
      * @example
+     * ```ts
      * helper.when.clock();
      * helper.when.click('login-button');
      * helper.when.tick(2000);
+     * ```
      */
     tick: (ms: number) => cy.tick(ms),
     /**
@@ -238,10 +253,12 @@ export class CypressHelper {
     /**
      * Drag an element and drop it in target element
      * @example
+     * ```ts
      * helper.when.dragAndDrop(
      *   helper.get.elementByTestId('selected-item', 2),
      *   helper.get.elementByTestId('available-items')
      * )
+     * ```
      * @param element - element to be dragged
      * @param targetElement - target of drag operation
      */
@@ -263,13 +280,18 @@ export class CypressHelper {
       this.get.elementByTestId(selector, index).within(fn)
   };
 
+  /**
+   * @property get - The get property will hold methods which will give our tests access to the “output” of the component in a “black box” fashion
+   */
   public get = {
     /**
      * Get one or more DOM elements by selector.
      * @example
      * Get an element with shape="filter-grid"
+     * ```ts
      * <clr-icon shape="filter-grid"></clr-icon>
      * helper.get.bySelector("filter-grid", "shape")
+     * ```
      * @param selector
      * @param [attribute = defaultDataAttribute (default is "data-cy")]
      */
@@ -280,8 +302,10 @@ export class CypressHelper {
     /**
      * Get A DOM element at a specific index from elements.
      * @example
-     * Get the 3rd checkbox
+     * // Get the 3rd checkbox
+     * ```ts
      * helper.get.nthBySelector("checkbox", 3, "type")
+     * ```
      * @param selector
      * @param [index=0]
      * @param [attribute= defaultDataAttribute (default is "data-cy")]
@@ -294,14 +318,18 @@ export class CypressHelper {
     /**
      * Returns specific environment variable or undefined
      * @example
-     * Keeping password in cypress.config file
+     * // Keeping password in cypress.config file
+     * ```ts
      * e2e: {
      *  env: {
      *    password: "Changeme@1",
      *  }
      * }
-     * using password during test
+     * ```
+     * // using password during test
+     * ```ts
      * helper.get.env("password");
+     * ```
      */
     env: (key: string) => Cypress.env(key),
     /**
@@ -335,7 +363,9 @@ export class CypressHelper {
 
     /**
      * @example
+     * ```ts
      * expect(await .helper.get.elementsText("parent-job-name", 3)).includes("Job 3 Name")
+     * ```
      * @param selector
      * @param [index = 0]
      * @returns {PromiseLike<string>}
@@ -350,7 +380,9 @@ export class CypressHelper {
     /**
      * Get value of input element
      * @example
+     * ```ts
      * expect(await helper.get.inputValue('credentials-password')).to.eq("initial password");
+     * ```
      * @param selector
      * @param [index = 0]
      * @returns { PromiseLike<string | number | string[]> }
@@ -368,9 +400,11 @@ export class CypressHelper {
     /**
      * Get A DOM element at a specific index from elements.
      * @example
+     * ```ts
      * helper.when.dragAndDrop(
      *   helper.get.elementByTestId('selected-item', 2),
      *   helper.get.elementByTestId('available-items')
+     * ```
      * @param selector
      * @param [index = 0]
      */
@@ -381,7 +415,9 @@ export class CypressHelper {
      * DOM elements can contain more than the desired text and still match.
      * Additionally, Cypress prefers some DOM elements over the deepest element found.
      * @example
+     * ```ts
      * expect(helper.get.elementByText("Avamar")).to.exist;
+     * ```
      * @param content
      * @param [index = 0]
      */
@@ -390,7 +426,9 @@ export class CypressHelper {
     /**
      * Get number of elements with a specific selector
      * @example
-     *  expect(await helper.get.numberOfElements("migrated-vcenter")).to.eq(2)
+     * ```ts
+     *  expect(await helper.get.numberOfElements("migrated-vcenter")).to.eq(2);
+     * ```
      * @param selector
      * @returns {PromiseLike<number>}
      */
@@ -400,7 +438,9 @@ export class CypressHelper {
       ),
     /**
      * @example
+     * ```ts
      * expect(await helper.get.isElementDisabled('login-button')).to.eq(true)
+     * ```
      * @param selector
      * @param [index = 0]
      * @returns {Promise<boolean>}
@@ -410,7 +450,9 @@ export class CypressHelper {
       "disabled",
     /**
      * @example
+     * ```ts
      * expect(await helper.get.elementsAttribute('avatar-picture', 'style')).to.include('background-image: url("assets/avatar/def-user-male.png")')
+     * ```
      * @param selector
      * @param attribute
      * @param [index = 0]
@@ -471,7 +513,9 @@ export class CypressHelper {
       ),
     /**
      * @example
+     * ```ts
      * expect(await helper.get.elementExists('option-group-separator')).to.be.true
+     * ```
      * @param selector
      * @returns {PromiseLike<boolean>}
      */
