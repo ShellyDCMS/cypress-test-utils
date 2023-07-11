@@ -20,6 +20,7 @@ jobs:
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
       - run: npm run generate-docs
+      - run: npm run copy-docs
       - run: npm run publish-package
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
