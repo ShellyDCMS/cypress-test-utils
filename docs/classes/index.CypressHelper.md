@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.9](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.13](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -39,7 +39,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/9a10f59/src/cypress-helper.ts#L24)
+[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/cypress-helper.ts#L24)
 
 ## Properties
 
@@ -49,7 +49,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/9a10f59/src/cypress-helper.ts#L24)
+[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/cypress-helper.ts#L24)
 
 ___
 
@@ -273,7 +273,7 @@ Get stub by alias
 
 #### Defined in
 
-[cypress-helper.ts:286](https://github.com/ShellyDCMS/cypress-test-utils/blob/9a10f59/src/cypress-helper.ts#L286)
+[cypress-helper.ts:286](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/cypress-helper.ts#L286)
 
 ___
 
@@ -374,7 +374,7 @@ Replace a function, record its usage and control its behavior.
 
 #### Defined in
 
-[cypress-helper.ts:42](https://github.com/ShellyDCMS/cypress-test-utils/blob/9a10f59/src/cypress-helper.ts#L42)
+[cypress-helper.ts:42](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/cypress-helper.ts#L42)
 
 ___
 
@@ -588,7 +588,7 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
 
 #### Defined in
 
-[cypress-helper.ts:125](https://github.com/ShellyDCMS/cypress-test-utils/blob/9a10f59/src/cypress-helper.ts#L125)
+[cypress-helper.ts:125](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/cypress-helper.ts#L125)
 
 ## Methods
 
@@ -602,4 +602,4 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
 
 #### Defined in
 
-[cypress-helper.ts:26](https://github.com/ShellyDCMS/cypress-test-utils/blob/9a10f59/src/cypress-helper.ts#L26)
+[cypress-helper.ts:26](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/cypress-helper.ts#L26)

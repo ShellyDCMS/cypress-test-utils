@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.9](../README.md) / [Modules](../modules.md) / angular
+[@shellygo/cypress-test-utils - v1.0.13](../README.md) / [Modules](../modules.md) / angular
 
 # Module: angular
 
