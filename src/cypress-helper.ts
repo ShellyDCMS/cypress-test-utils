@@ -414,7 +414,7 @@ export class CypressHelper {
      * @param selector
      * @param attribute
      * @param [index = 0]
-     * @returns
+     * @returns {PromiseLike<unknown>}
      */
     elementsAttribute: (
       selector: string,
@@ -482,19 +482,19 @@ export class CypressHelper {
     /**
      * Get spy by alias
      * @param name
-     * @returns
+     * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
      */
     spy: (name: string) => cy.get(`@${name}Spy`),
     /**
      * Get spy by function name alias
      * @param func
-     * @returns
+     * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
      */
     spyFromFunction: (func: Function) => cy.get(`@${func.name}`),
     /**
      * Get stub by alias
      * @param name
-     * @returns
+     * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
      */
     stub: (name: string) => cy.get(`@${name}`)
   };

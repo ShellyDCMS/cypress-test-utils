@@ -1,0 +1,11 @@
+{
+  "tags": {
+    "allowUnknownTags": ["optional"] 
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "source": {
+      "includePattern": "\\.(jsx|js|ts|tsx)$"
+  }
+}
