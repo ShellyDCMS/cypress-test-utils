@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.15](../README.md) / [Modules](../modules.md) / [lit](../modules/lit.md) / CypressLitComponentHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [lit](../modules/lit.md) / CypressLitComponentHelper
 
 # Class: CypressLitComponentHelper
 
@@ -32,19 +32,11 @@ CypressLitComponentHelper exposes the following public properties:
 
 • **get**: `Object` = `{}`
 
-#### Defined in
-
-[lit/cypress-lit-component-helper.ts:53](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/lit/cypress-lit-component-helper.ts#L53)
-
 ___
 
 ### given
 
 • **given**: `Object` = `{}`
-
-#### Defined in
-
-[lit/cypress-lit-component-helper.ts:10](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/lit/cypress-lit-component-helper.ts#L10)
 
 ___
 
@@ -81,7 +73,3 @@ litComponentHelper.when.mount<SpinnerElement>(
 \-
 
 -----
-
-#### Defined in
-
-[lit/cypress-lit-component-helper.ts:11](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/lit/cypress-lit-component-helper.ts#L11)

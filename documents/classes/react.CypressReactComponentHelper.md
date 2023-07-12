@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.15](../README.md) / [Modules](../modules.md) / [react](../modules/react.md) / CypressReactComponentHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [react](../modules/react.md) / CypressReactComponentHelper
 
 # Class: CypressReactComponentHelper
 
@@ -32,10 +32,6 @@ CypressReactComponentHelper exposes the following public properties:
 
 • `Private` **component**: `ReactNode`
 
-#### Defined in
-
-[react/cypress-react-component-helper.ts:18](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/react/cypress-react-component-helper.ts#L18)
-
 ___
 
 ### get
@@ -56,10 +52,6 @@ Get mounted component
 
 -----
 
-#### Defined in
-
-[react/cypress-react-component-helper.ts:46](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/react/cypress-react-component-helper.ts#L46)
-
 ___
 
 ### when
@@ -79,7 +71,3 @@ enables mounting of a React component
 Mount a react component
 
 -----
-
-#### Defined in
-
-[react/cypress-react-component-helper.ts:20](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/react/cypress-react-component-helper.ts#L20)

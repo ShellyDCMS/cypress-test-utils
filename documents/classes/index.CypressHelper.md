@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.15](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -37,19 +37,11 @@ CypressHelper exposes the following public properties:
 | :------ | :------ | :------ |
 | `defaultDataAttribute?` | `string` | `"data-cy"` |
 
-#### Defined in
-
-[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L24)
-
 ## Properties
 
 ### defaultDataAttribute
 
 • `Private` `Readonly` **defaultDataAttribute**: `string` = `"data-cy"`
-
-#### Defined in
-
-[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L24)
 
 ___
 
@@ -271,10 +263,6 @@ Get stub by alias
 
 -----
 
-#### Defined in
-
-[cypress-helper.ts:286](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L286)
-
 ___
 
 ### given
@@ -371,10 +359,6 @@ Spy on a method and create an alias for the spy
 Replace a function, record its usage and control its behavior.
 
 -----
-
-#### Defined in
-
-[cypress-helper.ts:42](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L42)
 
 ___
 
@@ -586,10 +570,6 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
 
 -----
 
-#### Defined in
-
-[cypress-helper.ts:125](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L125)
-
 ## Methods
 
 ### beforeAndAfter
@@ -599,7 +579,3 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
 #### Returns
 
 `void`
-
-#### Defined in
-
-[cypress-helper.ts:26](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L26)
