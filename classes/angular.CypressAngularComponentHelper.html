@@ -31,9 +31,7 @@
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
-<li><span class="target">CypressAngularComponentHelper</span></li></ul></section><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/ShellyDCMS/cypress-test-utils/blob/e76abe4/src/angular/cypress-angular-component-helper.ts#L12">angular/cypress-angular-component-helper.ts:12</a></li></ul></aside>
+<li><span class="target">CypressAngularComponentHelper</span></li></ul></section>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -66,9 +64,7 @@
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="fixture" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>fixture</span><a href="#fixture" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">fixture</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/ShellyDCMS/cypress-test-utils/blob/e76abe4/src/angular/cypress-angular-component-helper.ts#L13">angular/cypress-angular-component-helper.ts:13</a></li></ul></aside></section>
+<div class="tsd-signature"><span class="tsd-kind-property">fixture</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div></section>
 <section class="tsd-panel tsd-member"><a id="get" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get</span><a href="#get" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">get</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">component</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> = ...</span></div>
@@ -88,9 +84,7 @@
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type tsd-kind-type-parameter">T</span></h4>
 <div class="tsd-comment tsd-typography"></div></li></ul></li></ul></li></ul></div>
-<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/ShellyDCMS/cypress-test-utils/blob/e76abe4/src/angular/cypress-angular-component-helper.ts#L59">angular/cypress-angular-component-helper.ts:59</a></li></ul></aside></section>
+<div class="tsd-comment tsd-typography"></div></section>
 <section class="tsd-panel tsd-member"><a id="when" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>when</span><a href="#when" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">when</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">mount</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">componentType</span>, <span class="tsd-kind-parameter">config</span>, <span class="tsd-kind-parameter">componentProperties</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> = ...</span></div>
@@ -128,9 +122,7 @@ and be accessed during a test using</p>
 <h4>Example</h4><pre><code class="language-ts"><span class="hl-0">helper</span><span class="hl-1">.</span><span class="hl-0">when</span><span class="hl-1">.</span><span class="hl-2">mount</span><span class="hl-1">(</span><br/><span class="hl-1"> </span><span class="hl-0">Type</span><span class="hl-1">&lt;</span><span class="hl-0">AvatarComponent</span><span class="hl-1">&gt;,</span><br/><span class="hl-1"> {</span><br/><span class="hl-1">   </span><span class="hl-0">declarations:</span><span class="hl-1"> [</span><span class="hl-0">AvatarComponent</span><span class="hl-1">],</span><br/><span class="hl-1"> },</span><br/><span class="hl-1"> {</span><br/><span class="hl-1">   </span><span class="hl-0">initials:</span><span class="hl-1"> </span><span class="hl-3">&#39;JD&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">   </span><span class="hl-0">picture:</span><span class="hl-1"> </span><span class="hl-3">&#39;assets/avatar/def-user-male.png&#39;</span><span class="hl-1">,</span><br/><span class="hl-1"> }</span><br/><span class="hl-1">)</span>
 </code><button>Copy</button></pre>
 </div></li></ul></li></ul></li></ul></div>
-<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/ShellyDCMS/cypress-test-utils/blob/e76abe4/src/angular/cypress-angular-component-helper.ts#L14">angular/cypress-angular-component-helper.ts:14</a></li></ul></aside></section></section></div>
+<div class="tsd-comment tsd-typography"></div></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
