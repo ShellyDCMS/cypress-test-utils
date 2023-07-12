@@ -6,7 +6,7 @@
       "defaultTag": true
   },
   "objectLiteralTypeDeclarationStyle": "list",
-  "entryPoints": ["./src/index.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
+  "entryPoints": ["./src/cypress-helper.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
   "out": "documents",
   "disableSources": true,
   "githubPages": false,
