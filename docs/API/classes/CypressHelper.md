@@ -18,7 +18,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:23](https://github.com/ShellyDCMS/cypress-test-utils/blob/7ed4e62/src/cypress-helper.ts#L23)
+[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/7a05a57/src/cypress-helper.ts#L24)
 
 ## Methods
 
@@ -32,7 +32,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:25](https://github.com/ShellyDCMS/cypress-test-utils/blob/7ed4e62/src/cypress-helper.ts#L25)
+[cypress-helper.ts:26](https://github.com/ShellyDCMS/cypress-test-utils/blob/7a05a57/src/cypress-helper.ts#L26)
 
 ## Properties
 
@@ -42,7 +42,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:23](https://github.com/ShellyDCMS/cypress-test-utils/blob/7ed4e62/src/cypress-helper.ts#L23)
+[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/7a05a57/src/cypress-helper.ts#L24)
 
 ___
 
@@ -78,7 +78,7 @@ The get property will hold methods which will give our tests access to the “ou
 
 #### Defined in
 
-[cypress-helper.ts:251](https://github.com/ShellyDCMS/cypress-test-utils/blob/7ed4e62/src/cypress-helper.ts#L251)
+[cypress-helper.ts:266](https://github.com/ShellyDCMS/cypress-test-utils/blob/7a05a57/src/cypress-helper.ts#L266)
 
 ___
 
@@ -100,7 +100,7 @@ This is a classic place to have methods which will set the inputs which are goin
 
 #### Defined in
 
-[cypress-helper.ts:37](https://github.com/ShellyDCMS/cypress-test-utils/blob/7ed4e62/src/cypress-helper.ts#L37)
+[cypress-helper.ts:38](https://github.com/ShellyDCMS/cypress-test-utils/blob/7a05a57/src/cypress-helper.ts#L38)
 
 ___
 
@@ -130,10 +130,11 @@ The when property will hold methods of “events” which will take place like r
 | `uncheck` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `visit` | (`url`: `string`) => `void` |
 | `wait` | (`ms`: `number`) => `Chainable`<`undefined`\> |
+| `waitForLastCall` | (`alias`: `string`, `timeout`: `number`) => `Chainable`<`undefined` \| `Interception`\> |
 | `waitForResponse` | (`alias`: `string`) => `Chainable`<`Interception`\> |
 | `waitUntil` | (`checkFunction`: `any`, `options?`: `any`) => `Chainable`<`undefined`\> |
 | `within` | (`fn`: () => `void`, `selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 
 #### Defined in
 
-[cypress-helper.ts:111](https://github.com/ShellyDCMS/cypress-test-utils/blob/7ed4e62/src/cypress-helper.ts#L111)
+[cypress-helper.ts:112](https://github.com/ShellyDCMS/cypress-test-utils/blob/7a05a57/src/cypress-helper.ts#L112)
