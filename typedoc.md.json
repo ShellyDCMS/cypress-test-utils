@@ -5,5 +5,7 @@
       "exampleTag": true,
       "defaultTag": true
   },
-  "objectLiteralTypeDeclarationStyle": "list"
+  "objectLiteralTypeDeclarationStyle": "list",
+  "entryPoints": ["./src/index.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
+  "out": "docs",
 }

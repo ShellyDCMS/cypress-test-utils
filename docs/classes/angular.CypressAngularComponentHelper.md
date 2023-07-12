@@ -46,7 +46,7 @@ CypressAngularComponentHelper exposes the following public properties:
 
 #### Defined in
 
-[angular/cypress-angular-component-helper.ts:13](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/angular/cypress-angular-component-helper.ts#L13)
+[angular/cypress-angular-component-helper.ts:13](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/angular/cypress-angular-component-helper.ts#L13)
 
 ___
 
@@ -70,7 +70,7 @@ Get mounted component
 
 #### Defined in
 
-[angular/cypress-angular-component-helper.ts:59](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/angular/cypress-angular-component-helper.ts#L59)
+[angular/cypress-angular-component-helper.ts:59](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/angular/cypress-angular-component-helper.ts#L59)
 
 ___
 
@@ -113,4 +113,4 @@ helper.when.mount(
 
 #### Defined in
 
-[angular/cypress-angular-component-helper.ts:14](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/angular/cypress-angular-component-helper.ts#L14)
+[angular/cypress-angular-component-helper.ts:14](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/angular/cypress-angular-component-helper.ts#L14)

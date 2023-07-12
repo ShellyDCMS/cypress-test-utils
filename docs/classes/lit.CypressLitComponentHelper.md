@@ -34,7 +34,7 @@ CypressLitComponentHelper exposes the following public properties:
 
 #### Defined in
 
-[lit/cypress-lit-component-helper.ts:53](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/lit/cypress-lit-component-helper.ts#L53)
+[lit/cypress-lit-component-helper.ts:53](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/lit/cypress-lit-component-helper.ts#L53)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lit/cypress-lit-component-helper.ts:10](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/lit/cypress-lit-component-helper.ts#L10)
+[lit/cypress-lit-component-helper.ts:10](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/lit/cypress-lit-component-helper.ts#L10)
 
 ___
 
@@ -84,4 +84,4 @@ litComponentHelper.when.mount<SpinnerElement>(
 
 #### Defined in
 
-[lit/cypress-lit-component-helper.ts:11](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/lit/cypress-lit-component-helper.ts#L11)
+[lit/cypress-lit-component-helper.ts:11](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/lit/cypress-lit-component-helper.ts#L11)
