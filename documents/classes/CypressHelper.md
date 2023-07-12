@@ -1,8 +1,6 @@
-[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
-
-[index](../modules/index.md).CypressHelper
 
 **`Classdes`**
 
@@ -12,18 +10,18 @@ CypressHelper exposes the following public properties:
 
 ### Constructors
 
-- [constructor](index.CypressHelper.md#constructor)
+- [constructor](CypressHelper.md#constructor)
 
 ### Properties
 
-- [defaultDataAttribute](index.CypressHelper.md#defaultdataattribute)
-- [get](index.CypressHelper.md#get)
-- [given](index.CypressHelper.md#given)
-- [when](index.CypressHelper.md#when)
+- [defaultDataAttribute](CypressHelper.md#defaultdataattribute)
+- [get](CypressHelper.md#get)
+- [given](CypressHelper.md#given)
+- [when](CypressHelper.md#when)
 
 ### Methods
 
-- [beforeAndAfter](index.CypressHelper.md#beforeandafter)
+- [beforeAndAfter](CypressHelper.md#beforeandafter)
 
 ## Constructors
 

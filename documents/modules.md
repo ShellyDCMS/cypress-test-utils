@@ -4,9 +4,9 @@
 
 ## Table of contents
 
-### Modules
+### Classes
 
-- [angular](modules/angular.md)
-- [index](modules/index.md)
-- [lit](modules/lit.md)
-- [react](modules/react.md)
+- [CypressAngularComponentHelper](classes/CypressAngularComponentHelper.md)
+- [CypressHelper](classes/CypressHelper.md)
+- [CypressLitComponentHelper](classes/CypressLitComponentHelper.md)
+- [CypressReactComponentHelper](classes/CypressReactComponentHelper.md)

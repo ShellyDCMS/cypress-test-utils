@@ -1,8 +1,6 @@
-[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [lit](../modules/lit.md) / CypressLitComponentHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / CypressLitComponentHelper
 
 # Class: CypressLitComponentHelper
-
-[lit](../modules/lit.md).CypressLitComponentHelper
 
 **`Classdes`**
 
@@ -12,13 +10,13 @@ CypressLitComponentHelper exposes the following public properties:
 
 ### Constructors
 
-- [constructor](lit.CypressLitComponentHelper.md#constructor)
+- [constructor](CypressLitComponentHelper.md#constructor)
 
 ### Properties
 
-- [get](lit.CypressLitComponentHelper.md#get)
-- [given](lit.CypressLitComponentHelper.md#given)
-- [when](lit.CypressLitComponentHelper.md#when)
+- [get](CypressLitComponentHelper.md#get)
+- [given](CypressLitComponentHelper.md#given)
+- [when](CypressLitComponentHelper.md#when)
 
 ## Constructors
 

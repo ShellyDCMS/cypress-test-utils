@@ -1,8 +1,6 @@
-[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [react](../modules/react.md) / CypressReactComponentHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / CypressReactComponentHelper
 
 # Class: CypressReactComponentHelper
-
-[react](../modules/react.md).CypressReactComponentHelper
 
 **`Classdes`**
 
@@ -12,13 +10,13 @@ CypressReactComponentHelper exposes the following public properties:
 
 ### Constructors
 
-- [constructor](react.CypressReactComponentHelper.md#constructor)
+- [constructor](CypressReactComponentHelper.md#constructor)
 
 ### Properties
 
-- [component](react.CypressReactComponentHelper.md#component)
-- [get](react.CypressReactComponentHelper.md#get)
-- [when](react.CypressReactComponentHelper.md#when)
+- [component](CypressReactComponentHelper.md#component)
+- [get](CypressReactComponentHelper.md#get)
+- [when](CypressReactComponentHelper.md#when)
 
 ## Constructors
 

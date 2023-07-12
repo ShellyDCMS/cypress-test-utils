@@ -3394,6 +3394,11 @@ typedoc-plugin-markdown@^3.15.3:
   dependencies:
     handlebars "^4.7.7"
 
+typedoc-plugin-merge-modules@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-merge-modules/-/typedoc-plugin-merge-modules-5.0.1.tgz#d9e7a7188660a214b4640e7866b5121637f5abae"
+  integrity sha512-7fiMYDUaeslsGSFDevw+azhD0dFJce0h2g5UuQ8zXljoky+YfmzoNkoTCx+KWaNJo6rz2DzaD2feVJyUhvUegg==
+
 typedoc@^0.24.8:
   version "0.24.8"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.24.8.tgz#cce9f47ba6a8d52389f5e583716a2b3b4335b63e"

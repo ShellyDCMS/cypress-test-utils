@@ -13,9 +13,8 @@
     "package": "node --max-old-space-size=4400 && npm run build",
     "copy-readme": "cp README.md dist/out-tsc",
     "publish-package": "npm run copy-readme && cd dist/out-tsc && npm publish",
-    "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown --options typedoc.md.json",
-    "generate-docs": "npx typedoc --options typedoc.html.json"
-
+    "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown  --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
+    "generate-docs": "npx typedoc --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
   },
   "dependencies": {
     "@cypress/mount-utils": "^4.0.0",
@@ -24,7 +23,8 @@
     "cypress": "^12.5.1",
     "cypress-real-events": "^1.7.6",
     "cypress-wait-if-happens": "^1.3.3",
-    "cypress-wait-until": "^1.7.2"
+    "cypress-wait-until": "^1.7.2",
+    "typedoc-plugin-merge-modules": "^5.0.1"
   },
   "devDependencies": {
     "@angular/core": "^14.2.0",
