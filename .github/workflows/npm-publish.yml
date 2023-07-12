@@ -22,6 +22,11 @@ jobs:
       - run: npm run generate-md-docs
       - name: Generate html docs
         run: npm run generate-docs
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: documents
+          branch: main
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
