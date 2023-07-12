@@ -34,7 +34,7 @@ CypressReactComponentHelper exposes the following public properties:
 
 #### Defined in
 
-[react/cypress-react-component-helper.ts:18](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/react/cypress-react-component-helper.ts#L18)
+[react/cypress-react-component-helper.ts:18](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/react/cypress-react-component-helper.ts#L18)
 
 ___
 
@@ -58,7 +58,7 @@ Get mounted component
 
 #### Defined in
 
-[react/cypress-react-component-helper.ts:46](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/react/cypress-react-component-helper.ts#L46)
+[react/cypress-react-component-helper.ts:46](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/react/cypress-react-component-helper.ts#L46)
 
 ___
 
@@ -82,4 +82,4 @@ Mount a react component
 
 #### Defined in
 
-[react/cypress-react-component-helper.ts:20](https://github.com/ShellyDCMS/cypress-test-utils/blob/10402d9/src/react/cypress-react-component-helper.ts#L20)
+[react/cypress-react-component-helper.ts:20](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/react/cypress-react-component-helper.ts#L20)

@@ -13,7 +13,9 @@
     "package": "node --max-old-space-size=4400 && npm run build",
     "copy-readme": "cp README.md dist/out-tsc",
     "publish-package": "npm run copy-readme && cd dist/out-tsc && npm publish",
-    "generate-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown --out docs src/index.ts src/angular/index.ts src/lit/index.ts src/react/index.ts"
+    "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown --options typedoc.md.json",
+    "generate-docs": "npx typedoc --options typedoc.html.json"
+
   },
   "dependencies": {
     "@cypress/mount-utils": "^4.0.0",

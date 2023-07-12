@@ -1,0 +1,9 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/index.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
+  "out": "docs",
+  "jsDocCompatibility": {
+    "exampleTag": true,
+    "defaultTag": true
+},
+}
