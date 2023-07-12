@@ -19,15 +19,15 @@ CypressHelper aims to provide a framework agnostic (angular, lit, react) API for
 This means that the API will not focus on implementation, but on the actual action a user would take.
 For example, a user doesn't mouseUp, he/she hovers.
 
-## Documentation
+## [Documentation](https://shellydcms.github.io/cypress-test-utils/modules.html)
 
-[CypressTestHelper](https://shellydcms.github.io/cypress-test-utils/classes/index.CypressHelper.html)
+[CypressTestHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressHelper.html)
 
-[angular/CypressAngularComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/angular.CypressAngularComponentHelper.html)
+[angular/CypressAngularComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressAngularComponentHelper.html)
 
-[react/CypressReactComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/react.CypressReactComponentHelper.html)
+[react/CypressReactComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressReactComponentHelper.html)
 
-[lit/CypressLitComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/lit.CypressLitComponentHelper.html)
+[lit/CypressLitComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressLitComponentHelper.html)
 
 
 ## Examples

@@ -1,12 +1,13 @@
 {
 "$schema": "https://typedoc.org/schema.json",
-"plugin": ["typedoc-plugin-missing-exports", "typedoc-plugin-markdown"],
+"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-merge-modules"],
   "jsDocCompatibility": {
       "exampleTag": true,
       "defaultTag": true
   },
   "objectLiteralTypeDeclarationStyle": "list",
-  "entryPoints": ["./src/index.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
+  "entryPoints": ["./src/cypress-helper.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
   "out": "documents",
-  "disableSources": true
+  "disableSources": true,
+  "githubPages": false,
 }

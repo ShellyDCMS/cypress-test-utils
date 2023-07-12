@@ -20,6 +20,12 @@ jobs:
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
       - run: npm run generate-md-docs
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit_message: Update generated markdown docs
+          branch: main
       - name: Generate html docs
         run: npm run generate-docs
 

@@ -1,8 +1,6 @@
-[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / [angular](../modules/angular.md) / CypressAngularComponentHelper
+[@shellygo/cypress-test-utils - v1.0.16](../README.md) / [Modules](../modules.md) / CypressAngularComponentHelper
 
 # Class: CypressAngularComponentHelper<T\>
-
-[angular](../modules/angular.md).CypressAngularComponentHelper
 
 **`Classdes`**
 
@@ -18,13 +16,13 @@ CypressAngularComponentHelper exposes the following public properties:
 
 ### Constructors
 
-- [constructor](angular.CypressAngularComponentHelper.md#constructor)
+- [constructor](CypressAngularComponentHelper.md#constructor)
 
 ### Properties
 
-- [fixture](angular.CypressAngularComponentHelper.md#fixture)
-- [get](angular.CypressAngularComponentHelper.md#get)
-- [when](angular.CypressAngularComponentHelper.md#when)
+- [fixture](CypressAngularComponentHelper.md#fixture)
+- [get](CypressAngularComponentHelper.md#get)
+- [when](CypressAngularComponentHelper.md#when)
 
 ## Constructors
 
