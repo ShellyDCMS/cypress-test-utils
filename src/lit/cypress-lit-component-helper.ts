@@ -12,10 +12,12 @@ export class CypressLitComponentHelper {
     /**
      * Mount a LitElement web component
      * @example
+     * ```ts
      * litComponentHelper.when.mount<SpinnerElement>(
         new SpinnerElement(),
         html`<edf-spinner size="${this.props.size}" type="${this.props.type}" label="${this.props.label}"></edf-spinner>`
       );
+      ```
      * @template T - element type
      * @param element 
      * @param template 

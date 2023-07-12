@@ -13,9 +13,13 @@ export class CypressAngularComponentHelper<T> {
   private fixture: any;
   public when = {
     /**
-     * mount an angular component
-     * @see example {@link https://eos2git.cec.lab.emc.com/data-manager/test-utils/blob/8c3d553c9b7c63005c4f681324257e93f03af442/examples/angular/pokemon-catalog/src/app/pokemon-catalog/pokemon-catalog.component.driver.ts#L30}
+     * mount an angular component, with autoSpyOutputs set to true, meaning all event emitters are automatically spied on
+     * and be accessed during a test using
+     * ```ts
+     * helper.get.spy("<EventEmitterName>")
+     * ```
      * @example
+     * ```ts
      * helper.when.mount(
      *  Type<AvatarComponent>,
      *  {
@@ -26,6 +30,7 @@ export class CypressAngularComponentHelper<T> {
      *    picture: 'assets/avatar/def-user-male.png',
      *  }
      * )
+     * ```
      * @param componentType
      * @param config
      * @param componentProperties
