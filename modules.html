@@ -12,36 +12,16 @@
 <div class="col-content">
 <div class="tsd-page-title">
 <h2>@shellygo/cypress-test-utils - v1.0.16</h2></div>
-<div class="tsd-panel tsd-typography"><a id="md:test-utils" class="tsd-anchor"></a><h1><a href="#md:test-utils">test-utils</a></h1><p>Cypress helpers to control your UI components that work in all test levels. From component tests, through integration tests to e2e tests, for all frameworks: angular, lit, react.
-Making TDD fun in the modular UI area.</p>
-<p>CypressHelper makes it saner to write UI testing. It enables creating component drivers that will work on all testing levels (component, integration, e2e).</p>
-<a id="md:component-drivers" class="tsd-anchor"></a><h2><a href="#md:component-drivers">Component Drivers</a></h2><p>Testing UI is hard. There are many reasons for that, but a big one relies in the fact that unlike functions or services, where the API is clearly defined, 
-when dealing with graphical user interfaces, it&#39;s up for the developer to transform it into an &quot;API&quot; for testing purposes.
-Back in the days, <a href="https://martinfowler.com/bliki/PageObject.html">PageObjects</a> helped mitigate this fact, but once the world moved to modular components, 
-our test code quality degraded and became bloated with repetition and lack of abstraction.<br>Component drivers are just like page objects, but for your components.
-Just like page objects, this is merely a pattern, and is not coupled to a specific implementation.
-However, using CypressHelper as the basis for your component drivers will help you leverage years of trial and error and be able to fully re-use your drivers across testing levels.
-This allows you to confidently write tests that use your actual implementation and keep focusing on the <em>&quot;what&quot;</em> and not the <em>&quot;how&quot;</em></p>
-<a id="md:philosophy" class="tsd-anchor"></a><h2><a href="#md:philosophy">Philosophy</a></h2><p>CypressHelper aims to provide a framework agnostic (angular, lit, react) API for what a manual tester can do. 
-This means that the API will not focus on implementation, but on the actual action a user would take.
-For example, a user doesn&#39;t mouseUp, he/she hovers.</p>
-<a id="md:documentation" class="tsd-anchor"></a><h2><a href="#md:documentation">Documentation</a></h2><p><a href="https://shellydcms.github.io/cypress-test-utils/classes/index.CypressHelper.html">CypressTestHelper</a></p>
-<p><a href="https://shellydcms.github.io/cypress-test-utils/classes/angular.CypressAngularComponentHelper.html">angular/CypressAngularComponentHelper</a></p>
-<p><a href="https://shellydcms.github.io/cypress-test-utils/classes/react.CypressReactComponentHelper.html">react/CypressReactComponentHelper</a></p>
-<p><a href="https://shellydcms.github.io/cypress-test-utils/classes/lit.CypressLitComponentHelper.html">lit/CypressLitComponentHelper</a></p>
-<a id="md:examples" class="tsd-anchor"></a><h2><a href="#md:examples">Examples</a></h2><p>In the <a href="https://github.com/ShellyDCMS/cypress-test-utils-examples/tree/main">examples</a> repo you can find 3 small apps; an angular app, a lit app and a react app.
-Each app contains a driver that uses helpers, component tests, integration tests and e2e tests.
-As you can see, all test levels use the <em>same</em> driver, meaning that if the feature&#39;s implementation changes, you&#39;ll need to change the driver alone, not the tests.</p>
-<a id="md:usage" class="tsd-anchor"></a><h2><a href="#md:usage">Usage</a></h2><p>This library provides an API to interact with UI elements - <code>CypressHelper</code> that combines the common features. 
-To add it to your repo use</p>
-<p><code>npm i -D dell-cypress-test-utils</code></p>
-<p>or</p>
-<p><code>yarn add -D dell-cypress-test-utils</code></p>
-<a id="md:developing" class="tsd-anchor"></a><h2><a href="#md:developing">Developing</a></h2><ol>
-<li>Set up the repo -  <code>yarn</code></li>
-<li>Build the project - <code>npm run build</code></li>
-</ol>
-</div></div>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<h3 class="tsd-index-heading uppercase">Index</h3>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Classes</h3>
+<div class="tsd-index-list"><a href="classes/CypressAngularComponentHelper.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Cypress<wbr/>Angular<wbr/>Component<wbr/>Helper</span></a>
+<a href="classes/CypressHelper.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>Helper</span></a>
+<a href="classes/CypressLitComponentHelper.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>Lit<wbr/>Component<wbr/>Helper</span></a>
+<a href="classes/CypressReactComponentHelper.html" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>React<wbr/>Component<wbr/>Helper</span></a>
+</div></section></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -56,26 +36,11 @@ To add it to your repo use</p>
 <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
 <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
 <div class="tsd-theme-toggle">
-<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
-<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
-<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg>On This Page</h3></summary>
-<div class="tsd-accordion-details">
-<ul>
-<li>
-<ul>
-<li><a href="#md:test-utils"><span>test-<wbr/>utils</span></a></li>
-<li>
-<ul>
-<li><a href="#md:component-drivers"><span>Component <wbr/>Drivers</span></a></li>
-<li><a href="#md:philosophy"><span>Philosophy</span></a></li>
-<li><a href="#md:documentation"><span>Documentation</span></a></li>
-<li><a href="#md:examples"><span>Examples</span></a></li>
-<li><a href="#md:usage"><span>Usage</span></a></li>
-<li><a href="#md:developing"><span>Developing</span></a></li></ul></li></ul></li></ul></div></details></div>
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>@shellygo/cypress-<wbr/>test-<wbr/>utils -<wbr/> v1.0.16</span></a>
 <ul class="tsd-small-nested-navigation">
-<li><a href="classes/CypressAngularComponentHelper.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Cypress<wbr/>Angular<wbr/>Component<wbr/>Helper</span></a></li>
+<li><a href="classes/CypressAngularComponentHelper.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>Angular<wbr/>Component<wbr/>Helper</span></a></li>
 <li><a href="classes/CypressHelper.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>Helper</span></a></li>
 <li><a href="classes/CypressLitComponentHelper.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>Lit<wbr/>Component<wbr/>Helper</span></a></li>
 <li><a href="classes/CypressReactComponentHelper.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Cypress<wbr/>React<wbr/>Component<wbr/>Helper</span></a></li></ul></nav></div></div></div>
