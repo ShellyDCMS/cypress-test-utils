@@ -18,9 +18,3 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
-      - uses: andstor/jsdoc-action@v1
-      with:
-        source_dir: ./src
-        recurse: true
-        output_dir: ./out
-
