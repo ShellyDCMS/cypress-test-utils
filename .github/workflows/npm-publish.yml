@@ -20,17 +20,6 @@ jobs:
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
       - run: npm run generate-md-docs
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          commit_message: Update generated markdown docs
-          branch: main
-          file_pattern: 'documents/*'
-          push_options: '--force'
-          commit_user_name: My GitHub Actions Bot # defaults to "github-actions[bot]"
-          commit_user_email: my-github-actions-bot@example.org # defaults to "41898282+github-actions[bot]@users.noreply.github.com"
-          commit_author: Author <actions@github.com> # defaults to author of the commit that triggered the run
       - name: Generate html docs
         run: npm run generate-docs
 
