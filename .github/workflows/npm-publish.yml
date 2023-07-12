@@ -21,7 +21,6 @@ jobs:
       - run: npm run build
       - run: npm run generate-md-docs
       - name: Generate html docs
-        run: npm run generate-docs
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
           dir: documents
