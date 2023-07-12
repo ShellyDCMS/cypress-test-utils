@@ -19,6 +19,17 @@ CypressHelper aims to provide a framework agnostic (angular, lit, react) API for
 This means that the API will not focus on implementation, but on the actual action a user would take.
 For example, a user doesn't mouseUp, he/she hovers.
 
+## Documentation
+
+[CypressTestHelper](https://shellydcms.github.io/cypress-test-utils/classes/index.CypressHelper.html)
+
+[angular/CypressAngularComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/angular.CypressAngularComponentHelper.html)
+
+[react/CypressReactComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/react.CypressReactComponentHelper.html)
+
+[lit/CypressLitComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/lit.CypressLitComponentHelper.html)
+
+
 ## Examples
 In the [examples](https://github.com/ShellyDCMS/cypress-test-utils-examples/tree/main) repo you can find 3 small apps; an angular app, a lit app and a react app.
 Each app contains a driver that uses helpers, component tests, integration tests and e2e tests.
@@ -27,8 +38,11 @@ As you can see, all test levels use the *same* driver, meaning that if the featu
 ## Usage
 This library provides an API to interact with UI elements - `CypressHelper` that combines the common features. 
 To add it to your repo use
+
 `npm i -D dell-cypress-test-utils`
+
 or
+
 `yarn add -D dell-cypress-test-utils`
 
 ## Developing

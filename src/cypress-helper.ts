@@ -229,7 +229,7 @@ export class CypressHelper {
     scrollToBottom: () => cy.scrollTo("bottom", { ensureScrollable: false }),
     /**
      * Check checkbox(es) or radio(s).
-     * This element must be an <input> with type checkbox or radio.
+     * This element must be an html input element with type checkbox or radio.
      */
     check: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).check({ force: true }),
@@ -241,12 +241,12 @@ export class CypressHelper {
     /**
      *
      * Check radio(s).
-     * This element must be an <input> with type radio.
+     * This element must be an html input element with type radio.
      */
     toggle: (index: number) =>
       this.get.nthBySelector("radio", index, "type").check({ force: true }),
     /**
-     * Select an <option> with specific text, value, or index within a <select>.
+     * Select an option with specific text, value, or index within a select html element.
      */
     selectOption: (selector: string, label: string, index: number = 0) =>
       this.get.bySelector(selector).eq(index).select(label),

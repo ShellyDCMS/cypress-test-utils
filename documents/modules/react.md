@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.13](../README.md) / [Modules](../modules.md) / react
+[@shellygo/cypress-test-utils - v1.0.15](../README.md) / [Modules](../modules.md) / react
 
 # Module: react
 

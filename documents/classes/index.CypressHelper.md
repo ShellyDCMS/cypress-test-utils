@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.13](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.15](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -39,7 +39,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/cypress-helper.ts#L24)
+[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L24)
 
 ## Properties
 
@@ -49,7 +49,7 @@ CypressHelper exposes the following public properties:
 
 #### Defined in
 
-[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/cypress-helper.ts#L24)
+[cypress-helper.ts:24](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L24)
 
 ___
 
@@ -273,7 +273,7 @@ Get stub by alias
 
 #### Defined in
 
-[cypress-helper.ts:286](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/cypress-helper.ts#L286)
+[cypress-helper.ts:286](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L286)
 
 ___
 
@@ -374,7 +374,7 @@ Replace a function, record its usage and control its behavior.
 
 #### Defined in
 
-[cypress-helper.ts:42](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/cypress-helper.ts#L42)
+[cypress-helper.ts:42](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L42)
 
 ___
 
@@ -421,7 +421,7 @@ try using helper.when.focus() before helper.when.blur().
 **check**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Check checkbox(es) or radio(s).
-This element must be an <input> with type checkbox or radio.
+This element must be an html input element with type checkbox or radio.
 
 -----
 
@@ -500,7 +500,7 @@ Scroll to the bottom.
 
 **selectOption**: (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
-Select an <option> with specific text, value, or index within a <select>.
+Select an option with specific text, value, or index within a select html element.
 
 -----
 
@@ -522,7 +522,7 @@ helper.when.tick(2000);
 **toggle**: (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Check radio(s).
-This element must be an <input> with type radio.
+This element must be an html input element with type radio.
 
 -----
 
@@ -588,7 +588,7 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
 
 #### Defined in
 
-[cypress-helper.ts:125](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/cypress-helper.ts#L125)
+[cypress-helper.ts:125](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L125)
 
 ## Methods
 
@@ -602,4 +602,4 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
 
 #### Defined in
 
-[cypress-helper.ts:26](https://github.com/ShellyDCMS/cypress-test-utils/blob/2d07010/src/cypress-helper.ts#L26)
+[cypress-helper.ts:26](https://github.com/ShellyDCMS/cypress-test-utils/blob/a0c3d13/src/cypress-helper.ts#L26)
