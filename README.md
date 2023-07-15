@@ -1,19 +1,3 @@
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
-@shellygo/cypress-test-utils / [Modules](modules.md)
-
 # test-utils
 Cypress helpers to control your UI components that work in all test levels. From component tests, through integration tests to e2e tests, for all frameworks: angular, lit, react.
 Making TDD fun in the modular UI area.
@@ -54,11 +38,11 @@ As you can see, all test levels use the *same* driver, meaning that if the featu
 This library provides an API to interact with UI elements - `CypressHelper` that combines the common features. 
 To add it to your repo use
 
-`npm i -D dell-cypress-test-utils`
+`npm i -D @shellygo/cypress-test-utils`
 
 or
 
-`yarn add -D dell-cypress-test-utils`
+`yarn add -D @shellygo/cypress-test-utils`
 
 ## Developing
 1. Set up the repo -  `yarn`
