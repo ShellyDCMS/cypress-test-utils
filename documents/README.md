@@ -21,15 +21,25 @@ CypressHelper aims to provide a framework agnostic (angular, lit, react) API for
 This means that the API will not focus on implementation, but on the actual action a user would take.
 For example, a user doesn't mouseUp, he/she hovers.
 
-## Documentation
+## [Markdown Documentation](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/modules.md)
 
-[CypressTestHelper](https://shellydcms.github.io/cypress-test-utils/classes/index.CypressHelper.html)
+[CypressTestHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressHelper.md)
 
-[angular/CypressAngularComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/angular.CypressAngularComponentHelper.html)
+[angular/CypressAngularComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressAngularComponentHelper.md)
 
-[react/CypressReactComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/react.CypressReactComponentHelper.html)
+[react/CypressReactComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressReactComponentHelper.md)
 
-[lit/CypressLitComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/lit.CypressLitComponentHelper.html)
+[lit/CypressLitComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressLitComponentHelper.md)
+
+## [HTML Documentation](https://shellydcms.github.io/cypress-test-utils/modules.html)
+
+[CypressTestHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressHelper.html)
+
+[angular/CypressAngularComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressAngularComponentHelper.html)
+
+[react/CypressReactComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressReactComponentHelper.html)
+
+[lit/CypressLitComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressLitComponentHelper.html)
 
 ## Examples
 In the [examples](https://github.com/ShellyDCMS/cypress-test-utils-examples/tree/main) repo you can find 3 small apps; an angular app, a lit app and a react app.
@@ -40,11 +50,11 @@ As you can see, all test levels use the *same* driver, meaning that if the featu
 This library provides an API to interact with UI elements - `CypressHelper` that combines the common features. 
 To add it to your repo use
 
-`npm i -D dell-cypress-test-utils`
+`npm i -D @shellygo/cypress-test-utils`
 
 or
 
-`yarn add -D dell-cypress-test-utils`
+`yarn add -D @shellygo/cypress-test-utils`
 
 ## Developing
 1. Set up the repo -  `yarn`
