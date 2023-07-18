@@ -1,13 +1,23 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Test Automation Utilities",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "cypress",
+    "typescript",
+    "driver-pattern",
+    "end-to-end",
+    "integration",
+    "component",
+    "tests",
+    "helper"
+  ],
   "scripts": {
     "build": "rm -rf dist/* && tsc && mv dist/out-tsc/src/lit dist/out-tsc/lit  && mv dist/out-tsc/src/angular dist/out-tsc/angular && mv dist/out-tsc/src/react dist/out-tsc/react",
     "package": "node --max-old-space-size=4400 && npm run build",
