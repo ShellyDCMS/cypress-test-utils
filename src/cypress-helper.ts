@@ -153,8 +153,7 @@ export class CypressHelper {
      * );
      * ```
      */
-    // @ts-ignore
-    waitUntil: (checkFunction, options?) =>
+    waitUntil:<ReturnType = any> (checkFunction: () => ReturnType | Cypress.Chainable | PromiseLike<ReturnType> , options?: WaitUntilOptions) =>
       cy.waitUntil(checkFunction, options),
     /**
      * Fires native system click event.
