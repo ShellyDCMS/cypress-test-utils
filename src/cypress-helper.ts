@@ -4,7 +4,7 @@
 /// <reference types="cypress" />
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
-import 'cypress-wait-if-happens';
+import "cypress-wait-if-happens";
 import "cypress-wait-until";
 
 import { StringMatcher } from "cypress/types/net-stubbing";
@@ -140,7 +140,8 @@ export class CypressHelper {
     /**
      * Wait for a last request to complete.
      */
-    waitForLastCall: (alias: string, timeout : number = 1000) => cy.waitIfHappens({
+    waitForLastCall: (alias: string, timeout: number = 1000) =>
+      cy.waitIfHappens({
         alias: `@${alias}`,
         timeout,
         lastCall: true
@@ -153,8 +154,13 @@ export class CypressHelper {
      * );
      * ```
      */
-    waitUntil:<ReturnType = any> (checkFunction: () => ReturnType | Cypress.Chainable | PromiseLike<ReturnType> , options?: WaitUntilOptions) =>
-      cy.waitUntil(checkFunction, options),
+    waitUntil: <ReturnType = any>(
+      checkFunction: () =>
+        | ReturnType
+        | Cypress.Chainable
+        | PromiseLike<ReturnType>,
+      options?: WaitUntilOptions
+    ) => cy.waitUntil(checkFunction, options),
     /**
      * Fires native system click event.
      *
@@ -176,7 +182,20 @@ export class CypressHelper {
      * ```
      */
     click: (selector: string, index: number = 0) =>
-    this.get.elementByTestId(selector, index).click(),
+      this.get.elementByTestId(selector, index).click(),
+    /**
+     *
+     * Double-click a DOM element.
+     */
+    dblclick: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).dblclick(),
+    /**
+     * Right click a DOM element.
+     * @param selector
+     * @param index
+     */
+    rightclick: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).rightclick(),
     /**
      * overrides native global functions related to time
      * allowing them to be controlled synchronously via helper.when.tick()
@@ -224,12 +243,17 @@ export class CypressHelper {
     blur: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).blur(),
     /**
+     * Clear the value of an input or textarea
+     */
+    clear: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).clear(),
+    /**
      * Type into a DOM element.
      */
     type: (selector: string, keys: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).focus().type(keys),
     /**
-     * Type into a DOM element.
+     * Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
      */
     realType: (selector: string, keys: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).realType(keys),
@@ -248,6 +272,13 @@ export class CypressHelper {
      */
     uncheck: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).uncheck({ force: true }),
+    /**
+     *
+     * Toggle radio(s) by selector
+     * This element must be an html input element with type radio.
+     */
+    toggleRadioBySelector: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).check({ force: true }),
     /**
      *
      * Check radio(s).
@@ -521,18 +552,7 @@ export class CypressHelper {
             )
           )
       ),
-    /**
-     * @example
-     * ```ts
-     * expect(await helper.get.elementExists('option-group-separator')).to.be.true
-     * ```
-     * @param selector
-     * @returns {PromiseLike<boolean>}
-     */
-    elementExists: (selector: string): PromiseLike<boolean> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.get.bySelector(selector).then(el => resolve(el.length !== 0))
-      ),
+
     /**
      * Get spy by alias
      * @param name

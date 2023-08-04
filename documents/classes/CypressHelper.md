@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.24](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.25](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -57,7 +57,6 @@ The get property will hold methods which will give our tests access to the “ou
 | `currentLocation` | () => `PromiseLike`<`string`\> |
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `elementExists` | (`selector`: `string`) => `PromiseLike`<`boolean`\> |
 | `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `PromiseLike`<`unknown`\> |
 | `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `PromiseLike`<`CSSStyleDeclaration`\> |
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `PromiseLike`<`string`\> |
@@ -117,16 +116,6 @@ Additionally, Cypress prefers some DOM elements over the deepest element found.
 
 ```ts
 expect(helper.get.elementByText("Avamar")).to.exist;
-```
-
------
-
-**elementExists**: (`selector`: `string`) => `PromiseLike`<`boolean`\>
-
-**`Example`**
-
-```ts
-expect(await helper.get.elementExists('option-group-separator')).to.be.true
 ```
 
 -----
@@ -372,17 +361,21 @@ The when property will hold methods of “events” which will take place like r
 | :------ | :------ |
 | `blur` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `check` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `clear` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `click` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clock` | () => `Chainable`<`Clock`\> |
+| `dblclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
 | `focus` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `hover` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `realClick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `realType` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\> |
+| `rightclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
 | `selectOption` | (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `toggleRadioBySelector` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `type` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `uncheck` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `visit` | (`url`: `string`) => `void` |
@@ -405,6 +398,12 @@ try using helper.when.focus() before helper.when.blur().
 
 Check checkbox(es) or radio(s).
 This element must be an html input element with type checkbox or radio.
+
+-----
+
+**clear**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Clear the value of an input or textarea
 
 -----
 
@@ -433,6 +432,12 @@ This includes controlling:
    Date Objects
 The clock starts at the unix epoch (timestamp of 0).
 This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970.
+
+-----
+
+**dblclick**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Double-click a DOM element.
 
 -----
 
@@ -484,7 +489,13 @@ helper.when.realClick('move-right')
 
 **realType**: (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\>
 
-Type into a DOM element.
+Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
+
+-----
+
+**rightclick**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Right click a DOM element.
 
 -----
 
@@ -518,6 +529,13 @@ helper.when.tick(2000);
 **toggle**: (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Check radio(s).
+This element must be an html input element with type radio.
+
+-----
+
+**toggleRadioBySelector**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Toggle radio(s) by selector
 This element must be an html input element with type radio.
 
 -----
