@@ -146,4 +146,16 @@ describe("cypress helper tests", () => {
   it("should get number of elements", async () => {
     expect(await get.numberOfElements("radio")).to.eq(3);
   });
+
+  it("should get number of elements", async () => {
+    expect(await get.numberOfElements("radio")).to.eq(3);
+  });
+
+  it("should get disabled element status", async () => {
+    expect(await get.isElementDisabled("button")).to.be.true;
+  });
+
+  it("should get enabled element status", async () => {
+    expect(await get.isElementDisabled("submit")).to.be.false;
+  });
 });
