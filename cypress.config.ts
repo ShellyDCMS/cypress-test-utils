@@ -29,7 +29,7 @@ export default defineConfig({
     baseUrl: "https://shellydcms.github.io/cypress-test-utils/modules.html",
     viewportHeight: 1000,
     viewportWidth: 1600,
-    specPattern: "**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     excludeSpecPattern: "cypress/**/*.driver.{js,jsx,ts,tsx}",
     defaultCommandTimeout: 50000,
     experimentalStudio: true
