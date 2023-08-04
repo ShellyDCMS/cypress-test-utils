@@ -21,6 +21,16 @@ describe("cypress helper tests", () => {
     });
   });
 
+  it("should intercept request and test query params", async () => {
+    fetch("https:/shellygo/whatever?shelly=go");
+    given.interceptAndMockResponse({
+      url: "**/shellygo/whatever**",
+      response: { shelly: "go" },
+      alias: "shellygo"
+    });
+    expect(await get.requestQueryParam("shellygo", "shelly")).to.eq("go");
+  });
+
   it("should intercept request and test body", async () => {
     given.interceptAndMockResponse({
       url: "**/shellygo/whatever",
@@ -157,5 +167,22 @@ describe("cypress helper tests", () => {
 
   it("should get enabled element status", async () => {
     expect(await get.isElementDisabled("submit")).to.be.false;
+  });
+
+  it("should spy on function", () => {
+    const obj = {
+      func: (param: number) => {}
+    };
+    given.spyOnObject(obj, "func");
+    obj.func(3);
+    expect(get.spyFromFunction(obj.func).should("have.been.calledWith", 3));
+  });
+
+  it("should stub  function", () => {
+    const obj = {
+      func: () => 5
+    };
+    obj.func = given.stub().returns(7);
+    expect(obj.func()).to.eq(7);
   });
 });
