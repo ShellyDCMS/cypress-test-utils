@@ -21,6 +21,8 @@
   "scripts": {
     "build": "rm -rf dist/* && tsc && mv dist/out-tsc/src/lit dist/out-tsc/lit  && mv dist/out-tsc/src/angular dist/out-tsc/angular && mv dist/out-tsc/src/react dist/out-tsc/react",
     "package": "node --max-old-space-size=4400 && npm run build",
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open",
     "copy-readme": "cp README.md dist/out-tsc",
     "publish-package": "npm run copy-readme && cd dist/out-tsc && npm publish",
     "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown  --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
