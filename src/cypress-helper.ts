@@ -184,6 +184,19 @@ export class CypressHelper {
     click: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).click(),
     /**
+     *
+     * Double-click a DOM element.
+     */
+    dblclick: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).dblclick(),
+    /**
+     * Right click a DOM element.
+     * @param selector
+     * @param index
+     */
+    rightclick: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).rightclick(),
+    /**
      * overrides native global functions related to time
      * allowing them to be controlled synchronously via helper.when.tick()
      * This includes controlling:
@@ -539,18 +552,7 @@ export class CypressHelper {
             )
           )
       ),
-    /**
-     * @example
-     * ```ts
-     * expect(await helper.get.elementExists('option-group-separator')).to.be.true
-     * ```
-     * @param selector
-     * @returns {PromiseLike<boolean>}
-     */
-    elementExists: (selector: string): PromiseLike<boolean> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.get.bySelector(selector).then(el => resolve(el.length !== 0))
-      ),
+
     /**
      * Get spy by alias
      * @param name

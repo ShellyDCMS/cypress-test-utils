@@ -57,7 +57,6 @@ The get property will hold methods which will give our tests access to the “ou
 | `currentLocation` | () => `PromiseLike`<`string`\> |
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `elementExists` | (`selector`: `string`) => `PromiseLike`<`boolean`\> |
 | `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `PromiseLike`<`unknown`\> |
 | `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `PromiseLike`<`CSSStyleDeclaration`\> |
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `PromiseLike`<`string`\> |
@@ -117,16 +116,6 @@ Additionally, Cypress prefers some DOM elements over the deepest element found.
 
 ```ts
 expect(helper.get.elementByText("Avamar")).to.exist;
-```
-
------
-
-**elementExists**: (`selector`: `string`) => `PromiseLike`<`boolean`\>
-
-**`Example`**
-
-```ts
-expect(await helper.get.elementExists('option-group-separator')).to.be.true
 ```
 
 -----
@@ -375,11 +364,13 @@ The when property will hold methods of “events” which will take place like r
 | `clear` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `click` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clock` | () => `Chainable`<`Clock`\> |
+| `dblclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
 | `focus` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `hover` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `realClick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `realType` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\> |
+| `rightclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
 | `selectOption` | (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
@@ -444,6 +435,12 @@ This means that when you instantiate new Date in your application, it will have 
 
 -----
 
+**dblclick**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Double-click a DOM element.
+
+-----
+
 **dragAndDrop**: (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void`
 
 Drag an element and drop it in target element
@@ -493,6 +490,12 @@ helper.when.realClick('move-right')
 **realType**: (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\>
 
 Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
+
+-----
+
+**rightclick**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Right click a DOM element.
 
 -----
 

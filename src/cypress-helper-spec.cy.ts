@@ -189,12 +189,4 @@ describe("cypress helper tests", () => {
   it("should get element by text", () => {
     expect(get.elementByText("My first paragraph")).to.exist;
   });
-
-  it("should get element existence", async () => {
-    expect(await get.elementExists("paragraph")).to.be.true;
-  });
-
-  it("should get element absence", async () => {
-    expect(await get.elementExists("non-existent")).to.be.false;
-  });
 });
