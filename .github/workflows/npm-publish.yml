@@ -19,6 +19,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
+      - run: npm run cy:run
       - run: npm run generate-md-docs
       - name: Generate html docs
         run: npm run generate-docs
@@ -29,8 +30,17 @@ jobs:
           dir: docs
           branch: gh-pages
           token: ${{ secrets.ACCESS_TOKEN }}
+      - name: Tests Report
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report 
+        if: always() 
+        with:
+          name: Cypress Tests
+          path: ${{ github.workspace }}/cypress/results/json/mochawesome.json
+          reporter: mochawesome-json
 
       - run: npm run publish-package
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      
 

@@ -7,6 +7,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  checks: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,6 +22,14 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
+      - run: npm run cy:run
       - run: npm run generate-md-docs
-
+      - name: Tests Report
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report 
+        if: always() 
+        with:
+          name: Cypress Tests
+          path: ${{ github.workspace }}/cypress/results/json/mochawesome.json
+          reporter: mochawesome-json
 

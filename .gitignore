@@ -12,6 +12,7 @@
 /node/
 /cypress/videos
 /cypress/screenshots
+/cypress/results
 /instrumented
 .nyc_output
 .external-resources

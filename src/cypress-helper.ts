@@ -161,11 +161,22 @@ export class CypressHelper {
      * @example
      * ```ts
      * <button data-cy="move-right">Move</button>
+     * helper.when.realClick('move-right')
+     * ```
+     */
+    realClick: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index).realClick(),
+    /**
+     * Click a DOM element.
+     *
+     * @example
+     * ```ts
+     * <button data-cy="move-right">Move</button>
      * helper.when.click('move-right')
      * ```
      */
     click: (selector: string, index: number = 0) =>
-      this.get.elementByTestId(selector, index).realClick(),
+    this.get.elementByTestId(selector, index).click(),
     /**
      * overrides native global functions related to time
      * allowing them to be controlled synchronously via helper.when.tick()
@@ -273,7 +284,7 @@ export class CypressHelper {
     /**
      * Scopes all subsequent cy commands to within this element
      * @example
-     * helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
+     * helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo')
      */
     within: (fn: () => void, selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).within(fn)
