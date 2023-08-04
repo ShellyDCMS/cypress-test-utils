@@ -185,4 +185,8 @@ describe("cypress helper tests", () => {
     obj.func = given.stub().returns(7);
     expect(obj.func()).to.eq(7);
   });
+
+  it("should get element by text", () => {
+    expect(get.elementByText("My First Paragraph")).to.exist;
+  });
 });
