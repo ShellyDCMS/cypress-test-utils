@@ -26,6 +26,6 @@ jobs:
         if: always() 
         with:
           name: Cypress Tests
-          path: /cypress/results/json/mochawesome.json
+          path: ${{ github.workspace }}/cypress/results/json/mochawesome.json
           reporter: mochawesome-json
 
