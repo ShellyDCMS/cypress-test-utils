@@ -20,12 +20,12 @@ jobs:
       - run: npm run build
       - run: npm run cy:run
       - run: npm run generate-md-docs
-      - name: Angular Tests Report
+      - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
         id: test-report 
         if: always() 
         with:
           name: Cypress Tests
-          path: ${{ github.workspace }}/cypress/results/json/mochawesome.json
+          path: /cypress/results/json/mochawesome.json
           reporter: mochawesome-json
 
