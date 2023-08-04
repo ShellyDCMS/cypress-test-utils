@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.24](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.25](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -384,6 +384,7 @@ The when property will hold methods of “events” which will take place like r
 | `selectOption` | (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `toggleRadioBySelector` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `type` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `uncheck` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `visit` | (`url`: `string`) => `void` |
@@ -525,6 +526,13 @@ helper.when.tick(2000);
 **toggle**: (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Check radio(s).
+This element must be an html input element with type radio.
+
+-----
+
+**toggleRadioBySelector**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Toggle radio(s) by selector
 This element must be an html input element with type radio.
 
 -----

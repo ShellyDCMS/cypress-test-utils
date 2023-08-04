@@ -264,7 +264,7 @@ export class CypressHelper {
      * Toggle radio(s) by selector
      * This element must be an html input element with type radio.
      */
-    toggleRadio: (selector: string, index: number = 0) =>
+    toggleRadioBySelector: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).check({ force: true }),
     /**
      *

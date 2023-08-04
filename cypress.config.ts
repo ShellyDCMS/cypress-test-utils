@@ -32,7 +32,11 @@ export default defineConfig({
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     excludeSpecPattern: "cypress/**/*.driver.{js,jsx,ts,tsx}",
     defaultCommandTimeout: 50000,
-    experimentalStudio: true
+    experimentalStudio: true,
+    env: {
+      env1: "value1",
+      env2: "value2",
+    }
   },
     
    

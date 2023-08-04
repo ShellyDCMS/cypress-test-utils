@@ -110,7 +110,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should toggle radio by selector", () => {
-    when.toggleRadio("radio", 2);
+    when.toggleRadioBySelector("radio", 2);
     expect(get.elementByTestId("radio", 2).should("be.checked"));
   });
 
@@ -137,5 +137,9 @@ describe("cypress helper tests", () => {
 
   it("should get element's text", async () => {
     expect(await get.elementsText("header")).to.eq("My First Heading");
+  });
+
+  it("should get env variable", () => {
+    expect(get.env("env1")).to.eq("value1");
   });
 });
