@@ -1,10 +1,14 @@
 @shellygo/cypress-test-utils / [Modules](modules.md)
 
-# test-utils
+# cypress-test-utils
 Cypress helpers to control your UI components that work in all test levels. From component tests, through integration tests to e2e tests, for all frameworks: angular, lit, react.
 Making TDD fun in the modular UI area.
 
 CypressHelper makes it saner to write UI testing. It enables creating component drivers that will work on all testing levels (component, integration, e2e).
+
+Cypress Helpers can help you develop tests faster
+CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
+CypressComponent helpers are designed to be used in component tests and are NOT framework agnostic.
 
 ## Component Drivers
 Testing UI is hard. There are many reasons for that, but a big one relies in the fact that unlike functions or services, where the API is clearly defined, 

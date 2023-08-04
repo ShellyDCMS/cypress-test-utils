@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.20](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.24](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -377,6 +377,7 @@ The when property will hold methods of “events” which will take place like r
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
 | `focus` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `hover` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `realClick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `realType` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
 | `selectOption` | (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -388,7 +389,7 @@ The when property will hold methods of “events” which will take place like r
 | `wait` | (`ms`: `number`) => `Chainable`<`undefined`\> |
 | `waitForLastCall` | (`alias`: `string`, `timeout`: `number`) => `Chainable`<`undefined` \| `Interception`\> |
 | `waitForResponse` | (`alias`: `string`) => `Chainable`<`Interception`\> |
-| `waitUntil` | (`checkFunction`: `any`, `options?`: `any`) => `Chainable`<`undefined`\> |
+| `waitUntil` | <ReturnType\>(`checkFunction`: () => `Chainable`<`any`\> \| `ReturnType` \| `PromiseLike`<`ReturnType`\>, `options?`: `WaitUntilOptions`<`any`\>) => `Chainable`<`undefined`\> |
 | `within` | (`fn`: () => `void`, `selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 
 **blur**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
@@ -409,7 +410,7 @@ This element must be an html input element with type checkbox or radio.
 
 **click**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
-Fires native system click event.
+Click a DOM element.
 
 **`Example`**
 
@@ -464,6 +465,19 @@ Fires native hover event. Yes, it can test :hover preprocessor.
 
 ```ts
 helper.when.hover('consent-terms-agree')
+```
+
+-----
+
+**realClick**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Fires native system click event.
+
+**`Example`**
+
+```ts
+<button data-cy="move-right">Move</button>
+helper.when.realClick('move-right')
 ```
 
 -----
@@ -544,7 +558,7 @@ Wait for a specific request to complete.
 
 -----
 
-**waitUntil**: (`checkFunction`: `any`, `options?`: `any`) => `Chainable`<`undefined`\>
+**waitUntil**: <ReturnType\>(`checkFunction`: () => `Chainable`<`any`\> \| `ReturnType` \| `PromiseLike`<`ReturnType`\>, `options?`: `WaitUntilOptions`<`any`\>) => `Chainable`<`undefined`\>
 
 **`Example`**
 
@@ -563,7 +577,7 @@ Scopes all subsequent cy commands to within this element
 **`Example`**
 
 ```ts
-helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo)
+helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo')
 ```
 
 -----
