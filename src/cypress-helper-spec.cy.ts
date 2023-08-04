@@ -142,4 +142,8 @@ describe("cypress helper tests", () => {
   it("should get env variable", () => {
     expect(get.env("env1")).to.eq("value1");
   });
+
+  it("should get number of elements", async () => {
+    expect(await get.numberOfElements("radio")).to.eq(3);
+  });
 });
