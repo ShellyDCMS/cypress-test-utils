@@ -12,7 +12,7 @@
       height="142"
       data-hook="image"
     />
-    <form data-hook="form">
+    <form data-hook="form" id="myForm">
       <label for="fname" data-hook="name-label">First name:</label><br />
       <input
         type="text"
@@ -88,7 +88,18 @@
         <option data-hook="option" value="audi">Audi</option>
       </select>
 
-      <input type="submit" value="Submit" data-hook="submit" />
+      <input
+        type="submit"
+        value="Submit"
+        data-hook="submit"
+        onclick="resetForm()"
+      />
     </form>
+
+    <script>
+      function resetForm() {
+        document.getElementById("myForm").reset();
+      }
+    </script>
   </body>
 </html>
