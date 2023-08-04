@@ -372,6 +372,7 @@ The when property will hold methods of “events” which will take place like r
 | :------ | :------ |
 | `blur` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `check` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `clear` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `click` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clock` | () => `Chainable`<`Clock`\> |
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
@@ -405,6 +406,12 @@ try using helper.when.focus() before helper.when.blur().
 
 Check checkbox(es) or radio(s).
 This element must be an html input element with type checkbox or radio.
+
+-----
+
+**clear**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Clear the value of an input or textarea
 
 -----
 
@@ -484,7 +491,7 @@ helper.when.realClick('move-right')
 
 **realType**: (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\>
 
-Type into a DOM element.
+Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
 
 -----
 

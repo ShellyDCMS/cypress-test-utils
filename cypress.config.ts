@@ -26,7 +26,7 @@ export default defineConfig({
       return config;
     },
     supportFile:false,
-    baseUrl: "https://shellydcms.github.io/cypress-test-utils/modules.html",
+    baseUrl: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html",
     viewportHeight: 1000,
     viewportWidth: 1600,
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
