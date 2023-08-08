@@ -1,6 +1,8 @@
 @shellygo/cypress-test-utils / [Modules](modules.md)
 
 # cypress-test-utils
+![cypress-test-utils](https://github.com/ShellyDCMS/cypress-test-utils/actions/workflows/npm-publish.yml/badge.svg)
+
 Cypress helpers to control your UI components that work in all test levels. From component tests, through integration tests to e2e tests, for all frameworks: angular, lit, react.
 Making TDD fun in the modular UI area.
 

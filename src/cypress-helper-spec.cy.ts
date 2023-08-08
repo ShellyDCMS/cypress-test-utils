@@ -82,36 +82,41 @@ describe("cypress helper tests", () => {
     });
   });
 
-  it("should get current location", async () => {
-    expect(await get.currentLocation()).to.eq(
-      "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html"
+  it("should get current location", () => {
+    expect(
+      get
+        .currentLocation()
+        .should(
+          "eq",
+          "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html"
+        )
     );
   });
 
-  it("should type input", async () => {
+  it("should type input", () => {
     when.clear("name-input");
     when.type("name-input", "shelly");
-    expect(await get.inputValue("name-input")).to.eq("shelly");
+    expect(get.inputValue("name-input").should("eq", "shelly"));
   });
 
-  it("should click button", async () => {
+  it("should click button", () => {
     when.clear("name-input");
     when.type("name-input", "shelly");
     when.click("submit");
-    expect(await get.inputValue("name-input")).to.eq("John");
+    expect(get.inputValue("name-input").should("eq", "John"));
   });
 
-  it("should get initial text input", async () => {
-    expect(await get.inputValue("last-name-input")).to.eq("Doe");
+  it("should get initial text input", () => {
+    expect(get.inputValue("last-name-input").should("eq", "Doe"));
   });
 
-  it("should get initial select input", async () => {
-    expect(await get.inputValue("select")).to.eq("volvo");
+  it("should get initial select input", () => {
+    expect(get.inputValue("select").should("eq", "volvo"));
   });
 
-  it("should select input", async () => {
+  it("should select input", () => {
     when.selectOption("select", "Saab");
-    expect(await get.inputValue("select")).to.eq("saab");
+    expect(get.inputValue("select").should("eq", "saab"));
   });
 
   it("should toggle radio within container", () => {
@@ -141,32 +146,28 @@ describe("cypress helper tests", () => {
     );
   });
 
-  it("should get image source", async () => {
-    expect(await get.elementsAttribute("image", "src")).to.eq("w3schools.jpg");
+  it("should get image source", () => {
+    expect(get.elementsAttribute("image", "src").should("eq", "w3schools.jpg"));
   });
 
-  it("should get element's text", async () => {
-    expect(await get.elementsText("header")).to.eq("My First Heading");
+  it("should get element's text", () => {
+    get.elementsText("header").should("eq", "My First Heading");
   });
 
   it("should get env variable", () => {
     expect(get.env("env1")).to.eq("value1");
   });
 
-  it("should get number of elements", async () => {
-    expect(await get.numberOfElements("radio")).to.eq(3);
+  it("should get number of elements", () => {
+    expect(get.numberOfElements("radio").should("eq", 3));
   });
 
-  it("should get number of elements", async () => {
-    expect(await get.numberOfElements("radio")).to.eq(3);
+  it("should get disabled element status", () => {
+    expect(get.isElementDisabled("button").should("eq", "disabled"));
   });
 
-  it("should get disabled element status", async () => {
-    expect(await get.isElementDisabled("button")).to.be.true;
-  });
-
-  it("should get enabled element status", async () => {
-    expect(await get.isElementDisabled("submit")).to.be.false;
+  it("should get enabled element status", () => {
+    expect(get.isElementDisabled("submit").should("eq", undefined));
   });
 
   it("should spy on function", () => {
