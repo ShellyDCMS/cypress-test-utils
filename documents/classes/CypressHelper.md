@@ -54,17 +54,17 @@ The get property will hold methods which will give our tests access to the “ou
 | Name | Type |
 | :------ | :------ |
 | `bySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `currentLocation` | () => `PromiseLike`<`string`\> |
+| `currentLocation` | () => `Chainable`<`string`\> |
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `PromiseLike`<`unknown`\> |
+| `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
 | `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `PromiseLike`<`CSSStyleDeclaration`\> |
-| `elementsText` | (`selector`: `string`, `index?`: `number`) => `PromiseLike`<`string`\> |
+| `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
-| `inputValue` | (`selector`: `string`, `index?`: `number`) => `PromiseLike`<`string` \| `number` \| `string`[]\> |
-| `isElementDisabled` | (`selector`: `string`, `index?`: `number`) => `Promise`<`boolean`\> |
+| `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
+| `isElementDisabled` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `numberOfElements` | (`selector`: `string`) => `PromiseLike`<`number`\> |
+| `numberOfElements` | (`selector`: `string`) => `Chainable`<`number`\> |
 | `requestBody` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
 | `requestHeader` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
 | `requestQueryParam` | (`alias`: `string`, `queryParam`: `string`) => `PromiseLike`<``null`` \| `string`\> |
@@ -86,7 +86,7 @@ helper.get.bySelector("filter-grid", "shape")
 
 -----
 
-**currentLocation**: () => `PromiseLike`<`string`\>
+**currentLocation**: () => `Chainable`<`string`\>
 
 Get the current URL of the page that is currently active.
 
@@ -120,12 +120,12 @@ expect(helper.get.elementByText("Avamar")).to.exist;
 
 -----
 
-**elementsAttribute**: (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `PromiseLike`<`unknown`\>
+**elementsAttribute**: (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
 
 **`Example`**
 
 ```ts
-expect(await helper.get.elementsAttribute('avatar-picture', 'style')).to.include('background-image: url("assets/avatar/def-user-male.png")')
+expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include", 'background-image: url("assets/avatar/def-user-male.png")'))
 ```
 
 -----
@@ -136,12 +136,12 @@ Returns element's computed style, including pseudo elements
 
 -----
 
-**elementsText**: (`selector`: `string`, `index?`: `number`) => `PromiseLike`<`string`\>
+**elementsText**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\>
 
 **`Example`**
 
 ```ts
-expect(await .helper.get.elementsText("parent-job-name", 3)).includes("Job 3 Name")
+expect(helper.get.elementsText("parent-job-name", 3).should("include", "Job 3 Name"))
 ```
 
 -----
@@ -167,24 +167,24 @@ helper.get.env("password");
 
 -----
 
-**inputValue**: (`selector`: `string`, `index?`: `number`) => `PromiseLike`<`string` \| `number` \| `string`[]\>
+**inputValue**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\>
 
 Get value of input element
 
 **`Example`**
 
 ```ts
-expect(await helper.get.inputValue('credentials-password')).to.eq("initial password");
+expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
 ```
 
 -----
 
-**isElementDisabled**: (`selector`: `string`, `index?`: `number`) => `Promise`<`boolean`\>
+**isElementDisabled**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
 
 **`Example`**
 
 ```ts
-expect(await helper.get.isElementDisabled('login-button')).to.eq(true)
+expect(await helper.get.isElementDisabled('login-button').should("eq", disabled"))
 ```
 
 -----
@@ -202,14 +202,14 @@ helper.get.nthBySelector("checkbox", 3, "type")
 
 -----
 
-**numberOfElements**: (`selector`: `string`) => `PromiseLike`<`number`\>
+**numberOfElements**: (`selector`: `string`) => `Chainable`<`number`\>
 
 Get number of elements with a specific selector
 
 **`Example`**
 
 ```ts
- expect(await helper.get.numberOfElements("migrated-vcenter")).to.eq(2);
+ expect(helper.get.numberOfElements("migrated-vcenter").should("eq",2));
 ```
 
 -----

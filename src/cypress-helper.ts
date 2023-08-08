@@ -394,7 +394,7 @@ Get the current URL of the page that is }
       pseudoElement?: string
     ): PromiseLike<CSSStyleDeclaration> =>
       new Cypress.Promise<CSSStyleDeclaration>(resolve =>
-        this.get.elementByTestId(selector, index).then($element => {
+        this.get.elementByTestId(selector, index).should($element => {
           const element = $element.get(0);
           resolve(window.getComputedStyle(element, pseudoElement));
         })
