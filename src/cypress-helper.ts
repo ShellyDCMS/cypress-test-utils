@@ -375,12 +375,10 @@ export class CypressHelper {
     env: (key: string) => Cypress.env(key),
     /**
      * Get the current URL of the page that is currently active.
-     * @returns {PromiseLike<string>}
+     * @returns {Cypress.Chainable<string>
+Get the current URL of the page that is }
      */
-    currentLocation: (): PromiseLike<string> =>
-      new Cypress.Promise((resolve, reject) =>
-        cy.url().then(url => resolve(url))
-      ),
+    currentLocation: (): Cypress.Chainable<string> => cy.url(),
 
     /**
      * Returns element's computed style, including pseudo elements
@@ -405,39 +403,32 @@ export class CypressHelper {
     /**
      * @example
      * ```ts
-     * expect(await .helper.get.elementsText("parent-job-name", 3)).includes("Job 3 Name")
+     * expect(helper.get.elementsText("parent-job-name", 3).should("include", "Job 3 Name"))
      * ```
      * @param selector
      * @param [index = 0]
-     * @returns {PromiseLike<string>}
+     * @returns {Cypress.Chainable<string>}
      */
-    elementsText: (selector: string, index: number = 0): PromiseLike<string> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.get
-          .nthBySelector(selector, index)
-          .invoke("text")
-          .then(text => resolve(text))
-      ),
+    elementsText: (
+      selector: string,
+      index: number = 0
+    ): Cypress.Chainable<string> =>
+      this.get.nthBySelector(selector, index).invoke("text"),
     /**
      * Get value of input element
      * @example
      * ```ts
-     * expect(await helper.get.inputValue('credentials-password')).to.eq("initial password");
+     * expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
      * ```
      * @param selector
      * @param [index = 0]
-     * @returns { PromiseLike<string | number | string[]> }
+     * @returns { Cypress.Chainable<string | number | string[]> }
      */
     inputValue: (
       selector: string,
       index: number = 0
-    ): PromiseLike<string | number | string[]> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.get
-          .nthBySelector(selector, index)
-          .invoke("val")
-          .then(val => resolve(val))
-      ),
+    ): Cypress.Chainable<string | number | string[]> =>
+      this.get.nthBySelector(selector, index).invoke("val"),
     /**
      * Get A DOM element at a specific index from elements.
      * @example
@@ -468,47 +459,43 @@ export class CypressHelper {
      * Get number of elements with a specific selector
      * @example
      * ```ts
-     *  expect(await helper.get.numberOfElements("migrated-vcenter")).to.eq(2);
+     *  expect(helper.get.numberOfElements("migrated-vcenter").should("eq",2));
      * ```
      * @param selector
-     * @returns {PromiseLike<number>}
+     * @returns {Cypress.Chainable<number>}
      */
-    numberOfElements: (selector: string): PromiseLike<number> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.get.bySelector(selector).then(elm => resolve(elm.length))
-      ),
+    numberOfElements: (selector: string): Cypress.Chainable<number> =>
+      this.get.bySelector(selector).its("length"),
     /**
      * @example
      * ```ts
-     * expect(await helper.get.isElementDisabled('login-button')).to.eq(true)
+     * expect(await helper.get.isElementDisabled('login-button').should("eq", disabled"))
      * ```
      * @param selector
      * @param [index = 0]
-     * @returns {Promise<boolean>}
+     * @returns {Cypress.Chainable<string | undefined>}
      */
-    isElementDisabled: async (selector: string, index: number = 0) =>
-      (await this.get.elementsAttribute(selector, "disabled", index)) ===
-      "disabled",
+    isElementDisabled: (
+      selector: string,
+      index: number = 0
+    ): Cypress.Chainable<string | undefined> =>
+      this.get.elementsAttribute(selector, "disabled", index),
     /**
      * @example
      * ```ts
-     * expect(await helper.get.elementsAttribute('avatar-picture', 'style')).to.include('background-image: url("assets/avatar/def-user-male.png")')
+     * expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include", 'background-image: url("assets/avatar/def-user-male.png")'))
      * ```
      * @param selector
      * @param attribute
      * @param [index = 0]
-     * @returns
+     * @returns {Cypress.Chainable<string | undefined>}
      */
     elementsAttribute: (
       selector: string,
       attribute: string,
       index = 0
-    ): PromiseLike<unknown> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.get
-          .elementByTestId(selector, index)
-          .then(elem => resolve(elem.attr(attribute)))
-      ),
+    ): Cypress.Chainable<string | undefined> =>
+      this.get.elementByTestId(selector, index).invoke("attr", attribute),
     /**
      * Get intercepted request's body
      * @param alias
