@@ -135,8 +135,15 @@ export class CypressHelper {
     wait: (ms: number) => cy.wait(ms),
     /**
      * Wait for a specific request to complete.
+     *  @param alias
      */
     waitForResponse: (alias: string) => cy.wait(`@${alias}`),
+    /**
+     * Wait for multiples requests to complete.
+     * @param alias
+     */
+    waitForResponses: (alias: string, responses: number) =>
+      cy.wait(Array(responses).fill(`@${alias}`)),
     /**
      * Wait for a last request to complete.
      */
