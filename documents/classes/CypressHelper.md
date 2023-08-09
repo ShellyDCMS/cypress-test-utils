@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.27](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.28](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -589,7 +589,7 @@ Wait for multiples requests to complete.
 
 ```ts
 helper.when.waitUntil(() =>
-  helper.get.elementByTestId(selector, index).should("be.visible")
+  helper.get.elementByTestId(selector, index)
 );
 ```
 

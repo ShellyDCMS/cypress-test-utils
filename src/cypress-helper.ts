@@ -157,7 +157,7 @@ export class CypressHelper {
      * @example
      * ```ts
      * helper.when.waitUntil(() =>
-     *   helper.get.elementByTestId(selector, index).should("be.visible")
+     *   helper.get.elementByTestId(selector, index)
      * );
      * ```
      */
