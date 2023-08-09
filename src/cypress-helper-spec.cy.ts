@@ -13,11 +13,42 @@ describe("cypress helper tests", () => {
 
   it("should intercept request and mock response", async () => {
     given.interceptAndMockResponse({
-      url: "**/shellygo/whatever",
+      url: "**/shellygo/whatever**",
       response: { shelly: "go" }
     });
     expect(await (await fetch("https:/shellygo/whatever")).json()).to.include({
       shelly: "go"
+    });
+  });
+
+  it("should wait for multiple responses", async () => {
+    given.interceptAndMockResponse({
+      url: "**/shellygo/whatever**",
+      response: { shelly: "go" },
+      alias: "shellygo"
+    });
+    fetch("https:/shellygo/whatever");
+    fetch("https:/shellygo/whatever");
+    fetch("https:/shellygo/whatever?shelly=go");
+    when.waitForResponses("shellygo", 2);
+    expect(await get.requestQueryParam("shellygo", "shelly")).to.eq("go");
+  });
+
+  describe("when waiting for last call", () => {
+    beforeEach(() => {
+      given.interceptAndMockResponse({
+        url: "**/shellygo/whatever**",
+        response: { shelly: "go" },
+        alias: "shellygo"
+      });
+      fetch("https:/shellygo/whatever");
+      fetch("https:/shellygo/whatever");
+      when.waitForLastCall("shellygo");
+    });
+
+    it("should wait for last call", async () => {
+      fetch("https:/shellygo/whatever?shelly=go");
+      expect(await get.requestQueryParam("shellygo", "shelly")).to.eq("go");
     });
   });
 

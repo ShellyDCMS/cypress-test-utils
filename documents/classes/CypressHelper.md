@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.25](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.27](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -382,6 +382,7 @@ The when property will hold methods of “events” which will take place like r
 | `wait` | (`ms`: `number`) => `Chainable`<`undefined`\> |
 | `waitForLastCall` | (`alias`: `string`, `timeout`: `number`) => `Chainable`<`undefined` \| `Interception`\> |
 | `waitForResponse` | (`alias`: `string`) => `Chainable`<`Interception`\> |
+| `waitForResponses` | (`alias`: `string`, `responses`: `number`) => `Chainable`<`Interception`[]\> |
 | `waitUntil` | <ReturnType\>(`checkFunction`: () => `Chainable`<`any`\> \| `ReturnType` \| `PromiseLike`<`ReturnType`\>, `options?`: `WaitUntilOptions`<`any`\>) => `Chainable`<`undefined`\> |
 | `within` | (`fn`: () => `void`, `selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 
@@ -573,6 +574,12 @@ Wait for a last request to complete.
 **waitForResponse**: (`alias`: `string`) => `Chainable`<`Interception`\>
 
 Wait for a specific request to complete.
+
+-----
+
+**waitForResponses**: (`alias`: `string`, `responses`: `number`) => `Chainable`<`Interception`[]\>
+
+Wait for multiples requests to complete.
 
 -----
 
