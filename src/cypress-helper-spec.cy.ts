@@ -194,11 +194,11 @@ describe("cypress helper tests", () => {
   });
 
   it("should get disabled element status", () => {
-    expect(get.isElementDisabled("button").should("eq", "disabled"));
+    expect(get.elementByTestId("button").should("be.disabled"));
   });
 
   it("should get enabled element status", () => {
-    expect(get.isElementDisabled("submit").should("eq", undefined));
+    expect(get.elementByTestId("submit").should("be.enabled"));
   });
 
   it("should spy on function", () => {

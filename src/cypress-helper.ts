@@ -476,20 +476,6 @@ Get the current URL of the page that is }
     /**
      * @example
      * ```ts
-     * expect(await helper.get.isElementDisabled('login-button').should("eq", disabled"))
-     * ```
-     * @param selector
-     * @param [index = 0]
-     * @returns {Cypress.Chainable<string | undefined>}
-     */
-    isElementDisabled: (
-      selector: string,
-      index: number = 0
-    ): Cypress.Chainable<string | undefined> =>
-      this.get.elementsAttribute(selector, "disabled", index),
-    /**
-     * @example
-     * ```ts
      * expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include", 'background-image: url("assets/avatar/def-user-male.png")'))
      * ```
      * @param selector
