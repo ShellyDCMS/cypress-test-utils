@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.28](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.29](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -62,7 +62,6 @@ The get property will hold methods which will give our tests access to the “ou
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
 | `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
-| `isElementDisabled` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `numberOfElements` | (`selector`: `string`) => `Chainable`<`number`\> |
 | `requestBody` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
@@ -175,16 +174,6 @@ Get value of input element
 
 ```ts
 expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
-```
-
------
-
-**isElementDisabled**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
-
-**`Example`**
-
-```ts
-expect(await helper.get.isElementDisabled('login-button').should("eq", disabled"))
 ```
 
 -----
