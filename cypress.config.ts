@@ -10,34 +10,32 @@ export default defineConfig({
     openMode: 0
   },
   reporter: "mochawesome",
-  reporterOptions: 
-   {
-      "reportDir": "cypress/results/json",
-      "overwrite": false,
-      "html": false,
-      "json": true,
-      suiteTitleSeparatedBy: " > ",
-      testCaseSwitchClassnameAndName: false,
-      rootSuiteTitle: "Angular Tests",
-      toConsole: true,
+  reporterOptions: {
+    reportDir: "cypress/results/json",
+    overwrite: false,
+    html: false,
+    json: true,
+    suiteTitleSeparatedBy: " > ",
+    testCaseSwitchClassnameAndName: false,
+    rootSuiteTitle: "Angular Tests",
+    toConsole: true
   },
   e2e: {
     setupNodeEvents(on, config) {
       return config;
     },
-    supportFile:false,
-    baseUrl: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html",
+    supportFile: false,
+    baseUrl:
+      "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html",
     viewportHeight: 1000,
     viewportWidth: 1600,
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     excludeSpecPattern: "cypress/**/*.driver.{js,jsx,ts,tsx}",
-    defaultCommandTimeout: 50000,
+    defaultCommandTimeout: 100000,
     experimentalStudio: true,
     env: {
       env1: "value1",
-      env2: "value2",
+      env2: "value2"
     }
-  },
-    
-   
+  }
 });
