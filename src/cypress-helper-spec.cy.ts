@@ -87,6 +87,17 @@ describe("cypress helper tests", () => {
     });
   });
 
+  it("should intercept request and test url", async () => {
+    given.interceptAndMockResponse({
+      url: "**/shellygo/whatever",
+      response: { shelly: "go" },
+      alias: "shellygo"
+    });
+
+    fetch("https:/shellygo/whatever/18?param=value");
+    expect(await get.requestUrl("shellygo")).to.contain("whatever/18");
+  });
+
   it("should intercept request and test header", async () => {
     given.interceptAndMockResponse({
       url: "**/shellygo/whatever",

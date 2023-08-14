@@ -67,6 +67,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `requestBody` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
 | `requestHeader` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
 | `requestQueryParam` | (`alias`: `string`, `queryParam`: `string`) => `PromiseLike`<``null`` \| `string`\> |
+| `requestUrl` | (`alias`: `string`) => `PromiseLike`<`string`\> |
 | `spy` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -218,6 +219,12 @@ Get intercepted request's header
 **requestQueryParam**: (`alias`: `string`, `queryParam`: `string`) => `PromiseLike`<``null`` \| `string`\>
 
 Get intercepted request's query param
+
+-----
+
+**requestUrl**: (`alias`: `string`) => `PromiseLike`<`string`\>
+
+Get intercepted request's url
 
 -----
 
