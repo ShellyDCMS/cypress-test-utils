@@ -501,6 +501,15 @@ Get the current URL of the page that is }
           .should(xhr => resolve(xhr.request.body))
       ),
     /**
+     * Get intercepted request's url
+     * @param alias
+     * @returns {PromiseLike<string>}
+     */
+    requestUrl: (alias: string): PromiseLike<string> =>
+      new Cypress.Promise((resolve, reject) =>
+        this.when.waitForResponse(alias).should(xhr => resolve(xhr.request.url))
+      ),
+    /**
      * Get intercepted request's header
      * @param alias
      * @returns {PromiseLike<Object>}
