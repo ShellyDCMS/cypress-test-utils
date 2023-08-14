@@ -89,7 +89,7 @@ describe("cypress helper tests", () => {
 
   it("should intercept request and test url", async () => {
     given.interceptAndMockResponse({
-      url: "**/shellygo/whatever",
+      url: "**/shellygo/whatever/**",
       response: { shelly: "go" },
       alias: "shellygo"
     });
