@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.29](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.30](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -58,16 +58,16 @@ The get property will hold methods which will give our tests access to the “ou
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
-| `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `PromiseLike`<`CSSStyleDeclaration`\> |
+| `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\> |
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
 | `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `numberOfElements` | (`selector`: `string`) => `Chainable`<`number`\> |
-| `requestBody` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
-| `requestHeader` | (`alias`: `string`) => `PromiseLike`<`Object`\> |
-| `requestQueryParam` | (`alias`: `string`, `queryParam`: `string`) => `PromiseLike`<``null`` \| `string`\> |
-| `requestUrl` | (`alias`: `string`) => `PromiseLike`<`string`\> |
+| `requestBody` | (`alias`: `string`) => `Chainable`<`any`\> |
+| `requestHeader` | (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\> |
+| `requestQueryParams` | (`alias`: `string`) => `Chainable`<{ `[k: string]`: `string`;  }\> |
+| `requestUrl` | (`alias`: `string`) => `Chainable`<`string`\> |
 | `spy` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -130,7 +130,7 @@ expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include",
 
 -----
 
-**elementsComputedStyle**: (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `PromiseLike`<`CSSStyleDeclaration`\>
+**elementsComputedStyle**: (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\>
 
 Returns element's computed style, including pseudo elements
 
@@ -204,25 +204,27 @@ Get number of elements with a specific selector
 
 -----
 
-**requestBody**: (`alias`: `string`) => `PromiseLike`<`Object`\>
+**requestBody**: (`alias`: `string`) => `Chainable`<`any`\>
 
 Get intercepted request's body
+If a JSON Content-Type was used and the body was valid JSON, this will be an object.
+If the body was binary content, this will be a buffer.
 
 -----
 
-**requestHeader**: (`alias`: `string`) => `PromiseLike`<`Object`\>
+**requestHeader**: (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\>
 
 Get intercepted request's header
 
 -----
 
-**requestQueryParam**: (`alias`: `string`, `queryParam`: `string`) => `PromiseLike`<``null`` \| `string`\>
+**requestQueryParams**: (`alias`: `string`) => `Chainable`<{ `[k: string]`: `string`;  }\>
 
 Get intercepted request's query param
 
 -----
 
-**requestUrl**: (`alias`: `string`) => `PromiseLike`<`string`\>
+**requestUrl**: (`alias`: `string`) => `Chainable`<`string`\>
 
 Get intercepted request's url
 

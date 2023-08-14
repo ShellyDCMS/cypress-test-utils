@@ -21,17 +21,24 @@ describe("cypress helper tests", () => {
     });
   });
 
-  it("should wait for multiple responses", async () => {
-    given.interceptAndMockResponse({
-      url: "**/shellygo/whatever**",
-      response: { shelly: "go" },
-      alias: "shellygo"
+  describe("given multiple requests", () => {
+    beforeEach(() => {
+      given.interceptAndMockResponse({
+        url: "**/shellygo/whatever**",
+        response: { shelly: "go" },
+        alias: "shellygo"
+      });
+      fetch("https:/shellygo/whatever");
+      fetch("https:/shellygo/whatever");
     });
-    fetch("https:/shellygo/whatever");
-    fetch("https:/shellygo/whatever");
-    fetch("https:/shellygo/whatever?shelly=go");
-    when.waitForResponses("shellygo", 2);
-    expect(await get.requestQueryParam("shellygo", "shelly")).to.eq("go");
+
+    it("should wait for multiple responses", () => {
+      fetch("https:/shellygo/whatever?shelly=go");
+      when.waitForResponses("shellygo", 2);
+      expect(
+        get.requestQueryParams("shellygo").should("include", { shelly: "go" })
+      );
+    });
   });
 
   describe("when waiting for last call", () => {
@@ -46,23 +53,27 @@ describe("cypress helper tests", () => {
       when.waitForLastCall("shellygo");
     });
 
-    it("should wait for last call", async () => {
+    it("should wait for last call", () => {
       fetch("https:/shellygo/whatever?shelly=go");
-      expect(await get.requestQueryParam("shellygo", "shelly")).to.eq("go");
+      expect(
+        get.requestQueryParams("shellygo").should("include", { shelly: "go" })
+      );
     });
   });
 
-  it("should intercept request and test query params", async () => {
+  it("should intercept request and test query params", () => {
     fetch("https:/shellygo/whatever?shelly=go");
     given.interceptAndMockResponse({
       url: "**/shellygo/whatever**",
       response: { shelly: "go" },
       alias: "shellygo"
     });
-    expect(await get.requestQueryParam("shellygo", "shelly")).to.eq("go");
+    expect(
+      get.requestQueryParams("shellygo").should("include", { shelly: "go" })
+    );
   });
 
-  it("should intercept request and test body", async () => {
+  it("should intercept request and test body", () => {
     given.interceptAndMockResponse({
       url: "**/shellygo/whatever",
       method: "POST",
@@ -82,12 +93,14 @@ describe("cypress helper tests", () => {
       referrerPolicy: "no-referrer",
       body: JSON.stringify({ shelly: "go" })
     });
-    expect(await get.requestBody("shellygo")).to.include({
-      shelly: "go"
-    });
+    expect(
+      get.requestBody("shellygo").should("include", {
+        shelly: "go"
+      })
+    );
   });
 
-  it("should intercept request and test url", async () => {
+  it("should intercept request and test url", () => {
     given.interceptAndMockResponse({
       url: "**/shellygo/whatever/**",
       response: { shelly: "go" },
@@ -95,10 +108,10 @@ describe("cypress helper tests", () => {
     });
 
     fetch("https:/shellygo/whatever/18?param=value");
-    expect(await get.requestUrl("shellygo")).to.contain("whatever/18");
+    expect(get.requestUrl("shellygo").should("contain", "whatever/18"));
   });
 
-  it("should intercept request and test header", async () => {
+  it("should intercept request and test header", () => {
     given.interceptAndMockResponse({
       url: "**/shellygo/whatever",
       method: "POST",
@@ -119,9 +132,11 @@ describe("cypress helper tests", () => {
       referrerPolicy: "no-referrer",
       body: JSON.stringify({ shelly: "go" })
     });
-    expect(await get.requestHeader("shellygo")).to.include({
-      shelly: "go"
-    });
+    expect(
+      get.requestHeader("shellygo").should("include", {
+        shelly: "go"
+      })
+    );
   });
 
   it("should get current location", () => {
@@ -182,9 +197,11 @@ describe("cypress helper tests", () => {
     expect(get.elementByTestId("checkbox", 2).should("not.be.checked"));
   });
 
-  it("should get computed style", async () => {
-    expect((await get.elementsComputedStyle("button")).backgroundColor).to.eq(
-      "rgb(255, 0, 0)"
+  it("should get computed style", () => {
+    expect(
+      get
+        .elementsComputedStyle("button")
+        .should("include", { backgroundColor: "rgb(255, 0, 0)" })
     );
   });
 
