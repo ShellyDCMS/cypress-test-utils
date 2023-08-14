@@ -382,8 +382,7 @@ export class CypressHelper {
     env: (key: string) => Cypress.env(key),
     /**
      * Get the current URL of the page that is currently active.
-     * @returns {Cypress.Chainable<string>
-Get the current URL of the page that is }
+     * @returns {Cypress.Chainable<string>}
      */
     currentLocation: (): Cypress.Chainable<string> => cy.url(),
 
@@ -393,19 +392,18 @@ Get the current URL of the page that is }
      * @param selector : string
      * @param [index = 0]
      * @param [pseudoElement]
-     * @returns {PromiseLike<CSSStyleDeclaration>}
+     * @returns {Cypress.Chainable<CSSStyleDeclaration>}
      */
     elementsComputedStyle: (
       selector: string,
       index: number = 0,
       pseudoElement?: string
-    ): PromiseLike<CSSStyleDeclaration> =>
-      new Cypress.Promise<CSSStyleDeclaration>(resolve =>
-        this.get.elementByTestId(selector, index).should($element => {
-          const element = $element.get(0);
-          resolve(window.getComputedStyle(element, pseudoElement));
-        })
-      ),
+    ): Cypress.Chainable<CSSStyleDeclaration> =>
+      this.get
+        .elementByTestId(selector, index)
+        .then($element =>
+          window.getComputedStyle($element.get(0), pseudoElement)
+        ),
 
     /**
      * @example
@@ -491,57 +489,46 @@ Get the current URL of the page that is }
       this.get.elementByTestId(selector, index).invoke("attr", attribute),
     /**
      * Get intercepted request's body
+     * If a JSON Content-Type was used and the body was valid JSON, this will be an object.
+     * If the body was binary content, this will be a buffer.
      * @param alias
-     * @returns {PromiseLike<Object>}
+     * @returns {Cypress.Chainable<any>}
      */
-    requestBody: (alias: string): PromiseLike<Object> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.when
-          .waitForResponse(alias)
-          .should(xhr => resolve(xhr.request.body))
-      ),
+    requestBody: (alias: string): Cypress.Chainable<any> =>
+      this.when.waitForResponse(alias).then(xhr => xhr.request.body),
     /**
      * Get intercepted request's url
      * @param alias
-     * @returns {PromiseLike<string>}
+     * @returns {Cypress.Chainable<string>}
      */
-    requestUrl: (alias: string): PromiseLike<string> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.when.waitForResponse(alias).should(xhr => resolve(xhr.request.url))
-      ),
+    requestUrl: (alias: string): Cypress.Chainable<string> =>
+      this.when.waitForResponse(alias).then(xhr => xhr.request.url),
     /**
      * Get intercepted request's header
      * @param alias
-     * @returns {PromiseLike<Object>}
+     * @returns { Cypress.Chainable<{ [key: string]: string | string[]}>}
      */
-    requestHeader: (alias: string): PromiseLike<Object> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.when
-          .waitForResponse(alias)
-          .should(xhr => resolve(xhr.request.headers))
-      ),
+    requestHeader: (
+      alias: string
+    ): Cypress.Chainable<{ [key: string]: string | string[] }> =>
+      this.when.waitForResponse(alias).then(xhr => xhr.request.headers),
+
     /**
      * Get intercepted request's query param
      * @param alias
      * @param queryParam
-     * @returns {PromiseLike<string | null>}
+     * @returns { Cypress.Chainable<{[k: string]: string;}>}
      */
-    requestQueryParam: (
-      alias: string,
-      queryParam: string
-    ): PromiseLike<string | null> =>
-      new Cypress.Promise((resolve, reject) =>
-        this.when
-          .waitForResponse(alias)
-          .should(xhr =>
-            resolve(
-              new URLSearchParams(new URL(xhr.request.url).search).get(
-                queryParam
-              )
-            )
+    requestQueryParams: (
+      alias: string
+    ): Cypress.Chainable<{ [k: string]: string }> =>
+      this.when
+        .waitForResponse(alias)
+        .then(xhr =>
+          Object.fromEntries(
+            new URLSearchParams(new URL(xhr.request.url).search)
           )
-      ),
-
+        ),
     /**
      * Get spy by alias
      * @param name
