@@ -104,18 +104,27 @@ export class CypressHelper {
     },
     /**
      * Replace a function, record its usage and control its behavior.
+     * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
+
      */
-    stub: () => cy.stub(),
+    stub: (): Cypress.Agent<sinon.SinonStub<any[], any>> => cy.stub(),
     /**
      * Returns a new spy function, and creates an alias for the newly created spy
      * @param name - spy name
+     * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
      */
-    spy: (name: string) => cy.spy().as(`${name}Spy`),
+    spy: (name: string): Cypress.Agent<sinon.SinonSpy<any[], any>> =>
+      cy.spy().as(`${name}Spy`),
     /**
      * Spy on a method and create an alias for the spy
-     *
+     * @param obj - object containing function to spy on
+     * @param method function to spy on
+     * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
      */
-    spyOnObject: <T>(obj: T, method: keyof T) =>
+    spyOnObject: <T>(
+      obj: T,
+      method: keyof T
+    ): Cypress.Agent<sinon.SinonSpy<any[], any>> =>
       cy.spy(obj, method).as(`${String(method)}Spy`)
   };
 

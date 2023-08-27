@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.30](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.32](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -262,8 +262,8 @@ This is a classic place to have methods which will set the inputs which are goin
 | Name | Type |
 | :------ | :------ |
 | `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void` |
-| `spy` | (`name`: `string`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
-| `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
+| `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
+| `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `stub` | () => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 
 **interceptAndMockResponse**: (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void`
@@ -327,13 +327,13 @@ helper.given.interceptAndMockResponse({
 
 -----
 
-**spy**: (`name`: `string`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\>
+**spy**: (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\>
 
 Returns a new spy function, and creates an alias for the newly created spy
 
 -----
 
-**spyOnObject**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\>
+**spyOnObject**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\>
 
 Spy on a method and create an alias for the spy
 
