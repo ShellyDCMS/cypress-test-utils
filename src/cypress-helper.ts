@@ -396,6 +396,20 @@ export class CypressHelper {
     currentLocation: (): Cypress.Chainable<string> => cy.url(),
 
     /**
+     * Returns element's style attribute
+     *
+     * @param selector : string
+     * @param attribute : string
+     * @param [index = 0]
+     * @returns {Cypress.Chainable<string>}
+     */
+    elementsStyleAttribute: (
+      selector: string,
+      attribute: string,
+      index: number = 0
+    ) => this.get.elementByTestId(selector, index).invoke("css", attribute),
+
+    /**
      * Returns element's computed style, including pseudo elements
      *
      * @param selector : string
