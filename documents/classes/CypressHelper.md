@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.32](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.33](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -59,6 +59,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
 | `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\> |
+| `elementsStyleAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\> |
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
 | `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
@@ -133,6 +134,12 @@ expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include",
 **elementsComputedStyle**: (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\>
 
 Returns element's computed style, including pseudo elements
+
+-----
+
+**elementsStyleAttribute**: (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\>
+
+Returns element's style attribute
 
 -----
 
