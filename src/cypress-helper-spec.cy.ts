@@ -205,6 +205,14 @@ describe("cypress helper tests", () => {
     );
   });
 
+  it("should get style", () => {
+    expect(
+      get
+        .elementsStyleAttribute("button", "background-color")
+        .should("eq", "rgb(255, 0, 0)")
+    );
+  });
+
   it("should get image source", () => {
     expect(get.elementsAttribute("image", "src").should("eq", "w3schools.jpg"));
   });
