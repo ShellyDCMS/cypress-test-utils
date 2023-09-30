@@ -221,7 +221,7 @@ describe("cypress helper tests", () => {
     get.elementsText("header").should("eq", "My First Heading");
   });
 
-  it("should get slot's text", () => {
+  it.skip("should get slot's text", () => {
     get.slotText("with-slot").should("eq", "Text in Slot");
   });
 

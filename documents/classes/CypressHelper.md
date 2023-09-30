@@ -240,6 +240,8 @@ Get intercepted request's url
 
 **slotText**: (`selector`: `string`, `index?`: `number`) => `Chainable`<``null`` \| `JQuery`<`HTMLSlotElement`\>\> \| `Chainable`<`string` \| `JQuery`<`HTMLSlotElement`\>\>
 
+To be used with shadow DOM only
+
 **`Example`**
 
 ```ts
