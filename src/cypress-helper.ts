@@ -443,6 +443,21 @@ export class CypressHelper {
     ): Cypress.Chainable<string> =>
       this.get.nthBySelector(selector, index).invoke("text"),
     /**
+     * To be used with shadow DOM only
+     * @example
+     * ```ts
+     * expect(helper.get.slotText("main-cta-button", 2).should("include", "CTA"))
+     * ```
+     * @param selector
+     * @param [index = 0]
+     * @returns {Cypress.Chainable<string>}
+     */
+    slotText: (selector: string, index: number = 0) =>
+      this.get
+        .nthBySelector(selector, index)
+        .find("slot")
+        .then(slot => slot.get(0).assignedNodes()[0].textContent),
+    /**
      * Get value of input element
      * @example
      * ```ts
