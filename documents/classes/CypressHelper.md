@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.33](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.34](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -69,6 +69,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `requestHeader` | (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\> |
 | `requestQueryParams` | (`alias`: `string`) => `Chainable`<{ `[k: string]`: `string`;  }\> |
 | `requestUrl` | (`alias`: `string`) => `Chainable`<`string`\> |
+| `slotText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<``null`` \| `JQuery`<`HTMLSlotElement`\>\> \| `Chainable`<`string` \| `JQuery`<`HTMLSlotElement`\>\> |
 | `spy` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -234,6 +235,16 @@ Get intercepted request's query param
 **requestUrl**: (`alias`: `string`) => `Chainable`<`string`\>
 
 Get intercepted request's url
+
+-----
+
+**slotText**: (`selector`: `string`, `index?`: `number`) => `Chainable`<``null`` \| `JQuery`<`HTMLSlotElement`\>\> \| `Chainable`<`string` \| `JQuery`<`HTMLSlotElement`\>\>
+
+**`Example`**
+
+```ts
+expect(helper.get.slotText("main-cta-button", 2).should("include", "CTA"))
+```
 
 -----
 

@@ -455,7 +455,7 @@ export class CypressHelper {
       this.get
         .nthBySelector(selector, index)
         .find("slot")
-        .then(slot => slot?.get(0)?.assignedNodes()[0]?.textContent || null),
+        .then(slot => slot.get(0).assignedNodes()[0].textContent),
     /**
      * Get value of input element
      * @example
