@@ -221,6 +221,10 @@ describe("cypress helper tests", () => {
     get.elementsText("header").should("eq", "My First Heading");
   });
 
+  it("should get slot's text", () => {
+    get.slotText("with-slot").should("eq", "Text in Slot");
+  });
+
   it("should get env variable", () => {
     expect(get.env("env1")).to.eq("value1");
   });
