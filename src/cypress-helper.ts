@@ -20,8 +20,12 @@ export class CypressHelper {
   /**
    *
    * @param [defaultDataAttribute = "data-cy"]
+   * @param [defaultShadowSlotSuffix = "slot]
    */
-  constructor(private readonly defaultDataAttribute: string = "data-cy") {}
+  constructor(
+    private readonly defaultDataAttribute: string = "data-cy",
+    private readonly defaultShadowSlotSuffix: string = "slot"
+  ) {}
 
   beforeAndAfter = () => {
     before(() => {
@@ -441,22 +445,8 @@ export class CypressHelper {
       selector: string,
       index: number = 0
     ): Cypress.Chainable<string> =>
-      this.get.nthBySelector(selector, index).invoke("text"),
-    /**
-     * To be used with shadow DOM only
-     * @example
-     * ```ts
-     * expect(helper.get.slotText("main-cta-button", 2).should("include", "CTA"))
-     * ```
-     * @param selector
-     * @param [index = 0]
-     * @returns {Cypress.Chainable<string>}
-     */
-    slotText: (selector: string, index: number = 0) =>
-      this.get
-        .nthBySelector(selector, index)
-        .find("slot")
-        .then(slot => slot.get(0).assignedNodes()[0].textContent),
+      this.get.elementByTestId(selector, index).invoke("text"),
+
     /**
      * Get value of input element
      * @example
@@ -471,7 +461,7 @@ export class CypressHelper {
       selector: string,
       index: number = 0
     ): Cypress.Chainable<string | number | string[]> =>
-      this.get.nthBySelector(selector, index).invoke("val"),
+      this.get.elementByTestId(selector, index).invoke("val"),
     /**
      * Get A DOM element at a specific index from elements.
      * @example
@@ -484,7 +474,15 @@ export class CypressHelper {
      * @param [index = 0]
      */
     elementByTestId: (selector: string, index: number = 0) =>
-      this.get.nthBySelector(selector, index),
+      selector.endsWith(`-${this.defaultShadowSlotSuffix}`)
+        ? this.get.nthBySelector(selector, index).then(slot =>
+            cy.wrap(
+              Cypress.$(slot as JQuery<HTMLSlotElement>)
+                .get(0)
+                .assignedNodes()[0].parentElement!
+            )
+          )
+        : this.get.nthBySelector(selector, index),
     /**
      * Get the DOM element containing the text.
      * DOM elements can contain more than the desired text and still match.

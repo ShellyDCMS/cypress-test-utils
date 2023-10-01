@@ -15,6 +15,7 @@ CypressHelper exposes the following public properties:
 ### Properties
 
 - [defaultDataAttribute](CypressHelper.md#defaultdataattribute)
+- [defaultShadowSlotSuffix](CypressHelper.md#defaultshadowslotsuffix)
 - [get](CypressHelper.md#get)
 - [given](CypressHelper.md#given)
 - [when](CypressHelper.md#when)
@@ -27,19 +28,26 @@ CypressHelper exposes the following public properties:
 
 ### constructor
 
-• **new CypressHelper**(`defaultDataAttribute?`)
+• **new CypressHelper**(`defaultDataAttribute?`, `defaultShadowSlotSuffix?`)
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `defaultDataAttribute?` | `string` | `"data-cy"` |
+| `defaultShadowSlotSuffix?` | `string` | `"slot"` |
 
 ## Properties
 
 ### defaultDataAttribute
 
 • `Private` `Readonly` **defaultDataAttribute**: `string` = `"data-cy"`
+
+___
+
+### defaultShadowSlotSuffix
+
+• `Private` `Readonly` **defaultShadowSlotSuffix**: `string` = `"slot"`
 
 ___
 
@@ -69,7 +77,6 @@ The get property will hold methods which will give our tests access to the “ou
 | `requestHeader` | (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\> |
 | `requestQueryParams` | (`alias`: `string`) => `Chainable`<{ `[k: string]`: `string`;  }\> |
 | `requestUrl` | (`alias`: `string`) => `Chainable`<`string`\> |
-| `slotText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<``null`` \| `JQuery`<`HTMLSlotElement`\>\> \| `Chainable`<`string` \| `JQuery`<`HTMLSlotElement`\>\> |
 | `spy` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -235,18 +242,6 @@ Get intercepted request's query param
 **requestUrl**: (`alias`: `string`) => `Chainable`<`string`\>
 
 Get intercepted request's url
-
------
-
-**slotText**: (`selector`: `string`, `index?`: `number`) => `Chainable`<``null`` \| `JQuery`<`HTMLSlotElement`\>\> \| `Chainable`<`string` \| `JQuery`<`HTMLSlotElement`\>\>
-
-To be used with shadow DOM only
-
-**`Example`**
-
-```ts
-expect(helper.get.slotText("main-cta-button", 2).should("include", "CTA"))
-```
 
 -----
 
