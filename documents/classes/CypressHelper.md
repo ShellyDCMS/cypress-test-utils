@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.34](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.36](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -14,10 +14,9 @@ CypressHelper exposes the following public properties:
 
 ### Properties
 
-- [defaultDataAttribute](CypressHelper.md#defaultdataattribute)
-- [defaultShadowSlotSuffix](CypressHelper.md#defaultshadowslotsuffix)
 - [get](CypressHelper.md#get)
 - [given](CypressHelper.md#given)
+- [options](CypressHelper.md#options)
 - [when](CypressHelper.md#when)
 
 ### Methods
@@ -28,28 +27,15 @@ CypressHelper exposes the following public properties:
 
 ### constructor
 
-• **new CypressHelper**(`defaultDataAttribute?`, `defaultShadowSlotSuffix?`)
+• **new CypressHelper**(`options?`)
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `defaultDataAttribute?` | `string` | `"data-cy"` |
-| `defaultShadowSlotSuffix?` | `string` | `"slot"` |
+| Name | Type |
+| :------ | :------ |
+| `options?` | `Properties`<`CypressHelperOptions`\> |
 
 ## Properties
-
-### defaultDataAttribute
-
-• `Private` `Readonly` **defaultDataAttribute**: `string` = `"data-cy"`
-
-___
-
-### defaultShadowSlotSuffix
-
-• `Private` `Readonly` **defaultShadowSlotSuffix**: `string` = `"slot"`
-
-___
 
 ### get
 
@@ -359,6 +345,12 @@ Spy on a method and create an alias for the spy
 Replace a function, record its usage and control its behavior.
 
 -----
+
+___
+
+### options
+
+• `Readonly` **options**: `Properties`<`CypressHelperOptions`\>
 
 ___
 

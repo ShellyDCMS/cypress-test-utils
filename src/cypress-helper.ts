@@ -8,6 +8,17 @@ import "cypress-wait-if-happens";
 import "cypress-wait-until";
 
 import { StringMatcher } from "cypress/types/net-stubbing";
+
+type Properties<T> = Pick<
+  T,
+  { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]
+>;
+
+class CypressHelperOptions {
+  defaultDataAttribute?: string = "data-cy";
+  defaultShadowSlotSuffix?: string = "slot";
+  handleSlotShadowDOM?: boolean = true;
+}
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
  * @classdes CypressHelper exposes the following public properties:
@@ -19,13 +30,12 @@ import { StringMatcher } from "cypress/types/net-stubbing";
 export class CypressHelper {
   /**
    *
-   * @param [defaultDataAttribute = "data-cy"]
-   * @param [defaultShadowSlotSuffix = "slot]
+   * @param [options = {
+   * defaultDataAttribute : "data-cy" ,
+   * defaultShadowSlotSuffix : "slot",
+   * handleSlotShadowDOM : true}]
    */
-  constructor(
-    private readonly defaultDataAttribute: string = "data-cy",
-    private readonly defaultShadowSlotSuffix: string = "slot"
-  ) {}
+  constructor(public readonly options: Properties<CypressHelperOptions>) {}
 
   beforeAndAfter = () => {
     before(() => {
@@ -358,7 +368,7 @@ export class CypressHelper {
      */
     bySelector: (
       selector: string,
-      attribute: string = this.defaultDataAttribute
+      attribute: string = this.options.defaultDataAttribute!
     ) => cy.get(`[${attribute}="${selector}"]`),
     /**
      * Get A DOM element at a specific index from elements.
@@ -374,7 +384,7 @@ export class CypressHelper {
     nthBySelector: (
       selector: string,
       index: number,
-      attribute: string = this.defaultDataAttribute
+      attribute: string = this.options.defaultDataAttribute!
     ) => this.get.bySelector(selector, attribute).eq(index),
     /**
      * Returns specific environment variable or undefined
@@ -474,7 +484,8 @@ export class CypressHelper {
      * @param [index = 0]
      */
     elementByTestId: (selector: string, index: number = 0) =>
-      selector.endsWith(`-${this.defaultShadowSlotSuffix}`)
+      this.options.handleSlotShadowDOM &&
+      selector.endsWith(`-${this.options.defaultShadowSlotSuffix}`)
         ? this.get.nthBySelector(selector, index).then(slot =>
             cy.wrap(
               Cypress.$(slot as JQuery<HTMLSlotElement>)
