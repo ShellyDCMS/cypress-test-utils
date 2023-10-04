@@ -1,10 +1,14 @@
 import { CypressHelper } from "./cypress-helper";
 
 describe("cypress helper tests", () => {
-  let { beforeAndAfter, given, when, get } = new CypressHelper("data-hook");
+  let { beforeAndAfter, given, when, get } = new CypressHelper({
+    defaultDataAttribute: "data-hook"
+  });
   beforeAndAfter();
   beforeEach(() => {
-    ({ given, when, get } = new CypressHelper("data-hook"));
+    ({ given, when, get } = new CypressHelper({
+      defaultDataAttribute: "data-hook"
+    }));
 
     when.visit(
       "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html"
