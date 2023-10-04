@@ -51,6 +51,17 @@ In the [examples](https://github.com/ShellyDCMS/cypress-test-utils-examples/tree
 Each app contains a driver that uses helpers, component tests, integration tests and e2e tests.
 As you can see, all test levels use the *same* driver, meaning that if the feature's implementation changes, you'll need to change the driver alone, not the tests.
 
+## Framework Spesific Information
+### Using Shadow DOM
+When using <slot> elements with shadow dom, some things may not be where you expect them, fo example the text of this button is not directly inside the slot containing it.
+![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/c14b0877-4c9a-4f37-ba18-0220b9192b0f)
+CypressHelper will look for the assignedNode to retrieve the text, given that the selector of the slot has a '-slot' suffix.
+You may change this behaviour by overriding the default values when creating CypressHelper.
+
+### Angular
+When mounting an angular component, autoSpyOutputs is set to true, meaning all event emitters are automatically spied on and may be accessed during a test using `helper.get.spy("<EventEmitterName>")`
+
+### 
 ## Usage
 This library provides an API to interact with UI elements - `CypressHelper` that combines the common features. 
 To add it to your repo use
@@ -64,3 +75,4 @@ or
 ## Developing
 1. Set up the repo -  `yarn`
 2. Build the project - `npm run build`
+3. Runnin tests - `npm run cy:run`
