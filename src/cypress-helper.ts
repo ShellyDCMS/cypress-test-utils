@@ -9,20 +9,15 @@ import "cypress-wait-until";
 
 import { StringMatcher } from "cypress/types/net-stubbing";
 
-type Properties<T> = Pick<
-  T,
-  { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]
->;
-
 export interface CypressHelperOptions {
   /**
    * default data attribute for elements selection
    */
   defaultDataAttribute?: string;
   /**
-   * default slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
+   * slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
    */
-  defaultShadowSlotSuffix?: string;
+  shadowSlotSuffix?: string;
   /**
    * when set top true, cypress helper will automatically find the assigned dom element of elements with data selector
    * with `defaultShadowSlotSuffix` suffix
@@ -42,14 +37,13 @@ export class CypressHelper {
    *
    * @param [options = {
    * defaultDataAttribute : "data-cy" ,
-   * defaultShadowSlotSuffix : "slot",
+   * shadowSlotSuffix : "slot",
    * handleSlotShadowDOM : true}]
    */
   constructor(public readonly options: CypressHelperOptions = {}) {
     this.options.defaultDataAttribute =
       this.options.defaultDataAttribute || "data-cy";
-    this.options.defaultShadowSlotSuffix =
-      this.options.defaultShadowSlotSuffix || "slot";
+    this.options.shadowSlotSuffix = this.options.shadowSlotSuffix || "slot";
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
   }
 
@@ -501,7 +495,7 @@ export class CypressHelper {
      */
     elementByTestId: (selector: string, index: number = 0) =>
       this.options.handleSlotShadowDOM &&
-      selector.endsWith(`-${this.options.defaultShadowSlotSuffix}`)
+      selector.endsWith(`-${this.options.shadowSlotSuffix}`)
         ? this.get.nthBySelector(selector, index).then(slot =>
             cy.wrap(
               Cypress.$(slot as JQuery<HTMLSlotElement>)
