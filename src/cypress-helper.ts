@@ -14,10 +14,20 @@ type Properties<T> = Pick<
   { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]
 >;
 
-class CypressHelperOptions {
-  defaultDataAttribute?: string = "data-cy";
-  defaultShadowSlotSuffix?: string = "slot";
-  handleSlotShadowDOM?: boolean = true;
+export interface CypressHelperOptions {
+  /**
+   * default data attribute for elements selection
+   */
+  defaultDataAttribute?: string;
+  /**
+   * default slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
+   */
+  defaultShadowSlotSuffix?: string;
+  /**
+   * when set top true, cypress helper will automatically find the assigned dom element of elements with data selector
+   * with `defaultShadowSlotSuffix` suffix
+   */
+  handleSlotShadowDOM?: boolean;
 }
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
@@ -35,7 +45,13 @@ export class CypressHelper {
    * defaultShadowSlotSuffix : "slot",
    * handleSlotShadowDOM : true}]
    */
-  constructor(public readonly options: Properties<CypressHelperOptions>) {}
+  constructor(public readonly options: CypressHelperOptions = {}) {
+    this.options.defaultDataAttribute =
+      this.options.defaultDataAttribute || "data-cy";
+    this.options.defaultShadowSlotSuffix =
+      this.options.defaultShadowSlotSuffix || "slot";
+    this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
+  }
 
   beforeAndAfter = () => {
     before(() => {

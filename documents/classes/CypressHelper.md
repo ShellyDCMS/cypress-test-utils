@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.36](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.37](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -33,7 +33,7 @@ CypressHelper exposes the following public properties:
 
 | Name | Type |
 | :------ | :------ |
-| `options?` | `Properties`<`CypressHelperOptions`\> |
+| `options?` | [`CypressHelperOptions`](../interfaces/CypressHelperOptions.md) |
 
 ## Properties
 
@@ -350,7 +350,7 @@ ___
 
 ### options
 
-• `Readonly` **options**: `Properties`<`CypressHelperOptions`\>
+• `Readonly` **options**: [`CypressHelperOptions`](../interfaces/CypressHelperOptions.md) = `{}`
 
 ___
 
