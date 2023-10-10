@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.39](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.40](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -33,7 +33,7 @@ CypressHelper exposes the following public properties:
 
 | Name | Type |
 | :------ | :------ |
-| `options?` | [`CypressHelperOptions`](../interfaces/CypressHelperOptions.md) |
+| `options?` | [`CypressHelperOptions`](CypressHelperOptions.md) |
 
 ## Properties
 
@@ -51,11 +51,13 @@ The get property will hold methods which will give our tests access to the “ou
 | `currentLocation` | () => `Chainable`<`string`\> |
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `elementsAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
+| `elementsAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
 | `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\> |
-| `elementsStyleAttribute` | (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\> |
+| `elementsProperty` | (`selector`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\> |
+| `elementsStyleAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\> |
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
+| `fixture` | (`alias`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `numberOfElements` | (`selector`: `string`) => `Chainable`<`number`\> |
@@ -117,7 +119,7 @@ expect(helper.get.elementByText("Avamar")).to.exist;
 
 -----
 
-**elementsAttribute**: (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
+**elementsAttribute**: (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
 
 **`Example`**
 
@@ -133,7 +135,11 @@ Returns element's computed style, including pseudo elements
 
 -----
 
-**elementsStyleAttribute**: (`selector`: `string`, `attribute`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\>
+**elementsProperty**: (`selector`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\>
+
+-----
+
+**elementsStyleAttribute**: (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\>
 
 Returns element's style attribute
 
@@ -167,6 +173,12 @@ e2e: {
 ```ts
 helper.get.env("password");
 ```
+
+-----
+
+**fixture**: (`alias`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Get fixture
 
 -----
 
@@ -278,10 +290,17 @@ This is a classic place to have methods which will set the inputs which are goin
 
 | Name | Type |
 | :------ | :------ |
+| `fixture` | (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\> |
 | `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void` |
 | `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `stub` | () => `Agent`<`SinonStub`<`any`[], `any`\>\> |
+
+**fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
+
+Load a fixture
+
+-----
 
 **interceptAndMockResponse**: (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void`
 
@@ -377,7 +396,7 @@ ___
 
 ### options
 
-• `Readonly` **options**: [`CypressHelperOptions`](../interfaces/CypressHelperOptions.md) = `{}`
+• `Readonly` **options**: [`CypressHelperOptions`](CypressHelperOptions.md) = `{}`
 
 ___
 

@@ -1,8 +1,12 @@
-[@shellygo/cypress-test-utils - v1.0.39](../README.md) / [Modules](../modules.md) / CypressHelperOptions
+[@shellygo/cypress-test-utils - v1.0.40](../README.md) / [Modules](../modules.md) / CypressHelperOptions
 
-# Interface: CypressHelperOptions
+# Class: CypressHelperOptions
 
 ## Table of contents
+
+### Constructors
+
+- [constructor](CypressHelperOptions.md#constructor)
 
 ### Properties
 
@@ -10,11 +14,17 @@
 - [handleSlotShadowDOM](CypressHelperOptions.md#handleslotshadowdom)
 - [shadowSlotSuffix](CypressHelperOptions.md#shadowslotsuffix)
 
+## Constructors
+
+### constructor
+
+• **new CypressHelperOptions**()
+
 ## Properties
 
 ### defaultDataAttribute
 
-• `Optional` **defaultDataAttribute**: `string`
+• `Optional` **defaultDataAttribute**: `string` = `"data-cy"`
 
 default data attribute for elements selection
 
@@ -22,7 +32,7 @@ ___
 
 ### handleSlotShadowDOM
 
-• `Optional` **handleSlotShadowDOM**: `boolean`
+• `Optional` **handleSlotShadowDOM**: `boolean` = `true`
 
 when set top true, cypress helper will automatically find the assigned dom element of elements with data selector
 with `defaultShadowSlotSuffix` suffix
@@ -31,6 +41,6 @@ ___
 
 ### shadowSlotSuffix
 
-• `Optional` **shadowSlotSuffix**: `string`
+• `Optional` **shadowSlotSuffix**: `string` = `"slot"`
 
 slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
