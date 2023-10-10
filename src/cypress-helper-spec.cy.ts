@@ -15,132 +15,158 @@ describe("cypress helper tests", () => {
     );
   });
 
-  it("should intercept request and mock response", async () => {
-    given.interceptAndMockResponse({
-      url: "**/shellygo/whatever**",
-      response: { shelly: "go" }
+  describe("interception", () => {
+    it("should intercept request and mock response", async () => {
+      given.interceptAndMockResponse({
+        url: "**/shellygo/whatever**",
+        response: { shelly: "go" },
+        alias: "whatever"
+      });
+      fetch("https:/shellygo/whatever");
+      expect(
+        get.responseBody("whatever").should("include", {
+          shelly: "go"
+        })
+      );
     });
-    expect(await (await fetch("https:/shellygo/whatever")).json()).to.include({
-      shelly: "go"
-    });
-  });
 
-  describe("given multiple requests", () => {
-    beforeEach(() => {
+    it("given fixture should intercept request and mock response", async () => {
+      given.interceptAndMockResponse({
+        url: "**/shellygo/whatever**",
+        response: { fixture: "user.json" },
+        alias: "whatever"
+      });
+
+      fetch("https:/shellygo/whatever");
+      expect(
+        get.responseBody("whatever").should("include", {
+          name: "Jane Doe",
+          id: "1234",
+          nested: {
+            attr1: "something",
+            attr2: "the other thing"
+          }
+        })
+      );
+    });
+
+    describe("given multiple requests", () => {
+      beforeEach(() => {
+        given.interceptAndMockResponse({
+          url: "**/shellygo/whatever**",
+          response: { shelly: "go" },
+          alias: "shellygo"
+        });
+        fetch("https:/shellygo/whatever");
+        fetch("https:/shellygo/whatever");
+      });
+
+      it("should wait for multiple responses", () => {
+        fetch("https:/shellygo/whatever?shelly=go");
+        when.waitForResponses("shellygo", 2);
+        expect(
+          get.requestQueryParams("shellygo").should("include", { shelly: "go" })
+        );
+      });
+    });
+
+    describe("when waiting for last call", () => {
+      beforeEach(() => {
+        given.interceptAndMockResponse({
+          url: "**/shellygo/whatever**",
+          response: { shelly: "go" },
+          alias: "shellygo"
+        });
+        fetch("https:/shellygo/whatever");
+        fetch("https:/shellygo/whatever");
+        when.waitForLastCall("shellygo");
+      });
+
+      it("should wait for last call", () => {
+        fetch("https:/shellygo/whatever?shelly=go");
+        expect(
+          get.requestQueryParams("shellygo").should("include", { shelly: "go" })
+        );
+      });
+    });
+
+    it("should intercept request and test query params", () => {
+      fetch("https:/shellygo/whatever?shelly=go");
       given.interceptAndMockResponse({
         url: "**/shellygo/whatever**",
         response: { shelly: "go" },
         alias: "shellygo"
       });
-      fetch("https:/shellygo/whatever");
-      fetch("https:/shellygo/whatever");
-    });
-
-    it("should wait for multiple responses", () => {
-      fetch("https:/shellygo/whatever?shelly=go");
-      when.waitForResponses("shellygo", 2);
       expect(
         get.requestQueryParams("shellygo").should("include", { shelly: "go" })
       );
     });
-  });
 
-  describe("when waiting for last call", () => {
-    beforeEach(() => {
+    it("should intercept request and test body", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo/whatever",
+        method: "POST",
         response: { shelly: "go" },
         alias: "shellygo"
       });
-      fetch("https:/shellygo/whatever");
-      fetch("https:/shellygo/whatever");
-      when.waitForLastCall("shellygo");
-    });
 
-    it("should wait for last call", () => {
-      fetch("https:/shellygo/whatever?shelly=go");
+      fetch("https:/shellygo/whatever", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ shelly: "go" })
+      });
       expect(
-        get.requestQueryParams("shellygo").should("include", { shelly: "go" })
+        get.requestBody("shellygo").should("include", {
+          shelly: "go"
+        })
       );
     });
-  });
 
-  it("should intercept request and test query params", () => {
-    fetch("https:/shellygo/whatever?shelly=go");
-    given.interceptAndMockResponse({
-      url: "**/shellygo/whatever**",
-      response: { shelly: "go" },
-      alias: "shellygo"
-    });
-    expect(
-      get.requestQueryParams("shellygo").should("include", { shelly: "go" })
-    );
-  });
+    it("should intercept request and test url", () => {
+      given.interceptAndMockResponse({
+        url: "**/shellygo/whatever/**",
+        response: { shelly: "go" },
+        alias: "shellygo"
+      });
 
-  it("should intercept request and test body", () => {
-    given.interceptAndMockResponse({
-      url: "**/shellygo/whatever",
-      method: "POST",
-      response: { shelly: "go" },
-      alias: "shellygo"
+      fetch("https:/shellygo/whatever/18?param=value");
+      expect(get.requestUrl("shellygo").should("contain", "whatever/18"));
     });
 
-    fetch("https:/shellygo/whatever", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({ shelly: "go" })
-    });
-    expect(
-      get.requestBody("shellygo").should("include", {
-        shelly: "go"
-      })
-    );
-  });
+    it("should intercept request and test header", () => {
+      given.interceptAndMockResponse({
+        url: "**/shellygo/whatever",
+        method: "POST",
+        response: { shelly: "go" },
+        alias: "shellygo"
+      });
 
-  it("should intercept request and test url", () => {
-    given.interceptAndMockResponse({
-      url: "**/shellygo/whatever/**",
-      response: { shelly: "go" },
-      alias: "shellygo"
+      fetch("https:/shellygo/whatever", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          shelly: "go"
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ shelly: "go" })
+      });
+      expect(
+        get.requestHeader("shellygo").should("include", {
+          shelly: "go"
+        })
+      );
     });
-
-    fetch("https:/shellygo/whatever/18?param=value");
-    expect(get.requestUrl("shellygo").should("contain", "whatever/18"));
-  });
-
-  it("should intercept request and test header", () => {
-    given.interceptAndMockResponse({
-      url: "**/shellygo/whatever",
-      method: "POST",
-      response: { shelly: "go" },
-      alias: "shellygo"
-    });
-
-    fetch("https:/shellygo/whatever", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        shelly: "go"
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({ shelly: "go" })
-    });
-    expect(
-      get.requestHeader("shellygo").should("include", {
-        shelly: "go"
-      })
-    );
   });
 
   it("should get current location", () => {
