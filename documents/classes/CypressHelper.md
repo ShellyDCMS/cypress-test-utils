@@ -180,6 +180,22 @@ helper.get.env("password");
 
 Get fixture
 
+**`Example`**
+
+```ts
+ given.fixture("user.json", "user");
+ expect(
+   get.fixture("user").should("deep.nested.include", {
+   name: "Jane Doe",
+   id: "1234",
+   nested: {
+    attr1: "something",
+    attr2: "the other thing"
+   }
+ })
+);
+```
+
 -----
 
 **inputValue**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\>
@@ -299,6 +315,22 @@ This is a classic place to have methods which will set the inputs which are goin
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
 Load a fixture
+
+**`Example`**
+
+```ts
+ helper.given.fixture("user.json", "user");
+ expect(
+   helper.get.fixture("user").should("deep.nested.include", {
+   name: "Jane Doe",
+   id: "1234",
+   nested: {
+    attr1: "something",
+    attr2: "the other thing"
+   }
+ })
+);
+```
 
 -----
 

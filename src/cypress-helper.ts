@@ -137,6 +137,22 @@ export class CypressHelper {
     },
     /**
      * Load a fixture
+     * @param filename
+     * @param alias
+     * @example
+     * ```ts
+     *  helper.given.fixture("user.json", "user");
+     *  expect(
+     *    helper.get.fixture("user").should("deep.nested.include", {
+     *    name: "Jane Doe",
+     *    id: "1234",
+     *    nested: {
+     *     attr1: "something",
+     *     attr2: "the other thing"
+     *    }
+     *  })
+     * );
+     * ```
      */
     fixture: (filename: string, alias: string) =>
       cy.fixture(filename).as(alias),
@@ -573,6 +589,21 @@ export class CypressHelper {
 
     /**
      * Get fixture
+     * @param alias
+     * @example
+     * ```ts
+     *  given.fixture("user.json", "user");
+     *  expect(
+     *    get.fixture("user").should("deep.nested.include", {
+     *    name: "Jane Doe",
+     *    id: "1234",
+     *    nested: {
+     *     attr1: "something",
+     *     attr2: "the other thing"
+     *    }
+     *  })
+     * );
+     * ```
      */
     fixture: (alias: string) => cy.get(`@${alias}`),
 
