@@ -1,0 +1,8 @@
+{
+  "name": "Jane Doe",
+  "id": "1234",
+  "nested": {
+    "attr1": "something",
+    "attr2": "the other thing"
+  }
+}

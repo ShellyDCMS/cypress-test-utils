@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.38](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v1.0.39](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -63,6 +63,8 @@ The get property will hold methods which will give our tests access to the “ou
 | `requestHeader` | (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\> |
 | `requestQueryParams` | (`alias`: `string`) => `Chainable`<{ `[k: string]`: `string`;  }\> |
 | `requestUrl` | (`alias`: `string`) => `Chainable`<`string`\> |
+| `responseBody` | (`alias`: `string`) => `Chainable`<`any`\> |
+| `responseHeader` | (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\> |
 | `spy` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -231,6 +233,20 @@ Get intercepted request's url
 
 -----
 
+**responseBody**: (`alias`: `string`) => `Chainable`<`any`\>
+
+Get intercepted response's body
+If a JSON Content-Type was used and the body was valid JSON, this will be an object.
+If the body was binary content, this will be a buffer.
+
+-----
+
+**responseHeader**: (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\>
+
+Get intercepted response's header
+
+-----
+
 **spy**: (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Get spy by alias
@@ -316,7 +332,7 @@ helper.given.interceptAndMockResponse({
 
 **`Example`**
 
-// mocks network error
+// mocks missing image
 ```ts
 helper.given.interceptAndMockResponse({
   method: "POST",
@@ -324,6 +340,17 @@ helper.given.interceptAndMockResponse({
   alias: "image",
   response: { headers: 404 }
 })
+```
+
+**`Example`**
+
+// using a fixture
+```ts
+ helper.given.interceptAndMockResponse({
+  url: "** /shellygo/whatever**",
+  response: { fixture: "user.json" },
+  alias: "whatever"
+});
 ```
 
 -----

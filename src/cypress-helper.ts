@@ -105,7 +105,7 @@ export class CypressHelper {
      * })
      * ```
      * @example
-     * // mocks network error
+     * // mocks missing image
      * ```ts
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
@@ -113,6 +113,15 @@ export class CypressHelper {
      *   alias: "image",
      *   response: { headers: 404 }
      * })
+     * ```
+     * @example
+     * // using a fixture
+     * ```ts
+     *  helper.given.interceptAndMockResponse({
+     *   url: "** /shellygo/whatever**",
+     *   response: { fixture: "user.json" },
+     *   alias: "whatever"
+     * });
      * ```
      */
     interceptAndMockResponse: (options: {
@@ -544,6 +553,27 @@ export class CypressHelper {
       index = 0
     ): Cypress.Chainable<string | undefined> =>
       this.get.elementByTestId(selector, index).invoke("attr", attribute),
+
+    /**
+     * Get intercepted response's header
+     * @param alias
+     * @returns { Cypress.Chainable<{ [key: string]: string | string[]}>}
+     */
+    responseHeader: (
+      alias: string
+    ): Cypress.Chainable<{
+      [key: string]: string | string[];
+    }> => this.when.waitForResponse(alias).then(xhr => xhr.response!.headers),
+
+    /**
+     * Get intercepted response's body
+     * If a JSON Content-Type was used and the body was valid JSON, this will be an object.
+     * If the body was binary content, this will be a buffer.
+     * @param alias
+     * @returns {Cypress.Chainable<any>}
+     */
+    responseBody: (alias: string): Cypress.Chainable<any> =>
+      this.when.waitForResponse(alias).then(xhr => xhr.response!.body),
     /**
      * Get intercepted request's body
      * If a JSON Content-Type was used and the body was valid JSON, this will be an object.

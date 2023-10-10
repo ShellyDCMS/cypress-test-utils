@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v1.0.38](../README.md) / [Modules](../modules.md) / CypressAngularComponentHelper
+[@shellygo/cypress-test-utils - v1.0.39](../README.md) / [Modules](../modules.md) / CypressAngularComponentHelper
 
 # Class: CypressAngularComponentHelper<T\>
 
