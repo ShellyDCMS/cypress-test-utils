@@ -9,20 +9,20 @@ import "cypress-wait-until";
 
 import { StringMatcher } from "cypress/types/net-stubbing";
 
-export interface CypressHelperOptions {
+export class CypressHelperOptions {
   /**
    * default data attribute for elements selection
    */
-  defaultDataAttribute?: string;
+  defaultDataAttribute?: string = "data-cy";
   /**
    * slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
    */
-  shadowSlotSuffix?: string;
+  shadowSlotSuffix?: string = "slot";
   /**
    * when set top true, cypress helper will automatically find the assigned dom element of elements with data selector
    * with `defaultShadowSlotSuffix` suffix
    */
-  handleSlotShadowDOM?: boolean;
+  handleSlotShadowDOM?: boolean = true;
 }
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
@@ -136,9 +136,30 @@ export class CypressHelper {
       );
     },
     /**
+     * Load a fixture
+     * @param filename
+     * @param alias
+     * @example
+     * ```ts
+     *  helper.given.fixture("user.json", "user");
+     *  expect(
+     *    helper.get.fixture("user").should("deep.nested.include", {
+     *    name: "Jane Doe",
+     *    id: "1234",
+     *    nested: {
+     *     attr1: "something",
+     *     attr2: "the other thing"
+     *    }
+     *  })
+     * );
+     * ```
+     */
+    fixture: (filename: string, alias: string) =>
+      cy.fixture(filename).as(alias),
+
+    /**
      * Replace a function, record its usage and control its behavior.
      * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
-
      */
     stub: (): Cypress.Agent<sinon.SinonStub<any[], any>> => cy.stub(),
     /**
@@ -150,7 +171,7 @@ export class CypressHelper {
       cy.spy().as(`${name}Spy`),
     /**
      * Spy on a method and create an alias for the spy
-     * @param obj - object containing function to spy on
+     * @param obj object containing function to spy on
      * @param method function to spy on
      * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
      */
@@ -349,8 +370,8 @@ export class CypressHelper {
      *   helper.get.elementByTestId('available-items')
      * )
      * ```
-     * @param element - element to be dragged
-     * @param targetElement - target of drag operation
+     * @param element element to be dragged
+     * @param targetElement target of drag operation
      */
     dragAndDrop: (
       element: Cypress.Chainable<JQuery<HTMLElement>>,
@@ -431,21 +452,33 @@ export class CypressHelper {
     /**
      * Returns element's style attribute
      *
-     * @param selector : string
-     * @param attribute : string
+     * @param selector
+     * @param attributeName
      * @param [index = 0]
      * @returns {Cypress.Chainable<string>}
      */
     elementsStyleAttribute: (
       selector: string,
-      attribute: string,
+      attributeName: string,
       index: number = 0
-    ) => this.get.elementByTestId(selector, index).invoke("css", attribute),
+    ) => this.get.elementByTestId(selector, index).invoke("css", attributeName),
 
+    /**
+     *
+     * @param selector
+     * @param propertyName
+     * @param [index = 0]
+     * @returns
+     */
+    elementsProperty: (
+      selector: string,
+      propertyName: keyof JQuery<HTMLElement>,
+      index: number = 0
+    ) => this.get.elementByTestId(selector, index).invoke(propertyName),
     /**
      * Returns element's computed style, including pseudo elements
      *
-     * @param selector : string
+     * @param selector
      * @param [index = 0]
      * @param [pseudoElement]
      * @returns {Cypress.Chainable<CSSStyleDeclaration>}
@@ -543,16 +576,36 @@ export class CypressHelper {
      * expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include", 'background-image: url("assets/avatar/def-user-male.png")'))
      * ```
      * @param selector
-     * @param attribute
+     * @param attributeName
      * @param [index = 0]
      * @returns {Cypress.Chainable<string | undefined>}
      */
     elementsAttribute: (
       selector: string,
-      attribute: string,
+      attributeName: string,
       index = 0
     ): Cypress.Chainable<string | undefined> =>
-      this.get.elementByTestId(selector, index).invoke("attr", attribute),
+      this.get.elementByTestId(selector, index).invoke("attr", attributeName),
+
+    /**
+     * Get fixture
+     * @param alias
+     * @example
+     * ```ts
+     *  given.fixture("user.json", "user");
+     *  expect(
+     *    get.fixture("user").should("deep.nested.include", {
+     *    name: "Jane Doe",
+     *    id: "1234",
+     *    nested: {
+     *     attr1: "something",
+     *     attr2: "the other thing"
+     *    }
+     *  })
+     * );
+     * ```
+     */
+    fixture: (alias: string) => cy.get(`@${alias}`),
 
     /**
      * Get intercepted response's header
