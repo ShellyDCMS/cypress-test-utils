@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 import type { Type } from "@angular/core";
 import { ComponentFixture } from "@angular/core/testing";
 import { MountConfig } from "cypress/angular";

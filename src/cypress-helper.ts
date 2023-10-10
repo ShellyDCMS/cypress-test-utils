@@ -1,7 +1,6 @@
 /*
  * Copyright (c) 2022 Dell Inc. or its subsidiaries. All Rights Reserved.
  */
-/// <reference types="cypress" />
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
@@ -252,7 +251,8 @@ export class CypressHelper {
      * ```
      */
     click: (selector: string, index: number = 0) =>
-      this.get.elementByTestId(selector, index).click(),
+      this.get.elementByTestId(selector, index).click({ force: true }),
+
     /**
      *
      * Double-click a DOM element.
