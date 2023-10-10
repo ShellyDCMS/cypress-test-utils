@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",

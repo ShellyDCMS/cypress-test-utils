@@ -308,4 +308,8 @@ describe("cypress helper tests", () => {
       })
     );
   });
+
+  it.only("should get element's attribute", () => {
+    expect(get.elementsProperty("image", "height").should("eq", 142));
+  });
 });
