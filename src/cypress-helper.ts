@@ -9,20 +9,20 @@ import "cypress-wait-until";
 
 import { StringMatcher } from "cypress/types/net-stubbing";
 
-export interface CypressHelperOptions {
+export class CypressHelperOptions {
   /**
    * default data attribute for elements selection
    */
-  defaultDataAttribute?: string;
+  defaultDataAttribute?: string = "data-cy";
   /**
    * slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
    */
-  shadowSlotSuffix?: string;
+  shadowSlotSuffix?: string = "slot";
   /**
    * when set top true, cypress helper will automatically find the assigned dom element of elements with data selector
    * with `defaultShadowSlotSuffix` suffix
    */
-  handleSlotShadowDOM?: boolean;
+  handleSlotShadowDOM?: boolean = true;
 }
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
@@ -136,9 +136,14 @@ export class CypressHelper {
       );
     },
     /**
+     * Load a fixture
+     */
+    fixture: (filename: string, alias: string) =>
+      cy.fixture(filename).as(alias),
+
+    /**
      * Replace a function, record its usage and control its behavior.
      * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
-
      */
     stub: (): Cypress.Agent<sinon.SinonStub<any[], any>> => cy.stub(),
     /**
@@ -553,6 +558,11 @@ export class CypressHelper {
       index = 0
     ): Cypress.Chainable<string | undefined> =>
       this.get.elementByTestId(selector, index).invoke("attr", attribute),
+
+    /**
+     * Get fixture
+     */
+    fixture: (alias: string) => cy.get(`@${alias}`),
 
     /**
      * Get intercepted response's header

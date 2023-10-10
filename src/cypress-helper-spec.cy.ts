@@ -15,6 +15,13 @@ describe("cypress helper tests", () => {
     );
   });
 
+  describe("default data attribute", () => {
+    let { beforeAndAfter, given, when, get } = new CypressHelper();
+    it("should get element's text", () => {
+      get.elementsText("default").should("eq", "default data attribute");
+    });
+  });
+
   describe("interception", () => {
     it("should intercept request and mock response", async () => {
       given.interceptAndMockResponse({
@@ -286,5 +293,19 @@ describe("cypress helper tests", () => {
 
   it("should get element by text", () => {
     expect(get.elementByText("My first paragraph")).to.exist;
+  });
+
+  it("should get fixture", () => {
+    given.fixture("user.json", "user");
+    expect(
+      get.fixture("user").should("deep.nested.include", {
+        name: "Jane Doe",
+        id: "1234",
+        nested: {
+          attr1: "something",
+          attr2: "the other thing"
+        }
+      })
+    );
   });
 });
