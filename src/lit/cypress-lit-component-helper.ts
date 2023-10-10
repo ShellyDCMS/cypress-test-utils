@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 import { getContainerEl } from "@cypress/mount-utils";
 import { html, LitElement, render, TemplateResult } from "lit";
 /**
