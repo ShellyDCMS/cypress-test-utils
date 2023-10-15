@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "1.0.42",
+  "version": "2.0.1",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -19,12 +19,12 @@
     "helper"
   ],
   "scripts": {
-    "build": "rm -rf dist/* && tsc && mv dist/out-tsc/src/lit dist/out-tsc/lit  && mv dist/out-tsc/src/angular dist/out-tsc/angular && mv dist/out-tsc/src/react dist/out-tsc/react",
+    "build": "tsc -p tsconfig.json",
     "package": "node --max-old-space-size=4400 && npm run build",
     "cy:run": "npx cypress run",
     "cy:open": "npx cypress open",
-    "copy-readme": "cp README.md dist/out-tsc",
-    "publish-package": "npm run copy-readme && cd dist/out-tsc && npm publish",
+    "copy-readme": "cp README.md dist/",
+    "publish-package": "npm run copy-readme && cd dist/ && npm publish",
     "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown  --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
     "generate-docs": "npx typedoc --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
   },
@@ -57,31 +57,19 @@
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist/",
     "strict": true
   },
-  "main": "./src/index.js",
-  "exports": {
-    ".": {
-      "types": "./src/index.d.ts",
-      "default": "./src/index.js"
-    },
-    "./angular": {
-      "types": "./angular/index.d.ts",
-      "default": "./angular/index.js"
-    },
-    "./react": {
-      "types": "./react/index.d.ts",
-      "default": "./react/index.js"
-    },
-    "./lit": {
-      "types": "./lit/index.d.ts",
-      "default": "./lit/index.js"
-    }
-  },
+  "main": "./dist/index.js",
   "type": "module",
   "include": [
-    "src"
+    "dist"
+  ],
+  "files": [
+    "dist",
+    "docs",
+    "documents",
+    "README.md"
   ],
   "exclude": [
     "**/*.spec.ts"
