@@ -1,4 +1,4 @@
-export { CypressAngularComponentHelper } from "./cypress-angular-component-helper";
+export { CypressAngularComponentHelper } from "./angular";
 export { CypressHelper } from "./cypress-helper";
-export { CypressLitComponentHelper } from "./cypress-lit-component-helper";
-export { CypressReactComponentHelper } from "./cypress-react-component-helper";
+export { CypressLitComponentHelper } from "./lit";
+export { CypressReactComponentHelper } from "./react";
