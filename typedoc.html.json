@@ -1,10 +1,15 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["./src/cypress-helper.ts", "./src/angular/index.ts", "./src/react/index.ts", "./src/lit/index.ts" ],
+  "entryPoints": [
+    "./src/cypress-helper.ts",
+    "./src/angular/cypress-angular-component-helper.ts",
+    "./src/react/cypress-react-component-helper.ts",
+    "./src/lit/cypress-lit-component-helper.ts"
+  ],
   "out": "docs",
   "disableSources": true,
   "jsDocCompatibility": {
     "exampleTag": true,
     "defaultTag": true
-},
+  }
 }
