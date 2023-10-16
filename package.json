@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "1.0.41",
+  "version": "1.0.44",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -63,16 +63,20 @@
   "main": "./src/index.js",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
-      "default": "./src/index.js"
+      "types": "./src/cypress-helper.d.ts",
+      "default": "./src/cypress-helper.js"
     },
     "./angular": {
-      "types": "./angular/index.d.ts",
-      "default": "./angular/index.js"
+      "types": "./angular/cypress-angular-component-helper.d.ts",
+      "default": "./angular/cypress-angular-component-helper.js"
     },
     "./lit": {
-      "types": "./lit/index.d.ts",
-      "default": "./lit/index.js"
+      "types": "./lit/cypress-lit-component-helper.d.ts",
+      "default": "./lit/cypress-lit-component-helper.js"
+    },
+    "./react": {
+      "types": "./react/cypress-react-component-helper.d.ts",
+      "default": "./react/cypress-react-component-helper.js"
     }
   },
   "type": "module",
