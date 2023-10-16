@@ -1,4 +1,4 @@
-import { CypressHelper } from "./cypress-helper";
+import { CypressHelper } from ".";
 
 describe("cypress helper tests", () => {
   let { beforeAndAfter, given, when, get } = new CypressHelper({
