@@ -5,7 +5,7 @@ name: Publish Package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 permissions:
   checks: write
@@ -33,15 +33,13 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
       - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
-        id: test-report 
-        if: always() 
+        id: test-report
+        if: always()
         with:
           name: Cypress Tests
           path: ${{ github.workspace }}/cypress/results/json/mochawesome.json
           reporter: mochawesome-json
 
-      - run: npm run publish-package
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      
-
