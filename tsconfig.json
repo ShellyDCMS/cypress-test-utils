@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "importHelpers": true,
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist",
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",
@@ -20,5 +20,6 @@
     "module": "ESNext",
     "strict": true
   },
-  "include": ["src", "package.json"]
+  "include": ["src", "package.json"],
+  "exclude": ["**/*.spec.*"]
 }
