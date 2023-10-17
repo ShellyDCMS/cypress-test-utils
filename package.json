@@ -73,6 +73,10 @@
     "./lit": {
       "types": "./lit/index.d.ts",
       "default": "./lit/index.js"
+    },
+    "./react": {
+      "types": "./react/index.d.ts",
+      "default": "./react/index.js"
     }
   },
   "type": "module",
