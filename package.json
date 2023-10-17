@@ -1,11 +1,10 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
-  "main": "./src/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -20,9 +19,12 @@
     "helper"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "rm -rf dist/* && tsc && mv dist/src/lit dist/lit  && mv dist/src/angular dist/angular && mv dist/src/react dist/react",
+    "package": "node --max-old-space-size=4400 && npm run build",
     "cy:run": "npx cypress run",
     "cy:open": "npx cypress open",
+    "copy-readme": "cp README.md dist",
+    "publish-package": "npm run copy-readme && cd dist && npm publish",
     "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown  --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
     "generate-docs": "npx typedoc --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
   },
@@ -58,31 +60,28 @@
     "outDir": "./dist",
     "strict": true
   },
+  "main": "./src/index.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
     },
     "./angular": {
-      "types": "./dist/angular/index.d.ts",
-      "default": "./dist/angular/index.js"
+      "types": "./angular/index.d.ts",
+      "default": "./angular/index.js"
     },
     "./lit": {
-      "types": "./dist/lit/index.d.ts",
-      "default": "./dist/lit/index.js"
+      "types": "./lit/index.d.ts",
+      "default": "./lit/index.js"
     },
     "./react": {
-      "types": "./dist/react/index.d.ts",
-      "default": "./dist/react/index.js"
+      "types": "./react/index.d.ts",
+      "default": "./react/index.js"
     }
   },
   "type": "module",
   "include": [
     "src"
-  ],
-  "files": [
-    "dist",
-    "README.md"
   ],
   "exclude": [
     "**/*.spec.*"

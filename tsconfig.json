@@ -13,13 +13,12 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": false,
-    "rootDir": "src/",
+    "rootDir": ".",
     "types": ["node", "cypress"],
     "lib": ["es2018", "dom"],
     "baseUrl": "./",
     "module": "ESNext",
     "strict": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["**/*.spec.*"]
+  "include": ["src", "package.json"]
 }
