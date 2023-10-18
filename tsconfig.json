@@ -20,5 +20,6 @@
     "module": "ESNext",
     "strict": true
   },
-  "include": ["src", "package.json"]
+  "include": ["src", "package.json"],
+  "exclude": ["**/*.spec.*"]
 }
