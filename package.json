@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "1.0.47",
+  "version": "2.0.0",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -88,6 +88,6 @@
   ],
   "engines": {
     "npm": ">=6.0.0",
-    "node": ">=14.18.0"
+    "node": ">=18.18.2"
   }
 }
