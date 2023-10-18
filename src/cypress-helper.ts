@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2022 Dell Inc. or its subsidiaries. All Rights Reserved.
- */
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
