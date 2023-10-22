@@ -43,6 +43,11 @@ export class CypressHelper {
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
   }
 
+  private isGetter = <T>(obj: T, prop: keyof T) =>
+    !!Object.getOwnPropertyDescriptor(obj, prop)!["get"];
+  private isSetter = <T>(obj: T, prop: keyof T) =>
+    !!Object.getOwnPropertyDescriptor(obj, prop)!["set"];
+
   beforeAndAfter = () => {
     before(() => {
       chai.use(chaiSubset);
@@ -158,6 +163,25 @@ export class CypressHelper {
      * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
      */
     stub: (): Cypress.Agent<sinon.SinonStub<any[], any>> => cy.stub(),
+    /**
+     * Stub an object's method and create an alias for the stub
+     * @param obj object containing function to stub
+     * @param method function to stub
+     * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
+     * @example
+     * ```ts
+     * //stubbing a service method
+     *  helper.given.stubObjectMethod(serviceMock, "functionName").returns(3);
+     *
+     * //stubbing setters and getters
+     *  helper.given.stubObjectMethod(serviceMock, "count").get(() => 3).set(() => {});
+     * ```
+     */
+    stubObjectMethod: <T>(
+      obj: T,
+      method: keyof T
+    ): Cypress.Agent<sinon.SinonStub<any[], any>> =>
+      cy.stub(obj, method).as(`${String(method)}`),
     /**
      * Returns a new spy function, and creates an alias for the newly created spy
      * @param name - spy name

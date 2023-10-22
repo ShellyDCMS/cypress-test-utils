@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.0](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.1](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -22,6 +22,8 @@ CypressHelper exposes the following public properties:
 ### Methods
 
 - [beforeAndAfter](CypressHelper.md#beforeandafter)
+- [isGetter](CypressHelper.md#isgetter)
+- [isSetter](CypressHelper.md#issetter)
 
 ## Constructors
 
@@ -311,6 +313,7 @@ This is a classic place to have methods which will set the inputs which are goin
 | `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `stub` | () => `Agent`<`SinonStub`<`any`[], `any`\>\> |
+| `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -421,6 +424,22 @@ Spy on a method and create an alias for the spy
 **stub**: () => `Agent`<`SinonStub`<`any`[], `any`\>\>
 
 Replace a function, record its usage and control its behavior.
+
+-----
+
+**stubObjectMethod**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\>
+
+Stub an object's method and create an alias for the stub
+
+**`Example`**
+
+```ts
+//stubbing a service method
+ helper.given.stubObjectMethod(serviceMock, "functionName").returns(3);
+
+//stubbing setters and getters
+ helper.given.stubObjectMethod(serviceMock, "count").get(() => 3).set(() => {});
+```
 
 -----
 
@@ -699,3 +718,49 @@ helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo')
 #### Returns
 
 `void`
+
+___
+
+### isGetter
+
+▸ `Private` **isGetter**<`T`\>(`obj`, `prop`): `boolean`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `obj` | `T` |
+| `prop` | keyof `T` |
+
+#### Returns
+
+`boolean`
+
+___
+
+### isSetter
+
+▸ `Private` **isSetter**<`T`\>(`obj`, `prop`): `boolean`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `obj` | `T` |
+| `prop` | keyof `T` |
+
+#### Returns
+
+`boolean`
