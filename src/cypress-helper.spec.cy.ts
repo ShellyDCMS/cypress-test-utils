@@ -284,11 +284,27 @@ describe("cypress helper tests", () => {
   });
 
   it("should stub function", () => {
+    let func = () => 5;
+    func = given.stub().returns(7);
+    expect(func()).to.eq(7);
+  });
+
+  it("should stub object function", () => {
     const obj = {
       func: () => 5
     };
-    obj.func = given.stub().returns(7);
+    given.stubObjectMethod(obj, "func").returns(7);
     expect(obj.func()).to.eq(7);
+  });
+
+  it("should stub object getter", () => {
+    const obj = {
+      get count() {
+        return 5;
+      }
+    };
+    given.stubObjectMethod(obj, "count").get(() => 7);
+    expect(obj.count).to.eq(7);
   });
 
   it("should get element by text", () => {
