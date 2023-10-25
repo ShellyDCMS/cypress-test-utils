@@ -36,7 +36,7 @@ export class CypressHelper {
    * shadowSlotSuffix : "slot",
    * handleSlotShadowDOM : true}]
    */
-  constructor(public readonly options: CypressHelperOptions = {}) {
+  constructor(private readonly options: CypressHelperOptions = {}) {
     this.options.defaultDataAttribute =
       this.options.defaultDataAttribute || "data-cy";
     this.options.shadowSlotSuffix = this.options.shadowSlotSuffix || "slot";
