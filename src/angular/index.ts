@@ -1,6 +1,6 @@
 import type { Type } from "@angular/core";
 import { ComponentFixture } from "@angular/core/testing";
-import { MountConfig } from "cypress/angular";
+import { MountConfig, mount } from "cypress/angular";
 /**
  * @class CypressAngularComponentHelper was designed designed for mounting angular components
  * @template T - component type
@@ -42,7 +42,7 @@ export class CypressAngularComponentHelper<T> {
       }>
     ) => {
       // @ts-ignore
-      const mountResponse = cy.mount<T>(componentType, {
+      const mountResponse = mount<T>(componentType, {
         ...config,
         autoSpyOutputs: true,
         componentProperties: {

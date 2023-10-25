@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.1](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.2](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -447,7 +447,7 @@ ___
 
 ### options
 
-• `Readonly` **options**: [`CypressHelperOptions`](CypressHelperOptions.md) = `{}`
+• `Private` `Readonly` **options**: [`CypressHelperOptions`](CypressHelperOptions.md) = `{}`
 
 ___
 
