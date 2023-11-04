@@ -2,9 +2,33 @@ import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
-
 import { StringMatcher } from "cypress/types/net-stubbing";
+export * from "cypress-pipe";
 
+/**
+ * Sinon matcher for stubs/spy comparison
+ * @example
+ * // partial match of spy function params called with
+ * ```ts
+ * it("should partially match spy params", () => {
+ *   const obj = {
+ *     func: (param: Object) => {}
+ *   };
+ *   given.spyOnObject(obj, "func");
+ *   obj.func({ shelly: "go", inner: { attr: "value" } });
+ *   expect(
+ *     get
+ *       .spyFromFunction(obj.func)
+ *       .should(
+ *         "have.been.calledWithMatch",
+ *         match({ inner: { attr: "value" } })
+ *       )
+ *   );
+ * });
+ * ```
+ * For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
+ */
+export const match = Cypress.sinon.match;
 export class CypressHelperOptions {
   /**
    * default data attribute for elements selection

@@ -1,4 +1,4 @@
-import { CypressHelper } from ".";
+import { CypressHelper, loggable, match } from ".";
 
 describe("cypress helper tests", () => {
   let { beforeAndAfter, given, when, get } = new CypressHelper({
@@ -258,6 +258,13 @@ describe("cypress helper tests", () => {
     get.elementsText("header").should("eq", "My First Heading");
   });
 
+  it("should supply cypress pipe", () => {
+    get
+      .elementsText("header")
+      .pipe(loggable(str => str.toLowerCase()))
+      .should("eq", "my first heading");
+  });
+
   it("should get env variable", () => {
     expect(get.env("env1")).to.eq("value1");
   });
@@ -281,6 +288,22 @@ describe("cypress helper tests", () => {
     given.spyOnObject(obj, "func");
     obj.func(3);
     expect(get.spyFromFunction(obj.func).should("have.been.calledWith", 3));
+  });
+
+  it("should partially match spy params", () => {
+    const obj = {
+      func: (param: Object) => {}
+    };
+    given.spyOnObject(obj, "func");
+    obj.func({ shelly: "go", inner: { attr: "value" } });
+    expect(
+      get
+        .spyFromFunction(obj.func)
+        .should(
+          "have.been.calledWithMatch",
+          match({ inner: { attr: "value" } })
+        )
+    );
   });
 
   it("should stub function", () => {
