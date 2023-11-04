@@ -8,7 +8,7 @@ export * from "cypress-pipe";
 /**
  * Sinon matcher for stubs/spy comparison
  * @example
- * // adds token to response header
+ * // partial match of spy function params called with
  * ```ts
  * it("should partially match spy params", () => {
  *   const obj = {
@@ -26,6 +26,7 @@ export * from "cypress-pipe";
  *   );
  * });
  * ```
+ * For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
  */
 export const match = Cypress.sinon.match;
 export class CypressHelperOptions {

@@ -96,7 +96,7 @@ Sinon matcher for stubs/spy comparison
 
 **`Example`**
 
-// adds token to response header
+// partial match of spy function params called with
 ```ts
 it("should partially match spy params", () => {
   const obj = {
@@ -114,6 +114,7 @@ it("should partially match spy params", () => {
   );
 });
 ```
+For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
 ▸ **match**(`value`): `SinonMatcher`
 
@@ -131,7 +132,7 @@ Sinon matcher for stubs/spy comparison
 
 **`Example`**
 
-// adds token to response header
+// partial match of spy function params called with
 ```ts
 it("should partially match spy params", () => {
   const obj = {
@@ -149,6 +150,7 @@ it("should partially match spy params", () => {
   );
 });
 ```
+For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
 ▸ **match**(`expr`): `SinonMatcher`
 
@@ -166,7 +168,7 @@ Sinon matcher for stubs/spy comparison
 
 **`Example`**
 
-// adds token to response header
+// partial match of spy function params called with
 ```ts
 it("should partially match spy params", () => {
   const obj = {
@@ -184,6 +186,7 @@ it("should partially match spy params", () => {
   );
 });
 ```
+For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
 ▸ **match**(`callback`, `message?`): `SinonMatcher`
 
@@ -202,7 +205,7 @@ Sinon matcher for stubs/spy comparison
 
 **`Example`**
 
-// adds token to response header
+// partial match of spy function params called with
 ```ts
 it("should partially match spy params", () => {
   const obj = {
@@ -220,6 +223,7 @@ it("should partially match spy params", () => {
   );
 });
 ```
+For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
 ▸ **match**(`obj`): `SinonMatcher`
 
@@ -237,7 +241,7 @@ Sinon matcher for stubs/spy comparison
 
 **`Example`**
 
-// adds token to response header
+// partial match of spy function params called with
 ```ts
 it("should partially match spy params", () => {
   const obj = {
@@ -255,3 +259,4 @@ it("should partially match spy params", () => {
   );
 });
 ```
+For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
