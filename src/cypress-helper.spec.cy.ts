@@ -281,57 +281,63 @@ describe("cypress helper tests", () => {
     expect(get.elementByTestId("submit").should("be.enabled"));
   });
 
-  it("should spy on function", () => {
-    const obj = {
-      func: (param: number) => {}
-    };
-    given.spyOnObject(obj, "func");
-    obj.func(3);
-    expect(get.spyFromFunction(obj.func).should("have.been.calledWith", 3));
-  });
+  describe("stubs and spies", () => {
+    it("should spy on function", () => {
+      const obj = {
+        func: (param: number) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func(3);
+      expect(get.spyFromFunction(obj.func).should("have.been.calledWith", 3));
+    });
 
-  it("should partially match spy params", () => {
-    const obj = {
-      func: (param: Object) => {}
-    };
-    given.spyOnObject(obj, "func");
-    obj.func({ shelly: "go", inner: { attr: "value" } });
-    expect(
-      get
-        .spyFromFunction(obj.func)
-        .should(
-          "have.been.calledWithMatch",
-          match({ inner: { attr: "value" } })
-        )
-    );
-  });
+    it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      expect(
+        get
+          .spyFromFunction(obj.func)
+          .should(
+            "have.been.calledWithMatch",
+            match({ inner: { attr: "value" } })
+          )
+      );
+    });
 
-  it("should stub function", () => {
-    let func = () => 5;
-    func = given.stub().returns(7);
-    expect(func()).to.eq(7);
-  });
+    it("should stub function", () => {
+      let func = () => 5;
+      func = given.stub().returns(7);
+      expect(func()).to.eq(7);
+    });
 
-  it("should stub object function", () => {
-    const obj = {
-      func: () => 5
-    };
-    given.stubObjectMethod(obj, "func").returns(7);
-    expect(obj.func()).to.eq(7);
-  });
+    it("should stub object function", () => {
+      const obj = {
+        func: () => 5
+      };
+      given.stubObjectMethod(obj, "func").returns(7);
+      expect(obj.func()).to.eq(7);
+    });
 
-  it("should stub object getter", () => {
-    const obj = {
-      get count() {
-        return 5;
-      }
-    };
-    given.stubObjectMethod(obj, "count").get(() => 7);
-    expect(obj.count).to.eq(7);
+    it("should stub object getter", () => {
+      const obj = {
+        get count() {
+          return 5;
+        }
+      };
+      given.stubObjectMethod(obj, "count").get(() => 7);
+      expect(obj.count).to.eq(7);
+    });
   });
 
   it("should get element by text", () => {
     expect(get.elementByText("My first paragraph")).to.exist;
+  });
+
+  it.only("should get element by css", () => {
+    expect(get.bySelector("dummy1 dummy2", "class")).to.exist;
   });
 
   it("should get fixture", () => {
