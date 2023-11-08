@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.4](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.5](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -24,6 +24,7 @@ CypressHelper exposes the following public properties:
 - [beforeAndAfter](CypressHelper.md#beforeandafter)
 - [isGetter](CypressHelper.md#isgetter)
 - [isSetter](CypressHelper.md#issetter)
+- [waitUntilLoadBeforeInvocation](CypressHelper.md#waituntilloadbeforeinvocation)
 
 ## Constructors
 
@@ -764,3 +765,26 @@ ___
 #### Returns
 
 `boolean`
+
+___
+
+### waitUntilLoadBeforeInvocation
+
+▸ `Private` **waitUntilLoadBeforeInvocation**<`T`\>(`checkFunction`, `options?`): `Chainable`<`T`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `checkFunction` | () => `Chainable`<`T`\> |
+| `options?` | `WaitUntilOptions`<`any`\> |
+
+#### Returns
+
+`Chainable`<`T`\>
