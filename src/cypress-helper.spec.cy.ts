@@ -336,7 +336,7 @@ describe("cypress helper tests", () => {
     expect(get.elementByText("My first paragraph")).to.exist;
   });
 
-  it.only("should get element by css", () => {
+  it("should get element by css", () => {
     expect(get.bySelector("dummy1 dummy2", "class")).to.exist;
   });
 

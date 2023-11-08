@@ -39,10 +39,14 @@ export class CypressHelperOptions {
    */
   shadowSlotSuffix?: string = "slot";
   /**
-   * when set top true, cypress helper will automatically find the assigned dom element of elements with data selector
+   * when set to true, cypress helper will automatically find the assigned dom element of elements with data selector
    * with `defaultShadowSlotSuffix` suffix
    */
   handleSlotShadowDOM?: boolean = true;
+  /**
+   * when set to true, waits until elements are loaded before returning them
+   */
+  waitForElementsToLoad?: boolean = true;
 }
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
@@ -71,6 +75,16 @@ export class CypressHelper {
     !!Object.getOwnPropertyDescriptor(obj, prop)!["get"];
   private isSetter = <T>(obj: T, prop: keyof T) =>
     !!Object.getOwnPropertyDescriptor(obj, prop)!["set"];
+
+  private waitUntilLoadBeforeInvocation = <T>(
+    checkFunction: () => Cypress.Chainable<T>,
+    options?: WaitUntilOptions
+  ): Cypress.Chainable<T> => {
+    if (this.options.waitForElementsToLoad) {
+      this.when.waitUntil(checkFunction, options);
+    }
+    return checkFunction();
+  };
 
   beforeAndAfter = () => {
     before(() => {
@@ -405,7 +419,7 @@ export class CypressHelper {
      * Select an option with specific text, value, or index within a select html element.
      */
     selectOption: (selector: string, label: string, index: number = 0) =>
-      this.get.bySelector(selector).eq(index).select(label),
+      this.get.nthBySelector(selector, index).select(label),
     /**
      * Drag an element and drop it in target element
      * @example
@@ -506,7 +520,10 @@ export class CypressHelper {
       selector: string,
       attributeName: string,
       index: number = 0
-    ) => this.get.elementByTestId(selector, index).invoke("css", attributeName),
+    ) =>
+      this.waitUntilLoadBeforeInvocation(() =>
+        this.get.elementByTestId(selector, index).invoke("css", attributeName)
+      ),
 
     /**
      *
@@ -519,7 +536,10 @@ export class CypressHelper {
       selector: string,
       propertyName: keyof JQuery<HTMLElement>,
       index: number = 0
-    ) => this.get.elementByTestId(selector, index).invoke(propertyName),
+    ) =>
+      this.waitUntilLoadBeforeInvocation(() =>
+        this.get.elementByTestId(selector, index).invoke(propertyName)
+      ),
     /**
      * Returns element's computed style, including pseudo elements
      *
@@ -552,7 +572,9 @@ export class CypressHelper {
       selector: string,
       index: number = 0
     ): Cypress.Chainable<string> =>
-      this.get.elementByTestId(selector, index).invoke("text"),
+      this.waitUntilLoadBeforeInvocation(() =>
+        this.get.elementByTestId(selector, index).invoke("text")
+      ),
 
     /**
      * Get value of input element
@@ -568,7 +590,9 @@ export class CypressHelper {
       selector: string,
       index: number = 0
     ): Cypress.Chainable<string | number | string[]> =>
-      this.get.elementByTestId(selector, index).invoke("val"),
+      this.waitUntilLoadBeforeInvocation(() =>
+        this.get.elementByTestId(selector, index).invoke("val")
+      ),
     /**
      * Get A DOM element at a specific index from elements.
      * @example
@@ -630,7 +654,9 @@ export class CypressHelper {
       attributeName: string,
       index = 0
     ): Cypress.Chainable<string | undefined> =>
-      this.get.elementByTestId(selector, index).invoke("attr", attributeName),
+      this.waitUntilLoadBeforeInvocation(() =>
+        this.get.elementByTestId(selector, index).invoke("attr", attributeName)
+      ),
 
     /**
      * Get fixture
