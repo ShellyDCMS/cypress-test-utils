@@ -688,6 +688,13 @@ Wait for multiples requests to complete.
 
 **waitUntil**: <ReturnType\>(`checkFunction`: () => `Chainable`<`any`\> \| `ReturnType` \| `PromiseLike`<`ReturnType`\>, `options?`: `WaitUntilOptions`<`any`\>) => `Chainable`<`undefined`\>
 
+Wait for something to happen in the DOM.
+Note! you should not have any asserts in the callback function. From cypress-wait-until documentation:
+   you cannot put assertions inside checkFunction. There is no way to avoid a test failure if an assertion throws an error.
+   You must manually check what the assertions would check for you.
+   The most common case is checking that an element exists or not, instead of using cy.get('#id').should('exist'),
+   you should check that Cypress.$('#id').length is greater than 0.
+
 **`Example`**
 
 ```ts
