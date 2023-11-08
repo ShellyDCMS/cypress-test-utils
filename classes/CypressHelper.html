@@ -1168,6 +1168,13 @@ This element must be an html input element with type radio.</p>
 <ul class="tsd-signatures">
 <li class="tsd-signature" id="when.__type-60.waitUntil.__type-109.__type-110"><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">ReturnType</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">checkFunction</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Chainable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Wait for something to happen in the DOM.
+Note! you should not have any asserts in the callback function. From cypress-wait-until documentation:
+   you cannot put assertions inside checkFunction. There is no way to avoid a test failure if an assertion throws an error.
+   You must manually check what the assertions would check for you.
+   The most common case is checking that an element exists or not, instead of using cy.get(&#39;#id&#39;).should(&#39;exist&#39;),
+   you should check that Cypress.$(&#39;#id&#39;).length is greater than 0.</p>
+</div>
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
 <ul class="tsd-type-parameter-list">

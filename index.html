@@ -19,14 +19,14 @@ Making TDD fun in the modular UI area.</p>
 <p>Cypress Helpers can help you develop tests faster
 CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
 CypressComponent helpers are designed to be used in component tests and are NOT framework agnostic.</p>
-<a id="md:component-drivers" class="tsd-anchor"></a><h2><a href="#md:component-drivers">Component Drivers</a></h2><p>Testing UI is hard. There are many reasons for that, but a big one relies in the fact that unlike functions or services, where the API is clearly defined, 
+<a id="md:component-drivers" class="tsd-anchor"></a><h2><a href="#md:component-drivers">Component Drivers</a></h2><p>Testing UI is hard. There are many reasons for that, but a big one relies in the fact that unlike functions or services, where the API is clearly defined,
 when dealing with graphical user interfaces, it&#39;s up for the developer to transform it into an &quot;API&quot; for testing purposes.
-Back in the days, <a href="https://martinfowler.com/bliki/PageObject.html">PageObjects</a> helped mitigate this fact, but once the world moved to modular components, 
+Back in the days, <a href="https://martinfowler.com/bliki/PageObject.html">PageObjects</a> helped mitigate this fact, but once the world moved to modular components,
 our test code quality degraded and became bloated with repetition and lack of abstraction.<br>Component drivers are just like page objects, but for your components.
 Just like page objects, this is merely a pattern, and is not coupled to a specific implementation.
 However, using CypressHelper as the basis for your component drivers will help you leverage years of trial and error and be able to fully re-use your drivers across testing levels.
 This allows you to confidently write tests that use your actual implementation and keep focusing on the <em>&quot;what&quot;</em> and not the <em>&quot;how&quot;</em></p>
-<a id="md:philosophy" class="tsd-anchor"></a><h2><a href="#md:philosophy">Philosophy</a></h2><p>CypressHelper aims to provide a framework agnostic (angular, lit, react) API for what a manual tester can do. 
+<a id="md:philosophy" class="tsd-anchor"></a><h2><a href="#md:philosophy">Philosophy</a></h2><p>CypressHelper aims to provide a framework agnostic (angular, lit, react) API for what a manual tester can do.
 This means that the API will not focus on implementation, but on the actual action a user would take.
 For example, a user doesn&#39;t mouseUp, he/she hovers.</p>
 <a id="md:markdown-documentation" class="tsd-anchor"></a><h2><a href="#md:markdown-documentation"><a href="https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/modules.md">Markdown Documentation</a></a></h2><p><a href="https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressHelper.md">CypressTestHelper</a></p>
@@ -45,15 +45,15 @@ As you can see, all test levels use the <em>same</em> driver, meaning that if th
 CypressHelper will look for the assignedNode to retrieve the text, given that the selector of the slot has a &#39;-slot&#39; suffix.
 You may change this behaviour by overriding the default values when creating CypressHelper.</p>
 <a id="md:angular" class="tsd-anchor"></a><h3><a href="#md:angular">Angular</a></h3><p>When mounting an angular component, autoSpyOutputs is set to true, meaning all event emitters are automatically spied on and may be accessed during a test using <code>helper.get.spy(&quot;&lt;EventEmitterName&gt;&quot;)</code></p>
-<a id="md:" class="tsd-anchor"></a><h3><a href="#md:"></a></h3><a id="md:usage" class="tsd-anchor"></a><h2><a href="#md:usage">Usage</a></h2><p>This library provides an API to interact with UI elements - <code>CypressHelper</code> that combines the common features. 
+<a id="md:" class="tsd-anchor"></a><h3><a href="#md:"></a></h3><a id="md:usage" class="tsd-anchor"></a><h2><a href="#md:usage">Usage</a></h2><p>This library provides an API to interact with UI elements - <code>CypressHelper</code> that combines the common features.
 To add it to your repo use</p>
 <p><code>npm i -D @shellygo/cypress-test-utils</code></p>
 <p>or</p>
 <p><code>yarn add -D @shellygo/cypress-test-utils</code></p>
 <a id="md:developing" class="tsd-anchor"></a><h2><a href="#md:developing">Developing</a></h2><ol>
-<li>Set up the repo -  <code>yarn</code></li>
+<li>Set up the repo - <code>yarn</code></li>
 <li>Build the project - <code>npm run build</code></li>
-<li>Runnin tests - <code>npm run cy:run</code></li>
+<li>Running tests - <code>npm run cy:run</code></li>
 </ol>
 </div></div>
 <div class="col-sidebar">
