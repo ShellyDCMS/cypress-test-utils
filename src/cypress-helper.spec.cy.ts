@@ -194,6 +194,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should click button", () => {
+    when.waitUntil(() => get.elementByTestId("name-input"));
     when.clear("name-input");
     when.type("name-input", "shelly");
     when.click("submit");
