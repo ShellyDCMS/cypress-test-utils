@@ -279,8 +279,7 @@ export class CypressHelper {
      * Note! you should not have any asserts in the callback function. From cypress-wait-until documentation:
      *    you cannot put assertions inside checkFunction. There is no way to avoid a test failure if an assertion throws an error.
      *    You must manually check what the assertions would check for you.
-     *    The most common case is checking that an element exists or not, instead of using cy.get('#id').should('exist'),
-     *    you should check that Cypress.$('#id').length is greater than 0.
+     *    The most common case is checking that an element exists or not
      * @example
      * ```ts
      * helper.when.waitUntil(() =>
@@ -621,7 +620,7 @@ export class CypressHelper {
             )
           )
         : this.get.nthBySelector(selector, index),
-     /**
+    /**
      * Get A DOM element at a specific index from elements.
      * Same as get.elementByTestId
      * @example
@@ -633,7 +632,8 @@ export class CypressHelper {
      * @param selector
      * @param [index = 0]
      */
-    element: (selector: string, index: number = 0) => this.get.elementByTestId(selector, index),
+    element: (selector: string, index: number = 0) =>
+      this.get.elementByTestId(selector, index),
     /**
      * Get the DOM element containing the text.
      * DOM elements can contain more than the desired text and still match.
