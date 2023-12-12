@@ -621,6 +621,19 @@ export class CypressHelper {
             )
           )
         : this.get.nthBySelector(selector, index),
+     /**
+     * Get A DOM element at a specific index from elements.
+     * Same as get.elementByTestId
+     * @example
+     * ```ts
+     * helper.when.dragAndDrop(
+     *   helper.get.element('selected-item', 2),
+     *   helper.get.element('available-items')
+     * ```
+     * @param selector
+     * @param [index = 0]
+     */
+    element: (selector: string, index: number = 0) => this.get.elementByTestId(selector, index),
     /**
      * Get the DOM element containing the text.
      * DOM elements can contain more than the desired text and still match.
