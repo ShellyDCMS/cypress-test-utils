@@ -31,7 +31,7 @@ export default defineConfig({
     viewportWidth: 1600,
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     excludeSpecPattern: "cypress/**/*.driver.{js,jsx,ts,tsx}",
-    defaultCommandTimeout: 1000000,
+    defaultCommandTimeout: 100000,
     experimentalStudio: true,
     env: {
       env1: "value1",
