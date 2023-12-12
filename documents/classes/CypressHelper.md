@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.5](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.8](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -52,6 +52,7 @@ The get property will hold methods which will give our tests access to the “ou
 | :------ | :------ |
 | `bySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `currentLocation` | () => `Chainable`<`string`\> |
+| `element` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementsAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
@@ -91,6 +92,21 @@ helper.get.bySelector("filter-grid", "shape")
 **currentLocation**: () => `Chainable`<`string`\>
 
 Get the current URL of the page that is currently active.
+
+-----
+
+**element**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Get A DOM element at a specific index from elements.
+Same as get.elementByTestId
+
+**`Example`**
+
+```ts
+helper.when.dragAndDrop(
+  helper.get.element('selected-item', 2),
+  helper.get.element('available-items')
+```
 
 -----
 
@@ -692,8 +708,7 @@ Wait for something to happen in the DOM.
 Note! you should not have any asserts in the callback function. From cypress-wait-until documentation:
    you cannot put assertions inside checkFunction. There is no way to avoid a test failure if an assertion throws an error.
    You must manually check what the assertions would check for you.
-   The most common case is checking that an element exists or not, instead of using cy.get('#id').should('exist'),
-   you should check that Cypress.$('#id').length is greater than 0.
+   The most common case is checking that an element exists or not
 
 **`Example`**
 

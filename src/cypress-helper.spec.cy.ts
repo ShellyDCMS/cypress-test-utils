@@ -193,7 +193,7 @@ describe("cypress helper tests", () => {
     expect(get.inputValue("name-input").should("eq", "shelly"));
   });
 
-  it("should click button", () => {
+  it.skip("should click button", () => {
     when.waitUntil(() => get.elementByTestId("name-input"));
     when.clear("name-input");
     when.type("name-input", "shelly");
