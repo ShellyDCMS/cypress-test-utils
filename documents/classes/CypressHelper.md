@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.8](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.9](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -62,6 +62,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
 | `fixture` | (`alias`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `focusedElement` | () => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `numberOfElements` | (`selector`: `string`) => `Chainable`<`number`\> |
@@ -214,6 +215,12 @@ Get fixture
  })
 );
 ```
+
+-----
+
+**focusedElement**: () => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Get the element currently focused in the document.
 
 -----
 
@@ -492,6 +499,7 @@ The when property will hold methods of “events” which will take place like r
 | `rightclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
 | `selectOption` | (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `tab` | (`selector`: `string`, `index`: `number`) => `Chainable`<`any`\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `toggleRadioBySelector` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -628,6 +636,12 @@ Scroll to the bottom.
 **selectOption**: (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Select an option with specific text, value, or index within a select html element.
+
+-----
+
+**tab**: (`selector`: `string`, `index`: `number`) => `Chainable`<`any`\>
+
+Type tab (move to element with next tab-index)
 
 -----
 

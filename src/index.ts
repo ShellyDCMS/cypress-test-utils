@@ -1,4 +1,5 @@
 import chaiSubset from "chai-subset";
+import "cypress-plugin-tab";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
@@ -386,6 +387,12 @@ export class CypressHelper {
      */
     type: (selector: string, keys: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).focus().type(keys),
+
+    /**
+     * Type tab (move to element with next tab-index)
+     */
+    tab: (selector: string, index: number = 0) =>
+      this.get.element(selector, index).tab(),
     /**
      * Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
      */
@@ -620,6 +627,11 @@ export class CypressHelper {
             )
           )
         : this.get.nthBySelector(selector, index),
+    /**
+     * Get the element currently focused in the document.
+     * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
+     */
+    focusedElement: () => cy.focused(),
     /**
      * Get A DOM element at a specific index from elements.
      * Same as get.elementByTestId
