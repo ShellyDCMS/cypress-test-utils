@@ -386,7 +386,10 @@ export class CypressHelper {
      * Type into a DOM element.
      */
     type: (selector: string, keys: string, index: number = 0) =>
-      this.get.elementByTestId(selector, index).focus().type(keys),
+      this.get
+        .elementByTestId(selector, index)
+        .focus()
+        .type(keys, { parseSpecialCharSequences: false }),
 
     /**
      * Type tab (move to element with next tab-index)
@@ -429,9 +432,25 @@ export class CypressHelper {
       this.get.nthBySelector("radio", index, "type").check({ force: true }),
     /**
      * Select an option with specific text, value, or index within a select html element.
+     * @example
+     * ```html
+     * <select data-hook="fruit-selection">
+     *   <option value="456">apples</option>
+     *   <option value="457">oranges</option>
+     *   <option value="458">bananas</option>
+     * </select>
+     * ```
+     * ```ts
+     * helper.when.selectOption('fruit-selection', 0).should('have.value', '456')
+     * helper.when.selectOption('fruit-selection', 'oranges').should('have.value', '457')
+     * helper.when.selectOption('fruit-selection', 458).should('have.value', '458')
+     * ```
      */
-    selectOption: (selector: string, label: string, index: number = 0) =>
-      this.get.nthBySelector(selector, index).select(label),
+    selectOption: (
+      selector: string,
+      option: string | number,
+      index: number = 0
+    ) => this.get.nthBySelector(selector, index).select(option),
     /**
      * Drag an element and drop it in target element
      * @example

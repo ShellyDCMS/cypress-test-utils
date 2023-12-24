@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.9](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.10](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -498,7 +498,7 @@ The when property will hold methods of “events” which will take place like r
 | `realType` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`void`\> |
 | `rightclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
-| `selectOption` | (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `selectOption` | (`selector`: `string`, `option`: `string` \| `number`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `tab` | (`selector`: `string`, `index`: `number`) => `Chainable`<`any`\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -633,9 +633,24 @@ Scroll to the bottom.
 
 -----
 
-**selectOption**: (`selector`: `string`, `label`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**selectOption**: (`selector`: `string`, `option`: `string` \| `number`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Select an option with specific text, value, or index within a select html element.
+
+**`Example`**
+
+```html
+<select data-hook="fruit-selection">
+  <option value="456">apples</option>
+  <option value="457">oranges</option>
+  <option value="458">bananas</option>
+</select>
+```
+```ts
+helper.when.selectOption('fruit-selection', 0).should('have.value', '456')
+helper.when.selectOption('fruit-selection', 'oranges').should('have.value', '457')
+helper.when.selectOption('fruit-selection', 458).should('have.value', '458')
+```
 
 -----
 
