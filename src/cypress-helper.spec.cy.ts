@@ -214,8 +214,18 @@ describe("cypress helper tests", () => {
     expect(get.inputValue("select").should("eq", "volvo"));
   });
 
-  it("should select input", () => {
+  it("should select input by label", () => {
     when.selectOption("select", "Saab");
+    expect(get.inputValue("select").should("eq", "saab"));
+  });
+
+  it("should select input by value", () => {
+    when.selectOption("select", "saab");
+    expect(get.inputValue("select").should("eq", "saab"));
+  });
+
+  it("should select input by index", () => {
+    when.selectOption("select", 1);
     expect(get.inputValue("select").should("eq", "saab"));
   });
 
