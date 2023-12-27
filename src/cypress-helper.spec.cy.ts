@@ -1,7 +1,7 @@
 import { CypressHelper, loggable, match } from ".";
 
 describe("cypress helper tests", () => {
-  let { beforeAndAfter, given, when, get } = new CypressHelper({
+  let { beforeAndAfter, given, when, get, then } = new CypressHelper({
     defaultDataAttribute: "data-hook"
   });
   beforeAndAfter();
@@ -349,16 +349,16 @@ describe("cypress helper tests", () => {
   });
 
   it("should get element by text", () => {
-    expect(get.elementByText("My first paragraph")).to.exist;
+    then(get.elementByText("My first paragraph")).shouldExist();
   });
 
   it("should get element by css", () => {
-    expect(get.bySelector("dummy1 dummy2", "class")).to.exist;
+    then(get.bySelector("dummy1 dummy2", "class")).shouldExist();
   });
 
   it("should get fixture", () => {
     given.fixture("user.json", "user");
-    expect(
+    then(
       get.fixture("user").should("deep.nested.include", {
         name: "Jane Doe",
         id: "1234",
