@@ -15,6 +15,11 @@ export class Assertable<T> {
   public shouldNotExist = () => this.chainable.should("not.exist");
   public shouldHaveLength = (length: number) =>
     this.chainable.should("have.length", length);
+  /**
+   * When the target is a string, `.include` asserts that the given string val is a substring of the target.
+   * @example
+   *    then(helper.get.elementsText('selector)).shouldContain('test')
+   */
   public shouldInclude = (value: any) =>
     this.chainable.should("include", value);
   public shouldDeepEqual = (value: any) =>
@@ -30,7 +35,7 @@ export class Assertable<T> {
     this.chainable.should("have.value", value);
   public shouldBeDisabled = () => this.chainable.should("be.disabled");
   public shouldBeEnabled = () => this.chainable.should("be.enabled");
-
+  public shouldEqual = (value: any) => this.chainable.should("eq", value);
   public shouldBeGreaterThen = (value: number) =>
     this.chainable.should("be.gt", value);
   public shouldBeLessThen = (value: number) =>
@@ -45,6 +50,8 @@ export class Assertable<T> {
    */
   public shouldBeLessThenOrEqual = (value: number) =>
     this.chainable.should("be.lte", value);
+  public shouldBeChecked = () => this.chainable.should("be.checked");
+  public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
 }
 /**
  * Sinon matcher for stubs/spy comparison
