@@ -287,11 +287,11 @@ describe("cypress helper tests", () => {
   });
 
   it("should get disabled element status", () => {
-    then(get.elementByTestId("button")).should("be.disabled");
+    then(get.elementByTestId("button")).shouldBeDisabled();
   });
 
   it("should get enabled element status", () => {
-    then(get.elementByTestId("submit").should("be.enabled"));
+    then(get.elementByTestId("submit")).shouldBeEnabled();
   });
 
   describe("stubs and spies", () => {
@@ -355,16 +355,14 @@ describe("cypress helper tests", () => {
 
   it("should get fixture", () => {
     given.fixture("user.json", "user");
-    then(
-      get.fixture("user").should("deep.nested.include", {
-        name: "Jane Doe",
-        id: "1234",
-        nested: {
-          attr1: "something",
-          attr2: "the other thing"
-        }
-      })
-    );
+    then(get.fixture("user")).shouldDeepNestedInclude({
+      name: "Jane Doe",
+      id: "1234",
+      nested: {
+        attr1: "something",
+        attr2: "the other thing"
+      }
+    });
   });
 
   it("should get element's attribute", () => {

@@ -4,55 +4,9 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
+import { Assertable } from "./assertable";
 export * from "cypress-pipe";
 
-export class Assertable<T> {
-  constructor(private readonly chainable: Cypress.Chainable<T>) {}
-  public should = (chainer: string, ...rest: any[]) =>
-    this.chainable.should(chainer, ...rest);
-
-  public shouldExist = () => this.chainable.should("exist");
-  public shouldNotExist = () => this.chainable.should("not.exist");
-  public shouldHaveLength = (length: number) =>
-    this.chainable.should("have.length", length);
-  /**
-   * When the target is a string, `.include` asserts that the given string val is a substring of the target.
-   * @example
-   *    then(helper.get.elementsText('selector)).shouldContain('test')
-   */
-  public shouldInclude = (value: any) =>
-    this.chainable.should("include", value);
-  public shouldDeepEqual = (value: any) =>
-    this.chainable.should("deep.equal", value);
-  public shouldBeFocused = () => this.chainable.should("have.focus");
-  public shouldNotBeFocused = () => this.chainable.should("not.have.focus");
-  public shouldBeVisible = () => this.chainable.should("be.visible");
-  public shouldContainText = (text: string) =>
-    this.chainable.should("contain.text", text);
-  public shouldBeSelected = () => this.chainable.should("be.selected");
-  public shouldNotBeSelected = () => this.chainable.should("not.be.selected");
-  public shouldHaveValue = (value: string) =>
-    this.chainable.should("have.value", value);
-  public shouldBeDisabled = () => this.chainable.should("be.disabled");
-  public shouldBeEnabled = () => this.chainable.should("be.enabled");
-  public shouldEqual = (value: any) => this.chainable.should("eq", value);
-  public shouldBeGreaterThen = (value: number) =>
-    this.chainable.should("be.gt", value);
-  public shouldBeLessThen = (value: number) =>
-    this.chainable.should("be.gt", value);
-  public shouldBeGreaterThenOrEqual = (value: number) =>
-    this.chainable.should("be.gte", value);
-  /**
-   * Asserts that the target is a number or a date less than or equal to the given number or date n respectively.
-   * However, it's often best to assert that the target is equal to its expected value.
-   * @example
-   *    helper.get.numberOfElements('list-item').shouldBeLessThenOrEqual(5)
-   */
-  public shouldBeLessThenOrEqual = (value: number) =>
-    this.chainable.should("be.lte", value);
-  public shouldBeChecked = () => this.chainable.should("be.checked");
-  public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
-}
 /**
  * Sinon matcher for stubs/spy comparison
  * @example
