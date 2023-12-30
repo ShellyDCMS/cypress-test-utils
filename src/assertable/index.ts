@@ -9,7 +9,7 @@ export class Assertable<T> {
    * If the object asserted against is not a jQuery object, the original implementation will be called.
    * @example
    * ```ts
-   *   then(get.element("selector")).shouldExist()
+   *   then(get.elementByTestId("selector")).shouldExist()
    * ```
    */
   public shouldExist = () => this.chainable.should("exist");
@@ -19,7 +19,7 @@ export class Assertable<T> {
    * If the object asserted against is not a jQuery object, the original implementation will be called.
    * @example
    * ```ts
-   *    then(get.element("selector")).shouldNotExist()
+   *    then(get.elementByTestId("selector")).shouldNotExist()
    * ```
    */
   public shouldNotExist = () => this.chainable.should("not.exist");
@@ -27,7 +27,7 @@ export class Assertable<T> {
    * Asserts that the target's length property is equal to the given number n..
    * @example
    * ```ts
-   *    then(get.element("selector")).shouldHaveLength(3)
+   *    then(get.elementByTestId("selector")).shouldHaveLength(3)
    * ```
    */
   public shouldHaveLength = (length: number) =>
@@ -76,7 +76,7 @@ export class Assertable<T> {
    * Assert that at least one element of the selection is focused.
    * @example
    * ```ts
-   * then(get.element("selector")).shouldBeFocused()
+   * then(get.elementByTestId("selector")).shouldBeFocused()
    * ```
    */
   public shouldBeFocused = () => this.chainable.should("have.focus");
@@ -85,7 +85,7 @@ export class Assertable<T> {
    * Assert that no element of the selection is focused.
    * @example
    * ```ts
-   * then(get.element("selector")).shouldNotBeFocused()
+   * then(get.elementByTestId("selector")).shouldNotBeFocused()
    * ```
    */
   public shouldNotBeFocused = () => this.chainable.should("not.have.focus");
@@ -94,7 +94,7 @@ export class Assertable<T> {
    * Assert that at least one element of the selection is visible, using .is(':visible').
    * @example
    * ```ts
-   * then(get.element("selector")).shouldBeVisible()
+   * then(get.elementByTestId("selector")).shouldBeVisible()
    * ```
    */
   public shouldBeVisible = () => this.chainable.should("be.visible");
@@ -103,7 +103,7 @@ export class Assertable<T> {
    * Assert that at least one element of the selection is not visible, using .is(':visible').
    * @example
    * ```ts
-   * then(get.element("selector")).shouldNotBeVisible()
+   * then(get.elementByTestId("selector")).shouldNotBeVisible()
    * ```
    */
   public shouldNotBeVisible = () => this.chainable.should("not.be.visible");
@@ -112,7 +112,7 @@ export class Assertable<T> {
    * Assert that the text of the first element of the selection partially contains the given text, using .text().
    * @example
    * ```ts
-   * then(get.element("selector")).shouldContainText("test")
+   * then(get.elementByTestId("selector")).shouldContainText("test")
    * ```
    */
   public shouldContainText = (text: string) =>
@@ -120,7 +120,7 @@ export class Assertable<T> {
   /** Assert that at least one element of the selection is selected, using .is(':selected').
    * @example
    * ```ts
-   * then(get.element("selector")).shouldBeSelected()
+   * then(get.elementByTestId("selector")).shouldBeSelected()
    * ```
    */
   public shouldBeSelected = () => this.chainable.should("be.selected");
@@ -128,14 +128,14 @@ export class Assertable<T> {
    * Assert that at least one element of the selection is not selected, using .is(':selected').
    * @example
    * ```ts
-   * then(get.element("selector")).shouldNotBeSelected()
+   * then(get.elementByTestId("selector")).shouldNotBeSelected()
    * ```
    */
   public shouldNotBeSelected = () => this.chainable.should("not.be.selected");
   /** Assert that the first element of the selection has the given value, using .val().
    * @example
    * ```ts
-   * then(get.element("selector")).shouldHaveValue("test")
+   * then(get.elementByTestId("selector")).shouldHaveValue("test")
    *  ```
    */
   public shouldHaveValue = (value: string) =>
@@ -144,7 +144,7 @@ export class Assertable<T> {
    * Assert that at least one element of the selection is disabled, using `.is(':disabled')`.
    * @example
    * ```ts
-   *    then(get.element("selector")).shouldBeDisabled()
+   *    then(get.elementByTestId("selector")).shouldBeDisabled()
    * ```
    */
   public shouldBeDisabled = () => this.chainable.should("be.disabled");
@@ -152,7 +152,7 @@ export class Assertable<T> {
    * Assert that at least one element of the selection is enabled, using `.is(':enabled')`.
    * @example
    * ```ts
-   *    then(get.element("selector")).shouldBeEnabled()
+   *    then(get.elementByTestId("selector")).shouldBeEnabled()
    * ```
    */
   public shouldBeEnabled = () => this.chainable.should("be.enabled");
@@ -201,14 +201,14 @@ export class Assertable<T> {
   /** Assert that at least one element of the selection is checked, using .is(':checked').
    * @example
    * ```ts
-   *    then(get.element("checkbox-selector")).shouldBeChecked()
+   *    then(get.elementByTestId("checkbox-selector")).shouldBeChecked()
    * ```
    */
   public shouldBeChecked = () => this.chainable.should("be.checked");
   /** Assert that at least one element of the selection is not checked, using .is(':checked').
    * @example
    * ```ts
-   *   then(get.element("checkbox-selector")).shouldNotBeChecked()
+   *   then(get.elementByTestId("checkbox-selector")).shouldNotBeChecked()
    * ```
    */
   public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
@@ -217,7 +217,7 @@ export class Assertable<T> {
    * Assert that the selection has the given CSS class.
    * @example
    * ```ts
-   *   then(get.element("selector")).shouldHaveClass("test")
+   *   then(get.elementByTestId("selector")).shouldHaveClass("test")
    * ```
    */
   public shouldHaveClass = (value: string) =>
@@ -227,7 +227,7 @@ export class Assertable<T> {
    * Optionally, assert a particular value as well. The return value is available for chaining.
    * @example
    * ```ts
-   *  then(get.element("selector")).shouldHaveAttribute("test")
+   *  then(get.elementByTestId("selector")).shouldHaveAttribute("test")
    * ```
    */
   public shouldHaveAttribute = (value: string, expectedValue: string) =>

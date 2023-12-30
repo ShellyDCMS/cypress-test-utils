@@ -203,6 +203,10 @@ describe("cypress helper tests", () => {
     then(get.inputValue("name-input")).shouldEqual("John");
   });
 
+  it("should select element", () => {
+    when.check("checkbox", 1);
+    then(get.element("input[type='checkbox']", 1)).shouldBeChecked();
+  });
   it("should get initial text input", () => {
     then(get.inputValue("last-name-input")).shouldEqual("Doe");
   });
