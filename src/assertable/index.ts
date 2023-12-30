@@ -258,3 +258,6 @@ export class Assertable<T> {
    */
   public shouldHaveBeenCalled = () => this.chainable.should("have.been.called");
 }
+
+export const then = (chainable: Cypress.Chainable<any>) =>
+  new Assertable(chainable);

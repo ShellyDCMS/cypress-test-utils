@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -19,7 +19,7 @@
     "helper"
   ],
   "scripts": {
-    "build": "rm -rf dist/* && tsc && mv dist/src/lit dist/lit  && mv dist/src/angular dist/angular && mv dist/src/react dist/react",
+    "build": "rm -rf dist/* && tsc && mv dist/src/lit dist/lit  && mv dist/src/angular dist/angular && mv dist/src/react dist/react && mv dist/src/assertable dist/assertable",
     "package": "node --max-old-space-size=4400 && npm run build",
     "cy:run": "npx cypress run",
     "cy:open": "npx cypress open",
