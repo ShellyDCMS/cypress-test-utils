@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.10](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.11](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -24,6 +24,7 @@ CypressHelper exposes the following public properties:
 - [beforeAndAfter](CypressHelper.md#beforeandafter)
 - [isGetter](CypressHelper.md#isgetter)
 - [isSetter](CypressHelper.md#issetter)
+- [then](CypressHelper.md#then)
 - [waitUntilLoadBeforeInvocation](CypressHelper.md#waituntilloadbeforeinvocation)
 
 ## Constructors
@@ -816,6 +817,22 @@ ___
 #### Returns
 
 `boolean`
+
+___
+
+### then
+
+▸ **then**(`chainable`): `Assertable`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `chainable` | `Chainable`<`any`\> |
+
+#### Returns
+
+`Assertable`<`any`\>
 
 ___
 
