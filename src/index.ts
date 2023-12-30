@@ -515,7 +515,10 @@ export class CypressHelper {
       selector: string,
       index: number,
       attribute: string = this.options.defaultDataAttribute!
-    ) => this.get.bySelector(selector, attribute).eq(index),
+    ) =>
+      index
+        ? this.get.bySelector(selector, attribute).eq(index)
+        : this.get.bySelector(selector, attribute),
     /**
      * Returns specific environment variable or undefined
      * @example
@@ -656,7 +659,7 @@ export class CypressHelper {
      * *** Note! Using this method may lead to flakey tests! You should use get.elementByTestId ***
      * @example
      * ```ts
-     * get.element('.list>li', 3)    // Yield the forth <li>'s in <.list>
+     * get.element('.list>li', 3)    // Yield the <li>'s in <.list>
      * get.element('ul li:first')
      * get.element('.dropdown-menu')
      * ```
@@ -664,7 +667,7 @@ export class CypressHelper {
      * @param [index = 0]
      */
     element: (selector: string, index: number = 0) =>
-      cy.get(selector).eq(index),
+      index ? cy.get(selector).eq(index) : cy.get(selector),
     /**
      * Get the DOM element containing the text.
      * DOM elements can contain more than the desired text and still match.
