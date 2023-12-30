@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.13](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.14](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -98,15 +98,15 @@ Get the current URL of the page that is currently active.
 
 **element**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
-Get A DOM element at a specific index from elements.
-Same as get.elementByTestId
+Get one or more DOM elements by selector. The querying behavior of this command matches exactly how $(…) works in jQuery.
+*** Note! Using this method may lead to flakey tests! You should use get.elementByTestId ***
 
 **`Example`**
 
 ```ts
-helper.when.dragAndDrop(
-  helper.get.element('selected-item', 2),
-  helper.get.element('available-items')
+get.element('.list>li', 3)    // Yield the forth <li>'s in <.list>
+get.element('ul li:first')
+get.element('.dropdown-menu')
 ```
 
 -----
@@ -130,6 +130,7 @@ helper.when.dragAndDrop(
 Get the DOM element containing the text.
 DOM elements can contain more than the desired text and still match.
 Additionally, Cypress prefers some DOM elements over the deepest element found.
+*** Note! Using this method may lead to flakey tests! You should use get.elementByTestId ***
 
 **`Example`**
 
