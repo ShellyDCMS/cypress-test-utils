@@ -4,7 +4,6 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
-import { Assertable } from "./assertable";
 export * from "cypress-pipe";
 
 /**
@@ -810,7 +809,4 @@ export class CypressHelper {
      */
     stub: (name: string) => cy.get(`@${name}`)
   };
-
-  public then = (chainable: Cypress.Chainable<any>) =>
-    new Assertable(chainable);
 }

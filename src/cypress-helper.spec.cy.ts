@@ -1,7 +1,8 @@
 import { CypressHelper, loggable, match } from ".";
+import { then } from "./assertable";
 
 describe("cypress helper tests", () => {
-  let { beforeAndAfter, given, when, get, then } = new CypressHelper({
+  let { beforeAndAfter, given, when, get } = new CypressHelper({
     defaultDataAttribute: "data-hook"
   });
   beforeAndAfter();
