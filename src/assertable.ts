@@ -2,9 +2,34 @@ export class Assertable<T> {
   constructor(private readonly chainable: Cypress.Chainable<T>) {}
   public should = (chainer: string, ...rest: any[]) =>
     this.chainable.should(chainer, ...rest);
-
+  /**
+   *
+   * Assert that the selection is not empty.
+   * Note that this overrides the built-in chai assertion.
+   * If the object asserted against is not a jQuery object, the original implementation will be called.
+   * @example
+   * ```ts
+   *   then(get.element("selector")).shouldExist()
+   * ```
+   */
   public shouldExist = () => this.chainable.should("exist");
+  /**
+   * Assert that the selection is empty.
+   * Note that this overrides the built-in chai assertion.
+   * If the object asserted against is not a jQuery object, the original implementation will be called.
+   * @example
+   * ```ts
+   *    then(get.element("selector")).shouldNotExist()
+   * ```
+   */
   public shouldNotExist = () => this.chainable.should("not.exist");
+  /**
+   * Asserts that the target's length property is equal to the given number n..
+   * @example
+   * ```ts
+   *    then(get.element("selector")).shouldHaveLength(3)
+   * ```
+   */
   public shouldHaveLength = (length: number) =>
     this.chainable.should("have.length", length);
   /**
@@ -46,13 +71,73 @@ export class Assertable<T> {
    */
   public shouldDeepNestedInclude = (value: any) =>
     this.chainable.should("deep.nested.include", value);
+  /**
+   *
+   * Assert that at least one element of the selection is focused.
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldBeFocused()
+   * ```
+   */
   public shouldBeFocused = () => this.chainable.should("have.focus");
+  /**
+   *
+   * Assert that no element of the selection is focused.
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldNotBeFocused()
+   * ```
+   */
   public shouldNotBeFocused = () => this.chainable.should("not.have.focus");
+  /**
+   *
+   * Assert that at least one element of the selection is visible, using .is(':visible').
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldBeVisible()
+   * ```
+   */
   public shouldBeVisible = () => this.chainable.should("be.visible");
+  /**
+   *
+   * Assert that at least one element of the selection is not visible, using .is(':visible').
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldNotBeVisible()
+   * ```
+   */
+  public shouldNotBeVisible = () => this.chainable.should("not.be.visible");
+
+  /**
+   * Assert that the text of the first element of the selection partially contains the given text, using .text().
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldContainText("test")
+   * ```
+   */
   public shouldContainText = (text: string) =>
     this.chainable.should("contain.text", text);
+  /** Assert that at least one element of the selection is selected, using .is(':selected').
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldBeSelected()
+   * ```
+   */
   public shouldBeSelected = () => this.chainable.should("be.selected");
+  /**
+   * Assert that at least one element of the selection is not selected, using .is(':selected').
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldNotBeSelected()
+   * ```
+   */
   public shouldNotBeSelected = () => this.chainable.should("not.be.selected");
+  /** Assert that the first element of the selection has the given value, using .val().
+   * @example
+   * ```ts
+   * then(get.element("selector")).shouldHaveValue("test")
+   *  ```
+   */
   public shouldHaveValue = (value: string) =>
     this.chainable.should("have.value", value);
   /**
@@ -75,7 +160,7 @@ export class Assertable<T> {
    * Asserts that the target is strictly (`===`) equal to the given `val`.
    * @example
    * ```ts
-   * then(get.inputValue("name-input")).shouldEqual("John")
+   *    then(get.inputValue("name-input")).shouldEqual("John")
    * ```
    */
   public shouldEqual = (value: any) => this.chainable.should("eq", value);
@@ -84,23 +169,92 @@ export class Assertable<T> {
    * However, it's often best to assert that the target is equal to its expected value.
    * @example
    * ```ts
-   *        then(get.numberOfElements("radio")).shouldBeGreaterThen(5);
+   *    then(get.numberOfElements("radio")).shouldBeGreaterThen(5);
    * ```
    */
   public shouldBeGreaterThen = (value: number) =>
     this.chainable.should("be.gt", value);
+  /** Asserts that the target is a number or a n date less than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
+   * @example
+   * ```ts
+   *    then(get.numberOfElements("radio")).shouldBeLessThen(5);
+   * ```
+   */
   public shouldBeLessThen = (value: number) =>
-    this.chainable.should("be.gt", value);
+    this.chainable.should("be.lt", value);
+  /** Asserts that the target is a number or a date greater than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
+   * @example
+   * ```ts
+   *   then(get.numberOfElements("radio")).shouldBeGreaterThenOrEqual(5);
+   * ```
+   */
   public shouldBeGreaterThenOrEqual = (value: number) =>
     this.chainable.should("be.gte", value);
   /**
    * Asserts that the target is a number or a date less than or equal to the given number or date n respectively.
    * However, it's often best to assert that the target is equal to its expected value.
    * @example
-   *    helper.get.numberOfElements('list-item').shouldBeLessThenOrEqual(5)
+   *    then(get.numberOfElements('list-item')).shouldBeLessThenOrEqual(5)
    */
   public shouldBeLessThenOrEqual = (value: number) =>
     this.chainable.should("be.lte", value);
+  /** Assert that at least one element of the selection is checked, using .is(':checked').
+   * @example
+   * ```ts
+   *    then(get.element("checkbox-selector")).shouldBeChecked()
+   * ```
+   */
   public shouldBeChecked = () => this.chainable.should("be.checked");
+  /** Assert that at least one element of the selection is not checked, using .is(':checked').
+   * @example
+   * ```ts
+   *   then(get.element("checkbox-selector")).shouldNotBeChecked()
+   * ```
+   */
   public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
+
+  /**
+   * Assert that the selection has the given CSS class.
+   * @example
+   * ```ts
+   *   then(get.element("selector")).shouldHaveClass("test")
+   * ```
+   */
+  public shouldHaveClass = (value: string) =>
+    this.chainable.should("have.class", value);
+  /**
+   * Assert that the first element of the selection has the given attribute, using `.attr()`.
+   * Optionally, assert a particular value as well. The return value is available for chaining.
+   * @example
+   * ```ts
+   *  then(get.element("selector")).shouldHaveAttribute("test")
+   * ```
+   */
+  public shouldHaveAttribute = (value: string, expectedValue: string) =>
+    this.chainable.should("have.attr", value, expectedValue);
+  /** Assert spy was called at least once with the provided arguments.
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalledWith({ id: 1 })
+   * ```
+   */
+  public shouldHaveBeenCalledWith = (...args: any[]) =>
+    this.chainable.should("have.been.calledWith", ...args);
+
+  /** Assert spy was called with matching arguments (and possibly others).
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalledWithMatch(match({ id: 1 }))
+   * ```
+   */
+  public shouldHaveBeenCalledWithMatch = (...args: any[]) =>
+    this.chainable.should("have.been.calledWithMatch", ...args);
+
+  /** Asserts spy was called ate least once
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalled()
+   * ```
+   */
+  public shouldHaveBeenCalled = () => this.chainable.should("have.been.called");
 }

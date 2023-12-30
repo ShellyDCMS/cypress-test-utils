@@ -18,16 +18,11 @@ describe("cypress helper tests", () => {
   describe("default data attribute", () => {
     let { beforeAndAfter, given, when, get } = new CypressHelper();
     it("should get element's text", () => {
-      expect(
-        get.elementsText("default").should("equal", "default data attribute")
-      );
+      then(get.elementsText("default")).shouldEqual("default data attribute");
     });
 
     it("should get element's text using then", () => {
-      then(get.elementsText("default")).should(
-        "equal",
-        "default data attribute"
-      );
+      then(get.elementsText("default")).shouldEqual("default data attribute");
     });
 
     it("should get element's text using then and shouldExist", () => {
@@ -149,7 +144,7 @@ describe("cypress helper tests", () => {
       });
 
       fetch("https:/shellygo/whatever/18?param=value");
-      then(get.requestUrl("shellygo").should("contain", "whatever/18"));
+      then(get.requestUrl("shellygo")).shouldInclude("whatever/18");
     });
 
     it("should intercept request and test header", () => {
@@ -193,8 +188,7 @@ describe("cypress helper tests", () => {
 
   it("should type tab", () => {
     when.tab("name-input");
-    then(get.focusedElement()).should(
-      "have.attr",
+    then(get.focusedElement()).shouldHaveAttribute(
       "data-hook",
       "last-name-input"
     );
@@ -301,7 +295,7 @@ describe("cypress helper tests", () => {
       };
       given.spyOnObject(obj, "func");
       obj.func(3);
-      then(get.spyFromFunction(obj.func).should("have.been.calledWith", 3));
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWith(3);
     });
 
     it("should partially match spy params", () => {
@@ -310,13 +304,8 @@ describe("cypress helper tests", () => {
       };
       given.spyOnObject(obj, "func");
       obj.func({ shelly: "go", inner: { attr: "value" } });
-      then(
-        get
-          .spyFromFunction(obj.func)
-          .should(
-            "have.been.calledWithMatch",
-            match({ inner: { attr: "value" } })
-          )
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
+        match({ inner: { attr: "value" } })
       );
     });
 
