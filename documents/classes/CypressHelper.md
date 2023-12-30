@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.14](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.15](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -104,7 +104,7 @@ Get one or more DOM elements by selector. The querying behavior of this command 
 **`Example`**
 
 ```ts
-get.element('.list>li', 3)    // Yield the forth <li>'s in <.list>
+get.element('.list>li', 3)    // Yield the <li>'s in <.list>
 get.element('ul li:first')
 get.element('.dropdown-menu')
 ```
