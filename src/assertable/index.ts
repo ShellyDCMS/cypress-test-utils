@@ -1,5 +1,5 @@
 export class Assertable<T> {
-  constructor(private readonly chainable: Cypress.Chainable<T>) {}
+  constructor(protected readonly chainable: Cypress.Chainable<T>) {}
   public should = (chainer: string, ...rest: any[]) =>
     this.chainable.should(chainer, ...rest);
   /**
