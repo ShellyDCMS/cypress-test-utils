@@ -343,6 +343,13 @@ describe("cypress helper tests", () => {
     then(get.elementByText("My first paragraph")).shouldExist();
   });
 
+  it("should type special characters", () => {
+    when.clear("name-input");
+    when.type("name-input", "shelly");
+    when.typeSpecialCharacter("name-input", "{backspace}");
+    then(get.inputValue("name-input")).shouldEqual("shell");
+  });
+
   it("should get element by css", () => {
     then(get.bySelector("dummy1 dummy2", "class")).shouldExist();
   });
