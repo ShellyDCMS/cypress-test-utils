@@ -318,6 +318,29 @@ export class CypressHelper {
     click: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).click({ force: true }),
 
+    /** Fires when your app calls the global window.alert() method.
+     * The alert will be closed.
+     */
+    closeAlert: () => cy.on("window:alert", () => true),
+    /**
+     *
+     * Fires when your app calls the global window.confirm() method.
+     * The confirmation will be accepted.
+     */
+    acceptConfirm: () => cy.on("window:confirm", () => true),
+    /**
+     *
+     * Fires when your app calls the global window.confirm() method.
+     * The confirmation will be canceled.
+     */
+    cancelConfirm: () => cy.on("window:confirm", () => false),
+    /**
+     *
+     * Fires when your app calls the global window.prompt() method.
+     * The prompt will be cancelled.
+     */
+    acceptPrompt: () => cy.on("window:prompt", () => false),
+
     /**
      *
      * Double-click a DOM element.
@@ -366,6 +389,10 @@ export class CypressHelper {
     tick: (ms: number) => cy.tick(ms),
     /**
      * Focus on a DOM element.
+     * @example
+     * ```ts
+     * helper.when.focus('credentials-password')
+     * ```
      */
     focus: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).focus(),
@@ -383,9 +410,26 @@ export class CypressHelper {
     clear: (selector: string, index: number = 0) =>
       this.get.elementByTestId(selector, index).clear(),
     /**
-     * Type into a DOM element.
+     * Type into a DOM element, not including special characters
+     * @example
+     * ```ts
+     * helper.when.type('credentials-password', 'new password')
+     * ```
      */
     type: (selector: string, keys: string, index: number = 0) =>
+      this.get
+        .elementByTestId(selector, index)
+        .focus()
+        .type(keys, { parseSpecialCharSequences: false }),
+
+    /**
+     * Type into a DOM element, including special characters
+     * @example
+     * ```ts
+     * helper.when.typeSpecialChar('credentials-password', '{backspace}')
+     * ```
+     */
+    typeSpecialChar: (selector: string, keys: string, index: number = 0) =>
       this.get
         .elementByTestId(selector, index)
         .focus()
@@ -811,6 +855,13 @@ export class CypressHelper {
      * @param name
      * @returns
      */
-    stub: (name: string) => cy.get(`@${name}`)
+    stub: (name: string) => cy.get(`@${name}`),
+    /** Get the window object of the page that is currently active.
+     * @returns {Cypress.Chainable<Window>}
+     * @example
+     * ```ts
+     * helper.get.window().then((win) => { win.localStorage.getItem("key")}
+     */
+    window: () => cy.window()
   };
 }
