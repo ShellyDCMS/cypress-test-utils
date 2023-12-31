@@ -714,7 +714,9 @@ export class CypressHelper {
      * @param content
      */
     elementByText: (content: string | RegExp, index?: number) =>
-      cy.contains(content).eq(index),
+      index === undefined
+        ? cy.contains(content)
+        : cy.contains(content).eq(index),
     /**
      * Get number of elements with a specific selector
      * @example
