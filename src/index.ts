@@ -304,7 +304,7 @@ export class CypressHelper {
      * helper.when.realClick('move-right')
      * ```
      */
-    realClick: (selector: string, index: number = 0) =>
+    realClick: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).realClick(),
     /**
      * Click a DOM element.
@@ -315,7 +315,7 @@ export class CypressHelper {
      * helper.when.click('move-right')
      * ```
      */
-    click: (selector: string, index: number = 0) =>
+    click: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).click({ force: true }),
 
     /** Fires when your app calls the global window.alert() method.
@@ -345,14 +345,14 @@ export class CypressHelper {
      *
      * Double-click a DOM element.
      */
-    dblclick: (selector: string, index: number = 0) =>
+    dblclick: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).dblclick(),
     /**
      * Right click a DOM element.
      * @param selector
      * @param index
      */
-    rightclick: (selector: string, index: number = 0) =>
+    rightclick: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).rightclick(),
     /**
      * overrides native global functions related to time
@@ -374,7 +374,7 @@ export class CypressHelper {
      * helper.when.hover('consent-terms-agree')
      * ```
      */
-    hover: (selector: string, index: number = 0) =>
+    hover: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).realHover(),
     /**
      * Move time after overriding a native time function with helper.when.clock().
@@ -394,7 +394,7 @@ export class CypressHelper {
      * helper.when.focus('credentials-password')
      * ```
      */
-    focus: (selector: string, index: number = 0) =>
+    focus: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).focus(),
     /**
      * Blur a focused element.
@@ -402,12 +402,12 @@ export class CypressHelper {
      * If you want to ensure an element is focused before blurring,
      * try using helper.when.focus() before helper.when.blur().
      */
-    blur: (selector: string, index: number = 0) =>
+    blur: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).blur(),
     /**
      * Clear the value of an input or textarea
      */
-    clear: (selector: string, index: number = 0) =>
+    clear: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).clear(),
     /**
      * Type into a DOM element, not including special characters
@@ -416,7 +416,7 @@ export class CypressHelper {
      * helper.when.type('credentials-password', 'new password')
      * ```
      */
-    type: (selector: string, keys: string, index: number = 0) =>
+    type: (selector: string, keys: string, index?: number) =>
       this.get
         .elementByTestId(selector, index)
         .focus()
@@ -429,7 +429,7 @@ export class CypressHelper {
      * helper.when.typeSpecialChar('credentials-password', '{backspace}')
      * ```
      */
-    typeSpecialChar: (selector: string, keys: string, index: number = 0) =>
+    typeSpecialChar: (selector: string, keys: string, index?: number) =>
       this.get
         .elementByTestId(selector, index)
         .focus()
@@ -438,12 +438,12 @@ export class CypressHelper {
     /**
      * Type tab (move to element with next tab-index)
      */
-    tab: (selector: string, index: number = 0) =>
+    tab: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).tab(),
     /**
      * Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
      */
-    realType: (selector: string, keys: string, index: number = 0) =>
+    realType: (selector: string, keys: string, index?: number) =>
       this.get.elementByTestId(selector, index).realType(keys),
     /**
      * Scroll to the bottom.
@@ -453,19 +453,19 @@ export class CypressHelper {
      * Check checkbox(es) or radio(s).
      * This element must be an html input element with type checkbox or radio.
      */
-    check: (selector: string, index: number = 0) =>
+    check: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).check({ force: true }),
     /**
      * Uncheck checkbox(es).
      */
-    uncheck: (selector: string, index: number = 0) =>
+    uncheck: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).uncheck({ force: true }),
     /**
      *
      * Toggle radio(s) by selector
      * This element must be an html input element with type radio.
      */
-    toggleRadioBySelector: (selector: string, index: number = 0) =>
+    toggleRadioBySelector: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).check({ force: true }),
     /**
      *
@@ -490,11 +490,8 @@ export class CypressHelper {
      * helper.when.selectOption('fruit-selection', 458).should('have.value', '458')
      * ```
      */
-    selectOption: (
-      selector: string,
-      option: string | number,
-      index: number = 0
-    ) => this.get.nthBySelector(selector, index).select(option),
+    selectOption: (selector: string, option: string | number, index?: number) =>
+      this.get.nthBySelector(selector, index).select(option),
     /**
      * Drag an element and drop it in target element
      * @example
@@ -521,7 +518,7 @@ export class CypressHelper {
      * @example
      * helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo')
      */
-    within: (fn: () => void, selector: string, index: number = 0) =>
+    within: (fn: () => void, selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).within(fn)
   };
 
@@ -557,12 +554,12 @@ export class CypressHelper {
      */
     nthBySelector: (
       selector: string,
-      index: number,
+      index?: number,
       attribute: string = this.options.defaultDataAttribute!
     ) =>
-      index
-        ? this.get.bySelector(selector, attribute).eq(index)
-        : this.get.bySelector(selector, attribute),
+      index === undefined
+        ? this.get.bySelector(selector, attribute)
+        : this.get.bySelector(selector, attribute).eq(index),
     /**
      * Returns specific environment variable or undefined
      * @example
@@ -591,13 +588,12 @@ export class CypressHelper {
      *
      * @param selector
      * @param attributeName
-     * @param [index = 0]
      * @returns {Cypress.Chainable<string>}
      */
     elementsStyleAttribute: (
       selector: string,
       attributeName: string,
-      index: number = 0
+      index?: number
     ) =>
       this.waitUntilLoadBeforeInvocation(() =>
         this.get.elementByTestId(selector, index).invoke("css", attributeName)
@@ -607,13 +603,12 @@ export class CypressHelper {
      *
      * @param selector
      * @param propertyName
-     * @param [index = 0]
      * @returns
      */
     elementsProperty: (
       selector: string,
       propertyName: keyof JQuery<HTMLElement>,
-      index: number = 0
+      index?: number
     ) =>
       this.waitUntilLoadBeforeInvocation(() =>
         this.get.elementByTestId(selector, index).invoke(propertyName)
@@ -622,13 +617,12 @@ export class CypressHelper {
      * Returns element's computed style, including pseudo elements
      *
      * @param selector
-     * @param [index = 0]
      * @param [pseudoElement]
      * @returns {Cypress.Chainable<CSSStyleDeclaration>}
      */
     elementsComputedStyle: (
       selector: string,
-      index: number = 0,
+      index?: number,
       pseudoElement?: string
     ): Cypress.Chainable<CSSStyleDeclaration> =>
       this.get
@@ -643,12 +637,11 @@ export class CypressHelper {
      * expect(helper.get.elementsText("parent-job-name", 3).should("include", "Job 3 Name"))
      * ```
      * @param selector
-     * @param [index = 0]
      * @returns {Cypress.Chainable<string>}
      */
     elementsText: (
       selector: string,
-      index: number = 0
+      index?: number
     ): Cypress.Chainable<string> =>
       this.waitUntilLoadBeforeInvocation(() =>
         this.get.elementByTestId(selector, index).invoke("text")
@@ -661,12 +654,11 @@ export class CypressHelper {
      * expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
      * ```
      * @param selector
-     * @param [index = 0]
      * @returns { Cypress.Chainable<string | number | string[]> }
      */
     inputValue: (
       selector: string,
-      index: number = 0
+      index?: number
     ): Cypress.Chainable<string | number | string[]> =>
       this.waitUntilLoadBeforeInvocation(() =>
         this.get.elementByTestId(selector, index).invoke("val")
@@ -680,9 +672,8 @@ export class CypressHelper {
      *   helper.get.elementByTestId('available-items')
      * ```
      * @param selector
-     * @param [index = 0]
      */
-    elementByTestId: (selector: string, index: number = 0) =>
+    elementByTestId: (selector: string, index?: number) =>
       this.options.handleSlotShadowDOM &&
       selector.endsWith(`-${this.options.shadowSlotSuffix}`)
         ? this.get.nthBySelector(selector, index).then(slot =>
@@ -708,9 +699,8 @@ export class CypressHelper {
      * get.element('.dropdown-menu')
      * ```
      * @param selector
-     * @param [index = 0]
      */
-    element: (selector: string, index: number = 0) =>
+    element: (selector: string, index?: number) =>
       index ? cy.get(selector).eq(index) : cy.get(selector),
     /**
      * Get the DOM element containing the text.
@@ -722,9 +712,8 @@ export class CypressHelper {
      * expect(helper.get.elementByText("Avamar")).to.exist;
      * ```
      * @param content
-     * @param [index = 0]
      */
-    elementByText: (content: string | RegExp, index: number = 0) =>
+    elementByText: (content: string | RegExp, index?: number) =>
       cy.contains(content).eq(index),
     /**
      * Get number of elements with a specific selector
@@ -744,13 +733,12 @@ export class CypressHelper {
      * ```
      * @param selector
      * @param attributeName
-     * @param [index = 0]
      * @returns {Cypress.Chainable<string | undefined>}
      */
     elementsAttribute: (
       selector: string,
       attributeName: string,
-      index = 0
+      index?: number
     ): Cypress.Chainable<string | undefined> =>
       this.waitUntilLoadBeforeInvocation(() =>
         this.get.elementByTestId(selector, index).invoke("attr", attributeName)
