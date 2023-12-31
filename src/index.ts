@@ -350,7 +350,7 @@ export class CypressHelper {
     /**
      * Right click a DOM element.
      * @param selector
-     * @param index
+     * @param [index]
      */
     rightclick: (selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).rightclick(),
@@ -429,7 +429,7 @@ export class CypressHelper {
      * helper.when.typeSpecialChar('credentials-password', '{backspace}')
      * ```
      */
-    typeSpecialChar: (selector: string, keys: string, index?: number) =>
+    typeSpecialCharacter: (selector: string, keys: string, index?: number) =>
       this.get
         .elementByTestId(selector, index)
         .focus()
@@ -549,7 +549,7 @@ export class CypressHelper {
      * helper.get.nthBySelector("checkbox", 3, "type")
      * ```
      * @param selector
-     * @param [index=0]
+     * @param [index]
      * @param [attribute= defaultDataAttribute (default is "data-cy")]
      */
     nthBySelector: (
@@ -588,6 +588,7 @@ export class CypressHelper {
      *
      * @param selector
      * @param attributeName
+     * @param [index]
      * @returns {Cypress.Chainable<string>}
      */
     elementsStyleAttribute: (
@@ -603,6 +604,7 @@ export class CypressHelper {
      *
      * @param selector
      * @param propertyName
+     * @param [index]
      * @returns
      */
     elementsProperty: (
@@ -615,9 +617,11 @@ export class CypressHelper {
       ),
     /**
      * Returns element's computed style, including pseudo elements
+     * @example
+     * ```ts
+     * helper.get.elementsComputedStyle('selector', 0, ':before')
+     * ```
      *
-     * @param selector
-     * @param [pseudoElement]
      * @returns {Cypress.Chainable<CSSStyleDeclaration>}
      */
     elementsComputedStyle: (
@@ -637,6 +641,7 @@ export class CypressHelper {
      * expect(helper.get.elementsText("parent-job-name", 3).should("include", "Job 3 Name"))
      * ```
      * @param selector
+     * @param [index]
      * @returns {Cypress.Chainable<string>}
      */
     elementsText: (
@@ -654,6 +659,7 @@ export class CypressHelper {
      * expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
      * ```
      * @param selector
+     * @param [index]
      * @returns { Cypress.Chainable<string | number | string[]> }
      */
     inputValue: (
@@ -672,6 +678,7 @@ export class CypressHelper {
      *   helper.get.elementByTestId('available-items')
      * ```
      * @param selector
+     * @param [index]
      */
     elementByTestId: (selector: string, index?: number) =>
       this.options.handleSlotShadowDOM &&
@@ -699,6 +706,7 @@ export class CypressHelper {
      * get.element('.dropdown-menu')
      * ```
      * @param selector
+     * @param [index]
      */
     element: (selector: string, index?: number) =>
       index ? cy.get(selector).eq(index) : cy.get(selector),
@@ -712,6 +720,7 @@ export class CypressHelper {
      * expect(helper.get.elementByText("Avamar")).to.exist;
      * ```
      * @param content
+     * @param [index]
      */
     elementByText: (content: string | RegExp, index?: number) =>
       index === undefined
@@ -735,6 +744,7 @@ export class CypressHelper {
      * ```
      * @param selector
      * @param attributeName
+     * @param [index]
      * @returns {Cypress.Chainable<string | undefined>}
      */
     elementsAttribute: (
