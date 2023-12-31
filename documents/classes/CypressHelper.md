@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.16](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.17](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -75,6 +75,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `spy` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `window` | () => `Chainable`<`AUTWindow`\> |
 
 **bySelector**: (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
@@ -320,6 +321,17 @@ Get stub by alias
 
 -----
 
+**window**: () => `Chainable`<`AUTWindow`\>
+
+Get the window object of the page that is currently active.
+
+**`Example`**
+
+```ts
+helper.get.window().then((win) => { win.localStorage.getItem("key")}
+
+-----
+
 ___
 
 ### given
@@ -486,11 +498,15 @@ The when property will hold methods of “events” which will take place like r
 
 | Name | Type |
 | :------ | :------ |
+| `acceptConfirm` | () => `EventEmitter2` \| `Listener` |
+| `acceptPrompt` | () => `EventEmitter2` \| `Listener` |
 | `blur` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `cancelConfirm` | () => `Cypress` |
 | `check` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clear` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `click` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clock` | () => `Chainable`<`Clock`\> |
+| `closeAlert` | () => `Cypress` |
 | `dblclick` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
 | `focus` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -505,6 +521,7 @@ The when property will hold methods of “events” which will take place like r
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `toggleRadioBySelector` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `type` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `typeSpecialChar` | (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `uncheck` | (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `visit` | (`url`: `string`) => `void` |
 | `wait` | (`ms`: `number`) => `Chainable`<`undefined`\> |
@@ -514,12 +531,33 @@ The when property will hold methods of “events” which will take place like r
 | `waitUntil` | <ReturnType\>(`checkFunction`: () => `Chainable`<`any`\> \| `ReturnType` \| `PromiseLike`<`ReturnType`\>, `options?`: `WaitUntilOptions`<`any`\>) => `Chainable`<`undefined`\> |
 | `within` | (`fn`: () => `void`, `selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 
+**acceptConfirm**: () => `EventEmitter2` \| `Listener`
+
+Fires when your app calls the global window.confirm() method.
+The confirmation will be accepted.
+
+-----
+
+**acceptPrompt**: () => `EventEmitter2` \| `Listener`
+
+Fires when your app calls the global window.prompt() method.
+The prompt will be cancelled.
+
+-----
+
 **blur**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Blur a focused element.
 This element must currently be in focus.
 If you want to ensure an element is focused before blurring,
 try using helper.when.focus() before helper.when.blur().
+
+-----
+
+**cancelConfirm**: () => `Cypress`
+
+Fires when your app calls the global window.confirm() method.
+The confirmation will be canceled.
 
 -----
 
@@ -564,6 +602,13 @@ This means that when you instantiate new Date in your application, it will have 
 
 -----
 
+**closeAlert**: () => `Cypress`
+
+Fires when your app calls the global window.alert() method.
+The alert will be closed.
+
+-----
+
 **dblclick**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Double-click a DOM element.
@@ -588,6 +633,12 @@ helper.when.dragAndDrop(
 **focus**: (`selector`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Focus on a DOM element.
+
+**`Example`**
+
+```ts
+helper.when.focus('credentials-password')
+```
 
 -----
 
@@ -692,7 +743,25 @@ This element must be an html input element with type radio.
 
 **type**: (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
-Type into a DOM element.
+Type into a DOM element, not including special characters
+
+**`Example`**
+
+```ts
+helper.when.type('credentials-password', 'new password')
+```
+
+-----
+
+**typeSpecialChar**: (`selector`: `string`, `keys`: `string`, `index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Type into a DOM element, including special characters
+
+**`Example`**
+
+```ts
+helper.when.typeSpecialChar('credentials-password', '{backspace}')
+```
 
 -----
 
