@@ -344,6 +344,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should type special characters", () => {
+    when.clear("name-input");
     when.type("name-input", "shelly");
     when.typeSpecialCharacter("name-input", "{backspace}");
     then(get.inputValue("name-input")).shouldEqual("shell");
