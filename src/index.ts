@@ -430,10 +430,7 @@ export class CypressHelper {
      * ```
      */
     typeSpecialCharacter: (selector: string, keys: string, index?: number) =>
-      this.get
-        .elementByTestId(selector, index)
-        .focus()
-        .type(keys, { parseSpecialCharSequences: false }),
+      this.get.elementByTestId(selector, index).focus().type(keys),
 
     /**
      * Type tab (move to element with next tab-index)
