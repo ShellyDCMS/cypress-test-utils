@@ -339,7 +339,7 @@ export class CypressHelper {
      * Fires when your app calls the global window.prompt() method.
      * The prompt will be cancelled.
      */
-    acceptPrompt: () => cy.on("window:prompt", () => false),
+    cancelPrompt: () => cy.on("window:prompt", () => false),
 
     /**
      *
