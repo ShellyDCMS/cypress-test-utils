@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.17](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.18](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -505,9 +505,9 @@ The when property will hold methods of “events” which will take place like r
 | Name | Type |
 | :------ | :------ |
 | `acceptConfirm` | () => `EventEmitter2` \| `Listener` |
-| `acceptPrompt` | () => `EventEmitter2` \| `Listener` |
 | `blur` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `cancelConfirm` | () => `Cypress` |
+| `cancelPrompt` | () => `EventEmitter2` \| `Listener` |
 | `check` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clear` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `click` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -544,13 +544,6 @@ The confirmation will be accepted.
 
 -----
 
-**acceptPrompt**: () => `EventEmitter2` \| `Listener`
-
-Fires when your app calls the global window.prompt() method.
-The prompt will be cancelled.
-
------
-
 **blur**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Blur a focused element.
@@ -564,6 +557,13 @@ try using helper.when.focus() before helper.when.blur().
 
 Fires when your app calls the global window.confirm() method.
 The confirmation will be canceled.
+
+-----
+
+**cancelPrompt**: () => `EventEmitter2` \| `Listener`
+
+Fires when your app calls the global window.prompt() method.
+The prompt will be cancelled.
 
 -----
 

@@ -1,3 +1,44 @@
+/** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
+ * By using the Assertable class, you can use the same assertions in your tests, regardless of the testing framework you use.
+ * All you need to do if you wish to replace Cypress with another testing framework and keep your tests, is to replace the implementation of the Assertable class.
+ * You can also add assertions of your own, by extending Assertable class.
+ * @example
+ * ```ts
+ * import { Assertable, then } from "@shellygo/cypress-test-utils/assertable";
+ * import { CypressHelper } from "@shellygo/cypress-test-utils";
+ *
+ * class MyAssertable<T> extends Assertable<T> {
+ *   private styleFromWindow = (win: Window) => {
+ *     const styleItem = win.localStorage.getItem(`style`);
+ *     return JSON.parse(styleItem || "");
+ *   };
+ *
+ *   public shouldEqualToStoredStyle = () =>
+ *     then(
+ *       new CypressHelper().get.window().then((win) => {
+ *          const style = styleFromWindow(win);
+ *          then(this.chainable).shouldDeepNestedInclude(style);
+ *       })
+ *     );
+ * }
+ *
+ * class Driver {
+ *  public given = {
+ *  .
+ *  .
+ *  };
+ *  public when = {
+ *  .
+ *  .
+ *  };
+ *  public get = {
+ *  .
+ *  .
+ *  };
+ *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
+ * }
+ * ```
+ */
 export class Assertable<T> {
   constructor(protected readonly chainable: Cypress.Chainable<T>) {}
   public should = (chainer: string, ...rest: any[]) =>
@@ -258,6 +299,46 @@ export class Assertable<T> {
    */
   public shouldHaveBeenCalled = () => this.chainable.should("have.been.called");
 }
-
+/** Wraps Cypress.Chainable and returns Assertable, decoupling test code form cypress 'should' assertions.
+ * This way you can add assertions of your own, by extending Assertable class.
+ * @example
+ * ```ts
+ * then(get.elementByTestId("selector")).shouldHaveLength(3)
+ * ```
+ * @example
+ * ```ts
+ * import { Assertable, then } from "@shellygo/cypress-test-utils/assertable";
+ *
+ * class MyAssertable<T> extends Assertable<T> {
+ *   private styleFromWindow = (win: Window) => {
+ *     const styleItem = win.localStorage.getItem(`style`);
+ *     const obj = JSON.parse(styleItem || "");
+ *     return obj;
+ *   };
+ *   public shouldEqualToStoredStyle = () =>
+ *     then(
+ *       new CypressHelper().get.window().then((win) => {
+ *          const style = styleFromWindow(win);
+ *          then(this.chainable).shouldDeepNestedInclude(style);
+ *       })
+ *     );
+ * }
+ *
+ * class Driver {
+ *  public given = {
+ *  .
+ *  .
+ *  };
+ *  public when = {
+ *  .
+ *  .
+ *  };
+ *  public get = {
+ *  .
+ *  .
+ *  };
+ *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
+ * }
+ */
 export const then = (chainable: Cypress.Chainable<any>) =>
   new Assertable(chainable);

@@ -11,7 +11,9 @@ CypressHelper makes it saner to write UI testing. It enables creating component 
 
 Cypress Helpers can help you develop tests faster
 CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
-CypressComponent helpers are designed to be used in component tests and are NOT framework agnostic.
+![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/d9aa07d8-2c05-4968-970a-be8445a113c3)
+
+CypressComponent helpers are designed to be used in component tests and are NOT framework agnostic, their sole purpose is to mount components into the browser.
 
 ## Component Drivers
 
@@ -23,6 +25,11 @@ Component drivers are just like page objects, but for your components.
 Just like page objects, this is merely a pattern, and is not coupled to a specific implementation.
 However, using CypressHelper as the basis for your component drivers will help you leverage years of trial and error and be able to fully re-use your drivers across testing levels.
 This allows you to confidently write tests that use your actual implementation and keep focusing on the _"what"_ and not the _"how"_
+
+![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/dc972638-e80c-4516-85be-4c3f657fc6ec)
+
+Component Drivers can be used as building blocks for integration and E2E test driver, using Driver Composition
+![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/17175620-ad91-4e4a-af63-6d83665de794)
 
 ## Philosophy
 
