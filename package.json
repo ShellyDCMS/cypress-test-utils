@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.0.21",
+  "version": "2.0.22",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -9,6 +9,7 @@
     "type": "git",
     "url": "git@github.com:shellyDCMS/cypress-test-utils.git"
   },
+  "homepage": "https://shellydcms.github.io/cypress-test-utils/modules.html",
   "publishConfig": {
     "access": "public"
   },

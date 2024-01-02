@@ -39,21 +39,15 @@ For example, a user doesn't mouseUp, he/she hovers.
 
 [CypressTestHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressHelper.md)
 
-[angular/CypressAngularComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressAngularComponentHelper.md)
+[Assertable](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/Assertable.md)
 
-[react/CypressReactComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressReactComponentHelper.md)
+[CypressAngularComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressAngularComponentHelper.md)
 
-[lit/CypressLitComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressLitComponentHelper.md)
+[CypressReactComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressReactComponentHelper.md)
+
+[CypressLitComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressLitComponentHelper.md)
 
 ## [HTML Documentation](https://shellydcms.github.io/cypress-test-utils/modules.html)
-
-[CypressTestHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressHelper.html)
-
-[angular/CypressAngularComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressAngularComponentHelper.html)
-
-[react/CypressReactComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressReactComponentHelper.html)
-
-[lit/CypressLitComponentHelper](https://shellydcms.github.io/cypress-test-utils/classes/CypressLitComponentHelper.html)
 
 ## Examples
 
