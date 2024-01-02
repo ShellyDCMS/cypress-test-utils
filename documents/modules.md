@@ -1,11 +1,12 @@
-[@shellygo/cypress-test-utils - v2.0.18](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.0.19](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.0.18
+# @shellygo/cypress-test-utils - v2.0.19
 
 ## Table of contents
 
 ### Classes
 
+- [Assertable](classes/Assertable.md)
 - [CypressAngularComponentHelper](classes/CypressAngularComponentHelper.md)
 - [CypressHelper](classes/CypressHelper.md)
 - [CypressHelperOptions](classes/CypressHelperOptions.md)
@@ -16,6 +17,7 @@
 
 - [loggable](modules.md#loggable)
 - [match](modules.md#match)
+- [then](modules.md#then)
 
 ## Functions
 
@@ -260,3 +262,64 @@ it("should partially match spy params", () => {
 });
 ```
 For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
+
+___
+
+### then
+
+▸ **then**(`chainable`): [`Assertable`](classes/Assertable.md)<`any`\>
+
+Wraps Cypress.Chainable and returns Assertable, decoupling test code form cypress 'should' assertions.
+This way you can add assertions of your own, by extending Assertable class.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `chainable` | `Chainable`<`any`\> |
+
+#### Returns
+
+[`Assertable`](classes/Assertable.md)<`any`\>
+
+**`Example`**
+
+```ts
+then(get.elementByTestId("selector")).shouldHaveLength(3)
+```
+
+**`Example`**
+
+```ts
+import { Assertable, then } from "@shellygo/cypress-test-utils/assertable";
+
+class MyAssertable<T> extends Assertable<T> {
+  private styleFromWindow = (win: Window) => {
+    const styleItem = win.localStorage.getItem(`style`);
+    const obj = JSON.parse(styleItem || "");
+    return obj;
+  };
+  public shouldEqualToStoredStyle = () =>
+    then(
+      new CypressHelper().get.window().then((win) => {
+         const style = styleFromWindow(win);
+         then(this.chainable).shouldDeepNestedInclude(style);
+      })
+    );
+}
+
+class Driver {
+ public given = {
+ .
+ .
+ };
+ public when = {
+ .
+ .
+ };
+ public get = {
+ .
+ .
+ };
+ public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
+}
