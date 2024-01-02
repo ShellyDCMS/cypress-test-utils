@@ -1,6 +1,6 @@
-[@shellygo/cypress-test-utils - v2.0.19](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.0.21](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.0.19
+# @shellygo/cypress-test-utils - v2.0.21
 
 ## Table of contents
 
