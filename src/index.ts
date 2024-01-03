@@ -511,11 +511,20 @@ export class CypressHelper {
       targetElement.realMouseMove(0, 0, { position: "center" }).realMouseUp();
     },
     /**
-     * Scopes all subsequent cy commands to within this element
+     * Scopes the execution of a function within an element
      * @example
-     * helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo')
+     * helper.when.within(() => expect(get.logo()).to.exist, 'company-logo')
+     * @deprecated The method should not be used anymore. Use helper.when.doWithin instead.
      */
     within: (fn: () => void, selector: string, index?: number) =>
+      this.when.doWithin(fn, selector, index),
+
+    /**
+     * Scopes the execution of a function within an element
+     * @example
+     * helper.when.doWithin(() => expect(get.logo()).to.exist, 'company-logo')
+     */
+    doWithin: (fn: () => void, selector: string, index?: number) =>
       this.get.elementByTestId(selector, index).within(fn)
   };
 

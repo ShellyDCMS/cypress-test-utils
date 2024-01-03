@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.22](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.23](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -514,6 +514,7 @@ The when property will hold methods of “events” which will take place like r
 | `clock` | () => `Chainable`<`Clock`\> |
 | `closeAlert` | () => `Cypress` |
 | `dblclick` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `doWithin` | (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
 | `focus` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `hover` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -618,6 +619,18 @@ The alert will be closed.
 **dblclick**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Double-click a DOM element.
+
+-----
+
+**doWithin**: (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Scopes the execution of a function within an element
+
+**`Example`**
+
+```ts
+helper.when.doWithin(() => expect(get.logo()).to.exist, 'company-logo')
+```
 
 -----
 
@@ -827,13 +840,17 @@ helper.when.waitUntil(() =>
 
 **within**: (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
-Scopes all subsequent cy commands to within this element
+Scopes the execution of a function within an element
 
 **`Example`**
 
 ```ts
-helper.when.within(() => expect(get.emcLogo()).to.exist, 'company-logo')
+helper.when.within(() => expect(get.logo()).to.exist, 'company-logo')
 ```
+
+**`Deprecated`**
+
+The method should not be used anymore. Use helper.when.doWithin instead.
 
 -----
 
