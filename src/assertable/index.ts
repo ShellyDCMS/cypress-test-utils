@@ -298,6 +298,62 @@ export class Assertable<T> {
    * ```
    */
   public shouldHaveBeenCalled = () => this.chainable.should("have.been.called");
+
+  /** Asserts spy was called exactly once
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalledOnce()
+   * ```
+   */
+  public shouldHaveBeenCalledOnce = () =>
+    this.chainable.should("have.been.calledOnce");
+
+  /** Asserts spy was called exactly twice
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalledTwice()
+   * ```
+   */
+  public shouldHaveBeenCalledTwice = () =>
+    this.chainable.should("have.been.calledTwice");
+
+  /** Asserts spy was called exactly thrice
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalledThrice()
+   * ```
+   */
+  public shouldHaveBeenCalledThrice = () =>
+    this.chainable.should("have.been.calledThrice");
+
+  /** Asserts spy was called exactly n times
+   * @param n number of times spy should have been called
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldHaveBeenCalledTimes(5)
+   * ```
+   */
+  public shouldHaveBeenCalledTimes = (n: number) =>
+    this.chainable.should("have.callCount", n);
+
+  /** Asserts spy was NOT called exactly n times
+   * @param n number of times spy should NOT have been called
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldNotHaveBeenCalledTimes(5)
+   * ```
+   */
+  public shouldNotHaveBeenCalledTimes = (n: number) =>
+    this.chainable.should("not.have.callCount", n);
+  /**
+   * Asserts spy was not called
+   * @example
+   * ```ts
+   * then(get.spy("onSomething")).shouldNotHaveBeenCalled()
+   * ```
+   */
+  public shouldNotHaveBeenCalled = () =>
+    this.chainable.should("not.have.been.called");
 }
 /** Wraps Cypress.Chainable and returns Assertable, decoupling test code form cypress 'should' assertions.
  * This way you can add assertions of your own, by extending Assertable class.
