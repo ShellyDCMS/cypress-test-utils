@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.23](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.24](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -88,6 +88,7 @@ class Driver {
 - [shouldHaveBeenCalledWith](Assertable.md#shouldhavebeencalledwith)
 - [shouldHaveBeenCalledWithMatch](Assertable.md#shouldhavebeencalledwithmatch)
 - [shouldHaveClass](Assertable.md#shouldhaveclass)
+- [shouldHaveCss](Assertable.md#shouldhavecss)
 - [shouldHaveLength](Assertable.md#shouldhavelength)
 - [shouldHaveValue](Assertable.md#shouldhavevalue)
 - [shouldInclude](Assertable.md#shouldinclude)
@@ -478,7 +479,7 @@ ___
 
 ### shouldHaveAttribute
 
-▸ **shouldHaveAttribute**(`value`, `expectedValue`): `Chainable`<`T`\>
+▸ **shouldHaveAttribute**(`attribute`, `expectedValue`): `Chainable`<`T`\>
 
 Assert that the first element of the selection has the given attribute, using `.attr()`.
 Optionally, assert a particular value as well. The return value is available for chaining.
@@ -487,7 +488,7 @@ Optionally, assert a particular value as well. The return value is available for
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `string` |
+| `attribute` | `string` |
 | `expectedValue` | `string` |
 
 #### Returns
@@ -666,6 +667,31 @@ Assert that the selection has the given CSS class.
 
 ```ts
   then(get.elementByTestId("selector")).shouldHaveClass("test")
+```
+
+___
+
+### shouldHaveCss
+
+▸ **shouldHaveCss**(`property`, `expectedValue`): `Chainable`<`T`\>
+
+Assert that an element has a css property with the given value.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `property` | `string` |
+| `expectedValue` | `string` |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.elementByTestId("selector")).shouldHaveCss("color", "rgb(102, 102, 102)"")
 ```
 
 ___
