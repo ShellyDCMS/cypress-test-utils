@@ -271,9 +271,21 @@ export class Assertable<T> {
    *  then(get.elementByTestId("selector")).shouldHaveAttribute("test")
    * ```
    */
-  public shouldHaveAttribute = (value: string, expectedValue: string) =>
-    this.chainable.should("have.attr", value, expectedValue);
-  /** Assert spy was called at least once with the provided arguments.
+  public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
+    this.chainable.should("have.attr", attribute, expectedValue);
+
+  /**
+   * Assert that an element has a css property with the given value.
+   * @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldHaveCss("color", "rgb(102, 102, 102)"")
+   * ```
+   */
+  public shouldHaveCss = (property: string, expectedValue: string) =>
+    this.chainable.should("have.css", property).and("eq", expectedValue);
+
+  /**
+   * Assert spy was called at least once with the provided arguments.
    * @example
    * ```ts
    * then(get.spy("onSomething")).shouldHaveBeenCalledWith({ id: 1 })
