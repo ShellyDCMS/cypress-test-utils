@@ -81,6 +81,10 @@ class Driver {
 - [shouldExist](Assertable.md#shouldexist)
 - [shouldHaveAttribute](Assertable.md#shouldhaveattribute)
 - [shouldHaveBeenCalled](Assertable.md#shouldhavebeencalled)
+- [shouldHaveBeenCalledOnce](Assertable.md#shouldhavebeencalledonce)
+- [shouldHaveBeenCalledThrice](Assertable.md#shouldhavebeencalledthrice)
+- [shouldHaveBeenCalledTimes](Assertable.md#shouldhavebeencalledtimes)
+- [shouldHaveBeenCalledTwice](Assertable.md#shouldhavebeencalledtwice)
 - [shouldHaveBeenCalledWith](Assertable.md#shouldhavebeencalledwith)
 - [shouldHaveBeenCalledWithMatch](Assertable.md#shouldhavebeencalledwithmatch)
 - [shouldHaveClass](Assertable.md#shouldhaveclass)
@@ -92,6 +96,8 @@ class Driver {
 - [shouldNotBeSelected](Assertable.md#shouldnotbeselected)
 - [shouldNotBeVisible](Assertable.md#shouldnotbevisible)
 - [shouldNotExist](Assertable.md#shouldnotexist)
+- [shouldNotHaveBeenCalled](Assertable.md#shouldnothavebeencalled)
+- [shouldNotHaveBeenCalledTimes](Assertable.md#shouldnothavebeencalledtimes)
 
 ## Constructors
 
@@ -514,6 +520,84 @@ then(get.spy("onSomething")).shouldHaveBeenCalled()
 
 ___
 
+### shouldHaveBeenCalledOnce
+
+▸ **shouldHaveBeenCalledOnce**(): `Chainable`<`T`\>
+
+Asserts spy was called exactly once
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.spy("onSomething")).shouldHaveBeenCalledOnce()
+```
+
+___
+
+### shouldHaveBeenCalledThrice
+
+▸ **shouldHaveBeenCalledThrice**(): `Chainable`<`T`\>
+
+Asserts spy was called exactly thrice
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.spy("onSomething")).shouldHaveBeenCalledThrice()
+```
+
+___
+
+### shouldHaveBeenCalledTimes
+
+▸ **shouldHaveBeenCalledTimes**(`n`): `Chainable`<`T`\>
+
+Asserts spy was called exactly n times
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `n` | `number` | number of times spy should have been called |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.spy("onSomething")).shouldHaveBeenCalledTimes(5)
+```
+
+___
+
+### shouldHaveBeenCalledTwice
+
+▸ **shouldHaveBeenCalledTwice**(): `Chainable`<`T`\>
+
+Asserts spy was called exactly twice
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.spy("onSomething")).shouldHaveBeenCalledTwice()
+```
+
+___
+
 ### shouldHaveBeenCalledWith
 
 ▸ **shouldHaveBeenCalledWith**(`...args`): `Chainable`<`T`\>
@@ -746,4 +830,46 @@ If the object asserted against is not a jQuery object, the original implementati
 
 ```ts
    then(get.elementByTestId("selector")).shouldNotExist()
+```
+
+___
+
+### shouldNotHaveBeenCalled
+
+▸ **shouldNotHaveBeenCalled**(): `Chainable`<`T`\>
+
+Asserts spy was not called
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.spy("onSomething")).shouldNotHaveBeenCalled()
+```
+
+___
+
+### shouldNotHaveBeenCalledTimes
+
+▸ **shouldNotHaveBeenCalledTimes**(`n`): `Chainable`<`T`\>
+
+Asserts spy was NOT called exactly n times
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `n` | `number` | number of times spy should NOT have been called |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+then(get.spy("onSomething")).shouldNotHaveBeenCalledTimes(5)
 ```
