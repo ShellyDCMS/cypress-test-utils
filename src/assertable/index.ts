@@ -82,6 +82,31 @@ export class Assertable<T> {
    */
   public shouldInclude = (value: any) =>
     this.chainable.should("include", value);
+
+  /**
+   * Asserts that text ends with value
+   * @example
+   * ```ts
+   *   then(helper.get.elementsText('selector)).shouldEndWith('test')
+   * ```
+   */
+  public shouldEndWith = (value: string) =>
+    this.chainable
+      .pipe(text => (text as string).slice(-value.length))
+      .should("equal", value);
+
+  /**
+   * Asserts that text starts with value
+   * @example
+   * ```ts
+   *   then(helper.get.elementsText('selector)).shouldStartWith('test')
+   * ```
+   */
+  public shouldStartWith = (value: string) =>
+    this.chainable
+      .pipe(text => (text as string).slice(0, value.length))
+      .should("equal", value);
+
   /**
    * Causes all `.equal`, `.include`, `.members`, `.keys`, and `.property` assertions that follow in the chain to use deep equality instead of strict (`===`) equality. See the `deep-eql` project page for info on the deep equality algorithm: https://github.com/chaijs/deep-eql.
    * @example
