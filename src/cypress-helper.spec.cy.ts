@@ -271,6 +271,14 @@ describe("cypress helper tests", () => {
     then(get.elementsText("header")).shouldEqual("My First Heading");
   });
 
+  it("should assert element's text ends with suffix", () => {
+    then(get.elementsText("header")).shouldEndWith("Heading");
+  });
+
+  it("should assert element's text starts with prefix", () => {
+    then(get.elementsText("header")).shouldStartWith("My First");
+  });
+
   it("should supply cypress pipe", () => {
     then(
       get.elementsText("header").pipe(loggable(str => str.toLowerCase()))

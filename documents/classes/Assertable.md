@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.24](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.25](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -77,6 +77,7 @@ class Driver {
 - [shouldContainText](Assertable.md#shouldcontaintext)
 - [shouldDeepEqual](Assertable.md#shoulddeepequal)
 - [shouldDeepNestedInclude](Assertable.md#shoulddeepnestedinclude)
+- [shouldEndWith](Assertable.md#shouldendwith)
 - [shouldEqual](Assertable.md#shouldequal)
 - [shouldExist](Assertable.md#shouldexist)
 - [shouldHaveAttribute](Assertable.md#shouldhaveattribute)
@@ -99,6 +100,7 @@ class Driver {
 - [shouldNotExist](Assertable.md#shouldnotexist)
 - [shouldNotHaveBeenCalled](Assertable.md#shouldnothavebeencalled)
 - [shouldNotHaveBeenCalledTimes](Assertable.md#shouldnothavebeencalledtimes)
+- [shouldStartWith](Assertable.md#shouldstartwith)
 
 ## Constructors
 
@@ -429,6 +431,30 @@ then(
       attr2: "the other thing"
   }
 })
+```
+
+___
+
+### shouldEndWith
+
+▸ **shouldEndWith**(`value`): `Chainable`<`string`\>
+
+Asserts that text ends with value
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `string` |
+
+#### Returns
+
+`Chainable`<`string`\>
+
+**`Example`**
+
+```ts
+  then(helper.get.elementsText('selector)).shouldEndWith('test')
 ```
 
 ___
@@ -898,4 +924,28 @@ Asserts spy was NOT called exactly n times
 
 ```ts
 then(get.spy("onSomething")).shouldNotHaveBeenCalledTimes(5)
+```
+
+___
+
+### shouldStartWith
+
+▸ **shouldStartWith**(`value`): `Chainable`<`string`\>
+
+Asserts that text starts with value
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `string` |
+
+#### Returns
+
+`Chainable`<`string`\>
+
+**`Example`**
+
+```ts
+  then(helper.get.elementsText('selector)).shouldStartWith('test')
 ```
