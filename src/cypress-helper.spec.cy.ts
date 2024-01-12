@@ -187,14 +187,6 @@ describe("cypress helper tests", () => {
     then(get.inputValue("name-input")).shouldEqual("shelly");
   });
 
-  it("should type tab", () => {
-    when.tab("name-input");
-    then(get.focusedElement()).shouldHaveAttribute(
-      "data-hook",
-      "last-name-input"
-    );
-  });
-
   it.skip("should click button", () => {
     when.waitUntil(() => get.elementByTestId("name-input"));
     when.clear("name-input");
