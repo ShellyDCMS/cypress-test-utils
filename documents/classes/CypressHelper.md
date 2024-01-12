@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.25](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.26](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -523,7 +523,6 @@ The when property will hold methods of “events” which will take place like r
 | `rightclick` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
 | `selectOption` | (`selector`: `string`, `option`: `string` \| `number`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `tab` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`any`\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `toggleRadioBySelector` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -722,12 +721,6 @@ helper.when.selectOption('fruit-selection', 0).should('have.value', '456')
 helper.when.selectOption('fruit-selection', 'oranges').should('have.value', '457')
 helper.when.selectOption('fruit-selection', 458).should('have.value', '458')
 ```
-
------
-
-**tab**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`any`\>
-
-Type tab (move to element with next tab-index)
 
 -----
 
