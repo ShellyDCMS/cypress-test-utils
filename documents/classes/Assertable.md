@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.27](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.28](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -91,6 +91,7 @@ class Driver {
 - [shouldHaveClass](Assertable.md#shouldhaveclass)
 - [shouldHaveCss](Assertable.md#shouldhavecss)
 - [shouldHaveLength](Assertable.md#shouldhavelength)
+- [shouldHaveText](Assertable.md#shouldhavetext)
 - [shouldHaveValue](Assertable.md#shouldhavevalue)
 - [shouldInclude](Assertable.md#shouldinclude)
 - [shouldNotBeChecked](Assertable.md#shouldnotbechecked)
@@ -742,6 +743,30 @@ Asserts that the target's length property is equal to the given number n..
 
 ```ts
    then(get.elementByTestId("selector")).shouldHaveLength(3)
+```
+
+___
+
+### shouldHaveText
+
+▸ **shouldHaveText**(`value`): `Chainable`<`T`\>
+
+Assert that the text of the first element of the selection is equal to the given text, using .text().
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `string` |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+ then(get.elementByTestId("selector")).shouldHaveText("test")
 ```
 
 ___

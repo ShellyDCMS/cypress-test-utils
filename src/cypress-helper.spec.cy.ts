@@ -223,7 +223,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should toggle radio within container", () => {
-    when.within(() => when.toggle(1), "radio-group");
+    when.doWithin(() => when.toggle(1), "radio-group");
     then(get.elementByTestId("radio", 1)).shouldBeChecked();
   });
 
@@ -320,6 +320,13 @@ describe("cypress helper tests", () => {
       expect(func()).to.eq(7);
     });
 
+    it("should stub function with alias", () => {
+      let func = (input: number) => input;
+      func = given.stub("func");
+      func(7);
+      expect(get.stub("func").should("have.been.called.with", 7));
+    });
+
     it("should stub object function", () => {
       const obj = {
         func: () => 5
@@ -341,6 +348,10 @@ describe("cypress helper tests", () => {
 
   it("should get element by text", () => {
     then(get.elementByText("My first paragraph")).shouldExist();
+  });
+
+  it.skip("should have text", () => {
+    then(get.elementByTestId("div-with-span")).shouldHaveText("Text");
   });
 
   it("should type special characters", () => {
