@@ -148,6 +148,17 @@ describe("cypress helper tests", () => {
       then(get.requestUrl("shellygo")).shouldInclude("whatever/18");
     });
 
+    it("should intercept request and wait for response", () => {
+      given.intercept(
+        `**/PokeAPI/sprites/master/sprites/pokemon/1.png`,
+        "poke-image"
+      );
+      fetch(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`
+      );
+      when.waitForResponse("poke-image");
+    });
+
     it("should intercept request and test header", () => {
       given.interceptAndMockResponse({
         url: "**/shellygo/whatever",

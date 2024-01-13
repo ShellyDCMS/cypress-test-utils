@@ -165,7 +165,7 @@ export class CypressHelper {
      */
     interceptAndMockResponse: (options: {
       url: StringMatcher;
-      response: Object;
+      response?: Object;
       alias?: string;
       method?: string;
     }) => {
@@ -174,6 +174,15 @@ export class CypressHelper {
         alias || "call"
       );
     },
+    /** Use intercept() to intercept HTTP requests and responses
+     * @example
+     * ```ts
+     * helper.given.intercept("/streets/sprite.png", "streetSprite");
+     * ```
+     */
+    intercept: (url: string, alias: string, method?: string) =>
+      this.given.interceptAndMockResponse({ url, alias, method }),
+
     /**
      * Load a fixture
      * @param filename
