@@ -199,8 +199,14 @@ export class CypressHelper {
     /**
      * Replace a function, record its usage and control its behavior.
      * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
+     * @example
+     * ```ts
+     * given.stub("alias");
+     * expect(get.spy("alias")).to.have.been.called;
+     * ```
      */
-    stub: (): Cypress.Agent<sinon.SinonStub<any[], any>> => cy.stub(),
+    stub: (alias?: string): Cypress.Agent<sinon.SinonStub<any[], any>> =>
+      alias ? cy.stub().as(alias) : cy.stub(),
     /**
      * Stub an object's method and create an alias for the stub
      * @param obj object containing function to stub
