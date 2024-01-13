@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.27](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.28](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -352,7 +352,8 @@ This is a classic place to have methods which will set the inputs which are goin
 | Name | Type |
 | :------ | :------ |
 | `fixture` | (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\> |
-| `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void` |
+| `intercept` | (`url`: `string`, `alias`: `string`, `method?`: `string`) => `void` |
+| `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response?`: `Object` ; `url`: `StringMatcher`  }) => `void` |
 | `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
@@ -380,7 +381,19 @@ Load a fixture
 
 -----
 
-**interceptAndMockResponse**: (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void`
+**intercept**: (`url`: `string`, `alias`: `string`, `method?`: `string`) => `void`
+
+Use intercept() to intercept HTTP requests and responses
+
+**`Example`**
+
+```ts
+helper.given.intercept("/streets/sprite.png", "streetSprite");
+```
+
+-----
+
+**interceptAndMockResponse**: (`options`: { `alias?`: `string` ; `method?`: `string` ; `response?`: `Object` ; `url`: `StringMatcher`  }) => `void`
 
 Use interceptAndMockResponse to stub and intercept HTTP requests and responses.
 
