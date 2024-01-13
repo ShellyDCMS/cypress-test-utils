@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.26](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.27](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -355,7 +355,7 @@ This is a classic place to have methods which will set the inputs which are goin
 | `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response`: `Object` ; `url`: `StringMatcher`  }) => `void` |
 | `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
-| `stub` | () => `Agent`<`SinonStub`<`any`[], `any`\>\> |
+| `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 | `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
@@ -464,9 +464,16 @@ Spy on a method and create an alias for the spy
 
 -----
 
-**stub**: () => `Agent`<`SinonStub`<`any`[], `any`\>\>
+**stub**: (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\>
 
 Replace a function, record its usage and control its behavior.
+
+**`Example`**
+
+```ts
+given.stub("alias");
+expect(get.spy("alias")).to.have.been.called;
+```
 
 -----
 
