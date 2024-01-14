@@ -187,7 +187,7 @@ describe("cypress helper tests", () => {
     then(get.inputValue("name-input")).shouldEqual("shelly");
   });
 
-  it.skip("should click button", () => {
+  it("should click button", () => {
     when.waitUntil(() => get.elementByTestId("name-input"));
     when.clear("name-input");
     when.type("name-input", "shelly");
@@ -343,6 +343,10 @@ describe("cypress helper tests", () => {
     then(get.elementByText("My first paragraph")).shouldExist();
   });
 
+  it("should have text", () => {
+    then(get.elementByTestId("div-with-span")).shouldHaveText("Text");
+  });
+
   it("should type special characters", () => {
     when.clear("name-input");
     when.type("name-input", "shelly");
@@ -351,7 +355,11 @@ describe("cypress helper tests", () => {
   });
 
   it("should get element by css", () => {
-    then(get.bySelector("dummy1 dummy2", "class")).shouldExist();
+    then(get.elementBySelector("dummy1 dummy2", "class")).shouldExist();
+  });
+
+  it("should get element by attribute", () => {
+    then(get.elementByAttribute("class", "dummy1 dummy2")).shouldExist();
   });
 
   it("should get fixture", () => {
