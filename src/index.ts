@@ -556,6 +556,38 @@ export class CypressHelper {
       selector: string,
       attribute: string = this.options.defaultDataAttribute!
     ) => cy.get(`[${attribute}="${selector}"]`),
+
+    /**
+     * Get one or more DOM elements by selector.
+     * Same as bySelector
+     * @example
+     * Get an element with shape="filter-grid"
+     * ```ts
+     * <clr-icon shape="filter-grid"></clr-icon>
+     * helper.get.elementBySelector("filter-grid", "shape")
+     * ```
+     * @param selector
+     * @param [attribute = defaultDataAttribute (default is "data-cy")]
+     */
+    elementBySelector: (
+      selector: string,
+      attribute: string = this.options.defaultDataAttribute!
+    ) => this.get.bySelector(selector, attribute),
+
+    /**
+     * Get one or more DOM elements by attribute.
+     * @example
+     * Get an element with shape="filter-grid"
+     * ```ts
+     * <clr-icon shape="filter-grid"></clr-icon>
+     * helper.get.byAttribute("shape", "filter-grid")
+     * ```
+     * @param selector
+     * @param attribute
+     */
+    elementByAttribute: (attribute: string, selector: string) =>
+      this.get.bySelector(selector, attribute),
+
     /**
      * Get A DOM element at a specific index from elements.
      * @example
