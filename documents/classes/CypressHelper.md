@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.28](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.29](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -53,6 +53,8 @@ The get property will hold methods which will give our tests access to the “ou
 | `bySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `currentLocation` | () => `Chainable`<`string`\> |
 | `element` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `elementByAttribute` | (`attribute`: `string`, `selector`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `elementBySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> \| `Chainable`<`undefined`\> |
 | `elementsAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
@@ -108,6 +110,35 @@ Get one or more DOM elements by selector. The querying behavior of this command 
 get.element('.list>li', 3)    // Yield the <li>'s in <.list>
 get.element('ul li:first')
 get.element('.dropdown-menu')
+```
+
+-----
+
+**elementByAttribute**: (`attribute`: `string`, `selector`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Get one or more DOM elements by attribute.
+
+**`Example`**
+
+Get an element with shape="filter-grid"
+```ts
+<clr-icon shape="filter-grid"></clr-icon>
+helper.get.byAttribute("shape", "filter-grid")
+```
+
+-----
+
+**elementBySelector**: (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+
+Get one or more DOM elements by selector.
+Same as bySelector
+
+**`Example`**
+
+Get an element with shape="filter-grid"
+```ts
+<clr-icon shape="filter-grid"></clr-icon>
+helper.get.elementBySelector("filter-grid", "shape")
 ```
 
 -----
