@@ -280,6 +280,15 @@ export class Assertable<T> {
   public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
 
   /**
+   * Assert that the text of the first element of the selection is equal to the given text, using .text().
+   * @example
+   * ```ts
+   *  then(get.elementByTestId("selector")).shouldHaveText("test")
+   * ```
+   */
+  public shouldHaveText = (value: string) =>
+    this.chainable.should("have.text", value);
+  /**
    * Assert that the selection has the given CSS class.
    * @example
    * ```ts
