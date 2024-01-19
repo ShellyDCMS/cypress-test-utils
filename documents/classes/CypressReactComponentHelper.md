@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.29](../README.md) / [Modules](../modules.md) / CypressReactComponentHelper
+[@shellygo/cypress-test-utils - v2.0.30](../README.md) / [Modules](../modules.md) / CypressReactComponentHelper
 
 # Class: CypressReactComponentHelper
 
@@ -63,9 +63,23 @@ enables mounting of a React component
 | Name | Type |
 | :------ | :------ |
 | `mount` | <P, T\>(`type`: `string` \| `T`, `props?`: ``null`` \| `Attributes` & `P`, ...`children`: `ReactNode`[]) => `void` |
+| `routeWrappedMount` | <P, T\>(`component`: { `path`: `string` ; `route`: `string` ; `type`: `string` \| `T`  }, `props?`: ``null`` \| `Attributes` & `P`, ...`children`: `ReactNode`[]) => `void` |
 
 **mount**: <P, T\>(`type`: `string` \| `T`, `props?`: ``null`` \| `Attributes` & `P`, ...`children`: `ReactNode`[]) => `void`
 
 Mount a react component
+
+-----
+
+**routeWrappedMount**: <P, T\>(`component`: { `path`: `string` ; `route`: `string` ; `type`: `string` \| `T`  }, `props?`: ``null`` \| `Attributes` & `P`, ...`children`: `ReactNode`[]) => `void`
+
+Mount a react component wrapped in a route
+
+**`Example`**
+
+```ts
+ const id = '9';
+ reactComponentHelper.when.routeWrappedMount({ typeof PokemonDetails, `/id/${id}`, "id/:id" });
+```
 
 -----

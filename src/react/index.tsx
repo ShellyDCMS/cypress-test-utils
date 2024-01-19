@@ -6,6 +6,7 @@ import type {
   ReactNode
 } from "react";
 import React from "react";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 /**
  * @class CypressReactComponentHelper was designed designed for mounting react components
@@ -37,6 +38,52 @@ export class CypressReactComponentHelper {
       const mountResponse = mount(
         React.createElement(type, props, ...children)
       );
+      mountResponse.its("component").then((component: React.ReactNode) => {
+        this.component = component;
+      });
+    },
+    /**
+     * Mount a react component wrapped in a route
+     * @param component
+     * @param route
+     * @param path
+     * @example
+     * ```ts
+     *  const id = '9';
+     *  reactComponentHelper.when.routeWrappedMount({ typeof PokemonDetails, `/id/${id}`, "id/:id" });
+     * ```
+     */
+    routeWrappedMount: <
+      P extends {},
+      T extends
+        | FunctionComponent<P>
+        | ComponentClass<P>
+        | ((props: P) => JSX.Element)
+    >(
+      {
+        type,
+        route,
+        path
+      }: {
+        type: T | string;
+        route: string;
+        path: string;
+      },
+      props?: (Attributes & P) | null,
+      ...children: ReactNode[]
+    ) => {
+      window.history.pushState({}, "", route);
+      const wrapped = (
+        <MemoryRouter initialEntries={[route]}>
+          <Routes>
+            <Route
+              element={React.createElement(type, props, ...children)}
+              path={path}
+            />
+          </Routes>
+        </MemoryRouter>
+      );
+      const mountResponse = mount(wrapped);
       mountResponse.its("component").then((component: React.ReactNode) => {
         this.component = component;
       });
