@@ -9,7 +9,7 @@
   "entryPoints": [
     "./src/index.ts",
     "./src/angular/index.ts",
-    "./src/react/index.ts",
+    "./src/react/index.tsx",
     "./src/lit/index.ts",
     "./src/assertable/index.ts"
   ],
