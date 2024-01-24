@@ -3,6 +3,7 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
+import { SinonStub } from "cypress/types/sinon";
 export * from "cypress-pipe";
 
 /**
@@ -204,6 +205,25 @@ export class CypressHelper {
      */
     fixture: (filename: string, alias: string) =>
       cy.fixture(filename).as(alias),
+
+    /**
+     * Creates a new object with the given functions as the prototype and stubs all implemented functions.
+     * @example
+     * ```ts
+     * const serviceMock : Service = helper.given.stubbedInstance(Service);
+     * ```
+     */
+    stubbedInstance: <T>(
+      constructor: sinon.StubbableType<T>,
+      overrides?:
+        | {
+            [K in keyof T]?:
+              | sinon.SinonStubbedMember<T[K]>
+              | (T[K] extends (...args: any[]) => infer R ? R : T[K])
+              | undefined;
+          }
+        | undefined
+    ) => Cypress.sinon.createStubInstance<T>(constructor, overrides),
 
     /**
      * Replace a function, record its usage and control its behavior.
@@ -885,6 +905,7 @@ export class CypressHelper {
             new URLSearchParams(new URL(xhr.request.url).search)
           )
         ),
+
     /**
      * Get spy by alias
      * @param name
@@ -903,6 +924,15 @@ export class CypressHelper {
      * @returns
      */
     stub: (name: string) => cy.get(`@${name}`),
+    /**
+     * Get stub as Cypress.Chainable
+     * @example
+     * ```ts
+     * const serviceMock : Service = helper.given.stubbedInstance(Service);
+     * helper.get.assertableStub(serviceMock.function).should('have.been.called'));
+     */
+    assertableStub: (stub: SinonStub) => cy.wrap(stub),
+
     /** Get the window object of the page that is currently active.
      * @returns {Cypress.Chainable<Window>}
      * @example

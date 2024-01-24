@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.31](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.32](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -50,6 +50,7 @@ The get property will hold methods which will give our tests access to the “ou
 
 | Name | Type |
 | :------ | :------ |
+| `assertableStub` | (`stub`: `SinonStub`<`any`[], `any`\>) => `Chainable`<`SinonStub`<`any`[], `any`\>\> |
 | `bySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `currentLocation` | () => `Chainable`<`string`\> |
 | `element` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -78,6 +79,18 @@ The get property will hold methods which will give our tests access to the “ou
 | `spyFromFunction` | (`func`: `Function`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `window` | () => `Chainable`<`AUTWindow`\> |
+
+**assertableStub**: (`stub`: `SinonStub`<`any`[], `any`\>) => `Chainable`<`SinonStub`<`any`[], `any`\>\>
+
+Get stub as Cypress.Chainable
+
+**`Example`**
+
+```ts
+const serviceMock : Service = helper.given.stubbedInstance(Service);
+helper.get.assertableStub(serviceMock.function).should('have.been.called'));
+
+-----
 
 **bySelector**: (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
@@ -389,6 +402,7 @@ This is a classic place to have methods which will set the inputs which are goin
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 | `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
+| `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: { [K in string \| number \| symbol]?: SinonStubbedMember<T[K]\> \| (T[K] extends Function ? R : T[K]) }) => `SinonStubbedInstance`<`T`\> |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -533,6 +547,18 @@ Stub an object's method and create an alias for the stub
 
 //stubbing setters and getters
  helper.given.stubObjectMethod(serviceMock, "count").get(() => 3).set(() => {});
+```
+
+-----
+
+**stubbedInstance**: <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: { [K in string \| number \| symbol]?: SinonStubbedMember<T[K]\> \| (T[K] extends Function ? R : T[K]) }) => `SinonStubbedInstance`<`T`\>
+
+Creates a new object with the given functions as the prototype and stubs all implemented functions.
+
+**`Example`**
+
+```ts
+const serviceMock : Service = helper.given.stubbedInstance(Service);
 ```
 
 -----

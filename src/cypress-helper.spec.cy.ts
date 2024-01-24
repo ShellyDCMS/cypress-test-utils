@@ -355,6 +355,21 @@ describe("cypress helper tests", () => {
       given.stubObjectMethod(obj, "count").get(() => 7);
       expect(obj.count).to.eq(7);
     });
+
+    it("should stub class", () => {
+      class MyClass {
+        func(input: number) {
+          return input;
+        }
+      }
+      const mockMyClass = given.stubbedInstance(MyClass);
+      mockMyClass.func(5);
+      expect(
+        get
+          .assertableStub(mockMyClass.func)
+          .should("have.been.calledOnceWith", 5)
+      );
+    });
   });
 
   it("should get element by text", () => {
