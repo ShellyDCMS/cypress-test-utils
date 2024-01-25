@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.32](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.33](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -402,7 +402,7 @@ This is a classic place to have methods which will set the inputs which are goin
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 | `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
-| `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: { [K in string \| number \| symbol]?: SinonStubbedMember<T[K]\> \| (T[K] extends Function ? R : T[K]) }) => `SinonStubbedInstance`<`T`\> |
+| `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T` |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -551,7 +551,7 @@ Stub an object's method and create an alias for the stub
 
 -----
 
-**stubbedInstance**: <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: { [K in string \| number \| symbol]?: SinonStubbedMember<T[K]\> \| (T[K] extends Function ? R : T[K]) }) => `SinonStubbedInstance`<`T`\>
+**stubbedInstance**: <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T`
 
 Creates a new object with the given functions as the prototype and stubs all implemented functions.
 
@@ -938,7 +938,7 @@ ___
 
 ### isGetter
 
-▸ `Private` **isGetter**<`T`\>(`obj`, `prop`): `boolean`
+▸ `Private` **isGetter**<`T`\>(`constructor`, `prop`): `undefined` \| `boolean`
 
 #### Type parameters
 
@@ -950,18 +950,18 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj` | `T` |
+| `constructor` | `StubbableType`<`T`\> |
 | `prop` | keyof `T` |
 
 #### Returns
 
-`boolean`
+`undefined` \| `boolean`
 
 ___
 
 ### isSetter
 
-▸ `Private` **isSetter**<`T`\>(`obj`, `prop`): `boolean`
+▸ `Private` **isSetter**<`T`\>(`constructor`, `prop`): `undefined` \| `boolean`
 
 #### Type parameters
 
@@ -973,12 +973,12 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj` | `T` |
+| `constructor` | `StubbableType`<`T`\> |
 | `prop` | keyof `T` |
 
 #### Returns
 
-`boolean`
+`undefined` \| `boolean`
 
 ___
 
