@@ -356,19 +356,39 @@ describe("cypress helper tests", () => {
       expect(obj.count).to.eq(7);
     });
 
-    it("should stub class", () => {
+    describe("stubbing class", () => {
       class MyClass {
         func(input: number) {
           return input;
         }
+        property: number = 3;
+        get getter(): number {
+          return this.property;
+        }
+        set setter(value: number) {
+          this.property = value;
+        }
       }
-      const mockMyClass = given.stubbedInstance(MyClass);
-      mockMyClass.func(5);
-      expect(
-        get
-          .assertableStub(mockMyClass.func)
-          .should("have.been.calledOnceWith", 5)
-      );
+
+      it("should override class property", () => {
+        const mockMyClass = given.stubbedInstance(MyClass, { property: 5 });
+        expect(mockMyClass.property).to.eq(5);
+      });
+
+      it("should override class getter", () => {
+        const mockMyClass = given.stubbedInstance(MyClass, { getter: 5 });
+        expect(mockMyClass.getter).to.eq(5);
+      });
+
+      it("should stub class", () => {
+        const mockMyClass = given.stubbedInstance(MyClass);
+        mockMyClass.func(5);
+        expect(
+          get
+            .assertableStub(mockMyClass.func)
+            .should("have.been.calledOnceWith", 5)
+        );
+      });
     });
   });
 

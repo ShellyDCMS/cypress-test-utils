@@ -72,10 +72,12 @@ export class CypressHelper {
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
   }
 
-  private isGetter = <T>(obj: T, prop: keyof T) =>
-    !!Object.getOwnPropertyDescriptor(obj, prop)!["get"];
-  private isSetter = <T>(obj: T, prop: keyof T) =>
-    !!Object.getOwnPropertyDescriptor(obj, prop)!["set"];
+  private isGetter = <T>(constructor: sinon.StubbableType<T>, prop: keyof T) =>
+    Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
+    !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["get"];
+  private isSetter = <T>(constructor: sinon.StubbableType<T>, prop: keyof T) =>
+    Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
+    !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["set"];
 
   private waitUntilLoadBeforeInvocation = <T>(
     checkFunction: () => Cypress.Chainable<T>,
@@ -215,16 +217,25 @@ export class CypressHelper {
      */
     stubbedInstance: <T>(
       constructor: sinon.StubbableType<T>,
-      overrides?:
-        | {
-            [K in keyof T]?:
-              | sinon.SinonStubbedMember<T[K]>
-              | (T[K] extends (...args: any[]) => infer R ? R : T[K])
-              | undefined;
-          }
-        | undefined
-    ) => Cypress.sinon.createStubInstance<T>(constructor, overrides),
-
+      overrides?: Partial<T>
+    ) => {
+      const stubbedInstance = Cypress.sinon.createStubInstance<T>(
+        constructor
+      ) as sinon.SinonStubbedInstance<T> & T;
+      if (!overrides) return stubbedInstance;
+      Object.keys(overrides).forEach(key => {
+        const value = overrides[key as keyof typeof stubbedInstance];
+        if (this.isGetter(constructor, key as keyof T)) {
+          Object.defineProperty(stubbedInstance, key, {
+            get: () => value
+          });
+        } else {
+          // @ts-ignore
+          stubbedInstance[key] = value;
+        }
+      });
+      return stubbedInstance;
+    },
     /**
      * Replace a function, record its usage and control its behavior.
      * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
