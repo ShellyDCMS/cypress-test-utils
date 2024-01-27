@@ -852,7 +852,7 @@ export class CypressHelper {
      * );
      * ```
      */
-    fixture: (alias: string) => cy.get(`@${alias}`),
+    fixture: (alias: string): Cypress.Chainable<any> => cy.get(`@${alias}`),
 
     /**
      * Get intercepted response's header
