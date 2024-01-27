@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.33](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.34](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -64,7 +64,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `elementsStyleAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\> |
 | `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
-| `fixture` | (`alias`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `fixture` | (`alias`: `string`) => `Chainable`<`any`\> |
 | `focusedElement` | () => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -248,7 +248,7 @@ helper.get.env("password");
 
 -----
 
-**fixture**: (`alias`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**fixture**: (`alias`: `string`) => `Chainable`<`any`\>
 
 Get fixture
 
