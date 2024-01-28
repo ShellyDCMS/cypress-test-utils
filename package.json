@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.0.36",
+  "version": "2.0.37",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -104,8 +104,8 @@
       "lit": [
         "./dist/lit/index.d.ts"
       ],
-      "assetable": [
-        "./dist/assetable/index.d.ts"
+      "assertable": [
+        "./dist/assertable/index.d.ts"
       ]
     }
   },
