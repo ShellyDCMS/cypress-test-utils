@@ -9,7 +9,6 @@ import Sinon, {
   StubbableType,
   createStubInstance
 } from "sinon";
-// import { SinonStub } from "cypress/types/sinon";
 export * from "cypress-pipe";
 
 /**
