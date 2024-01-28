@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.34](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.35](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -10,8 +10,7 @@ You can also add assertions of your own, by extending Assertable class.
 **`Example`**
 
 ```ts
-import { Assertable, then } from "@shellygo/cypress-test-utils/assertable";
-import { CypressHelper } from "@shellygo/cypress-test-utils";
+import { Assertable, CypressHelper, then } from "@shellygo/cypress-test-utils";
 
 class MyAssertable<T> extends Assertable<T> {
   private styleFromWindow = (win: Window) => {

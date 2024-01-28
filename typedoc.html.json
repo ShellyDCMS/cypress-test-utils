@@ -3,9 +3,9 @@
   "entryPoints": [
     "./src/index.ts",
     "./src/angular/index.ts",
-    "./src/react/index.tsx",
+    "./src/react/index.ts",
     "./src/lit/index.ts",
-    "./src/assertable/index.ts"
+    "./src/assertable.ts"
   ],
   "out": "docs",
   "disableSources": true,

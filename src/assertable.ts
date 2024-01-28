@@ -1,11 +1,12 @@
+import "cypress-pipe";
+
 /** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
  * By using the Assertable class, you can use the same assertions in your tests, regardless of the testing framework you use.
  * All you need to do if you wish to replace Cypress with another testing framework and keep your tests, is to replace the implementation of the Assertable class.
  * You can also add assertions of your own, by extending Assertable class.
  * @example
  * ```ts
- * import { Assertable, then } from "@shellygo/cypress-test-utils/assertable";
- * import { CypressHelper } from "@shellygo/cypress-test-utils";
+ * import { Assertable, CypressHelper, then } from "@shellygo/cypress-test-utils";
  *
  * class MyAssertable<T> extends Assertable<T> {
  *   private styleFromWindow = (win: Window) => {

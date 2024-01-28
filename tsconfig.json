@@ -3,9 +3,8 @@
   "compilerOptions": {
     "jsx": "react",
     "importHelpers": true,
-    "outDir": "./dist",
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "target": "es2020",
@@ -14,13 +13,14 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": false,
-    "rootDir": ".",
+    "rootDir": "./src",
     "types": ["node", "cypress"],
     "lib": ["es2018", "dom"],
     "baseUrl": "./",
     "module": "ESNext",
-    "strict": true
+    "strict": true,
+    "noEmit": true
   },
-  "include": ["src", "package.json"],
+  "include": ["src"],
   "exclude": ["**/*.spec.*"]
 }

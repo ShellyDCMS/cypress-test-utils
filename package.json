@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.0.34",
+  "version": "2.0.35",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -24,14 +24,11 @@
     "helper"
   ],
   "scripts": {
-    "build": "rm -rf dist/* && tsc && mv dist/src/lit dist/lit  && mv dist/src/angular dist/angular && mv dist/src/react dist/react && mv dist/src/assertable dist/assertable",
-    "package": "node --max-old-space-size=4400 && npm run build",
-    "cy:run": "npx cypress run",
-    "cy:open": "npx cypress open",
-    "copy-readme": "cp README.md dist",
-    "publish-package": "npm run copy-readme && cd dist && npm publish",
-    "generate-md-docs": "npx typedoc  --includeVersion --plugin typedoc-plugin-markdown  --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
-    "generate-docs": "npx typedoc --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
+    "build": "rollup --configPlugin @rollup/plugin-typescript --config rollup.config.ts ",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "generate-md-docs": "typedoc --includeVersion --plugin typedoc-plugin-markdown --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
+    "generate-docs": "typedoc --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
   },
   "dependencies": {
     "@cypress/mount-utils": "^4.0.0",
@@ -45,6 +42,7 @@
   },
   "devDependencies": {
     "@angular/core": "^14.2.0",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
     "cpx": "^1.5.0",
@@ -54,6 +52,8 @@
     "mochawesome": "^7.1.3",
     "react": "^18.2.0",
     "react-router-dom": "^6.21.3",
+    "rollup": "^4.9.6",
+    "rollup-plugin-dts-bundle-generator": "^1.4.0",
     "typedoc": "^0.24.8",
     "typedoc-plugin-markdown": "^3.15.3",
     "typedoc-plugin-merge-modules": "^5.0.1",
@@ -67,27 +67,27 @@
     "outDir": "./dist",
     "strict": true
   },
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
-      "default": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./angular": {
-      "types": "./angular/index.d.ts",
-      "default": "./angular/index.js"
+      "types": "./dist/angular/index.d.ts",
+      "default": "./dist/angular/index.js"
     },
     "./lit": {
-      "types": "./lit/index.d.ts",
-      "default": "./lit/index.js"
+      "types": "./dist/lit/index.d.ts",
+      "default": "./dist/lit/index.js"
     },
     "./react": {
-      "types": "./react/index.d.ts",
-      "default": "./react/index.js"
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
     },
     "./assertable": {
-      "types": "./assertable/index.d.ts",
-      "default": "./assertable/index.js"
+      "types": "./dist/assertable/index.d.ts",
+      "default": "./dist/assertable/index.js"
     }
   },
   "type": "module",
@@ -100,5 +100,10 @@
   "engines": {
     "npm": ">=6.0.0",
     "node": ">=18.18.2"
-  }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }
