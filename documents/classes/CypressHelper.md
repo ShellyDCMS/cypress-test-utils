@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.34](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.35](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -398,11 +398,11 @@ This is a classic place to have methods which will set the inputs which are goin
 | `fixture` | (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\> |
 | `intercept` | (`url`: `string`, `alias`: `string`, `method?`: `string`) => `void` |
 | `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response?`: `Object` ; `url`: `StringMatcher`  }) => `void` |
-| `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
-| `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
+| `spy` | (`name`: `string`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
+| `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
-| `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
-| `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T` |
+| `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\> |
+| `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `T` & { [P in string \| number \| symbol]: SinonStubbedMember<T[P]\> } & `Partial`<`T`\> |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -510,13 +510,13 @@ helper.given.interceptAndMockResponse({
 
 -----
 
-**spy**: (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\>
+**spy**: (`name`: `string`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\>
 
 Returns a new spy function, and creates an alias for the newly created spy
 
 -----
 
-**spyOnObject**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\>
+**spyOnObject**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\>
 
 Spy on a method and create an alias for the spy
 
@@ -535,7 +535,7 @@ expect(get.spy("alias")).to.have.been.called;
 
 -----
 
-**stubObjectMethod**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\>
+**stubObjectMethod**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\>
 
 Stub an object's method and create an alias for the stub
 
@@ -551,7 +551,7 @@ Stub an object's method and create an alias for the stub
 
 -----
 
-**stubbedInstance**: <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T`
+**stubbedInstance**: <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `T` & { [P in string \| number \| symbol]: SinonStubbedMember<T[P]\> } & `Partial`<`T`\>
 
 Creates a new object with the given functions as the prototype and stubs all implemented functions.
 
