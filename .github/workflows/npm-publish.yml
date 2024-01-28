@@ -40,6 +40,6 @@ jobs:
           path: ${{ github.workspace }}/cypress/results/json/mochawesome.json
           reporter: mochawesome-json
 
-      - run: npm run publish-package
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
