@@ -104,8 +104,8 @@
       "lit": [
         "./dist/lit/index.d.ts"
       ],
-      "assetable": [
-        "./dist/assetable/index.d.ts"
+      "assertable": [
+        "./dist/assertable/index.d.ts"
       ]
     }
   },
