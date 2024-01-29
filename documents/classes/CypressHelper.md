@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.37](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.38](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -50,7 +50,7 @@ The get property will hold methods which will give our tests access to the “ou
 
 | Name | Type |
 | :------ | :------ |
-| `assertableStub` | (`stub`: `SinonStub`<`any`[], `any`\>) => `Chainable`<`SinonStub`<`any`[], `any`\>\> |
+| `assertableStub` | (`stub`: `any`) => `Chainable`<`JQuery`<`any`\>\> |
 | `bySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `currentLocation` | () => `Chainable`<`string`\> |
 | `element` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
@@ -80,7 +80,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `stub` | (`name`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `window` | () => `Chainable`<`AUTWindow`\> |
 
-**assertableStub**: (`stub`: `SinonStub`<`any`[], `any`\>) => `Chainable`<`SinonStub`<`any`[], `any`\>\>
+**assertableStub**: (`stub`: `any`) => `Chainable`<`JQuery`<`any`\>\>
 
 Get stub as Cypress.Chainable
 
@@ -180,7 +180,7 @@ Additionally, Cypress prefers some DOM elements over the deepest element found.
 **`Example`**
 
 ```ts
-expect(helper.get.elementByText("Avamar")).to.exist;
+then(helper.get.elementByText("Avamar")).shouldExist();
 ```
 
 -----
@@ -190,7 +190,7 @@ expect(helper.get.elementByText("Avamar")).to.exist;
 **`Example`**
 
 ```ts
-expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include", 'background-image: url("assets/avatar/def-user-male.png")'))
+then(helper.get.elementsAttribute('avatar-picture', 'style')).shouldInclude('background-image: url("assets/avatar/def-user-male.png")')
 ```
 
 -----
@@ -222,7 +222,7 @@ Returns element's style attribute
 **`Example`**
 
 ```ts
-expect(helper.get.elementsText("parent-job-name", 3).should("include", "Job 3 Name"))
+then(helper.get.elementsText("parent-job-name", 3)).shouldInclude("Job 3 Name")
 ```
 
 -----
@@ -256,8 +256,8 @@ Get fixture
 
 ```ts
  given.fixture("user.json", "user");
- expect(
-   get.fixture("user").should("deep.nested.include", {
+ then(
+   get.fixture("user").shouldDeepNestedInclude({
    name: "Jane Doe",
    id: "1234",
    nested: {
@@ -283,7 +283,7 @@ Get value of input element
 **`Example`**
 
 ```ts
-expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
+then(helper.get.inputValue('credentials-password')).shouldEqual("initial password");
 ```
 
 -----
@@ -308,7 +308,7 @@ Get number of elements with a specific selector
 **`Example`**
 
 ```ts
- expect(helper.get.numberOfElements("migrated-vcenter").should("eq",2));
+ then(helper.get.numberOfElements("migrated-vcenter")).shouldEqual(2);
 ```
 
 -----
@@ -398,10 +398,10 @@ This is a classic place to have methods which will set the inputs which are goin
 | `fixture` | (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\> |
 | `intercept` | (`url`: `string`, `alias`: `string`, `method?`: `string`) => `void` |
 | `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response?`: `Object` ; `url`: `StringMatcher`  }) => `void` |
-| `spy` | (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
-| `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\> |
+| `spy` | (`name`: `string`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
+| `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
-| `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
+| `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\> |
 | `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `overrides?`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T` |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
@@ -411,17 +411,18 @@ Load a fixture
 **`Example`**
 
 ```ts
- helper.given.fixture("user.json", "user");
- expect(
-   helper.get.fixture("user").should("deep.nested.include", {
+let { given, when, get } = new CypressHelper();
+it("should get fixture", () => {
+ given.fixture("user.json", "user");
+ then(get.fixture("user")).shouldDeepNestedInclude({
    name: "Jane Doe",
    id: "1234",
    nested: {
-    attr1: "something",
-    attr2: "the other thing"
+     attr1: "something",
+     attr2: "the other thing"
    }
- })
-);
+ });
+});
 ```
 
 -----
@@ -510,13 +511,13 @@ helper.given.interceptAndMockResponse({
 
 -----
 
-**spy**: (`name`: `string`) => `Agent`<`SinonSpy`<`any`[], `any`\>\>
+**spy**: (`name`: `string`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\>
 
 Returns a new spy function, and creates an alias for the newly created spy
 
 -----
 
-**spyOnObject**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonSpy`<`any`[], `any`\>\>
+**spyOnObject**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\>
 
 Spy on a method and create an alias for the spy
 
@@ -530,12 +531,12 @@ Replace a function, record its usage and control its behavior.
 
 ```ts
 given.stub("alias");
-expect(get.spy("alias")).to.have.been.called;
+then(get.spy("alias")).shouldHaveBeenCalled();
 ```
 
 -----
 
-**stubObjectMethod**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Agent`<`SinonStub`<`any`[], `any`\>\>
+**stubObjectMethod**: <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\>
 
 Stub an object's method and create an alias for the stub
 
@@ -705,7 +706,7 @@ Scopes the execution of a function within an element
 **`Example`**
 
 ```ts
-helper.when.doWithin(() => expect(get.logo()).to.exist, 'company-logo')
+helper.when.doWithin(() => when.click('button-selector'), 'button-row', 2)
 ```
 
 -----
@@ -915,7 +916,7 @@ Scopes the execution of a function within an element
 **`Example`**
 
 ```ts
-helper.when.within(() => expect(get.logo()).to.exist, 'company-logo')
+helper.when.doWithin(() => when.click('button-selector'), 'button-row', 2)
 ```
 
 **`Deprecated`**
