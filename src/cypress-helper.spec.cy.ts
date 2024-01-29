@@ -335,7 +335,7 @@ describe("cypress helper tests", () => {
       let func = (input: number) => input;
       func = given.stub("func");
       func(7);
-      expect(get.stub("func").should("have.been.called.with", 7));
+      then(get.stub("func")).shouldHaveBeenCalledWith(7);
     });
 
     it("should stub object function", () => {
@@ -343,7 +343,7 @@ describe("cypress helper tests", () => {
         func: () => 5
       };
       given.stubObjectMethod(obj, "func").returns(7);
-      expect(obj.func()).to.eq(7);
+      then(get.assertableStub(obj.func())).shouldEqual(7);
     });
 
     it("should stub object getter", () => {
