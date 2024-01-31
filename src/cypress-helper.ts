@@ -31,11 +31,11 @@ export class CypressHelperOptions {
    */
   defaultDataAttribute?: string = "data-cy";
   /**
-   * slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
+   * slot dataTestID suffix (only relevant when handleSlotShadowDOM  is set to true)
    */
   shadowSlotSuffix?: string = "slot";
   /**
-   * when set to true, cypress helper will automatically find the assigned dom element of elements with data selector
+   * when set to true, cypress helper will automatically find the assigned dom element of elements with dataTestID
    * with `defaultShadowSlotSuffix` suffix
    */
   handleSlotShadowDOM?: boolean = true;
@@ -313,7 +313,7 @@ export class CypressHelper {
      * @example
      * ```ts
      * helper.when.waitUntil(() =>
-     *   helper.get.elementByTestId(selector, index)
+     *   helper.get.elementByTestId('element-test-id', index)
      * );
      * ```
      */
@@ -333,8 +333,8 @@ export class CypressHelper {
      * helper.when.realClick('move-right')
      * ```
      */
-    realClick: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).realClick(),
+    realClick: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).realClick(),
     /**
      * Click a DOM element.
      *
@@ -344,8 +344,8 @@ export class CypressHelper {
      * helper.when.click('move-right')
      * ```
      */
-    click: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).click({ force: true }),
+    click: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).click({ force: true }),
 
     /** Fires when your app calls the global window.alert() method.
      * The alert will be closed.
@@ -374,15 +374,15 @@ export class CypressHelper {
      *
      * Double-click a DOM element.
      */
-    dblclick: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).dblclick(),
+    dblclick: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).dblclick(),
     /**
      * Right click a DOM element.
-     * @param selector
+     * @param dataTestID
      * @param [index]
      */
-    rightclick: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).rightclick(),
+    rightclick: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).rightclick(),
     /**
      * overrides native global functions related to time
      * allowing them to be controlled synchronously via helper.when.tick()
@@ -403,8 +403,8 @@ export class CypressHelper {
      * helper.when.hover('consent-terms-agree')
      * ```
      */
-    hover: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).realHover(),
+    hover: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).realHover(),
     /**
      * Move time after overriding a native time function with helper.when.clock().
      * helper.when.clock() must be called before helper.when.tick()
@@ -423,21 +423,21 @@ export class CypressHelper {
      * helper.when.focus('credentials-password')
      * ```
      */
-    focus: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).focus(),
+    focus: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).focus(),
     /**
      * Blur a focused element.
      * This element must currently be in focus.
      * If you want to ensure an element is focused before blurring,
      * try using helper.when.focus() before helper.when.blur().
      */
-    blur: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).blur(),
+    blur: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).blur(),
     /**
      * Clear the value of an input or textarea
      */
-    clear: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).clear(),
+    clear: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).clear(),
     /**
      * Type into a DOM element, not including special characters
      * @example
@@ -445,9 +445,9 @@ export class CypressHelper {
      * helper.when.type('credentials-password', 'new password')
      * ```
      */
-    type: (selector: string, keys: string, index?: number) =>
+    type: (dataTestID: string, keys: string, index?: number) =>
       this.get
-        .elementByTestId(selector, index)
+        .elementByTestId(dataTestID, index)
         .focus()
         .type(keys, { parseSpecialCharSequences: false }),
 
@@ -458,14 +458,14 @@ export class CypressHelper {
      * helper.when.typeSpecialChar('credentials-password', '{backspace}')
      * ```
      */
-    typeSpecialCharacter: (selector: string, keys: string, index?: number) =>
-      this.get.elementByTestId(selector, index).focus().type(keys),
+    typeSpecialCharacter: (dataTestID: string, keys: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).focus().type(keys),
 
     /**
      * Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
      */
-    realType: (selector: string, keys: string, index?: number) =>
-      this.get.elementByTestId(selector, index).realType(keys),
+    realType: (dataTestID: string, keys: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).realType(keys),
     /**
      * Scroll to the bottom.
      */
@@ -474,20 +474,20 @@ export class CypressHelper {
      * Check checkbox(es) or radio(s).
      * This element must be an html input element with type checkbox or radio.
      */
-    check: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).check({ force: true }),
+    check: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).check({ force: true }),
     /**
      * Uncheck checkbox(es).
      */
-    uncheck: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).uncheck({ force: true }),
+    uncheck: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).uncheck({ force: true }),
     /**
      *
-     * Toggle radio(s) by selector
+     * Toggle radio(s) by dataTestID
      * This element must be an html input element with type radio.
      */
-    toggleRadioBySelector: (selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).check({ force: true }),
+    toggleRadioBySelector: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).check({ force: true }),
     /**
      *
      * Check radio(s).
@@ -511,8 +511,11 @@ export class CypressHelper {
      * helper.when.selectOption('fruit-selection', 458).should('have.value', '458')
      * ```
      */
-    selectOption: (selector: string, option: string | number, index?: number) =>
-      this.get.nthBySelector(selector, index).select(option),
+    selectOption: (
+      dataTestID: string,
+      option: string | number,
+      index?: number
+    ) => this.get.nthBySelector(dataTestID, index).select(option),
     /**
      * Drag an element and drop it in target element
      * @example
@@ -537,19 +540,19 @@ export class CypressHelper {
     /**
      * Scopes the execution of a function within an element
      * @example
-     * helper.when.doWithin(() => when.click('button-selector'), 'button-row', 2)
+     * helper.when.within(() => when.click('button-test-id'), 'button-row', 2)
      * @deprecated The method should not be used anymore. Use helper.when.doWithin instead.
      */
-    within: (fn: () => void, selector: string, index?: number) =>
-      this.when.doWithin(fn, selector, index),
+    within: (fn: () => void, dataTestID: string, index?: number) =>
+      this.when.doWithin(fn, dataTestID, index),
 
     /**
      * Scopes the execution of a function within an element
      * @example
-     * helper.when.doWithin(() => when.click('button-selector'), 'button-row', 2)
+     * helper.when.doWithin(() => when.click('button-test-id'), 'button-row', 2)
      */
-    doWithin: (fn: () => void, selector: string, index?: number) =>
-      this.get.elementByTestId(selector, index).within(fn)
+    doWithin: (fn: () => void, dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).within(fn)
   };
 
   /**
@@ -647,52 +650,59 @@ export class CypressHelper {
 
     /**
      * Returns element's style attribute
-     *
-     * @param selector
+     * @example
+     * ```ts
+     * get.elementsStyleAttribute("button-data-hook", "background-color")
+     * ```
+     * @param dataTestID
      * @param attributeName
      * @param [index]
      * @returns {Cypress.Chainable<string>}
      */
     elementsStyleAttribute: (
-      selector: string,
+      dataTestID: string,
       attributeName: string,
       index?: number
     ) =>
       this.waitUntilLoadBeforeInvocation(() =>
-        this.get.elementByTestId(selector, index).invoke("css", attributeName)
+        this.get.elementByTestId(dataTestID, index).invoke("css", attributeName)
       ),
 
     /**
-     *
-     * @param selector
+     * Get element's property value
+     * @example
+     * ```ts
+     * get.elementsProperty("image", "height")
+     * ```
+     * @param dataTestID
      * @param propertyName
      * @param [index]
      * @returns
      */
     elementsProperty: (
-      selector: string,
+      dataTestID: string,
       propertyName: keyof JQuery<HTMLElement>,
       index?: number
     ) =>
       this.waitUntilLoadBeforeInvocation(() =>
-        this.get.elementByTestId(selector, index).invoke(propertyName)
+        this.get.elementByTestId(dataTestID, index).invoke(propertyName)
       ),
     /**
      * Returns element's computed style, including pseudo elements
      * @example
      * ```ts
-     * helper.get.elementsComputedStyle('selector', 0, ':before')
+     * helper.get.elementsComputedStyle('element-test-id', 0, ':before')
      * ```
      *
      * @returns {Cypress.Chainable<CSSStyleDeclaration>}
      */
     elementsComputedStyle: (
-      selector: string,
+      dataTestID: string,
       index?: number,
       pseudoElement?: string
     ): Cypress.Chainable<CSSStyleDeclaration> =>
       this.get
-        .elementByTestId(selector, index)
+        .elementByTestId(dataTestID, index)
         .then($element =>
           window.getComputedStyle($element.get(0), pseudoElement)
         ),
@@ -702,16 +712,16 @@ export class CypressHelper {
      * ```ts
      * then(helper.get.elementsText("parent-job-name", 3)).shouldInclude("Job 3 Name")
      * ```
-     * @param selector
+     * @param dataTestID
      * @param [index]
      * @returns {Cypress.Chainable<string>}
      */
     elementsText: (
-      selector: string,
+      dataTestID: string,
       index?: number
     ): Cypress.Chainable<string> =>
       this.waitUntilLoadBeforeInvocation(() =>
-        this.get.elementByTestId(selector, index).invoke("text")
+        this.get.elementByTestId(dataTestID, index).invoke("text")
       ),
 
     /**
@@ -720,16 +730,16 @@ export class CypressHelper {
      * ```ts
      * then(helper.get.inputValue('credentials-password')).shouldEqual("initial password");
      * ```
-     * @param selector
+     * @param dataTestID
      * @param [index]
      * @returns { Cypress.Chainable<string | number | string[]> }
      */
     inputValue: (
-      selector: string,
+      dataTestID: string,
       index?: number
     ): Cypress.Chainable<string | number | string[]> =>
       this.waitUntilLoadBeforeInvocation(() =>
-        this.get.elementByTestId(selector, index).invoke("val")
+        this.get.elementByTestId(dataTestID, index).invoke("val")
       ),
     /**
      * Get A DOM element at a specific index from elements.
@@ -739,20 +749,20 @@ export class CypressHelper {
      *   helper.get.elementByTestId('selected-item', 2),
      *   helper.get.elementByTestId('available-items')
      * ```
-     * @param selector
+     * @param dataTestID
      * @param [index]
      */
-    elementByTestId: (selector: string, index?: number) =>
+    elementByTestId: (dataTestID: string, index?: number) =>
       this.options.handleSlotShadowDOM &&
-      selector.endsWith(`-${this.options.shadowSlotSuffix}`)
-        ? this.get.nthBySelector(selector, index).then(slot =>
+      dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`)
+        ? this.get.nthBySelector(dataTestID, index).then(slot =>
             cy.wrap(
               Cypress.$(slot as JQuery<HTMLSlotElement>)
                 .get(0)
                 .assignedNodes()[0].parentElement!
             )
           )
-        : this.get.nthBySelector(selector, index),
+        : this.get.nthBySelector(dataTestID, index),
     /**
      * Get the element currently focused in the document.
      * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
@@ -789,33 +799,35 @@ export class CypressHelper {
         ? cy.contains(content)
         : cy.contains(content).eq(index),
     /**
-     * Get number of elements with a specific selector
+     * Get number of elements with a specific dataTestID
      * @example
      * ```ts
      *  then(helper.get.numberOfElements("migrated-vcenter")).shouldEqual(2);
      * ```
-     * @param selector
+     * @param dataTestID
      * @returns {Cypress.Chainable<number>}
      */
-    numberOfElements: (selector: string): Cypress.Chainable<number> =>
-      this.get.bySelector(selector).its("length"),
+    numberOfElements: (dataTestID: string): Cypress.Chainable<number> =>
+      this.get.bySelector(dataTestID).its("length"),
     /**
      * @example
      * ```ts
      * then(helper.get.elementsAttribute('avatar-picture', 'style')).shouldInclude('background-image: url("assets/avatar/def-user-male.png")')
      * ```
-     * @param selector
+     * @param dataTestID
      * @param attributeName
      * @param [index]
      * @returns {Cypress.Chainable<string | undefined>}
      */
     elementsAttribute: (
-      selector: string,
+      dataTestID: string,
       attributeName: string,
       index?: number
     ): Cypress.Chainable<string | undefined> =>
       this.waitUntilLoadBeforeInvocation(() =>
-        this.get.elementByTestId(selector, index).invoke("attr", attributeName)
+        this.get
+          .elementByTestId(dataTestID, index)
+          .invoke("attr", attributeName)
       ),
 
     /**

@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.38](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.39](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -56,19 +56,19 @@ The get property will hold methods which will give our tests access to the “ou
 | `element` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByAttribute` | (`attribute`: `string`, `selector`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementBySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `elementByTestId` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `elementByTestId` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> \| `Chainable`<`undefined`\> |
-| `elementsAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
-| `elementsComputedStyle` | (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\> |
-| `elementsProperty` | (`selector`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\> |
-| `elementsStyleAttribute` | (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\> |
-| `elementsText` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
+| `elementsAttribute` | (`dataTestID`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
+| `elementsComputedStyle` | (`dataTestID`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\> |
+| `elementsProperty` | (`dataTestID`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\> |
+| `elementsStyleAttribute` | (`dataTestID`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\> |
+| `elementsText` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`string`\> |
 | `env` | (`key`: `string`) => `any` |
 | `fixture` | (`alias`: `string`) => `Chainable`<`any`\> |
 | `focusedElement` | () => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `inputValue` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
+| `inputValue` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\> |
 | `nthBySelector` | (`selector`: `string`, `index?`: `number`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `numberOfElements` | (`selector`: `string`) => `Chainable`<`number`\> |
+| `numberOfElements` | (`dataTestID`: `string`) => `Chainable`<`number`\> |
 | `requestBody` | (`alias`: `string`) => `Chainable`<`any`\> |
 | `requestHeader` | (`alias`: `string`) => `Chainable`<{ `[key: string]`: `string` \| `string`[];  }\> |
 | `requestQueryParams` | (`alias`: `string`) => `Chainable`<{ `[k: string]`: `string`;  }\> |
@@ -156,7 +156,7 @@ helper.get.elementBySelector("filter-grid", "shape")
 
 -----
 
-**elementByTestId**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**elementByTestId**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Get A DOM element at a specific index from elements.
 
@@ -185,7 +185,7 @@ then(helper.get.elementByText("Avamar")).shouldExist();
 
 -----
 
-**elementsAttribute**: (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
+**elementsAttribute**: (`dataTestID`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\>
 
 **`Example`**
 
@@ -195,29 +195,43 @@ then(helper.get.elementsAttribute('avatar-picture', 'style')).shouldInclude('bac
 
 -----
 
-**elementsComputedStyle**: (`selector`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\>
+**elementsComputedStyle**: (`dataTestID`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\>
 
 Returns element's computed style, including pseudo elements
 
 **`Example`**
 
 ```ts
-helper.get.elementsComputedStyle('selector', 0, ':before')
+helper.get.elementsComputedStyle('element-test-id', 0, ':before')
 ```
 
 -----
 
-**elementsProperty**: (`selector`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\>
+**elementsProperty**: (`dataTestID`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\>
+
+Get element's property value
+
+**`Example`**
+
+```ts
+get.elementsProperty("image", "height")
+```
 
 -----
 
-**elementsStyleAttribute**: (`selector`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\>
+**elementsStyleAttribute**: (`dataTestID`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`PlainObject`<`string`\>\>
 
 Returns element's style attribute
 
+**`Example`**
+
+```ts
+get.elementsStyleAttribute("button-data-hook", "background-color")
+```
+
 -----
 
-**elementsText**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`string`\>
+**elementsText**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`string`\>
 
 **`Example`**
 
@@ -276,7 +290,7 @@ Get the element currently focused in the document.
 
 -----
 
-**inputValue**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\>
+**inputValue**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`string` \| `number` \| `string`[]\>
 
 Get value of input element
 
@@ -301,9 +315,9 @@ helper.get.nthBySelector("checkbox", 3, "type")
 
 -----
 
-**numberOfElements**: (`selector`: `string`) => `Chainable`<`number`\>
+**numberOfElements**: (`dataTestID`: `string`) => `Chainable`<`number`\>
 
-Get number of elements with a specific selector
+Get number of elements with a specific dataTestID
 
 **`Example`**
 
@@ -583,37 +597,37 @@ The when property will hold methods of “events” which will take place like r
 | Name | Type |
 | :------ | :------ |
 | `acceptConfirm` | () => `EventEmitter2` \| `Listener` |
-| `blur` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `blur` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `cancelConfirm` | () => `Cypress` |
 | `cancelPrompt` | () => `EventEmitter2` \| `Listener` |
-| `check` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `clear` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `click` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `check` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `clear` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `click` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `clock` | () => `Chainable`<`Clock`\> |
 | `closeAlert` | () => `Cypress` |
-| `dblclick` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `doWithin` | (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `dblclick` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `doWithin` | (`fn`: () => `void`, `dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `dragAndDrop` | (`element`: `Chainable`<`JQuery`<`HTMLElement`\>\>, `targetElement`: `Chainable`<`JQuery`<`HTMLElement`\>\>) => `void` |
-| `focus` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `hover` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `realClick` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `realType` | (`selector`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`void`\> |
-| `rightclick` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `focus` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `hover` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `realClick` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `realType` | (`dataTestID`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`void`\> |
+| `rightclick` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `scrollToBottom` | () => `Chainable`<`undefined`\> |
-| `selectOption` | (`selector`: `string`, `option`: `string` \| `number`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `selectOption` | (`dataTestID`: `string`, `option`: `string` \| `number`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `tick` | (`ms`: `number`) => `Chainable`<`Clock`\> |
 | `toggle` | (`index`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `toggleRadioBySelector` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `type` | (`selector`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `typeSpecialCharacter` | (`selector`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `uncheck` | (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `toggleRadioBySelector` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `type` | (`dataTestID`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `typeSpecialCharacter` | (`dataTestID`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `uncheck` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `visit` | (`url`: `string`) => `void` |
 | `wait` | (`ms`: `number`) => `Chainable`<`undefined`\> |
 | `waitForLastCall` | (`alias`: `string`, `timeout`: `number`) => `Chainable`<`undefined` \| `Interception`\> |
 | `waitForResponse` | (`alias`: `string`) => `Chainable`<`Interception`\> |
 | `waitForResponses` | (`alias`: `string`, `responses`: `number`) => `Chainable`<`Interception`[]\> |
 | `waitUntil` | <ReturnType\>(`checkFunction`: () => `Chainable`<`any`\> \| `ReturnType` \| `PromiseLike`<`ReturnType`\>, `options?`: `WaitUntilOptions`<`any`\>) => `Chainable`<`undefined`\> |
-| `within` | (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
+| `within` | (`fn`: () => `void`, `dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 
 **acceptConfirm**: () => `EventEmitter2` \| `Listener`
 
@@ -622,7 +636,7 @@ The confirmation will be accepted.
 
 -----
 
-**blur**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**blur**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Blur a focused element.
 This element must currently be in focus.
@@ -645,20 +659,20 @@ The prompt will be cancelled.
 
 -----
 
-**check**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**check**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Check checkbox(es) or radio(s).
 This element must be an html input element with type checkbox or radio.
 
 -----
 
-**clear**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**clear**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Clear the value of an input or textarea
 
 -----
 
-**click**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**click**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Click a DOM element.
 
@@ -693,20 +707,20 @@ The alert will be closed.
 
 -----
 
-**dblclick**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**dblclick**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Double-click a DOM element.
 
 -----
 
-**doWithin**: (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**doWithin**: (`fn`: () => `void`, `dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Scopes the execution of a function within an element
 
 **`Example`**
 
 ```ts
-helper.when.doWithin(() => when.click('button-selector'), 'button-row', 2)
+helper.when.doWithin(() => when.click('button-test-id'), 'button-row', 2)
 ```
 
 -----
@@ -726,7 +740,7 @@ helper.when.dragAndDrop(
 
 -----
 
-**focus**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**focus**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Focus on a DOM element.
 
@@ -738,7 +752,7 @@ helper.when.focus('credentials-password')
 
 -----
 
-**hover**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**hover**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Fires native hover event. Yes, it can test :hover preprocessor.
 
@@ -750,7 +764,7 @@ helper.when.hover('consent-terms-agree')
 
 -----
 
-**realClick**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**realClick**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Fires native system click event.
 
@@ -763,13 +777,13 @@ helper.when.realClick('move-right')
 
 -----
 
-**realType**: (`selector`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`void`\>
+**realType**: (`dataTestID`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`void`\>
 
 Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
 
 -----
 
-**rightclick**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**rightclick**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Right click a DOM element.
 
@@ -781,7 +795,7 @@ Scroll to the bottom.
 
 -----
 
-**selectOption**: (`selector`: `string`, `option`: `string` \| `number`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**selectOption**: (`dataTestID`: `string`, `option`: `string` \| `number`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Select an option with specific text, value, or index within a select html element.
 
@@ -824,14 +838,14 @@ This element must be an html input element with type radio.
 
 -----
 
-**toggleRadioBySelector**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**toggleRadioBySelector**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
-Toggle radio(s) by selector
+Toggle radio(s) by dataTestID
 This element must be an html input element with type radio.
 
 -----
 
-**type**: (`selector`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**type**: (`dataTestID`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Type into a DOM element, not including special characters
 
@@ -843,7 +857,7 @@ helper.when.type('credentials-password', 'new password')
 
 -----
 
-**typeSpecialCharacter**: (`selector`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**typeSpecialCharacter**: (`dataTestID`: `string`, `keys`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Type into a DOM element, including special characters
 
@@ -855,7 +869,7 @@ helper.when.typeSpecialChar('credentials-password', '{backspace}')
 
 -----
 
-**uncheck**: (`selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**uncheck**: (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Uncheck checkbox(es).
 
@@ -903,20 +917,20 @@ Note! you should not have any asserts in the callback function. From cypress-wai
 
 ```ts
 helper.when.waitUntil(() =>
-  helper.get.elementByTestId(selector, index)
+  helper.get.elementByTestId('element-test-id', index)
 );
 ```
 
 -----
 
-**within**: (`fn`: () => `void`, `selector`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
+**within**: (`fn`: () => `void`, `dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Scopes the execution of a function within an element
 
 **`Example`**
 
 ```ts
-helper.when.doWithin(() => when.click('button-selector'), 'button-row', 2)
+helper.when.within(() => when.click('button-test-id'), 'button-row', 2)
 ```
 
 **`Deprecated`**
