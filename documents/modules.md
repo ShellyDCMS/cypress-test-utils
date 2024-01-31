@@ -1,6 +1,6 @@
-[@shellygo/cypress-test-utils - v2.0.37](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.0.38](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.0.37
+# @shellygo/cypress-test-utils - v2.0.38
 
 ## Table of contents
 
@@ -100,21 +100,17 @@ Sinon matcher for stubs/spy comparison
 
 // partial match of spy function params called with
 ```ts
-it("should partially match spy params", () => {
-  const obj = {
-    func: (param: Object) => {}
-  };
-  given.spyOnObject(obj, "func");
-  obj.func({ shelly: "go", inner: { attr: "value" } });
-  expect(
-    get
-      .spyFromFunction(obj.func)
-      .should(
-        "have.been.calledWithMatch",
+  let { given, when, get } = new CypressHelper();
+  it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
         match({ inner: { attr: "value" } })
-      )
-  );
-});
+      );
+    });
 ```
 For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
@@ -136,21 +132,17 @@ Sinon matcher for stubs/spy comparison
 
 // partial match of spy function params called with
 ```ts
-it("should partially match spy params", () => {
-  const obj = {
-    func: (param: Object) => {}
-  };
-  given.spyOnObject(obj, "func");
-  obj.func({ shelly: "go", inner: { attr: "value" } });
-  expect(
-    get
-      .spyFromFunction(obj.func)
-      .should(
-        "have.been.calledWithMatch",
+  let { given, when, get } = new CypressHelper();
+  it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
         match({ inner: { attr: "value" } })
-      )
-  );
-});
+      );
+    });
 ```
 For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
@@ -172,21 +164,17 @@ Sinon matcher for stubs/spy comparison
 
 // partial match of spy function params called with
 ```ts
-it("should partially match spy params", () => {
-  const obj = {
-    func: (param: Object) => {}
-  };
-  given.spyOnObject(obj, "func");
-  obj.func({ shelly: "go", inner: { attr: "value" } });
-  expect(
-    get
-      .spyFromFunction(obj.func)
-      .should(
-        "have.been.calledWithMatch",
+  let { given, when, get } = new CypressHelper();
+  it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
         match({ inner: { attr: "value" } })
-      )
-  );
-});
+      );
+    });
 ```
 For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
@@ -209,21 +197,17 @@ Sinon matcher for stubs/spy comparison
 
 // partial match of spy function params called with
 ```ts
-it("should partially match spy params", () => {
-  const obj = {
-    func: (param: Object) => {}
-  };
-  given.spyOnObject(obj, "func");
-  obj.func({ shelly: "go", inner: { attr: "value" } });
-  expect(
-    get
-      .spyFromFunction(obj.func)
-      .should(
-        "have.been.calledWithMatch",
+  let { given, when, get } = new CypressHelper();
+  it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
         match({ inner: { attr: "value" } })
-      )
-  );
-});
+      );
+    });
 ```
 For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 
@@ -245,21 +229,17 @@ Sinon matcher for stubs/spy comparison
 
 // partial match of spy function params called with
 ```ts
-it("should partially match spy params", () => {
-  const obj = {
-    func: (param: Object) => {}
-  };
-  given.spyOnObject(obj, "func");
-  obj.func({ shelly: "go", inner: { attr: "value" } });
-  expect(
-    get
-      .spyFromFunction(obj.func)
-      .should(
-        "have.been.calledWithMatch",
+  let { given, when, get } = new CypressHelper();
+  it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
         match({ inner: { attr: "value" } })
-      )
-  );
-});
+      );
+    });
 ```
 For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
 

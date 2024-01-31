@@ -3,7 +3,6 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
-import { SinonStub } from "cypress/types/sinon";
 export * from "cypress-pipe";
 
 /**
@@ -11,21 +10,17 @@ export * from "cypress-pipe";
  * @example
  * // partial match of spy function params called with
  * ```ts
- * it("should partially match spy params", () => {
- *   const obj = {
- *     func: (param: Object) => {}
- *   };
- *   given.spyOnObject(obj, "func");
- *   obj.func({ shelly: "go", inner: { attr: "value" } });
- *   expect(
- *     get
- *       .spyFromFunction(obj.func)
- *       .should(
- *         "have.been.calledWithMatch",
+ *   let { given, when, get } = new CypressHelper();
+ *   it("should partially match spy params", () => {
+ *       const obj = {
+ *         func: (param: Object) => {}
+ *       };
+ *       given.spyOnObject(obj, "func");
+ *       obj.func({ shelly: "go", inner: { attr: "value" } });
+ *       then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
  *         match({ inner: { attr: "value" } })
- *       )
- *   );
- * });
+ *       );
+ *     });
  * ```
  * For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
  */
@@ -192,17 +187,18 @@ export class CypressHelper {
      * @param alias
      * @example
      * ```ts
-     *  helper.given.fixture("user.json", "user");
-     *  expect(
-     *    helper.get.fixture("user").should("deep.nested.include", {
+     * let { given, when, get } = new CypressHelper();
+     * it("should get fixture", () => {
+     *  given.fixture("user.json", "user");
+     *  then(get.fixture("user")).shouldDeepNestedInclude({
      *    name: "Jane Doe",
      *    id: "1234",
      *    nested: {
-     *     attr1: "something",
-     *     attr2: "the other thing"
+     *      attr1: "something",
+     *      attr2: "the other thing"
      *    }
-     *  })
-     * );
+     *  });
+     *});
      * ```
      */
     fixture: (filename: string, alias: string) =>
@@ -238,20 +234,17 @@ export class CypressHelper {
     },
     /**
      * Replace a function, record its usage and control its behavior.
-     * @returns {Cypress.Agent<sinon.SinonStub<any[], any>>}
      * @example
      * ```ts
      * given.stub("alias");
-     * expect(get.spy("alias")).to.have.been.called;
+     * then(get.spy("alias")).shouldHaveBeenCalled();
      * ```
      */
-    stub: (alias?: string): Cypress.Agent<sinon.SinonStub<any[], any>> =>
-      alias ? cy.stub().as(alias) : cy.stub(),
+    stub: (alias?: string) => (alias ? cy.stub().as(alias) : cy.stub()),
     /**
      * Stub an object's method and create an alias for the stub
      * @param obj object containing function to stub
      * @param method function to stub
-     * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
      * @example
      * ```ts
      * //stubbing a service method
@@ -261,28 +254,19 @@ export class CypressHelper {
      *  helper.given.stubObjectMethod(serviceMock, "count").get(() => 3).set(() => {});
      * ```
      */
-    stubObjectMethod: <T>(
-      obj: T,
-      method: keyof T
-    ): Cypress.Agent<sinon.SinonStub<any[], any>> =>
+    stubObjectMethod: <T>(obj: T, method: keyof T) =>
       cy.stub(obj, method).as(`${String(method)}`),
     /**
      * Returns a new spy function, and creates an alias for the newly created spy
      * @param name - spy name
-     * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
      */
-    spy: (name: string): Cypress.Agent<sinon.SinonSpy<any[], any>> =>
-      cy.spy().as(`${name}Spy`),
+    spy: (name: string) => cy.spy().as(`${name}Spy`),
     /**
      * Spy on a method and create an alias for the spy
      * @param obj object containing function to spy on
      * @param method function to spy on
-     * @returns {Cypress.Agent<sinon.SinonSpy<any[], any>>}
      */
-    spyOnObject: <T>(
-      obj: T,
-      method: keyof T
-    ): Cypress.Agent<sinon.SinonSpy<any[], any>> =>
+    spyOnObject: <T>(obj: T, method: keyof T) =>
       cy.spy(obj, method).as(`${String(method)}Spy`)
   };
 
@@ -726,7 +710,7 @@ export class CypressHelper {
     /**
      * @example
      * ```ts
-     * expect(helper.get.elementsText("parent-job-name", 3).should("include", "Job 3 Name"))
+     * then(helper.get.elementsText("parent-job-name", 3)).shouldInclude("Job 3 Name")
      * ```
      * @param dataTestID
      * @param [index]
@@ -744,7 +728,7 @@ export class CypressHelper {
      * Get value of input element
      * @example
      * ```ts
-     * expect(helper.get.inputValue('credentials-password').should("eq","initial password"));
+     * then(helper.get.inputValue('credentials-password')).shouldEqual("initial password");
      * ```
      * @param dataTestID
      * @param [index]
@@ -805,7 +789,7 @@ export class CypressHelper {
      * *** Note! Using this method may lead to flakey tests! You should use get.elementByTestId ***
      * @example
      * ```ts
-     * expect(helper.get.elementByText("Avamar")).to.exist;
+     * then(helper.get.elementByText("Avamar")).shouldExist();
      * ```
      * @param content
      * @param [index]
@@ -818,7 +802,7 @@ export class CypressHelper {
      * Get number of elements with a specific dataTestID
      * @example
      * ```ts
-     *  expect(helper.get.numberOfElements("migrated-vcenter").should("eq",2));
+     *  then(helper.get.numberOfElements("migrated-vcenter")).shouldEqual(2);
      * ```
      * @param dataTestID
      * @returns {Cypress.Chainable<number>}
@@ -828,7 +812,7 @@ export class CypressHelper {
     /**
      * @example
      * ```ts
-     * expect(helper.get.elementsAttribute('avatar-picture', 'style').should("include", 'background-image: url("assets/avatar/def-user-male.png")'))
+     * then(helper.get.elementsAttribute('avatar-picture', 'style')).shouldInclude('background-image: url("assets/avatar/def-user-male.png")')
      * ```
      * @param dataTestID
      * @param attributeName
@@ -852,8 +836,8 @@ export class CypressHelper {
      * @example
      * ```ts
      *  given.fixture("user.json", "user");
-     *  expect(
-     *    get.fixture("user").should("deep.nested.include", {
+     *  then(
+     *    get.fixture("user").shouldDeepNestedInclude({
      *    name: "Jane Doe",
      *    id: "1234",
      *    nested: {
@@ -954,7 +938,7 @@ export class CypressHelper {
      * const serviceMock : Service = helper.given.stubbedInstance(Service);
      * helper.get.assertableStub(serviceMock.function).should('have.been.called'));
      */
-    assertableStub: (stub: SinonStub) => cy.wrap(stub),
+    assertableStub: (stub: any) => cy.wrap(stub),
 
     /** Get the window object of the page that is currently active.
      * @returns {Cypress.Chainable<Window>}
