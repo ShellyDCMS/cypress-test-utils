@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.38](../README.md) / [Modules](../modules.md) / CypressHelperOptions
+[@shellygo/cypress-test-utils - v2.0.39](../README.md) / [Modules](../modules.md) / CypressHelperOptions
 
 # Class: CypressHelperOptions
 
@@ -35,7 +35,7 @@ ___
 
 • `Optional` **handleSlotShadowDOM**: `boolean` = `true`
 
-when set to true, cypress helper will automatically find the assigned dom element of elements with data selector
+when set to true, cypress helper will automatically find the assigned dom element of elements with dataTestID
 with `defaultShadowSlotSuffix` suffix
 
 ___
@@ -44,7 +44,7 @@ ___
 
 • `Optional` **shadowSlotSuffix**: `string` = `"slot"`
 
-slot data selector suffix (only relevant when handleSlotShadowDOM  is set to true)
+slot dataTestID suffix (only relevant when handleSlotShadowDOM  is set to true)
 
 ___
 
