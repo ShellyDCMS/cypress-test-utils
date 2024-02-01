@@ -358,7 +358,7 @@ describe("cypress helper tests", () => {
 
     describe("stubbing class", () => {
       class MyClass {
-        func(input: number) {
+        func(input: number, text: string) {
           return input;
         }
         property: number = 3;
@@ -382,11 +382,10 @@ describe("cypress helper tests", () => {
 
       it("should stub class", () => {
         const mockMyClass = given.stubbedInstance(MyClass);
-        mockMyClass.func(5);
-        expect(
-          get
-            .assertableStub(mockMyClass.func)
-            .should("have.been.calledOnceWith", 5)
+        mockMyClass.func(5, "whatever");
+        then(get.assertableStub(mockMyClass.func)).shouldHaveBeenCalledWith(
+          5,
+          "whatever"
         );
       });
     });

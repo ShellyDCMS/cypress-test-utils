@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.39](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.40](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -535,6 +535,24 @@ Returns a new spy function, and creates an alias for the newly created spy
 
 Spy on a method and create an alias for the spy
 
+**`Example`**
+
+```ts
+given.spyOnObject(window, "alert");
+alert("whatever");
+then(helper.get.spyFromFunction(window.alert)).shouldHaveBeenCalledWith("whatever");
+// Or
+then(helper.get.spy("alert")).shouldHaveBeenCalledTimes(1);
+```
+
+**`Example`**
+
+```ts
+given.spyOnObject(serviceMock, "functionName");
+serviceMock.functionName();
+then(helper.get.spyFromFunction(serviceMock.functionName)).shouldHaveBeenCalledTimes(1);
+```
+
 -----
 
 **stub**: (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\>
@@ -575,6 +593,33 @@ Creates a new object with the given functions as the prototype and stubs all imp
 ```ts
 const serviceMock : Service = helper.given.stubbedInstance(Service);
 ```
+
+**`Example`**
+
+```ts
+class Service {
+ public func1() {...}
+ public get prop1() {...}
+}
+const serviceMock : Service = helper.given.stubbedInstance(Service, {prop1: 3});
+```
+
+**`Example`**
+
+```ts
+helper.given.stubbedInstance(Router, { events: new Observable() })
+```
+
+**`Example`**
+
+```ts
+helper.given.stubbedInstance(
+ PokemonService, 
+ {
+   pokemonTypes: new BehaviorSubject<NamedAPIResource[]>([]),
+   pokemons: new BehaviorSubject<BetterPokemon[]>([]),
+ }
+)
 
 -----
 
