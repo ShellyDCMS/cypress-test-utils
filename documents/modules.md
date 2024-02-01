@@ -1,6 +1,6 @@
-[@shellygo/cypress-test-utils - v2.0.40](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.0.41](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.0.40
+# @shellygo/cypress-test-utils - v2.0.41
 
 ## Table of contents
 
@@ -12,6 +12,7 @@
 - [CypressHelperOptions](classes/CypressHelperOptions.md)
 - [CypressLitComponentHelper](classes/CypressLitComponentHelper.md)
 - [CypressReactComponentHelper](classes/CypressReactComponentHelper.md)
+- [StubCreationHelper](classes/StubCreationHelper.md)
 
 ### Functions
 
