@@ -206,10 +206,32 @@ export class CypressHelper {
 
     /**
      * Creates a new object with the given functions as the prototype and stubs all implemented functions.
+     * 
      * @example
      * ```ts
      * const serviceMock : Service = helper.given.stubbedInstance(Service);
      * ```
+     * @example
+     * ```ts
+     * class Service {
+     *  public func1() {...}
+     *  public get prop1() {...}
+     * }
+     * const serviceMock : Service = helper.given.stubbedInstance(Service, {prop1: 3});
+     * ```
+     * @example
+     * ```ts
+     * helper.given.stubbedInstance(Router, { events: new Observable() })
+     * ```
+     * @example
+     * ```ts
+     * helper.given.stubbedInstance(
+     *  PokemonService, 
+     *  {
+     *    pokemonTypes: new BehaviorSubject<NamedAPIResource[]>([]),
+     *    pokemons: new BehaviorSubject<BetterPokemon[]>([]),
+     *  }
+  )
      */
     stubbedInstance: <T>(
       constructor: sinon.StubbableType<T>,
@@ -265,6 +287,20 @@ export class CypressHelper {
      * Spy on a method and create an alias for the spy
      * @param obj object containing function to spy on
      * @param method function to spy on
+     * @example
+     * ```ts
+     * given.spyOnObject(window, "alert");
+     * alert("whatever");
+     * then(helper.get.spyFromFunction(window.alert)).shouldHaveBeenCalledWith("whatever");
+     * // Or
+     * then(helper.get.spy("alert")).shouldHaveBeenCalledTimes(1);
+     * ```
+     * @example
+     * ```ts
+     * given.spyOnObject(serviceMock, "functionName");
+     * serviceMock.functionName();
+     * then(helper.get.spyFromFunction(serviceMock.functionName)).shouldHaveBeenCalledTimes(1);
+     * ```
      */
     spyOnObject: <T>(obj: T, method: keyof T) =>
       cy.spy(obj, method).as(`${String(method)}Spy`)
