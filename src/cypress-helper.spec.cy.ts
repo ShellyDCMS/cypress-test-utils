@@ -380,7 +380,7 @@ describe("cypress helper tests", () => {
         expect(mockMyClass.getter).to.eq(5);
       });
 
-      it.only("should stub class", () => {
+      it("should stub class", () => {
         const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.func(5, "whatever");
         then(get.assertableStub(mockMyClass.func)).shouldHaveBeenCalledWith(
