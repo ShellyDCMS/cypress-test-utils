@@ -356,7 +356,7 @@ describe("cypress helper tests", () => {
       expect(obj.count).to.eq(7);
     });
 
-    describe.only("stubbing class", () => {
+    describe("stubbing class", () => {
       class MyClass {
         constructor(input: number) {}
         func(input: number, text: string) {
