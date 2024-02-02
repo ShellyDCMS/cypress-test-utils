@@ -5,11 +5,11 @@ import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 export * from "cypress-pipe";
 
-export class StubCreationHelper {
-  public static createRaw<T>(TCreator: { new (): T }, data: any): T {
+class StubCreationHelper {
+  public static createRaw<T>(TCreator: { new (): T } & T, data: any): T {
     return Object.assign(new TCreator() as object, data);
   }
-  public static create<T>(TCreator: { new (): T }, data: T = {} as T): T {
+  public static create<T>(TCreator: { new (): T } & T, data: T = {} as T): T {
     return this.createRaw(TCreator, data);
   }
 }
@@ -274,13 +274,13 @@ export class CypressHelper {
   )
      */
     stubbedInstance: <T>(
-      constructor: sinon.StubbableType<T>,
-      instance: T,
+      constructor: { new (): T } & T,
       overrides: Partial<T> = {}
     ) => {
       const stubbedInstance = Cypress.sinon.createStubInstance<T>(
         constructor
       ) as sinon.SinonStubbedInstance<T> & T;
+      const instance = StubCreationHelper.create(constructor);
       this.stubPropertyFunctions(stubbedInstance, instance);
       this.setStubbedInstanceOverrides(constructor, stubbedInstance, overrides);
       return stubbedInstance;

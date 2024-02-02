@@ -1,4 +1,4 @@
-import { CypressHelper, StubCreationHelper, loggable, match } from ".";
+import { CypressHelper, loggable, match } from ".";
 import { then } from "./assertable";
 
 describe("cypress helper tests", () => {
@@ -373,37 +373,35 @@ describe("cypress helper tests", () => {
 
         propertyFunc = (int: number) => int;
 
+        asyncPropertyFunc = async (int: number) => await Promise.resolve(int);
         async asynFunc() {
           return await Promise.resolve(9);
         }
       }
 
-      it("should mock async function", async () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-          StubCreationHelper.create(MyClass)
-        );
+      it("should stub async function", async () => {
+        const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.asynFunc.returns(Promise.resolve(7));
         expect(await mockMyClass.asynFunc()).to.eq(7);
       });
 
+      it("should stub async property function", async () => {
+        const mockMyClass = given.stubbedInstance(MyClass);
+        await mockMyClass.asyncPropertyFunc(3);
+        then(
+          get.assertableStub(mockMyClass.asyncPropertyFunc)
+        ).shouldHaveBeenCalledWith(3);
+      });
+
       it("should override class property Function", () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-          StubCreationHelper.create(MyClass),
-          {
-            propertyFunc: given.stub().returns(7)
-          }
-        );
+        const mockMyClass = given.stubbedInstance(MyClass, {
+          propertyFunc: given.stub().returns(7)
+        });
         expect(mockMyClass.propertyFunc(3)).to.eq(7);
       });
 
       it("should stub class property function", () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-
-          StubCreationHelper.create(MyClass)
-        );
+        const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.propertyFunc(3);
         then(
           get.assertableStub(mockMyClass.propertyFunc)
@@ -411,28 +409,17 @@ describe("cypress helper tests", () => {
       });
 
       it("should override class property", () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-          StubCreationHelper.create(MyClass),
-          { property: 5 }
-        );
+        const mockMyClass = given.stubbedInstance(MyClass, { property: 5 });
         expect(mockMyClass.property).to.eq(5);
       });
 
       it("should override class getter", () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-          StubCreationHelper.create(MyClass),
-          { getter: 5 }
-        );
+        const mockMyClass = given.stubbedInstance(MyClass, { getter: 5 });
         expect(mockMyClass.getter).to.eq(5);
       });
 
       it("should stub class", () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-          StubCreationHelper.create(MyClass)
-        );
+        const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.func(5, "whatever");
         then(get.assertableStub(mockMyClass.func)).shouldHaveBeenCalledWith(
           5,
@@ -441,10 +428,7 @@ describe("cypress helper tests", () => {
       });
 
       it("should stub class function return value", () => {
-        const mockMyClass = given.stubbedInstance(
-          MyClass,
-          StubCreationHelper.create(MyClass)
-        );
+        const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.func.returns(7);
         expect(mockMyClass.func(5, "whatever")).to.eq(7);
       });

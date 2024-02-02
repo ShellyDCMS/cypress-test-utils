@@ -12,7 +12,6 @@
 - [CypressHelperOptions](classes/CypressHelperOptions.md)
 - [CypressLitComponentHelper](classes/CypressLitComponentHelper.md)
 - [CypressReactComponentHelper](classes/CypressReactComponentHelper.md)
-- [StubCreationHelper](classes/StubCreationHelper.md)
 
 ### Functions
 

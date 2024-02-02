@@ -418,7 +418,7 @@ This is a classic place to have methods which will set the inputs which are goin
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 | `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\> |
-| `stubbedInstance` | <T\>(`constructor`: `StubbableType`<`T`\>, `instance`: `T`, `overrides`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T` |
+| `stubbedInstance` | <T\>(`constructor`: () => `T` & `T`, `overrides`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T` |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -586,7 +586,7 @@ Stub an object's method and create an alias for the stub
 
 -----
 
-**stubbedInstance**: <T\>(`constructor`: `StubbableType`<`T`\>, `instance`: `T`, `overrides`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T`
+**stubbedInstance**: <T\>(`constructor`: () => `T` & `T`, `overrides`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T`
 
 Creates a new object with the given functions as the prototype and stubs all implemented functions.
 
