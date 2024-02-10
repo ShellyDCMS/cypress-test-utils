@@ -356,7 +356,7 @@ describe("cypress helper tests", () => {
       expect(obj.count).to.eq(7);
     });
 
-    describe.only("stubbing class", () => {
+    describe("stubbing class", () => {
       class MyClass {
         constructor(input: number) {}
         func(input: number, text: string) {
@@ -379,13 +379,35 @@ describe("cypress helper tests", () => {
         }
       }
 
-      it("should stub async function", async () => {
-        const stub = given.stub().returns(Promise.resolve(7));
+      it("should assert stub async function calls", async () => {
         const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.asynFunc.returns(Promise.resolve(7));
         mockMyClass.propertyFunc(3);
+        then(get.assertableStub(mockMyClass.asynFunc)).shouldHaveBeenCalledWith(
+          3
+        );
+      });
 
-        // mockMyClass.asynFunc.returns(Promise.resolve(7));
+      it("should assert stub async function calls using overrides", async () => {
+        const stub = given.stub().returns(Promise.resolve(7));
+        const mockMyClass = given.stubbedInstance(MyClass, { asynFunc: stub });
+        mockMyClass.propertyFunc(3);
+        then(get.assertableStub(mockMyClass.asynFunc)).shouldHaveBeenCalledWith(
+          3
+        );
+      });
+
+      it("should stub async function", async () => {
+        const mockMyClass = given.stubbedInstance(MyClass);
+        mockMyClass.asynFunc.returns(Promise.resolve(7));
+        mockMyClass.propertyFunc(3);
+        expect(await mockMyClass.asynFunc()).to.eq(7);
+      });
+
+      it("should stub async function using overrides", async () => {
+        const stub = given.stub().returns(Promise.resolve(7));
+        const mockMyClass = given.stubbedInstance(MyClass, { asynFunc: stub });
+        mockMyClass.propertyFunc(3);
         expect(await mockMyClass.asynFunc()).to.eq(7);
       });
 
@@ -419,6 +441,20 @@ describe("cypress helper tests", () => {
       it("should override class getter", () => {
         const mockMyClass = given.stubbedInstance(MyClass, { getter: 5 });
         expect(mockMyClass.getter).to.eq(5);
+      });
+
+      it("should stub class setter with override", () => {
+        const mockMyClass = given.stubbedInstance(MyClass, { property: 8 });
+        mockMyClass.setter = 5;
+        expect(mockMyClass.property).to.eq(8);
+      });
+
+      it("should assert stub class setter calls", () => {
+        const mockMyClass = given.stubbedInstance(MyClass);
+        mockMyClass.setter = 5;
+        then(get.assertableStub(mockMyClass.setter)).shouldHaveBeenCalledWith(
+          5
+        );
       });
 
       it("should stub class", () => {
