@@ -74,8 +74,10 @@ export const createStubbedInstance = <T>() => {
         },
         set(target, prop: string, args?: any) {
           setStubProp(built, prop);
-          // @ts-ignore
-          args ? built[prop](args) : built[prop];
+          args && "function" === typeof built[prop]
+            ? // @ts-ignore
+              built[prop](args)
+            : built[prop];
           return true;
         }
       }

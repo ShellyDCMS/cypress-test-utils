@@ -4,6 +4,7 @@ import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import { IStubBuilder, createStubbedInstance } from "./stub-builder";
+
 export * from "cypress-pipe";
 
 export type StubbedInstance<T> = IStubBuilder<
@@ -245,10 +246,20 @@ export class CypressHelper {
       overrides: Partial<T> & { className?: string } = {}
     ): StubbedInstance<T> => {
       overrides.className = constructor.name;
-      const stubbedInstance = createStubbedInstance<
-        sinon.SinonStubbedInstance<T> & T
-      >()(null, overrides as Partial<sinon.SinonStubbedInstance<T> & T>);
+      const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
+        null,
+        overrides as Partial<StubbedInstance<T>>
+      );
       return stubbedInstance;
+    },
+    stubbedInterface: <T extends Object>(
+      overrides?: Partial<T>
+    ): StubbedInstance<T> => {
+      const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
+        null,
+        overrides as Partial<StubbedInstance<T>>
+      );
+      return stubbedInetrface;
     },
     /**
      * Replace a function, record its usage and control its behavior.
