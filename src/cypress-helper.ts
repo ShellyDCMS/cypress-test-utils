@@ -212,11 +212,11 @@ export class CypressHelper {
       cy.fixture(filename).as(alias),
 
     /**
-     * Creates a new object with the given functions as the prototype and stubs all implemented functions.
-     * 
+     * Creates a new object with the given functions as the prototype and lazy stubs all implemented functions.
+     *
      * @example
      * ```ts
-     * const serviceMock : Service = helper.given.stubbedInstance(Service, StubCreationHelper.create(Service));
+     * const serviceMock = helper.given.stubbedInstance(Service);
      * ```
      * @example
      * ```ts
@@ -224,22 +224,21 @@ export class CypressHelper {
      *  public func1() {...}
      *  public get prop1() {...}
      * }
-     * const serviceMock : Service = helper.given.stubbedInstance(Service, StubCreationHelper.create(Service), {prop1: 3});
+     * const serviceMock = helper.given.stubbedInstance(Service, {prop1: 3});
      * ```
      * @example
      * ```ts
-     * helper.given.stubbedInstance(Router, StubCreationHelper.create(Router), { events: new Observable() })
+     * helper.given.stubbedInstance(Router, { events: new Observable() })
      * ```
      * @example
      * ```ts
      * helper.given.stubbedInstance(
-     *  PokemonService, 
-     *  StubCreationHelper.create(PokemonService)
+     *  PokemonService,
      *  {
      *    pokemonTypes: new BehaviorSubject<NamedAPIResource[]>([]),
      *    pokemons: new BehaviorSubject<BetterPokemon[]>([]),
      *  }
-  )
+     * )
      */
     stubbedInstance: <T>(
       constructor: { new (...args: any[]): T },
@@ -248,16 +247,34 @@ export class CypressHelper {
       overrides.className = constructor.name;
       const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
         null,
-        overrides as Partial<StubbedInstance<T>>
+        overrides as Partial<StubbedInstance<T>> & { className?: string }
       );
       return stubbedInstance;
     },
+    /**
+     * Creates a new object with the given functions as the prototype and lazy stubs all functions.
+     *
+     * @example
+     * ```ts
+     * const serviceMock = helper.given.stubbedInterface<IService>("IService");
+     * ```
+     * @example
+     * ```ts
+     * interface IService {
+     *  propertyFunc: (int: number) => number
+     *  get prop1() : number
+     * }
+     * const serviceMock = helper.given.stubbedInterface<IService>("IService", {prop1: 3});
+     * ```
+     */
     stubbedInterface: <T extends Object>(
-      overrides?: Partial<T>
+      interfaceName: string,
+      overrides: Partial<T> & { className?: string } = {}
     ): StubbedInstance<T> => {
+      overrides.className = interfaceName;
       const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
         null,
-        overrides as Partial<StubbedInstance<T>>
+        overrides as Partial<StubbedInstance<T>> & { className?: string }
       );
       return stubbedInetrface;
     },

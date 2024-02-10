@@ -1,6 +1,6 @@
-[@shellygo/cypress-test-utils - v2.0.41](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.0.42](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.0.41
+# @shellygo/cypress-test-utils - v2.0.42
 
 ## Table of contents
 
@@ -13,11 +13,27 @@
 - [CypressLitComponentHelper](classes/CypressLitComponentHelper.md)
 - [CypressReactComponentHelper](classes/CypressReactComponentHelper.md)
 
+### Type Aliases
+
+- [StubbedInstance](modules.md#stubbedinstance)
+
 ### Functions
 
 - [loggable](modules.md#loggable)
 - [match](modules.md#match)
 - [then](modules.md#then)
+
+## Type Aliases
+
+### StubbedInstance
+
+Ƭ **StubbedInstance**<`T`\>: `IStubBuilder`<`sinon.SinonStubbedInstance`<`T`\> & `T`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
 
 ## Functions
 
