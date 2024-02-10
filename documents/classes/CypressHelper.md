@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.41](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.42](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -24,8 +24,6 @@ CypressHelper exposes the following public properties:
 - [beforeAndAfter](CypressHelper.md#beforeandafter)
 - [isGetter](CypressHelper.md#isgetter)
 - [isSetter](CypressHelper.md#issetter)
-- [setStubbedInstanceOverrides](CypressHelper.md#setstubbedinstanceoverrides)
-- [stubPropertyFunctions](CypressHelper.md#stubpropertyfunctions)
 - [waitUntilLoadBeforeInvocation](CypressHelper.md#waituntilloadbeforeinvocation)
 
 ## Constructors
@@ -418,7 +416,8 @@ This is a classic place to have methods which will set the inputs which are goin
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 | `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\> |
-| `stubbedInstance` | <T\>(`constructor`: () => `T` & `T`, `overrides`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T` |
+| `stubbedInstance` | <T\>(`constructor`: (...`args`: `any`[]) => `T`, `overrides`: `Partial`<`T`\> & { `className?`: `string`  }) => { [k in string \| number \| symbol]-?: Function & Function & Stub } |
+| `stubbedInterface` | <T\>(`interfaceName`: `string`, `overrides`: `Partial`<`T`\> & { `className?`: `string`  }) => { [k in string \| number \| symbol]-?: Function & Function & Stub } |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -586,14 +585,14 @@ Stub an object's method and create an alias for the stub
 
 -----
 
-**stubbedInstance**: <T\>(`constructor`: () => `T` & `T`, `overrides`: `Partial`<`T`\>) => `SinonStubbedInstance`<`T`\> & `T`
+**stubbedInstance**: <T\>(`constructor`: (...`args`: `any`[]) => `T`, `overrides`: `Partial`<`T`\> & { `className?`: `string`  }) => { [k in string \| number \| symbol]-?: Function & Function & Stub }
 
-Creates a new object with the given functions as the prototype and stubs all implemented functions.
+Creates a new object with the given functions as the prototype and lazy stubs all implemented functions.
 
 **`Example`**
 
 ```ts
-const serviceMock : Service = helper.given.stubbedInstance(Service, StubCreationHelper.create(Service));
+const serviceMock = helper.given.stubbedInstance(Service);
 ```
 
 **`Example`**
@@ -603,26 +602,47 @@ class Service {
  public func1() {...}
  public get prop1() {...}
 }
-const serviceMock : Service = helper.given.stubbedInstance(Service, StubCreationHelper.create(Service), {prop1: 3});
+const serviceMock = helper.given.stubbedInstance(Service, {prop1: 3});
 ```
 
 **`Example`**
 
 ```ts
-helper.given.stubbedInstance(Router, StubCreationHelper.create(Router), { events: new Observable() })
+helper.given.stubbedInstance(Router, { events: new Observable() })
 ```
 
 **`Example`**
 
 ```ts
 helper.given.stubbedInstance(
- PokemonService, 
- StubCreationHelper.create(PokemonService)
+ PokemonService,
  {
    pokemonTypes: new BehaviorSubject<NamedAPIResource[]>([]),
    pokemons: new BehaviorSubject<BetterPokemon[]>([]),
  }
 )
+
+-----
+
+**stubbedInterface**: <T\>(`interfaceName`: `string`, `overrides`: `Partial`<`T`\> & { `className?`: `string`  }) => { [k in string \| number \| symbol]-?: Function & Function & Stub }
+
+Creates a new object with the given functions as the prototype and lazy stubs all functions.
+
+**`Example`**
+
+```ts
+const serviceMock = helper.given.stubbedInterface<IService>("IService");
+```
+
+**`Example`**
+
+```ts
+interface IService {
+ propertyFunc: (int: number) => number
+ get prop1() : number
+}
+const serviceMock = helper.given.stubbedInterface<IService>("IService", {prop1: 3});
+```
 
 -----
 
@@ -1042,53 +1062,6 @@ ___
 #### Returns
 
 `undefined` \| `boolean`
-
-___
-
-### setStubbedInstanceOverrides
-
-▸ `Private` **setStubbedInstanceOverrides**<`T`\>(`constructor`, `stubbedInstance`, `overrides`): `void`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `constructor` | `StubbableType`<`T`\> |
-| `stubbedInstance` | `SinonStubbedInstance`<`T`\> & `T` |
-| `overrides` | `Partial`<`T`\> |
-
-#### Returns
-
-`void`
-
-___
-
-### stubPropertyFunctions
-
-▸ `Private` **stubPropertyFunctions**<`T`\>(`stubbedInstance`, `instance`): `void`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `stubbedInstance` | `SinonStubbedInstance`<`T`\> & `T` |
-| `instance` | `T` |
-
-#### Returns
-
-`void`
 
 ___
 

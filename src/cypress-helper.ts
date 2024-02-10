@@ -3,16 +3,13 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
+import { IStubBuilder, createStubbedInstance } from "./stub-builder";
+
 export * from "cypress-pipe";
 
-class StubCreationHelper {
-  public static createRaw<T>(TCreator: { new (): T } & T, data: any): T {
-    return Object.assign(new TCreator() as object, data);
-  }
-  public static create<T>(TCreator: { new (): T } & T, data: T = {} as T): T {
-    return this.createRaw(TCreator, data);
-  }
-}
+export type StubbedInstance<T> = IStubBuilder<
+  sinon.SinonStubbedInstance<T> & T
+>;
 
 /**
  * Sinon matcher for stubs/spy comparison
@@ -34,6 +31,7 @@ class StubCreationHelper {
  * For more information see [Sinon.match documentation](https://sinonjs.org/releases/latest/matchers/)
  */
 export const match = Cypress.sinon.match;
+
 export class CypressHelperOptions {
   /**
    * default data attribute for elements selection
@@ -83,36 +81,6 @@ export class CypressHelper {
     Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
     !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["set"];
 
-  private stubPropertyFunctions = <T>(
-    stubbedInstance: sinon.SinonStubbedInstance<T> & T,
-    instance: T
-  ) => {
-    const properties = instance ? Object.keys(instance) : [];
-    properties.forEach(key => {
-      if (typeof (instance as Record<string, unknown>)[key] === "function") {
-        // @ts-ignore
-        stubbedInstance[key] = this.given.stub(key);
-      }
-    });
-  };
-
-  private setStubbedInstanceOverrides = <T>(
-    constructor: sinon.StubbableType<T>,
-    stubbedInstance: sinon.SinonStubbedInstance<T> & T,
-    overrides: Partial<T>
-  ) => {
-    Object.keys(overrides).forEach(key => {
-      const value = overrides[key as keyof typeof stubbedInstance];
-      if (this.isGetter(constructor, key as keyof T)) {
-        Object.defineProperty(stubbedInstance, key, {
-          get: () => value
-        });
-      } else {
-        // @ts-ignore
-        stubbedInstance[key] = value;
-      }
-    });
-  };
   private waitUntilLoadBeforeInvocation = <T>(
     checkFunction: () => Cypress.Chainable<T>,
     options?: WaitUntilOptions
@@ -244,11 +212,11 @@ export class CypressHelper {
       cy.fixture(filename).as(alias),
 
     /**
-     * Creates a new object with the given functions as the prototype and stubs all implemented functions.
-     * 
+     * Creates a new object with the given functions as the prototype and lazy stubs all implemented functions.
+     *
      * @example
      * ```ts
-     * const serviceMock : Service = helper.given.stubbedInstance(Service, StubCreationHelper.create(Service));
+     * const serviceMock = helper.given.stubbedInstance(Service);
      * ```
      * @example
      * ```ts
@@ -256,34 +224,59 @@ export class CypressHelper {
      *  public func1() {...}
      *  public get prop1() {...}
      * }
-     * const serviceMock : Service = helper.given.stubbedInstance(Service, StubCreationHelper.create(Service), {prop1: 3});
+     * const serviceMock = helper.given.stubbedInstance(Service, {prop1: 3});
      * ```
      * @example
      * ```ts
-     * helper.given.stubbedInstance(Router, StubCreationHelper.create(Router), { events: new Observable() })
+     * helper.given.stubbedInstance(Router, { events: new Observable() })
      * ```
      * @example
      * ```ts
      * helper.given.stubbedInstance(
-     *  PokemonService, 
-     *  StubCreationHelper.create(PokemonService)
+     *  PokemonService,
      *  {
      *    pokemonTypes: new BehaviorSubject<NamedAPIResource[]>([]),
      *    pokemons: new BehaviorSubject<BetterPokemon[]>([]),
      *  }
-  )
+     * )
      */
     stubbedInstance: <T>(
-      constructor: { new (): T } & T,
-      overrides: Partial<T> = {}
-    ) => {
-      const stubbedInstance = Cypress.sinon.createStubInstance<T>(
-        constructor
-      ) as sinon.SinonStubbedInstance<T> & T;
-      const instance = StubCreationHelper.create(constructor);
-      this.stubPropertyFunctions(stubbedInstance, instance);
-      this.setStubbedInstanceOverrides(constructor, stubbedInstance, overrides);
+      constructor: { new (...args: any[]): T },
+      overrides: Partial<T> & { className?: string } = {}
+    ): StubbedInstance<T> => {
+      overrides.className = constructor.name;
+      const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
+        null,
+        overrides as Partial<StubbedInstance<T>> & { className?: string }
+      );
       return stubbedInstance;
+    },
+    /**
+     * Creates a new object with the given functions as the prototype and lazy stubs all functions.
+     *
+     * @example
+     * ```ts
+     * const serviceMock = helper.given.stubbedInterface<IService>("IService");
+     * ```
+     * @example
+     * ```ts
+     * interface IService {
+     *  propertyFunc: (int: number) => number
+     *  get prop1() : number
+     * }
+     * const serviceMock = helper.given.stubbedInterface<IService>("IService", {prop1: 3});
+     * ```
+     */
+    stubbedInterface: <T extends Object>(
+      interfaceName: string,
+      overrides: Partial<T> & { className?: string } = {}
+    ): StubbedInstance<T> => {
+      overrides.className = interfaceName;
+      const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
+        null,
+        overrides as Partial<StubbedInstance<T>> & { className?: string }
+      );
+      return stubbedInetrface;
     },
     /**
      * Replace a function, record its usage and control its behavior.

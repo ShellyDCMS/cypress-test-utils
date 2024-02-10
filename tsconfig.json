@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": false,
     "rootDir": "./src",
-    "types": ["node", "cypress"],
+    "types": ["node", "cypress", "cypress/types/sinon"],
     "lib": ["es2018", "dom"],
     "baseUrl": "./",
     "module": "ESNext",

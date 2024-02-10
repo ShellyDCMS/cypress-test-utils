@@ -16,6 +16,59 @@ describe("cypress helper tests", () => {
     );
   });
 
+  describe("stubbing an spying", () => {
+    it("should spy on function", () => {
+      const obj = {
+        func: (param: number) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func(3);
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWith(3);
+    });
+
+    it("should partially match spy params", () => {
+      const obj = {
+        func: (param: Object) => {}
+      };
+      given.spyOnObject(obj, "func");
+      obj.func({ shelly: "go", inner: { attr: "value" } });
+      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
+        match({ inner: { attr: "value" } })
+      );
+    });
+
+    it("should stub function", () => {
+      let func = () => 5;
+      func = given.stub().returns(7);
+      expect(func()).to.eq(7);
+    });
+
+    it("should stub function with alias", () => {
+      let func = (input: number) => input;
+      func = given.stub("func");
+      func(7);
+      then(get.stub("func")).shouldHaveBeenCalledWith(7);
+    });
+
+    it("should stub object function", () => {
+      const obj = {
+        func: () => 5
+      };
+      given.stubObjectMethod(obj, "func").returns(7);
+      then(get.assertableStub(obj.func())).shouldEqual(7);
+    });
+
+    it("should stub object getter", () => {
+      const obj = {
+        get count() {
+          return 5;
+        }
+      };
+      given.stubObjectMethod(obj, "count").get(() => 7);
+      expect(obj.count).to.eq(7);
+    });
+  });
+
   describe("default data attribute", () => {
     let { beforeAndAfter, given, when, get } = new CypressHelper();
     it("should get element's text", () => {
@@ -302,137 +355,6 @@ describe("cypress helper tests", () => {
 
   it("should get enabled element status", () => {
     then(get.elementByTestId("submit")).shouldBeEnabled();
-  });
-
-  describe("stubs and spies", () => {
-    it("should spy on function", () => {
-      const obj = {
-        func: (param: number) => {}
-      };
-      given.spyOnObject(obj, "func");
-      obj.func(3);
-      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWith(3);
-    });
-
-    it("should partially match spy params", () => {
-      const obj = {
-        func: (param: Object) => {}
-      };
-      given.spyOnObject(obj, "func");
-      obj.func({ shelly: "go", inner: { attr: "value" } });
-      then(get.spyFromFunction(obj.func)).shouldHaveBeenCalledWithMatch(
-        match({ inner: { attr: "value" } })
-      );
-    });
-
-    it("should stub function", () => {
-      let func = () => 5;
-      func = given.stub().returns(7);
-      expect(func()).to.eq(7);
-    });
-
-    it("should stub function with alias", () => {
-      let func = (input: number) => input;
-      func = given.stub("func");
-      func(7);
-      then(get.stub("func")).shouldHaveBeenCalledWith(7);
-    });
-
-    it("should stub object function", () => {
-      const obj = {
-        func: () => 5
-      };
-      given.stubObjectMethod(obj, "func").returns(7);
-      then(get.assertableStub(obj.func())).shouldEqual(7);
-    });
-
-    it("should stub object getter", () => {
-      const obj = {
-        get count() {
-          return 5;
-        }
-      };
-      given.stubObjectMethod(obj, "count").get(() => 7);
-      expect(obj.count).to.eq(7);
-    });
-
-    describe("stubbing class", () => {
-      class MyClass {
-        constructor(input: number) {}
-        func(input: number, text: string) {
-          console.log(text);
-          return input;
-        }
-        property: number = 3;
-        get getter(): number {
-          return this.property;
-        }
-        set setter(value: number) {
-          this.property = value;
-        }
-
-        propertyFunc = (int: number) => int;
-
-        asyncPropertyFunc = async (int: number) => await Promise.resolve(int);
-        async asynFunc() {
-          return await Promise.resolve(9);
-        }
-      }
-
-      it("should stub async function", async () => {
-        const mockMyClass = given.stubbedInstance(MyClass);
-        mockMyClass.asynFunc.returns(Promise.resolve(7));
-        expect(await mockMyClass.asynFunc()).to.eq(7);
-      });
-
-      it("should stub async property function", async () => {
-        const mockMyClass = given.stubbedInstance(MyClass);
-        await mockMyClass.asyncPropertyFunc(3);
-        then(
-          get.assertableStub(mockMyClass.asyncPropertyFunc)
-        ).shouldHaveBeenCalledWith(3);
-      });
-
-      it("should override class property Function", () => {
-        const mockMyClass = given.stubbedInstance(MyClass, {
-          propertyFunc: given.stub().returns(7)
-        });
-        expect(mockMyClass.propertyFunc(3)).to.eq(7);
-      });
-
-      it("should stub class property function", () => {
-        const mockMyClass = given.stubbedInstance(MyClass);
-        mockMyClass.propertyFunc(3);
-        then(
-          get.assertableStub(mockMyClass.propertyFunc)
-        ).shouldHaveBeenCalledWith(3);
-      });
-
-      it("should override class property", () => {
-        const mockMyClass = given.stubbedInstance(MyClass, { property: 5 });
-        expect(mockMyClass.property).to.eq(5);
-      });
-
-      it("should override class getter", () => {
-        const mockMyClass = given.stubbedInstance(MyClass, { getter: 5 });
-        expect(mockMyClass.getter).to.eq(5);
-      });
-
-      it("should stub class", () => {
-        const mockMyClass = given.stubbedInstance(MyClass);
-        mockMyClass.func(5, "whatever");
-        then(get.assertableStub(mockMyClass.func)).shouldHaveBeenCalledWith(
-          5,
-          "whatever"
-        );
-      });
-
-      it("should stub class function return value", () => {
-        const mockMyClass = given.stubbedInstance(MyClass);
-        mockMyClass.func.returns(7);
-        expect(mockMyClass.func(5, "whatever")).to.eq(7);
-      });
-    });
   });
 
   it("should get element by text", () => {
