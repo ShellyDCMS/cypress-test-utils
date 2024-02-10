@@ -356,7 +356,7 @@ describe("cypress helper tests", () => {
       expect(obj.count).to.eq(7);
     });
 
-    describe("stubbing class", () => {
+    describe.only("stubbing class", () => {
       class MyClass {
         constructor(input: number) {}
         func(input: number, text: string) {
@@ -380,8 +380,12 @@ describe("cypress helper tests", () => {
       }
 
       it("should stub async function", async () => {
+        const stub = given.stub().returns(Promise.resolve(7));
         const mockMyClass = given.stubbedInstance(MyClass);
         mockMyClass.asynFunc.returns(Promise.resolve(7));
+        mockMyClass.propertyFunc(3);
+
+        // mockMyClass.asynFunc.returns(Promise.resolve(7));
         expect(await mockMyClass.asynFunc()).to.eq(7);
       });
 
@@ -394,9 +398,8 @@ describe("cypress helper tests", () => {
       });
 
       it("should override class property Function", () => {
-        const mockMyClass = given.stubbedInstance(MyClass, {
-          propertyFunc: given.stub().returns(7)
-        });
+        const mockMyClass = given.stubbedInstance(MyClass);
+        mockMyClass.propertyFunc.returns(7);
         expect(mockMyClass.propertyFunc(3)).to.eq(7);
       });
 

@@ -3,14 +3,17 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
+import { StubBuilder } from "./stub-builder";
 export * from "cypress-pipe";
 
 class StubCreationHelper {
-  public static createRaw<T>(TCreator: { new (): T } & T, data: any): T {
-    return Object.assign(new TCreator() as object, data);
+  public static createRaw<T>(TCreator: { new (...args: any[]): T }): T {
+    console.log(TCreator.toString());
+    debugger;
+    return new TCreator() as T;
   }
-  public static create<T>(TCreator: { new (): T } & T, data: T = {} as T): T {
-    return this.createRaw(TCreator, data);
+  public static create<T>(TCreator: { new (...args: any[]): T }): T {
+    return this.createRaw(TCreator);
   }
 }
 
@@ -274,15 +277,29 @@ export class CypressHelper {
   )
      */
     stubbedInstance: <T>(
-      constructor: { new (): T } & T,
+      constructor: { new (...args: any[]): T },
       overrides: Partial<T> = {}
     ) => {
-      const stubbedInstance = Cypress.sinon.createStubInstance<T>(
-        constructor
-      ) as sinon.SinonStubbedInstance<T> & T;
-      const instance = StubCreationHelper.create(constructor);
-      this.stubPropertyFunctions(stubbedInstance, instance);
-      this.setStubbedInstanceOverrides(constructor, stubbedInstance, overrides);
+      // const stubbedInstance = Cypress.sinon.createStubInstance<T>(
+      //   constructor as sinon.StubbableType<T>
+      // ) as sinon.SinonStubbedInstance<T> & T;
+      // const instance: T = StubCreationHelper.create(constructor) as T;
+      // this.stubPropertyFunctions(stubbedInstance, instance);
+      const stubbedInstance = StubBuilder<sinon.SinonStubbedInstance<T> & T>();
+      debugger;
+      Object.keys(overrides).forEach(key => {
+        const value = overrides[key as keyof typeof stubbedInstance];
+        if (this.isGetter(constructor, key as keyof T)) {
+          Object.defineProperty(stubbedInstance, key, {
+            get: () => value
+          });
+        } else {
+          // @ts-ignore
+          stubbedInstance[key] = value;
+        }
+      });
+      // this.setStubbedInstanceOverrides(constructor, stubbedInstance, overrides);
+      // return StubBuilder<sinon.SinonStubbedInstance<T> & T>(); //as unknown as sinon.SinonStubbedInstance<T> & T;
       return stubbedInstance;
     },
     /**
