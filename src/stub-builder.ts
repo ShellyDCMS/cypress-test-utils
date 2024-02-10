@@ -59,6 +59,9 @@ export function StubBuilder<T>(
     {
       get(target, prop) {
         debugger;
+        if (overrideValues && overrideValues[prop.toString()]) {
+          return overrideValues[prop.toString()];
+        }
         if (built[prop.toString()]) {
           return built[prop.toString()];
         } else {

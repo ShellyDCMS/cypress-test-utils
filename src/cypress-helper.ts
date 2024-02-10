@@ -285,19 +285,22 @@ export class CypressHelper {
       // ) as sinon.SinonStubbedInstance<T> & T;
       // const instance: T = StubCreationHelper.create(constructor) as T;
       // this.stubPropertyFunctions(stubbedInstance, instance);
-      const stubbedInstance = StubBuilder<sinon.SinonStubbedInstance<T> & T>();
+      const stubbedInstance = StubBuilder<sinon.SinonStubbedInstance<T> & T>(
+        null,
+        overrides as Partial<sinon.SinonStubbedInstance<T> & T>
+      );
       debugger;
-      Object.keys(overrides).forEach(key => {
-        const value = overrides[key as keyof typeof stubbedInstance];
-        if (this.isGetter(constructor, key as keyof T)) {
-          Object.defineProperty(stubbedInstance, key, {
-            get: () => value
-          });
-        } else {
-          // @ts-ignore
-          stubbedInstance[key] = value;
-        }
-      });
+      // Object.keys(overrides).forEach(key => {
+      //   const value = overrides[key as keyof typeof stubbedInstance];
+      //   if (this.isGetter(constructor, key as keyof T)) {
+      //     Object.defineProperty(stubbedInstance, key, {
+      //       get: () => value
+      //     });
+      //   } else {
+      //     // @ts-ignore
+      //     stubbedInstance.handler[key] = value;
+      //   }
+      // });
       // this.setStubbedInstanceOverrides(constructor, stubbedInstance, overrides);
       // return StubBuilder<sinon.SinonStubbedInstance<T> & T>(); //as unknown as sinon.SinonStubbedInstance<T> & T;
       return stubbedInstance;
