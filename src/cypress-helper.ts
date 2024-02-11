@@ -245,11 +245,8 @@ export class CypressHelper {
       overrides: Partial<T> = {}
     ): StubbedInstance<T> => {
       const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
-        null,
-        {
-          ...(overrides as Partial<StubbedInstance<T>>),
-          className_1b3ec699_58d7_481f_bd83_e20dcf082a5e: constructor.name
-        }
+        constructor.name,
+        overrides as Partial<StubbedInstance<T>>
       );
       return stubbedInstance;
     },
@@ -274,11 +271,8 @@ export class CypressHelper {
       overrides: Partial<T> = {}
     ): StubbedInstance<T> => {
       const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
-        null,
-        {
-          ...(overrides as Partial<StubbedInstance<T>>),
-          className_1b3ec699_58d7_481f_bd83_e20dcf082a5e: interfaceName
-        }
+        interfaceName,
+        overrides as Partial<StubbedInstance<T>>
       );
       return stubbedInetrface;
     },
