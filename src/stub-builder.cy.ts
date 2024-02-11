@@ -29,6 +29,16 @@ describe("stub builder tests", () => {
       );
     });
 
+    it("should stub interface", () => {
+      const mockMyInterface =
+        given.stubbedInterface<MyInterface>("MyInterface");
+      mockMyInterface.func(5, "whatever");
+      then(get.assertableStub(mockMyInterface.func)).shouldHaveBeenCalledWith(
+        5,
+        "whatever"
+      );
+    });
+
     it("should assert stub async function calls", async () => {
       const mockMyInterface =
         given.stubbedInterface<MyInterface>("MyInterface");
@@ -180,7 +190,7 @@ describe("stub builder tests", () => {
     }
 
     it("should assert stub async function calls", async () => {
-      const mockMyClass = given.stubbedInstance(MyClass);
+      const mockMyClass = given.stubbedInstance<MyClass>(MyClass);
       mockMyClass.asynFunc.returns(Promise.resolve(7));
       mockMyClass.propertyFunc(3);
       then(get.assertableStub(mockMyClass.asynFunc)).shouldHaveBeenCalledWith(
