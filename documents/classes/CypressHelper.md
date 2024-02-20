@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.44](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.45](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -416,8 +416,8 @@ This is a classic place to have methods which will set the inputs which are goin
 | `spyOnObject` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonSpy`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonSpy`<`any`[], `any`\>\> & `SinonSpy`<`any`[], `any`\> |
 | `stub` | (`alias?`: `string`) => `Agent`<`SinonStub`<`any`[], `any`\>\> |
 | `stubObjectMethod` | <T\>(`obj`: `T`, `method`: keyof `T`) => `Omit`<`SinonStub`<`any`[], `any`\>, ``"withArgs"``\> & `SinonSpyAgent`<`SinonStub`<`any`[], `any`\>\> & `SinonStub`<`any`[], `any`\> |
-| `stubbedInstance` | <T\>(`constructor`: (...`args`: `any`[]) => `T`, `overrides`: `Partial`<`T`\>) => { [k in string \| number \| symbol]-?: Function & Function & Stub } |
-| `stubbedInterface` | <T\>(`interfaceName`: `string`, `overrides`: `Partial`<`T`\>) => { [k in string \| number \| symbol]-?: Function & Function & Stub } |
+| `stubbedInstance` | <T\>(`constructor`: (...`args`: `any`[]) => `T`, `overrides`: `Partial`<`T`\>) => `StubbedInstance`<`T`\> |
+| `stubbedInterface` | <T\>(`interfaceName`: `string`, `overrides`: `Partial`<`T`\>) => `StubbedInstance`<`T`\> |
 
 **fixture**: (`filename`: `string`, `alias`: `string`) => `Chainable`<`any`\>
 
@@ -585,9 +585,9 @@ Stub an object's method and create an alias for the stub
 
 -----
 
-**stubbedInstance**: <T\>(`constructor`: (...`args`: `any`[]) => `T`, `overrides`: `Partial`<`T`\>) => { [k in string \| number \| symbol]-?: Function & Function & Stub }
+**stubbedInstance**: <T\>(`constructor`: (...`args`: `any`[]) => `T`, `overrides`: `Partial`<`T`\>) => `StubbedInstance`<`T`\>
 
-Creates a new object with the given functions as the prototype and lazy stubs all implemented functions.
+Creates a new object with the given functions as the prototype and stubs all implemented functions.
 
 **`Example`**
 
@@ -624,9 +624,9 @@ helper.given.stubbedInstance(
 
 -----
 
-**stubbedInterface**: <T\>(`interfaceName`: `string`, `overrides`: `Partial`<`T`\>) => { [k in string \| number \| symbol]-?: Function & Function & Stub }
+**stubbedInterface**: <T\>(`interfaceName`: `string`, `overrides`: `Partial`<`T`\>) => `StubbedInstance`<`T`\>
 
-Creates a new object with the given functions as the prototype and lazy stubs all functions.
+Creates a new object with the given functions as the prototype and stubs all functions.
 
 **`Example`**
 

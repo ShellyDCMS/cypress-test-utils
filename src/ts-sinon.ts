@@ -43,26 +43,32 @@ export function stubObject<T extends object>(
 
   for (let method of objectMethods) {
     if (!excludedMethods.includes(method)) {
+      // @ts-ignore
       stubObject[method] = object[method];
     }
   }
 
   if (Array.isArray(methods)) {
     for (let method of methods) {
+      // @ts-ignore
       stubObject[<string>method] = cy
         .stub()
         .as(className + "." + <string>method);
     }
   } else if (typeof methods == "object") {
     for (let method in methods) {
+      // @ts-ignore
       stubObject[<string>method] = cy
         .stub()
         .as(className + "." + <string>method);
+      // @ts-ignore
       stubObject[<string>method].returns(methods[method]);
     }
   } else {
     for (let method of objectMethods) {
+      // @ts-ignore
       if (typeof object[method] == "function" && method !== "constructor") {
+        // @ts-ignore
         stubObject[method] = cy.stub().as(className + "." + <string>method);
       }
     }
@@ -88,9 +94,10 @@ export function stubInterface<T extends object>(
   return new Proxy(object, {
     get: (target, name) => {
       if (!target.hasOwnProperty(name) && name !== "then") {
+        // @ts-ignore
         target[name] = cy.stub().as(className + "." + name.toString());
       }
-
+      // @ts-ignore
       return target[name];
     }
   });
@@ -98,6 +105,7 @@ export function stubInterface<T extends object>(
 
 function getObjectMethods(object: object): Array<string> {
   const methods: Array<string> = [];
+  // @ts-ignore
   while ((object = Reflect.getPrototypeOf(object))) {
     const keys = Reflect.ownKeys(object);
     keys.forEach(key => {
@@ -109,8 +117,3 @@ function getObjectMethods(object: object): Array<string> {
 
   return methods;
 }
-
-// sinon["stubObject"] = stubObject;
-// sinon["stubInterface"] = stubInterface;
-
-// export default sinon;
