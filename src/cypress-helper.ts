@@ -3,13 +3,8 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
-import { IStubBuilder, createStubbedInstance } from "./stub-builder";
-
+import { StubbedInstance, stubInterface } from "./ts-sinon";
 export * from "cypress-pipe";
-
-export type StubbedInstance<T> = IStubBuilder<
-  sinon.SinonStubbedInstance<T> & T
->;
 
 /**
  * Sinon matcher for stubs/spy comparison
@@ -212,7 +207,7 @@ export class CypressHelper {
       cy.fixture(filename).as(alias),
 
     /**
-     * Creates a new object with the given functions as the prototype and lazy stubs all implemented functions.
+     * Creates a new object with the given functions as the prototype and stubs all implemented functions.
      *
      * @example
      * ```ts
@@ -240,18 +235,12 @@ export class CypressHelper {
      *  }
      * )
      */
-    stubbedInstance: <T>(
+    stubbedInstance: <T extends object>(
       constructor: { new (...args: any[]): T },
       overrides: Partial<T> = {}
-    ): StubbedInstance<T> => {
-      const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
-        constructor.name,
-        overrides as Partial<StubbedInstance<T>>
-      );
-      return stubbedInstance;
-    },
+    ): StubbedInstance<T> => stubInterface<T>(constructor.name, {}, overrides),
     /**
-     * Creates a new object with the given functions as the prototype and lazy stubs all functions.
+     * Creates a new object with the given functions as the prototype and stubs all functions.
      *
      * @example
      * ```ts
@@ -269,13 +258,7 @@ export class CypressHelper {
     stubbedInterface: <T extends Object>(
       interfaceName: string,
       overrides: Partial<T> = {}
-    ): StubbedInstance<T> => {
-      const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
-        interfaceName,
-        overrides as Partial<StubbedInstance<T>>
-      );
-      return stubbedInetrface;
-    },
+    ): StubbedInstance<T> => stubInterface<T>(interfaceName, {}, overrides),
     /**
      * Replace a function, record its usage and control its behavior.
      * @example
