@@ -35,46 +35,54 @@ export function stubObject<T extends object>(
     "isPrototypeOf"
   ];
 
-  for (let method in object) {
-    if (typeof object[method] == "function") {
-      objectMethods.push(method);
-    }
-  }
+  prepareMethodsList();
+  setOverriddenMethods();
+  stubObjectMethods();
+  return stubObject;
 
-  for (let method of objectMethods) {
-    if (!excludedMethods.includes(method)) {
-      // @ts-ignore
-      stubObject[method] = object[method];
-    }
-  }
-
-  if (Array.isArray(methods)) {
-    for (let method of methods) {
-      // @ts-ignore
-      stubObject[<string>method] = cy
-        .stub()
-        .as(className + "." + <string>method);
-    }
-  } else if (typeof methods == "object") {
-    for (let method in methods) {
-      // @ts-ignore
-      stubObject[<string>method] = cy
-        .stub()
-        .as(className + "." + <string>method);
-      // @ts-ignore
-      stubObject[<string>method].returns(methods[method]);
-    }
-  } else {
-    for (let method of objectMethods) {
-      // @ts-ignore
-      if (typeof object[method] == "function" && method !== "constructor") {
-        // @ts-ignore
-        stubObject[method] = cy.stub().as(className + "." + <string>method);
+  function stubObjectMethods() {
+    if (Array.isArray(methods)) {
+      for (let method of methods) {
+        stubObject[method as keyof T] = createStub(className, method);
+      }
+    } else if (typeof methods == "object") {
+      for (let method in methods) {
+        stubObject[method as keyof T] = createStub(className, method);
+        (stubObject[method as keyof T] as sinon.SinonStub).returns(
+          methods[method]
+        );
+      }
+    } else {
+      for (let method of objectMethods) {
+        if (shouldStubProperty<T>(object, method)) {
+          stubObject[method as keyof T] = createStub(className, method);
+        }
       }
     }
   }
 
-  return stubObject;
+  function setOverriddenMethods() {
+    for (let method of objectMethods) {
+      if (!excludedMethods.includes(method)) {
+        // @ts-ignore
+        stubObject[method as keyof T] = object[method];
+      }
+    }
+  }
+
+  function prepareMethodsList() {
+    for (let method in object) {
+      if (typeof object[method] == "function") {
+        objectMethods.push(method);
+      }
+    }
+  }
+}
+
+function shouldStubProperty<T extends object>(object: T, method: string) {
+  return (
+    typeof object[method as keyof T] == "function" && method !== "constructor"
+  );
 }
 
 export function stubConstructor<T extends new (...args: any[]) => any>(
@@ -116,4 +124,8 @@ function getObjectMethods(object: object): Array<string> {
   }
 
   return methods;
+}
+
+function createStub(className: string, method: string | number | symbol): any {
+  return cy.stub().as(className + "." + <string>method);
 }
