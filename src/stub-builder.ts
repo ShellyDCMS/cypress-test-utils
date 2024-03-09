@@ -2,9 +2,7 @@ import { SinonStub } from "cypress/types/sinon";
 
 export interface Stub extends SinonStub {}
 
-export type IStubBuilder<T> = {
-  [k in keyof T]-?: ((arg: T[k]) => IStubBuilder<T>) & (() => T[k]) & Stub;
-} & {};
+export type StubbedInstance<T> = sinon.SinonStubbedInstance<T> & T;
 
 const excludedMethods: string[] = [
   "__defineGetter__",
@@ -17,51 +15,44 @@ const excludedMethods: string[] = [
   "valueOf",
   "__proto__",
   "toLocaleString",
-  "isPrototypeOf"
+  "isPrototypeOf",
+  "then"
 ];
 
 export const createStubbedInstance = <T>() => {
   const buildStub = (
     className: string,
     overrides: Partial<T> = {}
-  ): IStubBuilder<T> => {
+  ): StubbedInstance<T> => {
     let overrideValues: Record<string, any> = overrides;
-    const stubObject = Object.assign(
-      <sinon.SinonStubbedInstance<T>>{},
-      <T>{ ...overrides }
-    );
     const built: Record<string, unknown> = (<T>{ ...overrideValues }) as any;
 
     const createStubIfNeeded = (
-      built: Record<string, unknown>,
+      target: Record<string, unknown>,
       prop: string
     ) => {
-      if (!built[prop] && excludedMethods.indexOf(prop) === -1) {
-        const stub = cy.stub().as(className + "." + prop);
-        built[prop] = stub;
+      if (!target[prop] && !excludedMethods.includes(prop)) {
+        const stub = createStub(className, prop);
+        target[prop] = stub;
       }
     };
 
-    const builder = new Proxy(
-      {},
-      {
-        get(target, prop: string) {
-          createStubIfNeeded(built, prop);
-          return built[prop];
-        },
-        set(target, prop: string, args?: any) {
-          built[prop] = args;
-          // createStubIfNeeded(built, prop);
-          // args && "function" === typeof built[prop]
-          //   ? // @ts-ignore
-          //     built[prop](args)
-          //   : built[prop];
-          return true;
-        }
+    const builder = new Proxy(built, {
+      get(target, prop: string) {
+        createStubIfNeeded(target, prop);
+        return target[prop];
+      },
+      set(target, prop: string, args?: any) {
+        built[prop] = args;
+        return true;
       }
-    );
+    });
 
-    return builder as IStubBuilder<T>;
+    return builder as StubbedInstance<T>;
   };
   return buildStub;
 };
+
+function createStub(className: string, method: string | number | symbol): any {
+  return cy.stub().as(className + "." + <string>method);
+}
