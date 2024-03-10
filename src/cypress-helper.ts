@@ -3,7 +3,11 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
-import { createStubbedInstance, StubbedInstance } from "./stub-builder";
+import {
+  StubbedInstance,
+  StubbedInstanceCreator,
+  type Stub
+} from "./stub-builder";
 export * from "cypress-pipe";
 
 /**
@@ -239,10 +243,11 @@ export class CypressHelper {
       constructor: { new (...args: any[]): T },
       overrides: Partial<T> = {}
     ): StubbedInstance<T> => {
-      const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
-        constructor.name,
-        overrides as Partial<StubbedInstance<T>>
-      );
+      const createStub = (prop: string) =>
+        cy.stub().as(constructor.name + "." + prop) as unknown as Stub;
+      const stubbedInstance = StubbedInstanceCreator<StubbedInstance<T>>(
+        createStub
+      )(overrides as Partial<StubbedInstance<T>>);
       return stubbedInstance;
     },
     /**
@@ -265,10 +270,11 @@ export class CypressHelper {
       interfaceName: string,
       overrides: Partial<T> = {}
     ): StubbedInstance<T> => {
-      const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
-        interfaceName,
-        overrides as Partial<StubbedInstance<T>>
-      );
+      const createStub = (prop: string) =>
+        cy.stub().as(interfaceName + "." + prop) as unknown as Stub;
+      const stubbedInetrface = StubbedInstanceCreator<StubbedInstance<T>>(
+        createStub
+      )(overrides as Partial<StubbedInstance<T>>);
       return stubbedInetrface;
     },
     /**

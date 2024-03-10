@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.47](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.48](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 

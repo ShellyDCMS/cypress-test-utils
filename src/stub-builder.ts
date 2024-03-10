@@ -1,10 +1,8 @@
-import { SinonStub } from "cypress/types/sinon";
+import Sinon from "sinon";
+export type StubbedInstance<T> = Sinon.SinonStubbedInstance<T> & T;
+export interface Stub extends Sinon.SinonStub {}
 
-export interface Stub extends SinonStub {}
-
-export type StubbedInstance<T> = sinon.SinonStubbedInstance<T> & T;
-
-const excludedMethods: string[] = [
+export const defaultExcludedMethods: string[] = [
   "__defineGetter__",
   "__defineSetter__",
   "hasOwnProperty",
@@ -19,9 +17,11 @@ const excludedMethods: string[] = [
   "then"
 ];
 
-export const createStubbedInstance = <T>() => {
-  const buildStub = (
-    className: string,
+export const StubbedInstanceCreator = <T>(
+  createStub: (prop: string) => Sinon.SinonStub = Sinon.stub(),
+  excludedMethods = defaultExcludedMethods
+) => {
+  const createStubbedInstance = (
     overrides: Partial<T> = {}
   ): StubbedInstance<T> => {
     let overrideValues: Record<string, any> = overrides;
@@ -32,7 +32,7 @@ export const createStubbedInstance = <T>() => {
       prop: string
     ) => {
       if (!target[prop] && !excludedMethods.includes(prop)) {
-        const stub = createStub(className, prop);
+        const stub = createStub(prop);
         target[prop] = stub;
       }
     };
@@ -50,9 +50,5 @@ export const createStubbedInstance = <T>() => {
 
     return builder as StubbedInstance<T>;
   };
-  return buildStub;
+  return createStubbedInstance;
 };
-
-function createStub(className: string, method: string | number | symbol): any {
-  return cy.stub().as(className + "." + <string>method);
-}
