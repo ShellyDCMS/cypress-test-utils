@@ -1,6 +1,12 @@
-import Sinon from "sinon";
-export type StubbedInstance<T> = Sinon.SinonStubbedInstance<T> & T;
-export interface Stub extends Sinon.SinonStub {}
+// type StubbedMember<T, StubT> = T extends (
+//   ...args: infer TArgs
+// ) => infer TReturnValue
+//   ? StubT
+//   : T;
+export type StubbedInstance<T, StubT> = T & {
+  [P in keyof T]: StubT;
+} & T;
+// export interface Stub extends Sinon.SinonStub {}
 
 export const defaultExcludedMethods: string[] = [
   "__defineGetter__",
@@ -17,13 +23,15 @@ export const defaultExcludedMethods: string[] = [
   "then"
 ];
 
-export const StubbedInstanceCreator = <T>(
-  createStub: (prop: string) => Sinon.SinonStub = Sinon.stub(),
+export const StubbedInstanceCreator = <T, StubT>(
+  createStub: (prop: string) => StubT,
   excludedMethods = defaultExcludedMethods
-) => {
+): {
+  createStubbedInstance: (overrides: Partial<T>) => StubbedInstance<T, StubT>;
+} => {
   const createStubbedInstance = (
     overrides: Partial<T> = {}
-  ): StubbedInstance<T> => {
+  ): StubbedInstance<T, StubT> => {
     let overrideValues: Record<string, any> = overrides;
     const built: Record<string, unknown> = (<T>{ ...overrideValues }) as any;
 
@@ -48,7 +56,7 @@ export const StubbedInstanceCreator = <T>(
       }
     });
 
-    return builder as StubbedInstance<T>;
+    return builder as StubbedInstance<T, StubT>;
   };
-  return createStubbedInstance;
+  return { createStubbedInstance };
 };

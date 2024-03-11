@@ -3,11 +3,8 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
-import {
-  StubbedInstance,
-  StubbedInstanceCreator,
-  type Stub
-} from "./stub-builder";
+import type { SinonStub } from "cypress/types/sinon";
+import { StubbedInstance, StubbedInstanceCreator } from "./stub-builder";
 export * from "cypress-pipe";
 
 /**
@@ -242,13 +239,13 @@ export class CypressHelper {
     stubbedInstance: <T>(
       constructor: { new (...args: any[]): T },
       overrides: Partial<T> = {}
-    ): StubbedInstance<T> => {
+    ): StubbedInstance<T, SinonStub> => {
       const createStub = (prop: string) =>
-        cy.stub().as(constructor.name + "." + prop) as unknown as Stub;
-      const stubbedInstance = StubbedInstanceCreator<StubbedInstance<T>>(
+        cy.stub().as(constructor.name + "." + prop) as unknown as SinonStub;
+      const stubbedInstanceCreator = StubbedInstanceCreator<T, SinonStub>(
         createStub
-      )(overrides as Partial<StubbedInstance<T>>);
-      return stubbedInstance;
+      );
+      return stubbedInstanceCreator.createStubbedInstance(overrides);
     },
     /**
      * Creates a new object with the given functions as the prototype and stubs all functions.
@@ -269,13 +266,13 @@ export class CypressHelper {
     stubbedInterface: <T extends Object>(
       interfaceName: string,
       overrides: Partial<T> = {}
-    ): StubbedInstance<T> => {
+    ): StubbedInstance<T, SinonStub> => {
       const createStub = (prop: string) =>
-        cy.stub().as(interfaceName + "." + prop) as unknown as Stub;
-      const stubbedInetrface = StubbedInstanceCreator<StubbedInstance<T>>(
+        cy.stub().as(interfaceName + "." + prop) as unknown as SinonStub;
+      const stubbedInstanceCreator = StubbedInstanceCreator<T, SinonStub>(
         createStub
-      )(overrides as Partial<StubbedInstance<T>>);
-      return stubbedInetrface;
+      );
+      return stubbedInstanceCreator.createStubbedInstance(overrides);
     },
     /**
      * Replace a function, record its usage and control its behavior.
