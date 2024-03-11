@@ -124,11 +124,11 @@ describe("cypress helper tests", () => {
         });
         fetch("https:/shellygo/whatever");
         fetch("https:/shellygo/whatever");
+        when.waitForResponses("shellygo", 2);
       });
 
       it("should wait for multiple responses", () => {
         fetch("https:/shellygo/whatever?shelly=go");
-        when.waitForResponses("shellygo", 2);
         then(get.requestQueryParams("shellygo")).shouldInclude({
           shelly: "go"
         });
