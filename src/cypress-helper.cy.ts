@@ -144,7 +144,7 @@ describe("cypress helper tests", () => {
         });
         fetch("https:/shellygo/whatever");
         fetch("https:/shellygo/whatever");
-        when.waitForLastCall("shellygo");
+        when.waitForLastCall("shellygo", 10000);
       });
 
       it("should wait for last call", () => {
