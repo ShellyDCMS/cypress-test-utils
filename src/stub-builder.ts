@@ -1,6 +1,15 @@
-export type StubbedInstance<T, StubT> = T & {
-  [P in keyof T]: StubT;
+export type StubbedInstance<T, StubT> = {
+  [P in keyof T]: StubbedMember<T[P], StubT>;
 };
+
+/**
+ * Replaces a type with a stub if it's a function.
+ */
+export type StubbedMember<T, StubT> = T extends (
+  ...args: infer TArgs
+) => infer TReturnValue
+  ? StubT
+  : T;
 
 export const defaultExcludedMethods: string[] = [
   "__defineGetter__",
@@ -16,7 +25,17 @@ export const defaultExcludedMethods: string[] = [
   "isPrototypeOf",
   "then"
 ];
-
+/**
+ *
+ * @param createStub - method for stub creation, for example: sinon.stub()
+ * @param excludedMethods - methods to exclude from mocking. default is defaultExcludedMethods
+ * @returns a stub creator object with a single method: createStubbedInstance
+ *
+ * @example
+ * ```ts
+ *
+ * ```
+ */
 export const StubbedInstanceCreator = <T, StubT>(
   createStub: (prop: string) => StubT,
   excludedMethods = defaultExcludedMethods
@@ -52,7 +71,7 @@ export const StubbedInstanceCreator = <T, StubT>(
       }
     });
 
-    return builder as StubbedInstance<T, StubT>;
+    return builder as StubbedInstance<T, StubT> & T;
   };
   return { createStubbedInstance };
 };
