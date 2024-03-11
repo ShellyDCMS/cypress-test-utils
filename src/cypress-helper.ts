@@ -353,7 +353,9 @@ export class CypressHelper {
      * @param alias
      */
     waitForResponses: (alias: string, responses: number) =>
-      cy.wait(Array(responses).fill(`@${alias}`)),
+      cy.wait(Array(responses).fill(`@${alias}`), {
+        timeout: Cypress.config("defaultCommandTimeout")
+      }),
     /**
      * Wait for a last request to complete.
      */
