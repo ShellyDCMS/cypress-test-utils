@@ -122,13 +122,13 @@ describe("cypress helper tests", () => {
           response: { shelly: "go" },
           alias: "shellygo"
         });
-        fetch("https:/shellygo/whatever");
-        fetch("https:/shellygo/whatever");
-        when.waitForResponses("shellygo", 2);
+        fetch("https:/shellygo/whatever/1");
+        fetch("https:/shellygo/whatever/2");
       });
 
       it("should wait for multiple responses", () => {
-        fetch("https:/shellygo/whatever?shelly=go");
+        fetch("https:/shellygo/whatever/3?shelly=go");
+        when.waitForResponses("shellygo", 2);
         then(get.requestQueryParams("shellygo")).shouldInclude({
           shelly: "go"
         });
