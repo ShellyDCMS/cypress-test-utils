@@ -172,7 +172,7 @@ describe("stub builder tests", () => {
         return this.property;
       }
       set setter(value: number) {
-        this.property = value;
+        throw new Error("Should not be called");
       }
 
       propertyFunc = (int: number) => int;
@@ -271,9 +271,6 @@ describe("stub builder tests", () => {
       it("should assert stub class setter calls", () => {
         const mockMyInheritedClass = given.stubbedInstance(MyInheritedClass);
         mockMyInheritedClass.setter = 5;
-        // then(
-        //   get.assertableStub(mockMyInheritedClass.setter)
-        // ).shouldHaveBeenCalledWith(5);
       });
 
       it("should allow setting properties", () => {
@@ -370,12 +367,12 @@ describe("stub builder tests", () => {
       expect(mockMyClass.getter).to.eq(5);
     });
 
-    it("should stub class setter with override", () => {
+    it("should stub class setter", () => {
       const mockMyClass = given.stubbedInstance(MyClass, { property: 8 });
+      mockMyClass.setter = 5;
       expect(mockMyClass.property).to.eq(8);
     });
-
-    it("should class setter calls", () => {
+    it("should stub setter calls", () => {
       const mockMyClass = given.stubbedInstance(MyClass);
       expect((mockMyClass.setter = 5)).not.to.throw;
     });

@@ -3,7 +3,8 @@ import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
-import { createStubbedInstance, StubbedInstance } from "./stub-builder";
+import type { SinonStub } from "cypress/types/sinon";
+import { StubbedInstance, StubbedInstanceCreator } from "./stub-builder";
 export * from "cypress-pipe";
 
 /**
@@ -238,12 +239,13 @@ export class CypressHelper {
     stubbedInstance: <T>(
       constructor: { new (...args: any[]): T },
       overrides: Partial<T> = {}
-    ): StubbedInstance<T> => {
-      const stubbedInstance = createStubbedInstance<StubbedInstance<T>>()(
-        constructor.name,
-        overrides as Partial<StubbedInstance<T>>
+    ): StubbedInstance<T, SinonStub> => {
+      const createStub = (prop: string) =>
+        cy.stub().as(constructor.name + "." + prop) as unknown as SinonStub;
+      const stubbedInstanceCreator = StubbedInstanceCreator<T, SinonStub>(
+        createStub
       );
-      return stubbedInstance;
+      return stubbedInstanceCreator.createStubbedInstance(overrides);
     },
     /**
      * Creates a new object with the given functions as the prototype and stubs all functions.
@@ -264,12 +266,13 @@ export class CypressHelper {
     stubbedInterface: <T extends Object>(
       interfaceName: string,
       overrides: Partial<T> = {}
-    ): StubbedInstance<T> => {
-      const stubbedInetrface = createStubbedInstance<StubbedInstance<T>>()(
-        interfaceName,
-        overrides as Partial<StubbedInstance<T>>
+    ): StubbedInstance<T, SinonStub> => {
+      const createStub = (prop: string) =>
+        cy.stub().as(interfaceName + "." + prop) as unknown as SinonStub;
+      const stubbedInstanceCreator = StubbedInstanceCreator<T, SinonStub>(
+        createStub
       );
-      return stubbedInetrface;
+      return stubbedInstanceCreator.createStubbedInstance(overrides);
     },
     /**
      * Replace a function, record its usage and control its behavior.
@@ -341,13 +344,18 @@ export class CypressHelper {
      * Wait for a specific request to complete.
      *  @param alias
      */
-    waitForResponse: (alias: string) => cy.wait(`@${alias}`),
+    waitForResponse: (alias: string) =>
+      cy.wait(`@${alias}`, {
+        timeout: Cypress.config("defaultCommandTimeout")
+      }),
     /**
      * Wait for multiples requests to complete.
      * @param alias
      */
     waitForResponses: (alias: string, responses: number) =>
-      cy.wait(Array(responses).fill(`@${alias}`)),
+      cy.wait(Array(responses).fill(`@${alias}`), {
+        timeout: Cypress.config("defaultCommandTimeout")
+      }),
     /**
      * Wait for a last request to complete.
      */
