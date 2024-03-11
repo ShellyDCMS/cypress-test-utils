@@ -271,9 +271,6 @@ describe("stub builder tests", () => {
       it("should assert stub class setter calls", () => {
         const mockMyInheritedClass = given.stubbedInstance(MyInheritedClass);
         mockMyInheritedClass.setter = 5;
-        // then(
-        //   get.assertableStub(mockMyInheritedClass.setter)
-        // ).shouldHaveBeenCalledWith(5);
       });
 
       it("should allow setting properties", () => {

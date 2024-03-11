@@ -1,12 +1,6 @@
-// type StubbedMember<T, StubT> = T extends (
-//   ...args: infer TArgs
-// ) => infer TReturnValue
-//   ? StubT
-//   : T;
 export type StubbedInstance<T, StubT> = T & {
   [P in keyof T]: StubT;
-} & T;
-// export interface Stub extends Sinon.SinonStub {}
+};
 
 export const defaultExcludedMethods: string[] = [
   "__defineGetter__",
@@ -27,11 +21,13 @@ export const StubbedInstanceCreator = <T, StubT>(
   createStub: (prop: string) => StubT,
   excludedMethods = defaultExcludedMethods
 ): {
-  createStubbedInstance: (overrides: Partial<T>) => StubbedInstance<T, StubT>;
+  createStubbedInstance: (
+    overrides: Partial<T>
+  ) => StubbedInstance<T, StubT> & T;
 } => {
   const createStubbedInstance = (
     overrides: Partial<T> = {}
-  ): StubbedInstance<T, StubT> => {
+  ): StubbedInstance<T, StubT> & T => {
     let overrideValues: Record<string, any> = overrides;
     const built: Record<string, unknown> = (<T>{ ...overrideValues }) as any;
 
