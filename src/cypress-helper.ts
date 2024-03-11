@@ -347,7 +347,10 @@ export class CypressHelper {
      * Wait for a specific request to complete.
      *  @param alias
      */
-    waitForResponse: (alias: string) => cy.wait(`@${alias}`),
+    waitForResponse: (alias: string) =>
+      cy.wait(`@${alias}`, {
+        timeout: Cypress.config("defaultCommandTimeout")
+      }),
     /**
      * Wait for multiples requests to complete.
      * @param alias
