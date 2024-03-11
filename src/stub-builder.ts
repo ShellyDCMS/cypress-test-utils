@@ -41,7 +41,7 @@ export const StubbedInstanceCreator = <T, StubT>(
   excludedMethods = defaultExcludedMethods
 ): {
   createStubbedInstance: (
-    overrides: Partial<T>
+    overrides?: Partial<T>
   ) => StubbedInstance<T, StubT> & T;
 } => {
   const createStubbedInstance = (
