@@ -1,10 +1,10 @@
+import { StubbedInstance, StubbedInstanceCreator } from "@shellygo/ts-stubber";
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
-import { StubbedInstance, StubbedInstanceCreator } from "./stub-builder";
 export * from "cypress-pipe";
 
 /**
