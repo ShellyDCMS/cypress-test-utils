@@ -4,7 +4,7 @@ import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
-import { StubbedInstance, StubbedInstanceCreator } from "ts-stubber";
+import { StubbedInstanceCreator } from "ts-stubber";
 export * from "cypress-pipe";
 
 /**
@@ -239,7 +239,7 @@ export class CypressHelper {
     stubbedInstance: <T>(
       constructor: { new (...args: any[]): T },
       overrides: Partial<T> = {}
-    ): StubbedInstance<T, SinonStub> => {
+    ) => {
       const createStub = (prop: string) =>
         cy.stub().as(constructor.name + "." + prop) as unknown as SinonStub;
       const stubbedInstanceCreator = StubbedInstanceCreator<T, SinonStub>(
@@ -266,7 +266,7 @@ export class CypressHelper {
     stubbedInterface: <T extends Object>(
       interfaceName: string,
       overrides: Partial<T> = {}
-    ): StubbedInstance<T, SinonStub> => {
+    ) => {
       const createStub = (prop: string) =>
         cy.stub().as(interfaceName + "." + prop) as unknown as SinonStub;
       const stubbedInstanceCreator = StubbedInstanceCreator<T, SinonStub>(
