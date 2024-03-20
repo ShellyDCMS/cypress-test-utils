@@ -50,9 +50,11 @@ export class CypressAngularComponentHelper<T> {
           ...componentProperties
         }
       });
-      mountResponse.its("fixture").then((fixture: ComponentFixture<T>) => {
-        this.fixture = fixture;
-      });
+      return mountResponse
+        .its("fixture")
+        .then((fixture: ComponentFixture<T>) => {
+          this.fixture = fixture;
+        }) as PromiseLike<ComponentFixture<T>>;
     }
   };
   public get = {

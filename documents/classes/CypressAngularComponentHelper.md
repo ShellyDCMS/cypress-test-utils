@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.51](../README.md) / [Modules](../modules.md) / CypressAngularComponentHelper
+[@shellygo/cypress-test-utils - v2.0.52](../README.md) / [Modules](../modules.md) / CypressAngularComponentHelper
 
 # Class: CypressAngularComponentHelper<T\>
 
@@ -74,9 +74,9 @@ enables mounting of an Angular component
 
 | Name | Type |
 | :------ | :------ |
-| `mount` | (`componentType`: `string` \| `Type`<`T`\>, `config`: `MountConfig`<`T`\>, `componentProperties?`: `Partial`<{ [P in string \| number \| symbol]: T[P] }\>) => `void` |
+| `mount` | (`componentType`: `string` \| `Type`<`T`\>, `config`: `MountConfig`<`T`\>, `componentProperties?`: `Partial`<{ [P in string \| number \| symbol]: T[P] }\>) => `PromiseLike`<`ComponentFixture`<`T`\>\> |
 
-**mount**: (`componentType`: `string` \| `Type`<`T`\>, `config`: `MountConfig`<`T`\>, `componentProperties?`: `Partial`<{ [P in string \| number \| symbol]: T[P] }\>) => `void`
+**mount**: (`componentType`: `string` \| `Type`<`T`\>, `config`: `MountConfig`<`T`\>, `componentProperties?`: `Partial`<{ [P in string \| number \| symbol]: T[P] }\>) => `PromiseLike`<`ComponentFixture`<`T`\>\>
 
 mount an angular component, with autoSpyOutputs set to true, meaning all event emitters are automatically spied on
 and be accessed during a test using
