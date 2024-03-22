@@ -998,6 +998,11 @@ export class CypressHelper {
      * ```ts
      * const serviceMock : Service = helper.given.stubbedInstance(Service);
      * helper.get.assertableStub(serviceMock.function).should('have.been.called'));
+     *
+     * @deprecated The method should not be used anymore, use `then` instead
+     * ```ts
+     * then(serviceMock.function).shouldHaveBeenCalled();
+     * ```
      */
     assertableStub: (stub: any) => cy.wrap(stub),
 

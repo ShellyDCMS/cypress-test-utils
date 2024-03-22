@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.52](../README.md) / [Modules](../modules.md) / CypressHelper
+[@shellygo/cypress-test-utils - v2.0.53](../README.md) / [Modules](../modules.md) / CypressHelper
 
 # Class: CypressHelper
 
@@ -57,7 +57,7 @@ The get property will hold methods which will give our tests access to the “ou
 | `elementByAttribute` | (`attribute`: `string`, `selector`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementBySelector` | (`selector`: `string`, `attribute?`: `string`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementByTestId` | (`dataTestID`: `string`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> |
-| `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> \| `Chainable`<`undefined`\> |
+| `elementByText` | (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`undefined`\> \| `Chainable`<`JQuery`<`HTMLElement`\>\> |
 | `elementsAttribute` | (`dataTestID`: `string`, `attributeName`: `string`, `index?`: `number`) => `Chainable`<`undefined` \| `string`\> |
 | `elementsComputedStyle` | (`dataTestID`: `string`, `index?`: `number`, `pseudoElement?`: `string`) => `Chainable`<`CSSStyleDeclaration`\> |
 | `elementsProperty` | (`dataTestID`: `string`, `propertyName`: keyof `JQuery`<`HTMLElement`\>, `index?`: `number`) => `Chainable`<`any`\> |
@@ -89,6 +89,11 @@ Get stub as Cypress.Chainable
 ```ts
 const serviceMock : Service = helper.given.stubbedInstance(Service);
 helper.get.assertableStub(serviceMock.function).should('have.been.called'));
+
+@deprecated The method should not be used anymore, use `then` instead
+```ts
+then(serviceMock.function).shouldHaveBeenCalled();
+```
 
 -----
 
@@ -170,7 +175,7 @@ helper.when.dragAndDrop(
 
 -----
 
-**elementByText**: (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`JQuery`<`HTMLElement`\>\> \| `Chainable`<`undefined`\>
+**elementByText**: (`content`: `string` \| `RegExp`, `index?`: `number`) => `Chainable`<`undefined`\> \| `Chainable`<`JQuery`<`HTMLElement`\>\>
 
 Get the DOM element containing the text.
 DOM elements can contain more than the desired text and still match.

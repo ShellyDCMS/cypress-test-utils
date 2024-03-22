@@ -401,7 +401,38 @@ export class Assertable<T> {
    */
   public shouldNotHaveBeenCalled = () =>
     this.chainable.should("not.have.been.called");
+
+  /***
+   * When no arguments are provided, shouldThrow invokes the target function and asserts that no error is thrown.
+   * When one argument is provided, and it's a string, shouldThrow invokes the target function and asserts that no error is thrown with a message that contains that string.
+   *
+   * @example
+   * ```ts
+   * function badFn() { console.log('Illegal salmon!') }
+   * then(() => badFn()).shouldNotThrow()
+   * then(() => badFn()).shouldNotThrow('salmon')
+   * then(() => badFn()).shouldNotThrow(/salmon/)
+   * ```
+   */
+  public shouldNotThrow = (value?: string | RegExp | undefined) =>
+    this.chainable.should("not.throw", value);
+
+  /***
+   * When no arguments are provided, shouldThrow invokes the target function and asserts that an error is thrown.
+   * When one argument is provided, and it's a string, shouldThrow invokes the target function and asserts that an error is thrown with a message that contains that string.
+   *
+   * @example
+   * ```ts
+   * function badFn() { throw new TypeError('Illegal salmon!') }
+   * then(() => badFn()).shouldThrow()
+   * then(() => badFn()).shouldThrow('salmon')
+   * then(() => badFn()).shouldThrow(/salmon/)
+   * ```
+   */
+  public shouldThrow = (value?: string | RegExp | undefined) =>
+    this.chainable.should("throw", value);
 }
+
 /** Wraps Cypress.Chainable and returns Assertable, decoupling test code form cypress 'should' assertions.
  * This way you can add assertions of your own, by extending Assertable class.
  * @example
@@ -443,5 +474,8 @@ export class Assertable<T> {
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
  */
-export const then = (chainable: Cypress.Chainable<any>) =>
-  new Assertable(chainable);
+export const then = (subject: Cypress.Chainable<any> | any) => {
+  return new Assertable(
+    subject && subject.chainerId ? subject : cy.wrap(subject)
+  );
+};
