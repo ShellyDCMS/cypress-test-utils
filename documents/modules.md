@@ -1,6 +1,6 @@
-[@shellygo/cypress-test-utils - v2.0.52](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.0.53](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.0.52
+# @shellygo/cypress-test-utils - v2.0.53
 
 ## Table of contents
 
@@ -247,7 +247,7 @@ ___
 
 ### then
 
-▸ **then**(`chainable`): [`Assertable`](classes/Assertable.md)<`any`\>
+▸ **then**(`subject`): [`Assertable`](classes/Assertable.md)<`unknown`\>
 
 Wraps Cypress.Chainable and returns Assertable, decoupling test code form cypress 'should' assertions.
 This way you can add assertions of your own, by extending Assertable class.
@@ -256,11 +256,11 @@ This way you can add assertions of your own, by extending Assertable class.
 
 | Name | Type |
 | :------ | :------ |
-| `chainable` | `Chainable`<`any`\> |
+| `subject` | `any` |
 
 #### Returns
 
-[`Assertable`](classes/Assertable.md)<`any`\>
+[`Assertable`](classes/Assertable.md)<`unknown`\>
 
 **`Example`**
 

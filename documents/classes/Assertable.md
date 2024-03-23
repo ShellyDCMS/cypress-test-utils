@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.52](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.53](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -100,7 +100,9 @@ class Driver {
 - [shouldNotExist](Assertable.md#shouldnotexist)
 - [shouldNotHaveBeenCalled](Assertable.md#shouldnothavebeencalled)
 - [shouldNotHaveBeenCalledTimes](Assertable.md#shouldnothavebeencalledtimes)
+- [shouldNotThrow](Assertable.md#shouldnotthrow)
 - [shouldStartWith](Assertable.md#shouldstartwith)
+- [shouldThrow](Assertable.md#shouldthrow)
 
 ## Constructors
 
@@ -952,6 +954,34 @@ then(get.spy("onSomething")).shouldNotHaveBeenCalledTimes(5)
 
 ___
 
+### shouldNotThrow
+
+▸ **shouldNotThrow**(`value?`): `Chainable`<`T`\>
+
+When no arguments are provided, shouldThrow invokes the target function and asserts that no error is thrown.
+When one argument is provided, and it's a string, shouldThrow invokes the target function and asserts that no error is thrown with a message that contains that string.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value?` | `string` \| `RegExp` |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+function badFn() { console.log('Illegal salmon!') }
+then(() => badFn()).shouldNotThrow()
+then(() => badFn()).shouldNotThrow('salmon')
+then(() => badFn()).shouldNotThrow(/salmon/)
+```
+
+___
+
 ### shouldStartWith
 
 ▸ **shouldStartWith**(`value`): `Chainable`<`string`\>
@@ -972,4 +1002,32 @@ Asserts that text starts with value
 
 ```ts
   then(helper.get.elementsText('selector)).shouldStartWith('test')
+```
+
+___
+
+### shouldThrow
+
+▸ **shouldThrow**(`value?`): `Chainable`<`T`\>
+
+When no arguments are provided, shouldThrow invokes the target function and asserts that an error is thrown.
+When one argument is provided, and it's a string, shouldThrow invokes the target function and asserts that an error is thrown with a message that contains that string.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value?` | `string` \| `RegExp` |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+function badFn() { throw new TypeError('Illegal salmon!') }
+then(() => badFn()).shouldThrow()
+then(() => badFn()).shouldThrow('salmon')
+then(() => badFn()).shouldThrow(/salmon/)
 ```

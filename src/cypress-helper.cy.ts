@@ -40,7 +40,7 @@ describe("cypress helper tests", () => {
     it("should stub function", () => {
       let func = () => 5;
       func = given.stub().returns(7);
-      expect(func()).to.eq(7);
+      then(func()).shouldEqual(7);
     });
 
     it("should stub function with alias", () => {
@@ -55,7 +55,7 @@ describe("cypress helper tests", () => {
         func: () => 5
       };
       given.stubObjectMethod(obj, "func").returns(7);
-      then(get.assertableStub(obj.func())).shouldEqual(7);
+      then(obj.func()).shouldEqual(7);
     });
 
     it("should stub object getter", () => {
@@ -65,7 +65,7 @@ describe("cypress helper tests", () => {
         }
       };
       given.stubObjectMethod(obj, "count").get(() => 7);
-      expect(obj.count).to.eq(7);
+      then(obj.count).shouldEqual(7);
     });
   });
 
@@ -342,7 +342,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should get env variable", () => {
-    expect(get.env("env1")).to.eq("value1");
+    then(get.env("env1")).shouldEqual("value1");
   });
 
   it("should get number of elements", () => {
