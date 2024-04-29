@@ -87,7 +87,7 @@ export class Assertable<T> {
    * When the target is a string, `not.include` asserts that the given string val is not a substring of the target.
    * @example
    * ```ts
-   *    then(helper.get.elementsText('selector)).shouldContain('test')
+   *    then(helper.get.elementsText('selector)).shouldNotContain('test')
    * ```
    */
   public shouldNotInclude = (value: any) =>
