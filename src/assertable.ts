@@ -99,7 +99,6 @@ export class Assertable<T> {
    *   then(helper.get.elementsText('selector)).shouldEndWith('test')
    * ```
    */
-  
   public shouldEndWith = (value: string) =>
     this.chainable
       .pipe(text => (text as string).slice(-value.length))
