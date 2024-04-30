@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.54](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.56](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -67,10 +67,10 @@ class Driver {
 - [shouldBeDisabled](Assertable.md#shouldbedisabled)
 - [shouldBeEnabled](Assertable.md#shouldbeenabled)
 - [shouldBeFocused](Assertable.md#shouldbefocused)
-- [shouldBeGreaterThen](Assertable.md#shouldbegreaterthen)
-- [shouldBeGreaterThenOrEqual](Assertable.md#shouldbegreaterthenorequal)
-- [shouldBeLessThen](Assertable.md#shouldbelessthen)
-- [shouldBeLessThenOrEqual](Assertable.md#shouldbelessthenorequal)
+- [shouldBeGreaterThan](Assertable.md#shouldbegreaterthan)
+- [shouldBeGreaterThanOrEqual](Assertable.md#shouldbegreaterthanorequal)
+- [shouldBeLessThan](Assertable.md#shouldbelessthan)
+- [shouldBeLessThanOrEqual](Assertable.md#shouldbelessthanorequal)
 - [shouldBeSelected](Assertable.md#shouldbeselected)
 - [shouldBeVisible](Assertable.md#shouldbevisible)
 - [shouldContainText](Assertable.md#shouldcontaintext)
@@ -219,9 +219,9 @@ then(get.elementByTestId("selector")).shouldBeFocused()
 
 ___
 
-### shouldBeGreaterThen
+### shouldBeGreaterThan
 
-▸ **shouldBeGreaterThen**(`value`): `Chainable`<`T`\>
+▸ **shouldBeGreaterThan**(`value`): `Chainable`<`T`\>
 
 Asserts that the target is a number or a date greater than the given number or date n respectively.
 However, it's often best to assert that the target is equal to its expected value.
@@ -239,14 +239,14 @@ However, it's often best to assert that the target is equal to its expected valu
 **`Example`**
 
 ```ts
-   then(get.numberOfElements("radio")).shouldBeGreaterThen(5);
+   then(get.numberOfElements("radio")).shouldBeGreaterThan(5);
 ```
 
 ___
 
-### shouldBeGreaterThenOrEqual
+### shouldBeGreaterThanOrEqual
 
-▸ **shouldBeGreaterThenOrEqual**(`value`): `Chainable`<`T`\>
+▸ **shouldBeGreaterThanOrEqual**(`value`): `Chainable`<`T`\>
 
 Asserts that the target is a number or a date greater than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
 
@@ -263,14 +263,14 @@ Asserts that the target is a number or a date greater than or equal to the given
 **`Example`**
 
 ```ts
-  then(get.numberOfElements("radio")).shouldBeGreaterThenOrEqual(5);
+  then(get.numberOfElements("radio")).shouldBeGreaterThanOrEqual(5);
 ```
 
 ___
 
-### shouldBeLessThen
+### shouldBeLessThan
 
-▸ **shouldBeLessThen**(`value`): `Chainable`<`T`\>
+▸ **shouldBeLessThan**(`value`): `Chainable`<`T`\>
 
 Asserts that the target is a number or a n date less than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
 
@@ -292,9 +292,9 @@ Asserts that the target is a number or a n date less than or equal to the given 
 
 ___
 
-### shouldBeLessThenOrEqual
+### shouldBeLessThanOrEqual
 
-▸ **shouldBeLessThenOrEqual**(`value`): `Chainable`<`T`\>
+▸ **shouldBeLessThanOrEqual**(`value`): `Chainable`<`T`\>
 
 Asserts that the target is a number or a date less than or equal to the given number or date n respectively.
 However, it's often best to assert that the target is equal to its expected value.
@@ -312,7 +312,7 @@ However, it's often best to assert that the target is equal to its expected valu
 **`Example`**
 
 ```ts
-then(get.numberOfElements('list-item')).shouldBeLessThenOrEqual(5)
+then(get.numberOfElements('list-item')).shouldBeLessThanOrEqual(5)
 ```
 
 ___
@@ -671,6 +671,21 @@ Assert spy was called with matching arguments (and possibly others).
 
 ```ts
 then(get.spy("onSomething")).shouldHaveBeenCalledWithMatch(match({ id: 1 }))
+```
+
+**`Example`**
+
+```ts
+ it('should call the get method of the HTTP client with a URL with query param filter = status', () => {
+  healthService.fetchHealthResults(status);
+  then(get.mock.httpClientService().get).shouldHaveBeenCalledWith(
+    match(baseURL),
+    match.hasNested(
+      'params.updates[0]',
+      match({ param: 'filter', value: `status eq ${status}` })
+    )
+  );
+});
 ```
 
 ___
