@@ -244,10 +244,10 @@ export class Assertable<T> {
    * However, it's often best to assert that the target is equal to its expected value.
    * @example
    * ```ts
-   *    then(get.numberOfElements("radio")).shouldBeGreaterThen(5);
+   *    then(get.numberOfElements("radio")).shouldBeGreaterThan(5);
    * ```
    */
-  public shouldBeGreaterThen = (value: number) =>
+  public shouldBeGreaterThan = (value: number) =>
     this.chainable.should("be.gt", value);
   /** Asserts that the target is a number or a n date less than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
    * @example
@@ -255,23 +255,23 @@ export class Assertable<T> {
    *    then(get.numberOfElements("radio")).shouldBeLessThen(5);
    * ```
    */
-  public shouldBeLessThen = (value: number) =>
+  public shouldBeLessThan = (value: number) =>
     this.chainable.should("be.lt", value);
   /** Asserts that the target is a number or a date greater than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
    * @example
    * ```ts
-   *   then(get.numberOfElements("radio")).shouldBeGreaterThenOrEqual(5);
+   *   then(get.numberOfElements("radio")).shouldBeGreaterThanOrEqual(5);
    * ```
    */
-  public shouldBeGreaterThenOrEqual = (value: number) =>
+  public shouldBeGreaterThanOrEqual = (value: number) =>
     this.chainable.should("be.gte", value);
   /**
    * Asserts that the target is a number or a date less than or equal to the given number or date n respectively.
    * However, it's often best to assert that the target is equal to its expected value.
    * @example
-   *    then(get.numberOfElements('list-item')).shouldBeLessThenOrEqual(5)
+   *    then(get.numberOfElements('list-item')).shouldBeLessThanOrEqual(5)
    */
-  public shouldBeLessThenOrEqual = (value: number) =>
+  public shouldBeLessThanOrEqual = (value: number) =>
     this.chainable.should("be.lte", value);
   /** Assert that at least one element of the selection is checked, using .is(':checked').
    * @example
@@ -341,6 +341,20 @@ export class Assertable<T> {
    * @example
    * ```ts
    * then(get.spy("onSomething")).shouldHaveBeenCalledWithMatch(match({ id: 1 }))
+   * ```
+   *
+   * @example
+   * ```ts
+   *  it('should call the get method of the HTTP client with a URL with query param filter = status', () => {
+   *   healthService.fetchHealthResults(status);
+   *   then(get.mock.httpClientService().get).shouldHaveBeenCalledWith(
+   *     match(baseURL),
+   *     match.hasNested(
+   *       'params.updates[0]',
+   *       match({ param: 'filter', value: `status eq ${status}` })
+   *     )
+   *   );
+   * });
    * ```
    */
   public shouldHaveBeenCalledWithMatch = (...args: any[]) =>
