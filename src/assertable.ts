@@ -334,6 +334,20 @@ export class Assertable<T> {
    * ```ts
    * then(get.spy("onSomething")).shouldHaveBeenCalledWithMatch(match({ id: 1 }))
    * ```
+   *
+   * @example
+   * ```ts
+   *  it('should call the get method of the HTTP client with a URL with query param filter = status', () => {
+   *   healthService.fetchHealthResults(status);
+   *   then(get.mock.httpClientService().get).shouldHaveBeenCalledWith(
+   *     match(baseURL),
+   *     match.hasNested(
+   *       'params.updates[0]',
+   *       match({ param: 'filter', value: `status eq ${status}` })
+   *     )
+   *   );
+   * });
+   * ```
    */
   public shouldHaveBeenCalledWithMatch = (...args: any[]) =>
     this.chainable.should("have.been.calledWithMatch", ...args);
