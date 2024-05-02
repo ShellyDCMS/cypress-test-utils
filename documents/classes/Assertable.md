@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.0.56](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.0.57](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
@@ -100,6 +100,7 @@ class Driver {
 - [shouldNotExist](Assertable.md#shouldnotexist)
 - [shouldNotHaveBeenCalled](Assertable.md#shouldnothavebeencalled)
 - [shouldNotHaveBeenCalledTimes](Assertable.md#shouldnothavebeencalledtimes)
+- [shouldNotInclude](Assertable.md#shouldnotinclude)
 - [shouldNotThrow](Assertable.md#shouldnotthrow)
 - [shouldStartWith](Assertable.md#shouldstartwith)
 - [shouldThrow](Assertable.md#shouldthrow)
@@ -965,6 +966,30 @@ Asserts spy was NOT called exactly n times
 
 ```ts
 then(get.spy("onSomething")).shouldNotHaveBeenCalledTimes(5)
+```
+
+___
+
+### shouldNotInclude
+
+▸ **shouldNotInclude**(`value`): `Chainable`<`T`\>
+
+When the target is a string, `not.include` asserts that the given string val is not a substring of the target.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`Chainable`<`T`\>
+
+**`Example`**
+
+```ts
+   then(helper.get.elementsText('selector)).shouldNotContain('test')
 ```
 
 ___
