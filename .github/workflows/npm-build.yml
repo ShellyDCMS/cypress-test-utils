@@ -31,7 +31,7 @@ jobs:
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
-          dir: ./docs/site
+          dir: docs/docs/site
           branch: gh-pages
           token: ${{ secrets.ACCESS_TOKEN }}
       - name: Tests Report
