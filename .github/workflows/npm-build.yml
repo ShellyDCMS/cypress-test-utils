@@ -28,6 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version-type: "minor"
+          skip-tag: "true"
       - run: npm run build
       - run: npm run cy:run
       - run: npm run generate-md-docs
