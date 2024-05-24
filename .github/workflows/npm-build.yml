@@ -29,12 +29,19 @@ jobs:
         with:
           version-type: "minor"
           skip-tag: "true"
+          target-branch: "main"
       - run: npm run build
       - run: npm run cy:run
       - name: Build the Docs
         run: |
           npm run generate-md-docs
           docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+      - name: Publish generated content to GitHub Pages
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: docs
+          branch: gh-pages
+          token: ${{ secrets.ACCESS_TOKEN }}
       - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
         id: test-report
