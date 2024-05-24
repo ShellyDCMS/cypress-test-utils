@@ -31,6 +31,8 @@ jobs:
       - run: npm run build
       - run: npm run cy:run
       - run: npm run generate-md-docs
+      - name: Build with MkDocs
+        uses: romw314/mkdocs-action@v2
       - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
         id: test-report
