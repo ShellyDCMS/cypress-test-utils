@@ -35,7 +35,7 @@ jobs:
       - name: Build the Docs
         run: |
           npm run generate-md-docs
-          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+          docker run --rm -v ${PWD}:/ squidfunk/mkdocs-material build
       - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
         id: test-report
