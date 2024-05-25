@@ -1,6 +1,6 @@
-[@shellygo/cypress-test-utils - v2.5.0](README.md) / Modules
+[@shellygo/cypress-test-utils - v2.1.0](README.md) / Modules
 
-# @shellygo/cypress-test-utils - v2.5.0
+# @shellygo/cypress-test-utils - v2.1.0
 
 ## Table of contents
 
@@ -303,3 +303,4 @@ class Driver {
  };
  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
 }
+```

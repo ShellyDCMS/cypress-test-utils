@@ -1,4 +1,4 @@
-[@shellygo/cypress-test-utils - v2.5.0](../README.md) / [Modules](../modules.md) / Assertable
+[@shellygo/cypress-test-utils - v2.1.0](../README.md) / [Modules](../modules.md) / Assertable
 
 # Class: Assertable<T\>
 
