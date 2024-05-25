@@ -19,12 +19,36 @@ jobs:
           node-version: 18
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version-type: "minor"
+          skip-tag: "true"
+          target-branch: "main"
       - run: npm run build
+      - name: Build the Docs
+        run: |
+          npm run generate-md-docs
+          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+      - name: Publish generated content to GitHub Pages
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: docs
+          branch: gh-pages
+          token: ${{ secrets.ACCESS_TOKEN }}
       - run: npm run cy:run
-      - run: npm run generate-md-docs
-      - name: Generate html docs
-        run: npm run generate-docs
-
+      - name: Build the Docs
+        run: |
+          npm run generate-md-docs          
+          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+      - name: Publish generated content to GitHub Pages
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: site
+          branch: gh-pages
+          token: ${{ secrets.ACCESS_TOKEN }}
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
