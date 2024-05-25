@@ -1,0 +1,4230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../modules.html">
+      
+      
+        <link rel="next" href="CypressAngularComponentHelper.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+    
+    
+      
+        <title>Assertable - Cypress Test Utils</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-assertablet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cypress Test Utils" class="md-header__button md-logo" aria-label="Cypress Test Utils" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cypress Test Utils
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Assertable
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../modules.html" class="md-tabs__link">
+        
+  
+    
+  
+  Modules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="Assertable.html" class="md-tabs__link">
+          
+  
+  Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cypress Test Utils" class="md-nav__button md-logo" aria-label="Cypress Test Utils" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Cypress Test Utils
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Classes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Classes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Assertable
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Assertable.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Assertable
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#type-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructors_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constructors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      constructor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="constructor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chainable" class="md-nav__link">
+    <span class="md-ellipsis">
+      chainable
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#should" class="md-nav__link">
+    <span class="md-ellipsis">
+      should
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="should">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbechecked" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeChecked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeChecked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbedisabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeDisabled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeDisabled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbeenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeEnabled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeEnabled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbefocused" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeFocused
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeFocused">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbegreaterthan" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeGreaterThan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeGreaterThan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbegreaterthanorequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeGreaterThanOrEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeGreaterThanOrEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbelessthan" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeLessThan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeLessThan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbelessthanorequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeLessThanOrEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeLessThanOrEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbeselected" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeSelected
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeSelected">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbevisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeVisible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeVisible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldcontaintext" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldContainText
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldContainText">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shoulddeepequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldDeepEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldDeepEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shoulddeepnestedinclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldDeepNestedInclude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldDeepNestedInclude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldendwith" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldEndWith
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldEndWith">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldexist" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldExist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldExist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhaveattribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveAttribute
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveAttribute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledonce" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledOnce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledOnce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledthrice" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledThrice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledThrice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledTimes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledTimes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledtwice" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledTwice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledTwice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledwith" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledWith
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledWith">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledwithmatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledWithMatch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledWithMatch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhaveclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveClass
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveClass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavecss" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveCss
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveCss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveLength
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveLength">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavetext" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveText
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveText">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavevalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveValue
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveValue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbechecked" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeChecked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeChecked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbefocused" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeFocused
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeFocused">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbeselected" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeSelected
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeSelected">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbevisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeVisible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeVisible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotexist" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotExist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotExist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnothavebeencalled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotHaveBeenCalled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotHaveBeenCalled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnothavebeencalledtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotHaveBeenCalledTimes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotHaveBeenCalledTimes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotinclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotInclude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotInclude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotthrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotThrow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotThrow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldstartwith" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldStartWith
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldStartWith">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldthrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldThrow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldThrow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CypressAngularComponentHelper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CypressAngularComponentHelper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CypressHelper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CypressHelper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CypressHelperOptions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CypressHelperOptions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CypressLitComponentHelper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CypressLitComponentHelper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CypressReactComponentHelper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CypressReactComponentHelper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#type-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructors_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constructors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      constructor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="constructor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chainable" class="md-nav__link">
+    <span class="md-ellipsis">
+      chainable
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#should" class="md-nav__link">
+    <span class="md-ellipsis">
+      should
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="should">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbechecked" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeChecked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeChecked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbedisabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeDisabled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeDisabled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbeenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeEnabled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeEnabled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbefocused" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeFocused
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeFocused">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbegreaterthan" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeGreaterThan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeGreaterThan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbegreaterthanorequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeGreaterThanOrEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeGreaterThanOrEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbelessthan" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeLessThan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeLessThan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbelessthanorequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeLessThanOrEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeLessThanOrEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbeselected" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeSelected
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeSelected">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldbevisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldBeVisible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldBeVisible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldcontaintext" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldContainText
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldContainText">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shoulddeepequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldDeepEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldDeepEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shoulddeepnestedinclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldDeepNestedInclude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldDeepNestedInclude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldendwith" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldEndWith
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldEndWith">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldequal" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldEqual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldEqual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldexist" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldExist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldExist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhaveattribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveAttribute
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveAttribute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledonce" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledOnce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledOnce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledthrice" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledThrice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledThrice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledTimes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledTimes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledtwice" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledTwice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledTwice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledwith" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledWith
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledWith">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavebeencalledwithmatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveBeenCalledWithMatch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveBeenCalledWithMatch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhaveclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveClass
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveClass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavecss" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveCss
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveCss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveLength
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveLength">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavetext" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveText
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveText">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldhavevalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldHaveValue
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldHaveValue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbechecked" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeChecked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeChecked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbefocused" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeFocused
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeFocused">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbeselected" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeSelected
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeSelected">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotbevisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotBeVisible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotBeVisible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotexist" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotExist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotExist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnothavebeencalled" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotHaveBeenCalled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotHaveBeenCalled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#returns_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnothavebeencalledtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotHaveBeenCalledTimes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotHaveBeenCalledTimes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotinclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotInclude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotInclude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldnotthrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldNotThrow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldNotThrow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldstartwith" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldStartWith
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldStartWith">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shouldthrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      shouldThrow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shouldThrow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p><a href="../index.html">@shellygo/cypress-test-utils - v2.5.0</a> / <a href="../modules.html">Modules</a> / Assertable</p>
+<h1 id="class-assertablet">Class: Assertable&lt;T&gt;</h1>
+<p>Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
+By using the Assertable class, you can use the same assertions in your tests, regardless of the testing framework you use.
+All you need to do if you wish to replace Cypress with another testing framework and keep your tests, is to replace the implementation of the Assertable class.
+You can also add assertions of your own, by extending Assertable class.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">import { Assertable, CypressHelper, then } from &quot;@shellygo/cypress-test-utils&quot;;
+
+class MyAssertable&lt;T&gt; extends Assertable&lt;T&gt; {
+  private styleFromWindow = (win: Window) =&gt; {
+    const styleItem = win.localStorage.getItem(`style`);
+    return JSON.parse(styleItem || &quot;&quot;);
+  };
+
+  public shouldEqualToStoredStyle = () =&gt;
+    then(
+      new CypressHelper().get.window().then((win) =&gt; {
+         const style = styleFromWindow(win);
+         then(this.chainable).shouldDeepNestedInclude(style);
+      })
+    );
+}
+
+class Driver {
+ public given = {
+ .
+ .
+ };
+ public when = {
+ .
+ .
+ };
+ public get = {
+ .
+ .
+ };
+ public then = (chainable: Cypress.Chainable&lt;any&gt;) =&gt; new MyAssertable(chainable);
+}
+</code></pre>
+<h2 id="type-parameters">Type parameters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>T</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-of-contents">Table of contents</h2>
+<h3 id="constructors">Constructors</h3>
+<ul>
+<li><a href="Assertable.html#constructor">constructor</a></li>
+</ul>
+<h3 id="properties">Properties</h3>
+<ul>
+<li><a href="Assertable.html#chainable">chainable</a></li>
+</ul>
+<h3 id="methods">Methods</h3>
+<ul>
+<li><a href="Assertable.html#should">should</a></li>
+<li><a href="Assertable.html#shouldbechecked">shouldBeChecked</a></li>
+<li><a href="Assertable.html#shouldbedisabled">shouldBeDisabled</a></li>
+<li><a href="Assertable.html#shouldbeenabled">shouldBeEnabled</a></li>
+<li><a href="Assertable.html#shouldbefocused">shouldBeFocused</a></li>
+<li><a href="Assertable.html#shouldbegreaterthan">shouldBeGreaterThan</a></li>
+<li><a href="Assertable.html#shouldbegreaterthanorequal">shouldBeGreaterThanOrEqual</a></li>
+<li><a href="Assertable.html#shouldbelessthan">shouldBeLessThan</a></li>
+<li><a href="Assertable.html#shouldbelessthanorequal">shouldBeLessThanOrEqual</a></li>
+<li><a href="Assertable.html#shouldbeselected">shouldBeSelected</a></li>
+<li><a href="Assertable.html#shouldbevisible">shouldBeVisible</a></li>
+<li><a href="Assertable.html#shouldcontaintext">shouldContainText</a></li>
+<li><a href="Assertable.html#shoulddeepequal">shouldDeepEqual</a></li>
+<li><a href="Assertable.html#shoulddeepnestedinclude">shouldDeepNestedInclude</a></li>
+<li><a href="Assertable.html#shouldendwith">shouldEndWith</a></li>
+<li><a href="Assertable.html#shouldequal">shouldEqual</a></li>
+<li><a href="Assertable.html#shouldexist">shouldExist</a></li>
+<li><a href="Assertable.html#shouldhaveattribute">shouldHaveAttribute</a></li>
+<li><a href="Assertable.html#shouldhavebeencalled">shouldHaveBeenCalled</a></li>
+<li><a href="Assertable.html#shouldhavebeencalledonce">shouldHaveBeenCalledOnce</a></li>
+<li><a href="Assertable.html#shouldhavebeencalledthrice">shouldHaveBeenCalledThrice</a></li>
+<li><a href="Assertable.html#shouldhavebeencalledtimes">shouldHaveBeenCalledTimes</a></li>
+<li><a href="Assertable.html#shouldhavebeencalledtwice">shouldHaveBeenCalledTwice</a></li>
+<li><a href="Assertable.html#shouldhavebeencalledwith">shouldHaveBeenCalledWith</a></li>
+<li><a href="Assertable.html#shouldhavebeencalledwithmatch">shouldHaveBeenCalledWithMatch</a></li>
+<li><a href="Assertable.html#shouldhaveclass">shouldHaveClass</a></li>
+<li><a href="Assertable.html#shouldhavecss">shouldHaveCss</a></li>
+<li><a href="Assertable.html#shouldhavelength">shouldHaveLength</a></li>
+<li><a href="Assertable.html#shouldhavetext">shouldHaveText</a></li>
+<li><a href="Assertable.html#shouldhavevalue">shouldHaveValue</a></li>
+<li><a href="Assertable.html#shouldinclude">shouldInclude</a></li>
+<li><a href="Assertable.html#shouldnotbechecked">shouldNotBeChecked</a></li>
+<li><a href="Assertable.html#shouldnotbefocused">shouldNotBeFocused</a></li>
+<li><a href="Assertable.html#shouldnotbeselected">shouldNotBeSelected</a></li>
+<li><a href="Assertable.html#shouldnotbevisible">shouldNotBeVisible</a></li>
+<li><a href="Assertable.html#shouldnotexist">shouldNotExist</a></li>
+<li><a href="Assertable.html#shouldnothavebeencalled">shouldNotHaveBeenCalled</a></li>
+<li><a href="Assertable.html#shouldnothavebeencalledtimes">shouldNotHaveBeenCalledTimes</a></li>
+<li><a href="Assertable.html#shouldnotinclude">shouldNotInclude</a></li>
+<li><a href="Assertable.html#shouldnotthrow">shouldNotThrow</a></li>
+<li><a href="Assertable.html#shouldstartwith">shouldStartWith</a></li>
+<li><a href="Assertable.html#shouldthrow">shouldThrow</a></li>
+</ul>
+<h2 id="constructors_1">Constructors</h2>
+<h3 id="constructor">constructor</h3>
+<p>• <strong>new Assertable</strong>&lt;<code>T</code>&gt;(<code>chainable</code>)</p>
+<h4 id="type-parameters_1">Type parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>T</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>chainable</code></td>
+<td style="text-align: left;"><code>Chainable</code>&lt;<code>T</code>&gt;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties_1">Properties</h2>
+<h3 id="chainable">chainable</h3>
+<p>• <code>Protected</code> <code>Readonly</code> <strong>chainable</strong>: <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<h2 id="methods_1">Methods</h2>
+<h3 id="should">should</h3>
+<p>▸ <strong>should</strong>(<code>chainer</code>, <code>...rest</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<h4 id="parameters_1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>chainer</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>...rest</code></td>
+<td style="text-align: left;"><code>any</code>[]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<hr />
+<h3 id="shouldbechecked">shouldBeChecked</h3>
+<p>▸ <strong>shouldBeChecked</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is checked, using .is(':checked').</p>
+<h4 id="returns_1">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.elementByTestId(&quot;checkbox-selector&quot;)).shouldBeChecked()
+</code></pre>
+<hr />
+<h3 id="shouldbedisabled">shouldBeDisabled</h3>
+<p>▸ <strong>shouldBeDisabled</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is disabled, using <code>.is(':disabled')</code>.</p>
+<h4 id="returns_2">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.elementByTestId(&quot;selector&quot;)).shouldBeDisabled()
+</code></pre>
+<hr />
+<h3 id="shouldbeenabled">shouldBeEnabled</h3>
+<p>▸ <strong>shouldBeEnabled</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is enabled, using <code>.is(':enabled')</code>.</p>
+<h4 id="returns_3">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.elementByTestId(&quot;selector&quot;)).shouldBeEnabled()
+</code></pre>
+<hr />
+<h3 id="shouldbefocused">shouldBeFocused</h3>
+<p>▸ <strong>shouldBeFocused</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is focused.</p>
+<h4 id="returns_4">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldBeFocused()
+</code></pre>
+<hr />
+<h3 id="shouldbegreaterthan">shouldBeGreaterThan</h3>
+<p>▸ <strong>shouldBeGreaterThan</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target is a number or a date greater than the given number or date n respectively.
+However, it's often best to assert that the target is equal to its expected value.</p>
+<h4 id="parameters_2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_5">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.numberOfElements(&quot;radio&quot;)).shouldBeGreaterThan(5);
+</code></pre>
+<hr />
+<h3 id="shouldbegreaterthanorequal">shouldBeGreaterThanOrEqual</h3>
+<p>▸ <strong>shouldBeGreaterThanOrEqual</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target is a number or a date greater than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.</p>
+<h4 id="parameters_3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_6">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">  then(get.numberOfElements(&quot;radio&quot;)).shouldBeGreaterThanOrEqual(5);
+</code></pre>
+<hr />
+<h3 id="shouldbelessthan">shouldBeLessThan</h3>
+<p>▸ <strong>shouldBeLessThan</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target is a number or a n date less than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.</p>
+<h4 id="parameters_4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_7">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.numberOfElements(&quot;radio&quot;)).shouldBeLessThen(5);
+</code></pre>
+<hr />
+<h3 id="shouldbelessthanorequal">shouldBeLessThanOrEqual</h3>
+<p>▸ <strong>shouldBeLessThanOrEqual</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target is a number or a date less than or equal to the given number or date n respectively.
+However, it's often best to assert that the target is equal to its expected value.</p>
+<h4 id="parameters_5">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_8">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.numberOfElements('list-item')).shouldBeLessThanOrEqual(5)
+</code></pre>
+<hr />
+<h3 id="shouldbeselected">shouldBeSelected</h3>
+<p>▸ <strong>shouldBeSelected</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is selected, using .is(':selected').</p>
+<h4 id="returns_9">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldBeSelected()
+</code></pre>
+<hr />
+<h3 id="shouldbevisible">shouldBeVisible</h3>
+<p>▸ <strong>shouldBeVisible</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is visible, using .is(':visible').</p>
+<h4 id="returns_10">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldBeVisible()
+</code></pre>
+<hr />
+<h3 id="shouldcontaintext">shouldContainText</h3>
+<p>▸ <strong>shouldContainText</strong>(<code>text</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the text of the first element of the selection partially contains the given text, using .text().</p>
+<h4 id="parameters_6">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>text</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_11">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldContainText(&quot;test&quot;)
+</code></pre>
+<hr />
+<h3 id="shoulddeepequal">shouldDeepEqual</h3>
+<p>▸ <strong>shouldDeepEqual</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Causes all <code>.equal</code>, <code>.include</code>, <code>.members</code>, <code>.keys</code>, and <code>.property</code> assertions that follow in the chain to use deep equality instead of strict (<code>===</code>) equality. See the <code>deep-eql</code> project page for info on the deep equality algorithm: https://github.com/chaijs/deep-eql.</p>
+<h4 id="parameters_7">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>any</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_12">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(
+  get.fixture(&quot;user&quot;)).shouldDeepEqual({
+    name: &quot;Jane Doe&quot;,
+    id: &quot;1234&quot;
+})
+</code></pre>
+<hr />
+<h3 id="shoulddeepnestedinclude">shouldDeepNestedInclude</h3>
+<p>▸ <strong>shouldDeepNestedInclude</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target has a property with the given key <code>name</code>.</p>
+<h4 id="parameters_8">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>any</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_13">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(
+  get.fixture(&quot;user&quot;)).shouldDeepNestedInclude({
+    name: &quot;Jane Doe&quot;,
+    id: &quot;1234&quot;,
+    nested: {
+      attr1: &quot;something&quot;,
+      attr2: &quot;the other thing&quot;
+  }
+})
+</code></pre>
+<hr />
+<h3 id="shouldendwith">shouldEndWith</h3>
+<p>▸ <strong>shouldEndWith</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>string</code>&gt;</p>
+<p>Asserts that text ends with value</p>
+<h4 id="parameters_9">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_14">Returns</h4>
+<p><code>Chainable</code>&lt;<code>string</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">  then(helper.get.elementsText('selector)).shouldEndWith('test')
+</code></pre>
+<hr />
+<h3 id="shouldequal">shouldEqual</h3>
+<p>▸ <strong>shouldEqual</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target is strictly (<code>===</code>) equal to the given <code>val</code>.</p>
+<h4 id="parameters_10">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>any</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_15">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.inputValue(&quot;name-input&quot;)).shouldEqual(&quot;John&quot;)
+</code></pre>
+<hr />
+<h3 id="shouldexist">shouldExist</h3>
+<p>▸ <strong>shouldExist</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the selection is not empty.
+Note that this overrides the built-in chai assertion.
+If the object asserted against is not a jQuery object, the original implementation will be called.</p>
+<h4 id="returns_16">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">  then(get.elementByTestId(&quot;selector&quot;)).shouldExist()
+</code></pre>
+<hr />
+<h3 id="shouldhaveattribute">shouldHaveAttribute</h3>
+<p>▸ <strong>shouldHaveAttribute</strong>(<code>attribute</code>, <code>expectedValue</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the first element of the selection has the given attribute, using <code>.attr()</code>.
+Optionally, assert a particular value as well. The return value is available for chaining.</p>
+<h4 id="parameters_11">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>attribute</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>expectedValue</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_17">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts"> then(get.elementByTestId(&quot;selector&quot;)).shouldHaveAttribute(&quot;test&quot;)
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalled">shouldHaveBeenCalled</h3>
+<p>▸ <strong>shouldHaveBeenCalled</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was called ate least once</p>
+<h4 id="returns_18">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalled()
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalledonce">shouldHaveBeenCalledOnce</h3>
+<p>▸ <strong>shouldHaveBeenCalledOnce</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was called exactly once</p>
+<h4 id="returns_19">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalledOnce()
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalledthrice">shouldHaveBeenCalledThrice</h3>
+<p>▸ <strong>shouldHaveBeenCalledThrice</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was called exactly thrice</p>
+<h4 id="returns_20">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalledThrice()
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalledtimes">shouldHaveBeenCalledTimes</h3>
+<p>▸ <strong>shouldHaveBeenCalledTimes</strong>(<code>n</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was called exactly n times</p>
+<h4 id="parameters_12">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>n</code></td>
+<td style="text-align: left;"><code>number</code></td>
+<td style="text-align: left;">number of times spy should have been called</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_21">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalledTimes(5)
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalledtwice">shouldHaveBeenCalledTwice</h3>
+<p>▸ <strong>shouldHaveBeenCalledTwice</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was called exactly twice</p>
+<h4 id="returns_22">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalledTwice()
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalledwith">shouldHaveBeenCalledWith</h3>
+<p>▸ <strong>shouldHaveBeenCalledWith</strong>(<code>...args</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert spy was called at least once with the provided arguments.</p>
+<h4 id="parameters_13">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>...args</code></td>
+<td style="text-align: left;"><code>any</code>[]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_23">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalledWith({ id: 1 })
+</code></pre>
+<hr />
+<h3 id="shouldhavebeencalledwithmatch">shouldHaveBeenCalledWithMatch</h3>
+<p>▸ <strong>shouldHaveBeenCalledWithMatch</strong>(<code>...args</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert spy was called with matching arguments (and possibly others).</p>
+<h4 id="parameters_14">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>...args</code></td>
+<td style="text-align: left;"><code>any</code>[]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_24">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldHaveBeenCalledWithMatch(match({ id: 1 }))
+</code></pre>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts"> it('should call the get method of the HTTP client with a URL with query param filter = status', () =&gt; {
+  healthService.fetchHealthResults(status);
+  then(get.mock.httpClientService().get).shouldHaveBeenCalledWith(
+    match(baseURL),
+    match.hasNested(
+      'params.updates[0]',
+      match({ param: 'filter', value: `status eq ${status}` })
+    )
+  );
+});
+</code></pre>
+<hr />
+<h3 id="shouldhaveclass">shouldHaveClass</h3>
+<p>▸ <strong>shouldHaveClass</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the selection has the given CSS class.</p>
+<h4 id="parameters_15">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_25">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">  then(get.elementByTestId(&quot;selector&quot;)).shouldHaveClass(&quot;test&quot;)
+</code></pre>
+<hr />
+<h3 id="shouldhavecss">shouldHaveCss</h3>
+<p>▸ <strong>shouldHaveCss</strong>(<code>property</code>, <code>expectedValue</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that an element has a css property with the given value.</p>
+<h4 id="parameters_16">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>property</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>expectedValue</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_26">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldHaveCss(&quot;color&quot;, &quot;rgb(102, 102, 102)&quot;&quot;)
+</code></pre>
+<hr />
+<h3 id="shouldhavelength">shouldHaveLength</h3>
+<p>▸ <strong>shouldHaveLength</strong>(<code>length</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts that the target's length property is equal to the given number n..</p>
+<h4 id="parameters_17">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>length</code></td>
+<td style="text-align: left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_27">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.elementByTestId(&quot;selector&quot;)).shouldHaveLength(3)
+</code></pre>
+<hr />
+<h3 id="shouldhavetext">shouldHaveText</h3>
+<p>▸ <strong>shouldHaveText</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the text of the first element of the selection is equal to the given text, using .text().</p>
+<h4 id="parameters_18">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_28">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts"> then(get.elementByTestId(&quot;selector&quot;)).shouldHaveText(&quot;test&quot;)
+</code></pre>
+<hr />
+<h3 id="shouldhavevalue">shouldHaveValue</h3>
+<p>▸ <strong>shouldHaveValue</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the first element of the selection has the given value, using .val().</p>
+<h4 id="parameters_19">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_29">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldHaveValue(&quot;test&quot;)
+ ```
+
+___
+
+### shouldInclude
+
+▸ **shouldInclude**(`value`): `Chainable`&lt;`T`\&gt;
+
+When the target is a string, `.include` asserts that the given string val is a substring of the target.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`Chainable`&lt;`T`\&gt;
+
+**`Example`**
+
+```ts
+   then(helper.get.elementsText('selector)).shouldContain('test')
+</code></pre>
+<hr />
+<h3 id="shouldnotbechecked">shouldNotBeChecked</h3>
+<p>▸ <strong>shouldNotBeChecked</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is not checked, using .is(':checked').</p>
+<h4 id="returns_30">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">  then(get.elementByTestId(&quot;checkbox-selector&quot;)).shouldNotBeChecked()
+</code></pre>
+<hr />
+<h3 id="shouldnotbefocused">shouldNotBeFocused</h3>
+<p>▸ <strong>shouldNotBeFocused</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that no element of the selection is focused.</p>
+<h4 id="returns_31">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldNotBeFocused()
+</code></pre>
+<hr />
+<h3 id="shouldnotbeselected">shouldNotBeSelected</h3>
+<p>▸ <strong>shouldNotBeSelected</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is not selected, using .is(':selected').</p>
+<h4 id="returns_32">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldNotBeSelected()
+</code></pre>
+<hr />
+<h3 id="shouldnotbevisible">shouldNotBeVisible</h3>
+<p>▸ <strong>shouldNotBeVisible</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that at least one element of the selection is not visible, using .is(':visible').</p>
+<h4 id="returns_33">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.elementByTestId(&quot;selector&quot;)).shouldNotBeVisible()
+</code></pre>
+<hr />
+<h3 id="shouldnotexist">shouldNotExist</h3>
+<p>▸ <strong>shouldNotExist</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Assert that the selection is empty.
+Note that this overrides the built-in chai assertion.
+If the object asserted against is not a jQuery object, the original implementation will be called.</p>
+<h4 id="returns_34">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(get.elementByTestId(&quot;selector&quot;)).shouldNotExist()
+</code></pre>
+<hr />
+<h3 id="shouldnothavebeencalled">shouldNotHaveBeenCalled</h3>
+<p>▸ <strong>shouldNotHaveBeenCalled</strong>(): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was not called</p>
+<h4 id="returns_35">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldNotHaveBeenCalled()
+</code></pre>
+<hr />
+<h3 id="shouldnothavebeencalledtimes">shouldNotHaveBeenCalledTimes</h3>
+<p>▸ <strong>shouldNotHaveBeenCalledTimes</strong>(<code>n</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>Asserts spy was NOT called exactly n times</p>
+<h4 id="parameters_20">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>n</code></td>
+<td style="text-align: left;"><code>number</code></td>
+<td style="text-align: left;">number of times spy should NOT have been called</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_36">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">then(get.spy(&quot;onSomething&quot;)).shouldNotHaveBeenCalledTimes(5)
+</code></pre>
+<hr />
+<h3 id="shouldnotinclude">shouldNotInclude</h3>
+<p>▸ <strong>shouldNotInclude</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>When the target is a string, <code>not.include</code> asserts that the given string val is not a substring of the target.</p>
+<h4 id="parameters_21">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>any</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_37">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">   then(helper.get.elementsText('selector)).shouldNotContain('test')
+</code></pre>
+<hr />
+<h3 id="shouldnotthrow">shouldNotThrow</h3>
+<p>▸ <strong>shouldNotThrow</strong>(<code>value?</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>When no arguments are provided, shouldThrow invokes the target function and asserts that no error is thrown.
+When one argument is provided, and it's a string, shouldThrow invokes the target function and asserts that no error is thrown with a message that contains that string.</p>
+<h4 id="parameters_22">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value?</code></td>
+<td style="text-align: left;"><code>string</code> | <code>RegExp</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_38">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">function badFn() { console.log('Illegal salmon!') }
+then(() =&gt; badFn()).shouldNotThrow()
+then(() =&gt; badFn()).shouldNotThrow('salmon')
+then(() =&gt; badFn()).shouldNotThrow(/salmon/)
+</code></pre>
+<hr />
+<h3 id="shouldstartwith">shouldStartWith</h3>
+<p>▸ <strong>shouldStartWith</strong>(<code>value</code>): <code>Chainable</code>&lt;<code>string</code>&gt;</p>
+<p>Asserts that text starts with value</p>
+<h4 id="parameters_23">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value</code></td>
+<td style="text-align: left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_39">Returns</h4>
+<p><code>Chainable</code>&lt;<code>string</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">  then(helper.get.elementsText('selector)).shouldStartWith('test')
+</code></pre>
+<hr />
+<h3 id="shouldthrow">shouldThrow</h3>
+<p>▸ <strong>shouldThrow</strong>(<code>value?</code>): <code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p>When no arguments are provided, shouldThrow invokes the target function and asserts that an error is thrown.
+When one argument is provided, and it's a string, shouldThrow invokes the target function and asserts that an error is thrown with a message that contains that string.</p>
+<h4 id="parameters_24">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>value?</code></td>
+<td style="text-align: left;"><code>string</code> | <code>RegExp</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_40">Returns</h4>
+<p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="language-ts">function badFn() { throw new TypeError('Illegal salmon!') }
+then(() =&gt; badFn()).shouldThrow()
+then(() =&gt; badFn()).shouldThrow('salmon')
+then(() =&gt; badFn()).shouldThrow(/salmon/)
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "toc.follow", "search.suggest", "navigation.instant", "navigation.sections", "navigation.top"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+    
+  </body>
+</html>
