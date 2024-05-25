@@ -20,16 +20,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
-      - name: Build the Docs
-        run: |
-          npm run generate-md-docs
-          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
-      - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
-        with:
-          dir: docs
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
       - run: npm run cy:run
       - name: Build the Docs
         run: |
@@ -39,12 +29,6 @@ jobs:
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
           dir: site
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
-      - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
-        with:
-          dir: docs
           branch: gh-pages
           token: ${{ secrets.ACCESS_TOKEN }}
       - name: Tests Report
@@ -59,3 +43,10 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Publish generated content to GitHub Pages
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: docs
+          branch: gh-pages
+          token: ${{ secrets.ACCESS_TOKEN }}
