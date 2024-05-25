@@ -23,20 +23,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile
       - run: npm run build
-      - run: npm run generate-md-docs
       - run: npm run cy:run
-      - name: Build the Docs
-        run: |
-          npm run generate-md-docs
-          ls docs/
-          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
-          ls site/
-      - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
-        with:
-          dir: site
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
       - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
         id: test-report
