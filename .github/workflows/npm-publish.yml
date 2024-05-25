@@ -43,10 +43,4 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-      - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
-        with:
-          dir: docs
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
+          
