@@ -32,11 +32,11 @@ jobs:
           docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
           ls docs/
       - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          dir: docs
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site
+          destination_dir: docs
       - name: Tests Report
         uses: phoenix-actions/test-reporting@v8
         id: test-report
