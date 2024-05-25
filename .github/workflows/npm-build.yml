@@ -30,6 +30,7 @@ jobs:
           docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
           echo "Working directory: ${{ github.workspace }}"
           ls ${{ github.workspace }}/docs
+          ls /docs
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
