@@ -26,7 +26,11 @@ jobs:
       - run: npm run generate-md-docs
       - run: npm run cy:run
       - name: Build the Docs
-        run: docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+        run: |
+          npm run generate-md-docs
+          ls docs/
+          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+          ls docs/
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
