@@ -13,7 +13,7 @@
     "./src/lit/index.ts",
     "./src/assertable.ts"
   ],
-  "out": "documents",
+  "out": "docs",
   "disableSources": true,
   "githubPages": false
 }

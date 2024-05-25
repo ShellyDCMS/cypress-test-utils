@@ -495,6 +495,7 @@ export class Assertable<T> {
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
+ * ```
  */
 export const then = (subject: Cypress.Chainable<any> | any) => {
   return new Assertable(
