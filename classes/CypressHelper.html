@@ -1183,7 +1183,7 @@
                   
 
 
-<p><a href="../index.html">@shellygo/cypress-test-utils - v2.1.2</a> / <a href="../modules.html">Modules</a> / CypressHelper</p>
+<p><a href="../index.html">@shellygo/cypress-test-utils - v2.1.3</a> / <a href="../modules.html">Modules</a> / CypressHelper</p>
 <h1 id="class-cypresshelper">Class: CypressHelper</h1>
 <p><strong><code>Classdes</code></strong></p>
 <p>CypressHelper exposes the following public properties:</p>
@@ -1358,21 +1358,21 @@
 <p><strong>assertableStub</strong>: (<code>stub</code>: <code>any</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>any</code>&gt;&gt;</p>
 <p>Get stub as Cypress.Chainable</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">const serviceMock : Service = helper.given.stubbedInstance(Service);
-helper.get.assertableStub(serviceMock.function).should('have.been.called'));
-
-@deprecated The method should not be used anymore, use `then` instead
-```ts
-then(serviceMock.function).shouldHaveBeenCalled();
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">serviceMock</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubbedInstance</span><span class="p">(</span><span class="nx">Service</span><span class="p">);</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">assertableStub</span><span class="p">(</span><span class="nx">serviceMock</span><span class="p">.</span><span class="kd">function</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;have.been.called&#39;</span><span class="p">));</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kd">@deprecated</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">method</span><span class="w"> </span><span class="nx">should</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">be</span><span class="w"> </span><span class="nx">used</span><span class="w"> </span><span class="nx">anymore</span><span class="p">,</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="sb">`then`</span><span class="w"> </span><span class="nx">instead</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sb">```ts</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sb">then(serviceMock.function).shouldHaveBeenCalled();</span>
+</span></code></pre></div>
 <hr />
 <p><strong>bySelector</strong>: (<code>selector</code>: <code>string</code>, <code>attribute?</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get one or more DOM elements by selector.</p>
 <p><strong><code>Example</code></strong></p>
-<p>Get an element with shape="filter-grid"</p>
-<pre><code class="language-ts">&lt;clr-icon shape=&quot;filter-grid&quot;&gt;&lt;/clr-icon&gt;
-helper.get.bySelector(&quot;filter-grid&quot;, &quot;shape&quot;)
-</code></pre>
+<p>Get an element with shape="filter-grid"
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&lt;</span><span class="nx">clr</span><span class="o">-</span><span class="nx">icon</span><span class="w"> </span><span class="nx">shape</span><span class="o">=</span><span class="s2">&quot;filter-grid&quot;</span><span class="o">&gt;&lt;</span><span class="err">/clr-icon&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">bySelector</span><span class="p">(</span><span class="s2">&quot;filter-grid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;shape&quot;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>currentLocation</strong>: () =&gt; <code>Chainable</code>&lt;<code>string</code>&gt;</p>
 <p>Get the current URL of the page that is currently active.</p>
@@ -1381,35 +1381,35 @@ helper.get.bySelector(&quot;filter-grid&quot;, &quot;shape&quot;)
 <p>Get one or more DOM elements by selector. The querying behavior of this command matches exactly how $(…) works in jQuery.
 *** Note! Using this method may lead to flakey tests! You should use get.elementByTestId ***</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">get.element('.list&gt;li', 3)    // Yield the &lt;li&gt;'s in &lt;.list&gt;
-get.element('ul li:first')
-get.element('.dropdown-menu')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">get</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="s1">&#39;.list&gt;li&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w">    </span><span class="c1">// Yield the &lt;li&gt;&#39;s in &lt;.list&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">get</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="s1">&#39;ul li:first&#39;</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nx">get</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="s1">&#39;.dropdown-menu&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementByAttribute</strong>: (<code>attribute</code>: <code>string</code>, <code>selector</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get one or more DOM elements by attribute.</p>
 <p><strong><code>Example</code></strong></p>
-<p>Get an element with shape="filter-grid"</p>
-<pre><code class="language-ts">&lt;clr-icon shape=&quot;filter-grid&quot;&gt;&lt;/clr-icon&gt;
-helper.get.byAttribute(&quot;shape&quot;, &quot;filter-grid&quot;)
-</code></pre>
+<p>Get an element with shape="filter-grid"
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">&lt;</span><span class="nx">clr</span><span class="o">-</span><span class="nx">icon</span><span class="w"> </span><span class="nx">shape</span><span class="o">=</span><span class="s2">&quot;filter-grid&quot;</span><span class="o">&gt;&lt;</span><span class="err">/clr-icon&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">byAttribute</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;filter-grid&quot;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>elementBySelector</strong>: (<code>selector</code>: <code>string</code>, <code>attribute?</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get one or more DOM elements by selector.
 Same as bySelector</p>
 <p><strong><code>Example</code></strong></p>
-<p>Get an element with shape="filter-grid"</p>
-<pre><code class="language-ts">&lt;clr-icon shape=&quot;filter-grid&quot;&gt;&lt;/clr-icon&gt;
-helper.get.elementBySelector(&quot;filter-grid&quot;, &quot;shape&quot;)
-</code></pre>
+<p>Get an element with shape="filter-grid"
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&lt;</span><span class="nx">clr</span><span class="o">-</span><span class="nx">icon</span><span class="w"> </span><span class="nx">shape</span><span class="o">=</span><span class="s2">&quot;filter-grid&quot;</span><span class="o">&gt;&lt;</span><span class="err">/clr-icon&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementBySelector</span><span class="p">(</span><span class="s2">&quot;filter-grid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;shape&quot;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>elementByTestId</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get A DOM element at a specific index from elements.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.dragAndDrop(
-  helper.get.elementByTestId('selected-item', 2),
-  helper.get.elementByTestId('available-items')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">dragAndDrop</span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s1">&#39;selected-item&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s1">&#39;available-items&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementByText</strong>: (<code>content</code>: <code>string</code> | <code>RegExp</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code>&gt; | <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get the DOM element containing the text.
@@ -1417,66 +1417,66 @@ DOM elements can contain more than the desired text and still match.
 Additionally, Cypress prefers some DOM elements over the deepest element found.
 *** Note! Using this method may lead to flakey tests! You should use get.elementByTestId ***</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">then(helper.get.elementByText(&quot;Avamar&quot;)).shouldExist();
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByText</span><span class="p">(</span><span class="s2">&quot;Avamar&quot;</span><span class="p">)).</span><span class="nx">shouldExist</span><span class="p">();</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementsAttribute</strong>: (<code>dataTestID</code>: <code>string</code>, <code>attributeName</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code> | <code>string</code>&gt;</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">then(helper.get.elementsAttribute('avatar-picture', 'style')).shouldInclude('background-image: url(&quot;assets/avatar/def-user-male.png&quot;)')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementsAttribute</span><span class="p">(</span><span class="s1">&#39;avatar-picture&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;style&#39;</span><span class="p">)).</span><span class="nx">shouldInclude</span><span class="p">(</span><span class="s1">&#39;background-image: url(&quot;assets/avatar/def-user-male.png&quot;)&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementsComputedStyle</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>, <code>pseudoElement?</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>CSSStyleDeclaration</code>&gt;</p>
 <p>Returns element's computed style, including pseudo elements</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.get.elementsComputedStyle('element-test-id', 0, ':before')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementsComputedStyle</span><span class="p">(</span><span class="s1">&#39;element-test-id&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;:before&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementsProperty</strong>: (<code>dataTestID</code>: <code>string</code>, <code>propertyName</code>: keyof <code>JQuery</code>&lt;<code>HTMLElement</code>&gt;, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>any</code>&gt;</p>
 <p>Get element's property value</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">get.elementsProperty(&quot;image&quot;, &quot;height&quot;)
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">get</span><span class="p">.</span><span class="nx">elementsProperty</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;height&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementsStyleAttribute</strong>: (<code>dataTestID</code>: <code>string</code>, <code>attributeName</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>PlainObject</code>&lt;<code>string</code>&gt;&gt;</p>
 <p>Returns element's style attribute</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">get.elementsStyleAttribute(&quot;button-data-hook&quot;, &quot;background-color&quot;)
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">get</span><span class="p">.</span><span class="nx">elementsStyleAttribute</span><span class="p">(</span><span class="s2">&quot;button-data-hook&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;background-color&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>elementsText</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>string</code>&gt;</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">then(helper.get.elementsText(&quot;parent-job-name&quot;, 3)).shouldInclude(&quot;Job 3 Name&quot;)
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementsText</span><span class="p">(</span><span class="s2">&quot;parent-job-name&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)).</span><span class="nx">shouldInclude</span><span class="p">(</span><span class="s2">&quot;Job 3 Name&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>env</strong>: (<code>key</code>: <code>string</code>) =&gt; <code>any</code></p>
 <p>Returns specific environment variable or undefined</p>
 <p><strong><code>Example</code></strong></p>
-<p>// Keeping password in cypress.config file</p>
-<pre><code class="language-ts">e2e: {
- env: {
-   password: &quot;Changeme@1&quot;,
- }
-}
-</code></pre>
-<p>// using password during test</p>
-<pre><code class="language-ts">helper.get.env(&quot;password&quot;);
-</code></pre>
+<p>// Keeping password in cypress.config file
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">e2e</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w"> </span><span class="nx">env</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">   </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Changeme@1&quot;</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
+</span></code></pre></div>
+// using password during test
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">env</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">);</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>fixture</strong>: (<code>alias</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>any</code>&gt;</p>
 <p>Get fixture</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts"> given.fixture(&quot;user.json&quot;, &quot;user&quot;);
- then(
-   get.fixture(&quot;user&quot;).shouldDeepNestedInclude({
-   name: &quot;Jane Doe&quot;,
-   id: &quot;1234&quot;,
-   nested: {
-    attr1: &quot;something&quot;,
-    attr2: &quot;the other thing&quot;
-   }
- })
-);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="w"> </span><span class="nx">given</span><span class="p">.</span><span class="nx">fixture</span><span class="p">(</span><span class="s2">&quot;user.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">);</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w"> </span><span class="nx">then</span><span class="p">(</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">   </span><span class="nx">get</span><span class="p">.</span><span class="nx">fixture</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">).</span><span class="nx">shouldDeepNestedInclude</span><span class="p">({</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">   </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">   </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1234&quot;</span><span class="p">,</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">   </span><span class="nx">nested</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="nx">attr1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;something&quot;</span><span class="p">,</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="nx">attr2</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;the other thing&quot;</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">   </span><span class="p">}</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w"> </span><span class="p">})</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>focusedElement</strong>: () =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get the element currently focused in the document.</p>
@@ -1484,21 +1484,21 @@ Additionally, Cypress prefers some DOM elements over the deepest element found.
 <p><strong>inputValue</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>string</code> | <code>number</code> | <code>string</code>[]&gt;</p>
 <p>Get value of input element</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">then(helper.get.inputValue('credentials-password')).shouldEqual(&quot;initial password&quot;);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">inputValue</span><span class="p">(</span><span class="s1">&#39;credentials-password&#39;</span><span class="p">)).</span><span class="nx">shouldEqual</span><span class="p">(</span><span class="s2">&quot;initial password&quot;</span><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>nthBySelector</strong>: (<code>selector</code>: <code>string</code>, <code>index?</code>: <code>number</code>, <code>attribute?</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Get A DOM element at a specific index from elements.</p>
 <p><strong><code>Example</code></strong></p>
-<p>// Get the 3rd checkbox</p>
-<pre><code class="language-ts">helper.get.nthBySelector(&quot;checkbox&quot;, 3, &quot;type&quot;)
-</code></pre>
+<p>// Get the 3rd checkbox
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">nthBySelector</span><span class="p">(</span><span class="s2">&quot;checkbox&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>numberOfElements</strong>: (<code>dataTestID</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>number</code>&gt;</p>
 <p>Get number of elements with a specific dataTestID</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts"> then(helper.get.numberOfElements(&quot;migrated-vcenter&quot;)).shouldEqual(2);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="w"> </span><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">numberOfElements</span><span class="p">(</span><span class="s2">&quot;migrated-vcenter&quot;</span><span class="p">)).</span><span class="nx">shouldEqual</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>requestBody</strong>: (<code>alias</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>any</code>&gt;</p>
 <p>Get intercepted request's body
@@ -1534,113 +1534,113 @@ If the body was binary content, this will be a buffer.</p>
 <p><strong>window</strong>: () =&gt; <code>Chainable</code>&lt;<code>AUTWindow</code>&gt;</p>
 <p>Get the window object of the page that is currently active.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.get.window().then((win) =&gt; { win.localStorage.getItem(&quot;key&quot;)}
-
------
-
-___
-
-### given
-
-• **given**: `Object`
-
-The given property will hold methods which will allow us to set pre-conditions before something takes place.
-This is a classic place to have methods which will set the inputs which are going to be passed down to our component.
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fixture` | (`filename`: `string`, `alias`: `string`) =&gt; `Chainable`&lt;`any`\&gt; |
-| `intercept` | (`url`: `string`, `alias`: `string`, `method?`: `string`) =&gt; `void` |
-| `interceptAndMockResponse` | (`options`: { `alias?`: `string` ; `method?`: `string` ; `response?`: `Object` ; `url`: `StringMatcher`  }) =&gt; `void` |
-| `spy` | (`name`: `string`) =&gt; `Omit`&lt;`SinonSpy`&lt;`any`[], `any`\&gt;, ``&quot;withArgs&quot;``\&gt; &amp; `SinonSpyAgent`&lt;`SinonSpy`&lt;`any`[], `any`\&gt;\&gt; &amp; `SinonSpy`&lt;`any`[], `any`\&gt; |
-| `spyOnObject` | &lt;T\&gt;(`obj`: `T`, `method`: keyof `T`) =&gt; `Omit`&lt;`SinonSpy`&lt;`any`[], `any`\&gt;, ``&quot;withArgs&quot;``\&gt; &amp; `SinonSpyAgent`&lt;`SinonSpy`&lt;`any`[], `any`\&gt;\&gt; &amp; `SinonSpy`&lt;`any`[], `any`\&gt; |
-| `stub` | (`alias?`: `string`) =&gt; `Agent`&lt;`SinonStub`&lt;`any`[], `any`\&gt;\&gt; |
-| `stubObjectMethod` | &lt;T\&gt;(`obj`: `T`, `method`: keyof `T`) =&gt; `Omit`&lt;`SinonStub`&lt;`any`[], `any`\&gt;, ``&quot;withArgs&quot;``\&gt; &amp; `SinonSpyAgent`&lt;`SinonStub`&lt;`any`[], `any`\&gt;\&gt; &amp; `SinonStub`&lt;`any`[], `any`\&gt; |
-| `stubbedInstance` | &lt;T\&gt;(`constructor`: (...`args`: `any`[]) =&gt; `T`, `overrides`: `Partial`&lt;`T`\&gt;) =&gt; `StubbedInstance`&lt;`T`, `SinonStub`&lt;`any`[], `any`\&gt;\&gt; &amp; `T` |
-| `stubbedInterface` | &lt;T\&gt;(`interfaceName`: `string`, `overrides`: `Partial`&lt;`T`\&gt;) =&gt; `StubbedInstance`&lt;`T`, `SinonStub`&lt;`any`[], `any`\&gt;\&gt; &amp; `T` |
-
-**fixture**: (`filename`: `string`, `alias`: `string`) =&gt; `Chainable`&lt;`any`\&gt;
-
-Load a fixture
-
-**`Example`**
-
-```ts
-let { given, when, get } = new CypressHelper();
-it(&quot;should get fixture&quot;, () =&gt; {
- given.fixture(&quot;user.json&quot;, &quot;user&quot;);
- then(get.fixture(&quot;user&quot;)).shouldDeepNestedInclude({
-   name: &quot;Jane Doe&quot;,
-   id: &quot;1234&quot;,
-   nested: {
-     attr1: &quot;something&quot;,
-     attr2: &quot;the other thing&quot;
-   }
- });
-});
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nb">window</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">win</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">win</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)}</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="o">-----</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nx">___</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="err">###</span><span class="w"> </span><span class="nx">given</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="err">•</span><span class="w"> </span><span class="o">**</span><span class="nx">given</span><span class="o">**:</span><span class="w"> </span><span class="sb">`Object`</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nx">The</span><span class="w"> </span><span class="nx">given</span><span class="w"> </span><span class="nx">property</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">hold</span><span class="w"> </span><span class="nx">methods</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">allow</span><span class="w"> </span><span class="nx">us</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">pre</span><span class="o">-</span><span class="nx">conditions</span><span class="w"> </span><span class="nx">before</span><span class="w"> </span><span class="nx">something</span><span class="w"> </span><span class="nx">takes</span><span class="w"> </span><span class="nx">place</span><span class="p">.</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="nx">This</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">classic</span><span class="w"> </span><span class="nx">place</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">have</span><span class="w"> </span><span class="nx">methods</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">inputs</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">are</span><span class="w"> </span><span class="nx">going</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">be</span><span class="w"> </span><span class="nx">passed</span><span class="w"> </span><span class="nx">down</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">our</span><span class="w"> </span><span class="nx">component</span><span class="p">.</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="err">####</span><span class="w"> </span><span class="nx">Type</span><span class="w"> </span><span class="nx">declaration</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="o">|</span><span class="w"> </span><span class="nx">Name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">Type</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="o">|</span><span class="w"> </span><span class="o">:------</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">:------</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="o">|</span><span class="w"> </span><span class="sb">`fixture`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="sb">`filename`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">,</span><span class="w"> </span><span class="sb">`alias`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`Chainable`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="o">|</span><span class="w"> </span><span class="sb">`intercept`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="sb">`url`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">,</span><span class="w"> </span><span class="sb">`alias`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">,</span><span class="w"> </span><span class="sb">`method?`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`void`</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="o">|</span><span class="w"> </span><span class="sb">`interceptAndMockResponse`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="sb">`options`</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="sb">`alias?`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="sb">`method?`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="sb">`response?`</span><span class="o">:</span><span class="w"> </span><span class="sb">`Object`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="sb">`url`</span><span class="o">:</span><span class="w"> </span><span class="sb">`StringMatcher`</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`void`</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="o">|</span><span class="w"> </span><span class="sb">`spy`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="sb">`name`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`Omit`</span><span class="o">&lt;</span><span class="sb">`SinonSpy`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="sb">``</span><span class="s2">&quot;withArgs&quot;</span><span class="sb">``</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`SinonSpyAgent`</span><span class="o">&lt;</span><span class="sb">`SinonSpy`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`SinonSpy`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="o">|</span><span class="w"> </span><span class="sb">`spyOnObject`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">T</span><span class="err">\</span><span class="o">&gt;</span><span class="p">(</span><span class="sb">`obj`</span><span class="o">:</span><span class="w"> </span><span class="sb">`T`</span><span class="p">,</span><span class="w"> </span><span class="sb">`method`</span><span class="o">:</span><span class="w"> </span><span class="nx">keyof</span><span class="w"> </span><span class="sb">`T`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`Omit`</span><span class="o">&lt;</span><span class="sb">`SinonSpy`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="sb">``</span><span class="s2">&quot;withArgs&quot;</span><span class="sb">``</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`SinonSpyAgent`</span><span class="o">&lt;</span><span class="sb">`SinonSpy`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`SinonSpy`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="o">|</span><span class="w"> </span><span class="sb">`stub`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="sb">`alias?`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`Agent`</span><span class="o">&lt;</span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="o">|</span><span class="w"> </span><span class="sb">`stubObjectMethod`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">T</span><span class="err">\</span><span class="o">&gt;</span><span class="p">(</span><span class="sb">`obj`</span><span class="o">:</span><span class="w"> </span><span class="sb">`T`</span><span class="p">,</span><span class="w"> </span><span class="sb">`method`</span><span class="o">:</span><span class="w"> </span><span class="nx">keyof</span><span class="w"> </span><span class="sb">`T`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`Omit`</span><span class="o">&lt;</span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="sb">``</span><span class="s2">&quot;withArgs&quot;</span><span class="sb">``</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`SinonSpyAgent`</span><span class="o">&lt;</span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="o">|</span><span class="w"> </span><span class="sb">`stubbedInstance`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">T</span><span class="err">\</span><span class="o">&gt;</span><span class="p">(</span><span class="sb">`constructor`</span><span class="o">:</span><span class="w"> </span><span class="p">(...</span><span class="sb">`args`</span><span class="o">:</span><span class="w"> </span><span class="sb">`any`</span><span class="p">[])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`T`</span><span class="p">,</span><span class="w"> </span><span class="sb">`overrides`</span><span class="o">:</span><span class="w"> </span><span class="sb">`Partial`</span><span class="o">&lt;</span><span class="sb">`T`</span><span class="err">\</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`StubbedInstance`</span><span class="o">&lt;</span><span class="sb">`T`</span><span class="p">,</span><span class="w"> </span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`T`</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="o">|</span><span class="w"> </span><span class="sb">`stubbedInterface`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">T</span><span class="err">\</span><span class="o">&gt;</span><span class="p">(</span><span class="sb">`interfaceName`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">,</span><span class="w"> </span><span class="sb">`overrides`</span><span class="o">:</span><span class="w"> </span><span class="sb">`Partial`</span><span class="o">&lt;</span><span class="sb">`T`</span><span class="err">\</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`StubbedInstance`</span><span class="o">&lt;</span><span class="sb">`T`</span><span class="p">,</span><span class="w"> </span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`T`</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a><span class="o">**</span><span class="nx">fixture</span><span class="o">**:</span><span class="w"> </span><span class="p">(</span><span class="sb">`filename`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">,</span><span class="w"> </span><span class="sb">`alias`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`Chainable`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span>
+</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a><span class="nx">Load</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">fixture</span>
+</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>
+</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a><span class="o">**</span><span class="sb">`Example`</span><span class="o">**</span>
+</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>
+</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="sb">```ts</span>
+</span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a><span class="sb">let { given, when, get } = new CypressHelper();</span>
+</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="sb">it(&quot;should get fixture&quot;, () =&gt; {</span>
+</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a><span class="sb"> given.fixture(&quot;user.json&quot;, &quot;user&quot;);</span>
+</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a><span class="sb"> then(get.fixture(&quot;user&quot;)).shouldDeepNestedInclude({</span>
+</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="sb">   name: &quot;Jane Doe&quot;,</span>
+</span><span id="__span-18-40"><a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a><span class="sb">   id: &quot;1234&quot;,</span>
+</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a><span class="sb">   nested: {</span>
+</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a><span class="sb">     attr1: &quot;something&quot;,</span>
+</span><span id="__span-18-43"><a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a><span class="sb">     attr2: &quot;the other thing&quot;</span>
+</span><span id="__span-18-44"><a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a><span class="sb">   }</span>
+</span><span id="__span-18-45"><a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a><span class="sb"> });</span>
+</span><span id="__span-18-46"><a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a><span class="sb">});</span>
+</span></code></pre></div>
 <hr />
 <p><strong>intercept</strong>: (<code>url</code>: <code>string</code>, <code>alias</code>: <code>string</code>, <code>method?</code>: <code>string</code>) =&gt; <code>void</code></p>
 <p>Use intercept() to intercept HTTP requests and responses</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.given.intercept(&quot;/streets/sprite.png&quot;, &quot;streetSprite&quot;);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">intercept</span><span class="p">(</span><span class="s2">&quot;/streets/sprite.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;streetSprite&quot;</span><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>interceptAndMockResponse</strong>: (<code>options</code>: { <code>alias?</code>: <code>string</code> ; <code>method?</code>: <code>string</code> ; <code>response?</code>: <code>Object</code> ; <code>url</code>: <code>StringMatcher</code>  }) =&gt; <code>void</code></p>
 <p>Use interceptAndMockResponse to stub and intercept HTTP requests and responses.</p>
 <p><strong><code>Example</code></strong></p>
-<p>// adds token to response header</p>
-<pre><code class="language-ts">helper.given.interceptAndMockResponse({
-  url: '** /sysmgmt/2015/bmc/session',
-  response: {
-    headers:{
-       'XSRF-Token': 'token',
-    },
-  },
-  alias: 'login'
-})
-</code></pre>
+<p>// adds token to response header
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">interceptAndMockResponse</span><span class="p">({</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;** /sysmgmt/2015/bmc/session&#39;</span><span class="p">,</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="nx">response</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="p">{</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">       </span><span class="s1">&#39;XSRF-Token&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;token&#39;</span><span class="p">,</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span><span class="nx">alias</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;login&#39;</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="p">})</span>
+</span></code></pre></div></p>
 <p><strong><code>Example</code></strong></p>
-<p>// mocks response to login request</p>
-<pre><code class="language-ts">helper.given.interceptAndMockResponse({
-  method: &quot;POST&quot;,
-  url: &quot;** /login&quot;,
-  alias: &quot;login&quot;,
-  response : {
-    token: 'token'
-  }
-})
-</code></pre>
+<p>// mocks response to login request
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">interceptAndMockResponse</span><span class="p">({</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;** /login&quot;</span><span class="p">,</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="nx">alias</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;login&quot;</span><span class="p">,</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">  </span><span class="nx">response</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;token&#39;</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="p">})</span>
+</span></code></pre></div></p>
 <p><strong><code>Example</code></strong></p>
-<p>// mocks network error</p>
-<pre><code class="language-ts">helper.given.interceptAndMockResponse({
-  method: &quot;POST&quot;,
-  url: &quot;** /avamars&quot;,
-  alias: &quot;avamar&quot;,
-  response : {
-    forceNetworkError: true
-  }
-})
-</code></pre>
+<p>// mocks network error
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">interceptAndMockResponse</span><span class="p">({</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;** /avamars&quot;</span><span class="p">,</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span><span class="nx">alias</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;avamar&quot;</span><span class="p">,</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">  </span><span class="nx">response</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="nx">forceNetworkError</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="p">})</span>
+</span></code></pre></div></p>
 <p><strong><code>Example</code></strong></p>
-<p>// mocks missing image</p>
-<pre><code class="language-ts">helper.given.interceptAndMockResponse({
-  method: &quot;POST&quot;,
-  url: &quot;** /image.png&quot;,
-  alias: &quot;image&quot;,
-  response: { headers: 404 }
-})
-</code></pre>
+<p>// mocks missing image
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">interceptAndMockResponse</span><span class="p">({</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;** /image.png&quot;</span><span class="p">,</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span><span class="nx">alias</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">  </span><span class="nx">response</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="kt">404</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="p">})</span>
+</span></code></pre></div></p>
 <p><strong><code>Example</code></strong></p>
-<p>// using a fixture</p>
-<pre><code class="language-ts"> helper.given.interceptAndMockResponse({
-  url: &quot;** /shellygo/whatever**&quot;,
-  response: { fixture: &quot;user.json&quot; },
-  alias: &quot;whatever&quot;
-});
-</code></pre>
+<p>// using a fixture
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">interceptAndMockResponse</span><span class="p">({</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;** /shellygo/whatever**&quot;</span><span class="p">,</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="nx">response</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">fixture</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;user.json&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span><span class="nx">alias</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;whatever&quot;</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">});</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>spy</strong>: (<code>name</code>: <code>string</code>) =&gt; <code>Omit</code>&lt;<code>SinonSpy</code>&lt;<code>any</code>[], <code>any</code>&gt;, <code>"withArgs"</code>&gt; &amp; <code>SinonSpyAgent</code>&lt;<code>SinonSpy</code>&lt;<code>any</code>[], <code>any</code>&gt;&gt; &amp; <code>SinonSpy</code>&lt;<code>any</code>[], <code>any</code>&gt;</p>
 <p>Returns a new spy function, and creates an alias for the newly created spy</p>
@@ -1648,77 +1648,77 @@ it(&quot;should get fixture&quot;, () =&gt; {
 <p><strong>spyOnObject</strong>: <T\>(<code>obj</code>: <code>T</code>, <code>method</code>: keyof <code>T</code>) => <code>Omit</code>&lt;<code>SinonSpy</code>&lt;<code>any</code>[], <code>any</code>&gt;, <code>"withArgs"</code>&gt; &amp; <code>SinonSpyAgent</code>&lt;<code>SinonSpy</code>&lt;<code>any</code>[], <code>any</code>&gt;&gt; &amp; <code>SinonSpy</code>&lt;<code>any</code>[], <code>any</code>&gt;</p>
 <p>Spy on a method and create an alias for the spy</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">given.spyOnObject(window, &quot;alert&quot;);
-alert(&quot;whatever&quot;);
-then(helper.get.spyFromFunction(window.alert)).shouldHaveBeenCalledWith(&quot;whatever&quot;);
-// Or
-then(helper.get.spy(&quot;alert&quot;)).shouldHaveBeenCalledTimes(1);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">given</span><span class="p">.</span><span class="nx">spyOnObject</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;alert&quot;</span><span class="p">);</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;whatever&quot;</span><span class="p">);</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">spyFromFunction</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">alert</span><span class="p">)).</span><span class="nx">shouldHaveBeenCalledWith</span><span class="p">(</span><span class="s2">&quot;whatever&quot;</span><span class="p">);</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1">// Or</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">spy</span><span class="p">(</span><span class="s2">&quot;alert&quot;</span><span class="p">)).</span><span class="nx">shouldHaveBeenCalledTimes</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</span></code></pre></div>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">given.spyOnObject(serviceMock, &quot;functionName&quot;);
-serviceMock.functionName();
-then(helper.get.spyFromFunction(serviceMock.functionName)).shouldHaveBeenCalledTimes(1);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">given</span><span class="p">.</span><span class="nx">spyOnObject</span><span class="p">(</span><span class="nx">serviceMock</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;functionName&quot;</span><span class="p">);</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nx">serviceMock</span><span class="p">.</span><span class="nx">functionName</span><span class="p">();</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nx">then</span><span class="p">(</span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">spyFromFunction</span><span class="p">(</span><span class="nx">serviceMock</span><span class="p">.</span><span class="nx">functionName</span><span class="p">)).</span><span class="nx">shouldHaveBeenCalledTimes</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>stub</strong>: (<code>alias?</code>: <code>string</code>) =&gt; <code>Agent</code>&lt;<code>SinonStub</code>&lt;<code>any</code>[], <code>any</code>&gt;&gt;</p>
 <p>Replace a function, record its usage and control its behavior.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">given.stub(&quot;alias&quot;);
-then(get.spy(&quot;alias&quot;)).shouldHaveBeenCalled();
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nx">given</span><span class="p">.</span><span class="nx">stub</span><span class="p">(</span><span class="s2">&quot;alias&quot;</span><span class="p">);</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nx">then</span><span class="p">(</span><span class="nx">get</span><span class="p">.</span><span class="nx">spy</span><span class="p">(</span><span class="s2">&quot;alias&quot;</span><span class="p">)).</span><span class="nx">shouldHaveBeenCalled</span><span class="p">();</span>
+</span></code></pre></div>
 <hr />
 <p><strong>stubObjectMethod</strong>: <T\>(<code>obj</code>: <code>T</code>, <code>method</code>: keyof <code>T</code>) => <code>Omit</code>&lt;<code>SinonStub</code>&lt;<code>any</code>[], <code>any</code>&gt;, <code>"withArgs"</code>&gt; &amp; <code>SinonSpyAgent</code>&lt;<code>SinonStub</code>&lt;<code>any</code>[], <code>any</code>&gt;&gt; &amp; <code>SinonStub</code>&lt;<code>any</code>[], <code>any</code>&gt;</p>
 <p>Stub an object's method and create an alias for the stub</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">//stubbing a service method
- helper.given.stubObjectMethod(serviceMock, &quot;functionName&quot;).returns(3);
-
-//stubbing setters and getters
- helper.given.stubObjectMethod(serviceMock, &quot;count&quot;).get(() =&gt; 3).set(() =&gt; {});
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">//stubbing a service method</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubObjectMethod</span><span class="p">(</span><span class="nx">serviceMock</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;functionName&quot;</span><span class="p">).</span><span class="nx">returns</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1">//stubbing setters and getters</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubObjectMethod</span><span class="p">(</span><span class="nx">serviceMock</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;count&quot;</span><span class="p">).</span><span class="nx">get</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">3</span><span class="p">).</span><span class="nx">set</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{});</span>
+</span></code></pre></div>
 <hr />
 <p><strong>stubbedInstance</strong>: <T\>(<code>constructor</code>: (...<code>args</code>: <code>any</code>[]) => <code>T</code>, <code>overrides</code>: <code>Partial</code>&lt;<code>T</code>&gt;) =&gt; <code>StubbedInstance</code>&lt;<code>T</code>, <code>SinonStub</code>&lt;<code>any</code>[], <code>any</code>&gt;&gt; &amp; <code>T</code></p>
 <p>Creates a new object with the given functions as the prototype and stubs all implemented functions.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">const serviceMock = helper.given.stubbedInstance(Service);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">serviceMock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubbedInstance</span><span class="p">(</span><span class="nx">Service</span><span class="p">);</span>
+</span></code></pre></div>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">class Service {
- public func1() {...}
- public get prop1() {...}
-}
-const serviceMock = helper.given.stubbedInstance(Service, {prop1: 3});
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">Service</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="nx">func1</span><span class="p">()</span><span class="w"> </span><span class="p">{...}</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="nx">prop1</span><span class="p">()</span><span class="w"> </span><span class="p">{...}</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">}</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">serviceMock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubbedInstance</span><span class="p">(</span><span class="nx">Service</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">prop1</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span><span class="p">});</span>
+</span></code></pre></div>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.given.stubbedInstance(Router, { events: new Observable() })
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubbedInstance</span><span class="p">(</span><span class="nx">Router</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">events</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">Observable</span><span class="p">()</span><span class="w"> </span><span class="p">})</span>
+</span></code></pre></div>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.given.stubbedInstance(
- PokemonService,
- {
-   pokemonTypes: new BehaviorSubject&lt;NamedAPIResource[]&gt;([]),
-   pokemons: new BehaviorSubject&lt;BetterPokemon[]&gt;([]),
- }
-)
-
------
-
-**stubbedInterface**: &lt;T\&gt;(`interfaceName`: `string`, `overrides`: `Partial`&lt;`T`\&gt;) =&gt; `StubbedInstance`&lt;`T`, `SinonStub`&lt;`any`[], `any`\&gt;\&gt; &amp; `T`
-
-Creates a new object with the given functions as the prototype and stubs all functions.
-
-**`Example`**
-
-```ts
-const serviceMock = helper.given.stubbedInterface&lt;IService&gt;(&quot;IService&quot;);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubbedInstance</span><span class="p">(</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w"> </span><span class="nx">PokemonService</span><span class="p">,</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">   </span><span class="nx">pokemonTypes</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="o">&lt;</span><span class="nx">NamedAPIResource</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]),</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">   </span><span class="nx">pokemons</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">BehaviorSubject</span><span class="o">&lt;</span><span class="nx">BetterPokemon</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]),</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="p">)</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="o">-----</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="o">**</span><span class="nx">stubbedInterface</span><span class="o">**:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">T</span><span class="err">\</span><span class="o">&gt;</span><span class="p">(</span><span class="sb">`interfaceName`</span><span class="o">:</span><span class="w"> </span><span class="sb">`string`</span><span class="p">,</span><span class="w"> </span><span class="sb">`overrides`</span><span class="o">:</span><span class="w"> </span><span class="sb">`Partial`</span><span class="o">&lt;</span><span class="sb">`T`</span><span class="err">\</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`StubbedInstance`</span><span class="o">&lt;</span><span class="sb">`T`</span><span class="p">,</span><span class="w"> </span><span class="sb">`SinonStub`</span><span class="o">&lt;</span><span class="sb">`any`</span><span class="p">[],</span><span class="w"> </span><span class="sb">`any`</span><span class="err">\</span><span class="o">&gt;</span><span class="err">\</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="sb">`T`</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="nx">Creates</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">given</span><span class="w"> </span><span class="nx">functions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">prototype</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">stubs</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">functions</span><span class="p">.</span>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="o">**</span><span class="sb">`Example`</span><span class="o">**</span>
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a>
+</span><span id="__span-32-17"><a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a><span class="sb">```ts</span>
+</span><span id="__span-32-18"><a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a><span class="sb">const serviceMock = helper.given.stubbedInterface&lt;IService&gt;(&quot;IService&quot;);</span>
+</span></code></pre></div>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">interface IService {
- propertyFunc: (int: number) =&gt; number
- get prop1() : number
-}
-const serviceMock = helper.given.stubbedInterface&lt;IService&gt;(&quot;IService&quot;, {prop1: 3});
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">IService</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w"> </span><span class="nx">propertyFunc</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">int</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kt">number</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="nx">prop1</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">number</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">}</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">serviceMock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">helper</span><span class="p">.</span><span class="nx">given</span><span class="p">.</span><span class="nx">stubbedInterface</span><span class="o">&lt;</span><span class="nx">IService</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;IService&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">prop1</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span><span class="p">});</span>
+</span></code></pre></div>
 <hr />
 <hr />
 <h3 id="options">options</h3>
@@ -1894,9 +1894,9 @@ This element must be an html input element with type checkbox or radio.</p>
 <p><strong>click</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Click a DOM element.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">&lt;button data-cy=&quot;move-right&quot;&gt;Move&lt;/button&gt;
-helper.when.click('move-right')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;move-right&quot;</span><span class="o">&gt;</span><span class="nx">Move</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s1">&#39;move-right&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>clock</strong>: () =&gt; <code>Chainable</code>&lt;<code>Clock</code>&gt;</p>
 <p>overrides native global functions related to time
@@ -1920,36 +1920,36 @@ The alert will be closed.</p>
 <p><strong>doWithin</strong>: (<code>fn</code>: () =&gt; <code>void</code>, <code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Scopes the execution of a function within an element</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.doWithin(() =&gt; when.click('button-test-id'), 'button-row', 2)
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">doWithin</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">when</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s1">&#39;button-test-id&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;button-row&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>dragAndDrop</strong>: (<code>element</code>: <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;, <code>targetElement</code>: <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;) =&gt; <code>void</code></p>
 <p>Drag an element and drop it in target element</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.dragAndDrop(
-  helper.get.elementByTestId('selected-item', 2),
-  helper.get.elementByTestId('available-items')
-)
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">dragAndDrop</span><span class="p">(</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">  </span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s1">&#39;selected-item&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">  </span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s1">&#39;available-items&#39;</span><span class="p">)</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>focus</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Focus on a DOM element.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.focus('credentials-password')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">focus</span><span class="p">(</span><span class="s1">&#39;credentials-password&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>hover</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Fires native hover event. Yes, it can test :hover preprocessor.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.hover('consent-terms-agree')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">hover</span><span class="p">(</span><span class="s1">&#39;consent-terms-agree&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>realClick</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Fires native system click event.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">&lt;button data-cy=&quot;move-right&quot;&gt;Move&lt;/button&gt;
-helper.when.realClick('move-right')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">data</span><span class="o">-</span><span class="nx">cy</span><span class="o">=</span><span class="s2">&quot;move-right&quot;</span><span class="o">&gt;</span><span class="nx">Move</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">realClick</span><span class="p">(</span><span class="s1">&#39;move-right&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>realType</strong>: (<code>dataTestID</code>: <code>string</code>, <code>keys</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>void</code>&gt;</p>
 <p>Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.</p>
@@ -1963,25 +1963,25 @@ helper.when.realClick('move-right')
 <p><strong>selectOption</strong>: (<code>dataTestID</code>: <code>string</code>, <code>option</code>: <code>string</code> | <code>number</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Select an option with specific text, value, or index within a select html element.</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-html">&lt;select data-hook=&quot;fruit-selection&quot;&gt;
-  &lt;option value=&quot;456&quot;&gt;apples&lt;/option&gt;
-  &lt;option value=&quot;457&quot;&gt;oranges&lt;/option&gt;
-  &lt;option value=&quot;458&quot;&gt;bananas&lt;/option&gt;
-&lt;/select&gt;
-</code></pre>
-<pre><code class="language-ts">helper.when.selectOption('fruit-selection', 0).should('have.value', '456')
-helper.when.selectOption('fruit-selection', 'oranges').should('have.value', '457')
-helper.when.selectOption('fruit-selection', 458).should('have.value', '458')
-</code></pre>
+<p><div class="language-html highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="p">&lt;</span><span class="nt">select</span> <span class="na">data-hook</span><span class="o">=</span><span class="s">&quot;fruit-selection&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;456&quot;</span><span class="p">&gt;</span>apples<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;457&quot;</span><span class="p">&gt;</span>oranges<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;458&quot;</span><span class="p">&gt;</span>bananas<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">selectOption</span><span class="p">(</span><span class="s1">&#39;fruit-selection&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;have.value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;456&#39;</span><span class="p">)</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">selectOption</span><span class="p">(</span><span class="s1">&#39;fruit-selection&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;oranges&#39;</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;have.value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;457&#39;</span><span class="p">)</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">selectOption</span><span class="p">(</span><span class="s1">&#39;fruit-selection&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">458</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;have.value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;458&#39;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <hr />
 <p><strong>tick</strong>: (<code>ms</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>Clock</code>&gt;</p>
 <p>Move time after overriding a native time function with helper.when.clock().
 helper.when.clock() must be called before helper.when.tick()</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.clock();
-helper.when.click('login-button');
-helper.when.tick(2000);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">clock</span><span class="p">();</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s1">&#39;login-button&#39;</span><span class="p">);</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">tick</span><span class="p">(</span><span class="mf">2000</span><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>toggle</strong>: (<code>index</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Check radio(s).
@@ -1994,14 +1994,14 @@ This element must be an html input element with type radio.</p>
 <p><strong>type</strong>: (<code>dataTestID</code>: <code>string</code>, <code>keys</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Type into a DOM element, not including special characters</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.type('credentials-password', 'new password')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="kr">type</span><span class="p">(</span><span class="s1">&#39;credentials-password&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;new password&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>typeSpecialCharacter</strong>: (<code>dataTestID</code>: <code>string</code>, <code>keys</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Type into a DOM element, including special characters</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.typeSpecialChar('credentials-password', '{backspace}')
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">typeSpecialChar</span><span class="p">(</span><span class="s1">&#39;credentials-password&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{backspace}&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <p><strong>uncheck</strong>: (<code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Uncheck checkbox(es).</p>
@@ -2028,16 +2028,16 @@ Note! you should not have any asserts in the callback function. From cypress-wai
    You must manually check what the assertions would check for you.
    The most common case is checking that an element exists or not</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.waitUntil(() =&gt;
-  helper.get.elementByTestId('element-test-id', index)
-);
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">  </span><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s1">&#39;element-test-id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">);</span>
+</span></code></pre></div>
 <hr />
 <p><strong>within</strong>: (<code>fn</code>: () =&gt; <code>void</code>, <code>dataTestID</code>: <code>string</code>, <code>index?</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>JQuery</code>&lt;<code>HTMLElement</code>&gt;&gt;</p>
 <p>Scopes the execution of a function within an element</p>
 <p><strong><code>Example</code></strong></p>
-<pre><code class="language-ts">helper.when.within(() =&gt; when.click('button-test-id'), 'button-row', 2)
-</code></pre>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">within</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">when</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s1">&#39;button-test-id&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;button-row&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span>
+</span></code></pre></div>
 <p><strong><code>Deprecated</code></strong></p>
 <p>The method should not be used anymore. Use helper.when.doWithin instead.</p>
 <hr />
