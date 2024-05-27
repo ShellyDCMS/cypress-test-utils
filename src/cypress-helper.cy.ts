@@ -394,6 +394,10 @@ describe("cypress helper tests", () => {
     then(get.elementByTestId("non-existance")).shouldNotExist();
   });
 
+  it("Test non-existing element", () => {
+    then(get.elementByTestId("non-existing-element")).shouldNotExist();
+  });
+
   it("should have text", () => {
     then(get.elementByTestId("div-with-span")).shouldHaveText("Text");
   });
