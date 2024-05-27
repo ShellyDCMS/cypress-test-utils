@@ -829,13 +829,12 @@ export class CypressHelper {
         .nthBySelector(dataTestID, index)
         .should(_ => { })
         .then(elements => {
-          if (elements.length !== 0) {
-            return this.shouldHandleShadowDomSlot(dataTestID)
-              ? this.getShadowSlotElement(dataTestID, index)
-              : this.get.nthBySelector(dataTestID, index)
-          } else {
+          if (elements.length === 0) {
             return this.get.nthBySelector(dataTestID, index)
           }
+          return this.shouldHandleShadowDomSlot(dataTestID)
+            ? this.getShadowSlotElement(dataTestID, index)
+            : this.get.nthBySelector(dataTestID, index)
         }),
     /**
      * Get the element currently focused in the document.
