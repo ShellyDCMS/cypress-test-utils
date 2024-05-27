@@ -87,6 +87,18 @@ export class CypressHelper {
     return checkFunction();
   };
 
+  private getShadowSlotElement = (dataTestID: string, index: number | undefined) => 
+    this.get.nthBySelector(dataTestID, index).then(slot =>
+      cy.wrap(
+        Cypress.$(slot as JQuery<HTMLSlotElement>)
+          .get(0)
+          .assignedNodes()[0].parentElement!
+      )
+    );
+
+  private shouldHandleShadowDomSlot = (dataTestID: string) =>
+    this.options.handleSlotShadowDOM && dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`)
+
   beforeAndAfter = () => {
     before(() => {
       chai.use(chaiSubset);
@@ -813,16 +825,17 @@ export class CypressHelper {
      * @param [index]
      */
     elementByTestId: (dataTestID: string, index?: number) =>
-      this.options.handleSlotShadowDOM &&
-      dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`)
-        ? this.get.nthBySelector(dataTestID, index).then(slot =>
-            cy.wrap(
-              Cypress.$(slot as JQuery<HTMLSlotElement>)
-                .get(0)
-                .assignedNodes()[0].parentElement!
-            )
-          )
-        : this.get.nthBySelector(dataTestID, index),
+      this.get
+        .nthBySelector(dataTestID, index)
+        .should(_ => { })
+        .then(elements => {
+          if (elements.length === 0) {
+            return this.get.nthBySelector(dataTestID, index)
+          }
+          return this.shouldHandleShadowDomSlot(dataTestID)
+            ? this.getShadowSlotElement(dataTestID, index)
+            : this.get.nthBySelector(dataTestID, index)
+        }),
     /**
      * Get the element currently focused in the document.
      * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
