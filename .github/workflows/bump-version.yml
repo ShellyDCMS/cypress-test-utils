@@ -1,7 +1,6 @@
 name: Bump Version
 
 on:
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -17,3 +16,5 @@ jobs:
       - uses: "phips28/gh-action-bump-version@master"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          skip-tag: "true"
