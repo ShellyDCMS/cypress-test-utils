@@ -7,6 +7,19 @@ Making TDD fun in the modular UI area.
 
 CypressHelper makes it saner to write UI testing. It enables creating component drivers that will work on all testing levels (component, integration, e2e).
 
+## Installation
+
+This library provides an API to interact with UI elements - `CypressHelper` that combines the common features.
+To add it to your repo use
+
+`npm i -D @shellygo/cypress-test-utils cypress`
+
+or
+
+`yarn add -D @shellygo/cypress-test-utils cypress`
+
+## Concept
+
 Cypress Helpers can help you develop tests faster
 CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
 ![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/d9aa07d8-2c05-4968-970a-be8445a113c3)
@@ -55,19 +68,6 @@ You may change this behaviour by overriding the default values when creating Cyp
 ### Angular
 
 When mounting an angular component, autoSpyOutputs is set to true, meaning all event emitters are automatically spied on and may be accessed during a test using `helper.get.spy("<EventEmitterName>")`
-
-###
-
-## Usage
-
-This library provides an API to interact with UI elements - `CypressHelper` that combines the common features.
-To add it to your repo use
-
-`npm i -D @shellygo/cypress-test-utils`
-
-or
-
-`yarn add -D @shellygo/cypress-test-utils`
 
 ## Developing
 
