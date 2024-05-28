@@ -316,7 +316,16 @@ export class Assertable<T> {
    */
   public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
     this.chainable.should("have.attr", attribute, expectedValue);
-
+  /** 
+   * Assert that the first element of the selection has the given attribute, using `.prop()`.
+   * Optionally, assert a particular value as well. The return value is available for chaining.
+   * @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldHaveProperty("test")
+   * ```
+   */
+    public shouldHaveProp = (property: string, expectedValue: string | boolean) => 
+      this.chainable.should("have.prop", property, expectedValue);
   /**
    * Assert that an element has a css property with the given value.
    * @example
