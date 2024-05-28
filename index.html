@@ -299,6 +299,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#component-drivers" class="md-nav__link">
     <span class="md-ellipsis">
       Component Drivers
@@ -362,26 +380,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
   
 </li>
       
@@ -622,6 +622,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#component-drivers" class="md-nav__link">
     <span class="md-ellipsis">
       Component Drivers
@@ -685,26 +703,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
   
 </li>
       
@@ -738,6 +738,13 @@
 <p>Cypress helpers to control your UI components that work in all test levels. From component tests, through integration tests to e2e tests, for all frameworks: angular, lit, react.
 Making TDD fun in the modular UI area.</p>
 <p>CypressHelper makes it saner to write UI testing. It enables creating component drivers that will work on all testing levels (component, integration, e2e).</p>
+<h2 id="installation">Installation</h2>
+<p>This library provides an API to interact with UI elements - <code>CypressHelper</code> that combines the common features.
+To add it to your repo use</p>
+<p><code>npm i -D @shellygo/cypress-test-utils cypress</code></p>
+<p>or</p>
+<p><code>yarn add -D @shellygo/cypress-test-utils cypress</code></p>
+<h2 id="concept">Concept</h2>
 <p>Cypress Helpers can help you develop tests faster
 CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
 <img alt="image" src="https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/d9aa07d8-2c05-4968-970a-be8445a113c3" /></p>
@@ -771,13 +778,6 @@ CypressHelper will look for the assignedNode to retrieve the text, given that th
 You may change this behaviour by overriding the default values when creating CypressHelper.</p>
 <h3 id="angular">Angular</h3>
 <p>When mounting an angular component, autoSpyOutputs is set to true, meaning all event emitters are automatically spied on and may be accessed during a test using <code>helper.get.spy("&lt;EventEmitterName&gt;")</code></p>
-<h3 id="_1"></h3>
-<h2 id="usage">Usage</h2>
-<p>This library provides an API to interact with UI elements - <code>CypressHelper</code> that combines the common features.
-To add it to your repo use</p>
-<p><code>npm i -D @shellygo/cypress-test-utils</code></p>
-<p>or</p>
-<p><code>yarn add -D @shellygo/cypress-test-utils</code></p>
 <h2 id="developing">Developing</h2>
 <ol>
 <li>Set up the repo - <code>yarn</code></li>
