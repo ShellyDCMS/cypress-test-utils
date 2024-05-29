@@ -388,7 +388,7 @@ describe("cypress helper tests", () => {
     then(get.elementByText("My first paragraph")).shouldExist();
   });
 
-  it.only("Non existing slot", () => {
+  it("Non existing slot", () => {
     then(get.elementByTestId("non-existing-slot")).shouldNotExist();
   });
 
