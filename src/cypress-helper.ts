@@ -95,7 +95,7 @@ export class CypressHelper {
       const shadowSlot = Cypress.$(slot as JQuery<HTMLSlotElement>)
         .get(0)
         .assignedNodes()[0];
-      return cy.wrap(shadowSlot ? shadowSlot.parentElement : slot);
+      return cy.wrap(shadowSlot ? shadowSlot.parentElement : shadowSlot);
     });
 
   private shouldHandleShadowDomSlot = (dataTestID: string) =>
