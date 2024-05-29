@@ -92,12 +92,18 @@ export class CypressHelper {
     index: number | undefined
   ) =>
     this.get.nthBySelector(dataTestID, index).then(slot => {
-      const shadowSlot = Cypress.$(slot as JQuery<HTMLSlotElement>)
-        .get(0)
-        .assignedNodes()[0];
-      return cy.wrap(shadowSlot ? shadowSlot.parentElement : shadowSlot);
+      const shadowSlot = Cypress.$(slot as JQuery<HTMLSlotElement>).get(0);
+      const shadowSlotParent = this.getShadowSlotParent(shadowSlot);
+      return cy.wrap(shadowSlotParent ? shadowSlotParent : shadowSlot);
     });
 
+  private getShadowSlotParent = (shadowSlot: HTMLSlotElement) => {
+    let shadowSlotParent;
+    try {
+      shadowSlotParent = shadowSlot.assignedNodes()[0].parentElement;
+    } catch {}
+    return shadowSlotParent;
+  };
   private shouldHandleShadowDomSlot = (dataTestID: string) =>
     this.options.handleSlotShadowDOM &&
     dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`);
