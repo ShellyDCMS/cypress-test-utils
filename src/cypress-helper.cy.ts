@@ -152,13 +152,11 @@ describe("cypress helper tests", () => {
         });
         fetch("https://example.com/api/endpoint");
       });
-    
+
       it("should not include a specific item", () => {
         then(get.responseBody("apiCall")).shouldNotInclude({
           data: {
-            items: [
-              { id: 4, name: "Durian" }
-            ]
+            items: [{ id: 4, name: "Durian" }]
           }
         });
       });
@@ -390,8 +388,8 @@ describe("cypress helper tests", () => {
     then(get.elementByText("My first paragraph")).shouldExist();
   });
 
-  it("Non existance slot", () => {
-    then(get.elementByTestId("non-existance")).shouldNotExist();
+  it("Non existing slot", () => {
+    then(get.elementByTestId("non-existing-slot")).shouldNotExist();
   });
 
   it("Test non-existing element", () => {

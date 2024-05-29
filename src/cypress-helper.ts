@@ -87,17 +87,26 @@ export class CypressHelper {
     return checkFunction();
   };
 
-  private getShadowSlotElement = (dataTestID: string, index: number | undefined) => 
-    this.get.nthBySelector(dataTestID, index).then(slot =>
-      cy.wrap(
-        Cypress.$(slot as JQuery<HTMLSlotElement>)
-          .get(0)
-          .assignedNodes()[0].parentElement!
-      )
-    );
+  private getShadowSlotElement = (
+    dataTestID: string,
+    index: number | undefined
+  ) =>
+    this.get.nthBySelector(dataTestID, index).then(slot => {
+      const shadowSlot = Cypress.$(slot as JQuery<HTMLSlotElement>).get(0);
+      const shadowSlotParent = this.getShadowSlotParent(shadowSlot);
+      return cy.wrap(shadowSlotParent ? shadowSlotParent : shadowSlot);
+    });
 
+  private getShadowSlotParent = (shadowSlot: HTMLSlotElement) => {
+    let shadowSlotParent;
+    try {
+      shadowSlotParent = shadowSlot.assignedNodes()[0].parentElement;
+    } catch {}
+    return shadowSlotParent;
+  };
   private shouldHandleShadowDomSlot = (dataTestID: string) =>
-    this.options.handleSlotShadowDOM && dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`)
+    this.options.handleSlotShadowDOM &&
+    dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`);
 
   beforeAndAfter = () => {
     before(() => {
@@ -827,14 +836,14 @@ export class CypressHelper {
     elementByTestId: (dataTestID: string, index?: number) =>
       this.get
         .nthBySelector(dataTestID, index)
-        .should(_ => { })
+        .should(_ => {})
         .then(elements => {
           if (elements.length === 0) {
-            return this.get.nthBySelector(dataTestID, index)
+            return this.get.nthBySelector(dataTestID, index);
           }
           return this.shouldHandleShadowDomSlot(dataTestID)
             ? this.getShadowSlotElement(dataTestID, index)
-            : this.get.nthBySelector(dataTestID, index)
+            : this.get.nthBySelector(dataTestID, index);
         }),
     /**
      * Get the element currently focused in the document.
