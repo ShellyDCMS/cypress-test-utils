@@ -98,9 +98,10 @@ export class Assertable<T> {
    * ```
    */
   public shouldEndWith = (value: string) =>
-    this.chainable.then(text =>
-      (text as string).slice(-value.length).should("equal", value)
-    );
+    this.chainable.then(text => {
+      const suffix = (text as string).slice(-value.length);
+      cy.wrap(suffix).should("equal", value);
+    });
 
   /**
    * Asserts that text starts with value
@@ -110,9 +111,10 @@ export class Assertable<T> {
    * ```
    */
   public shouldStartWith = (value: string) =>
-    this.chainable.then(text =>
-      (text as string).slice(0, value.length).should("equal", value)
-    );
+    this.chainable.then(text => {
+      const prefix = (text as string).slice(0, value.length);
+      cy.wrap(prefix).should("equal", value);
+    });
 
   /**
    * Causes all `.equal`, `.include`, `.members`, `.keys`, and `.property` assertions that follow in the chain to use deep equality instead of strict (`===`) equality. See the `deep-eql` project page for info on the deep equality algorithm: https://github.com/chaijs/deep-eql.
