@@ -1,4 +1,4 @@
-import { CypressHelper, loggable, match } from ".";
+import { CypressHelper, match } from ".";
 import { then } from "./assertable";
 
 describe("cypress helper tests", () => {
@@ -360,12 +360,6 @@ describe("cypress helper tests", () => {
 
   it("should assert element's text starts with prefix", () => {
     then(get.elementsText("header")).shouldStartWith("My First");
-  });
-
-  it("should supply cypress pipe", () => {
-    then(
-      get.elementsText("header").pipe(loggable(str => str.toLowerCase()))
-    ).shouldEqual("my first heading");
   });
 
   it("should get env variable", () => {

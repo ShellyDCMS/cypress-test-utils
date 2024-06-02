@@ -5,7 +5,6 @@ import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
 import { StubbedInstanceCreator } from "ts-stubber";
-export * from "cypress-pipe";
 
 /**
  * Sinon matcher for stubs/spy comparison
