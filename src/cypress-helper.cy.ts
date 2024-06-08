@@ -87,11 +87,11 @@ describe("cypress helper tests", () => {
   describe("interception", () => {
     it("should intercept request and mock response", async () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo.com/whatever**",
         response: { shelly: "go" },
         alias: "whatever"
       });
-      fetch("https:/shellygo/whatever");
+      fetch("https://shellygo.com/whatever");
       then(get.responseBody("whatever")).shouldInclude({
         shelly: "go"
       });
@@ -99,12 +99,12 @@ describe("cypress helper tests", () => {
 
     it("given fixture should intercept request and mock response", async () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo.com/whatever**",
         response: { fixture: "user.json" },
         alias: "whatever"
       });
 
-      fetch("https:/shellygo/whatever");
+      fetch("https://shellygo.com/whatever");
       then(get.responseBody("whatever")).shouldInclude({
         name: "Jane Doe",
         id: "1234",
@@ -118,16 +118,16 @@ describe("cypress helper tests", () => {
     describe("given multiple requests", () => {
       beforeEach(() => {
         given.interceptAndMockResponse({
-          url: "**/shellygo/whatever**",
+          url: "**/shellygo.com/whatever**",
           response: { shelly: "go" },
           alias: "shellygo"
         });
-        fetch("https:/shellygo/whatever");
-        fetch("https:/shellygo/whatever");
+        fetch("https://shellygo.com/whatever");
+        fetch("https://shellygo.com/whatever");
       });
 
       it("should wait for multiple responses", () => {
-        fetch("https:/shellygo/whatever?shelly=go");
+        fetch("https://shellygo.com/whatever?shelly=go");
         when.waitForResponses("shellygo", 2);
         then(get.requestQueryParams("shellygo")).shouldInclude({
           shelly: "go"
@@ -165,17 +165,17 @@ describe("cypress helper tests", () => {
     describe("when waiting for last call", () => {
       beforeEach(() => {
         given.interceptAndMockResponse({
-          url: "**/shellygo/whatever**",
+          url: "**/shellygo.com/whatever**",
           response: { shelly: "go" },
           alias: "shellygo"
         });
-        fetch("https:/shellygo/whatever");
-        fetch("https:/shellygo/whatever");
+        fetch("https://shellygo.com/whatever");
+        fetch("https://shellygo.com/whatever");
         when.waitForLastCall("shellygo");
       });
 
       it("should wait for last call", () => {
-        fetch("https:/shellygo/whatever?shelly=go");
+        fetch("https://shellygo.com/whatever?shelly=go");
         then(get.requestQueryParams("shellygo")).shouldInclude({
           shelly: "go"
         });
