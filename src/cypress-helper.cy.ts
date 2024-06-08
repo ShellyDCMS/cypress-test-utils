@@ -124,6 +124,7 @@ describe("cypress helper tests", () => {
         });
         fetch("https://shellygo.com/whatever");
         fetch("https://shellygo.com/whatever");
+        when.wait(1000);
       });
 
       it("should wait for multiple responses", () => {
