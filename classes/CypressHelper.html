@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
@@ -1381,7 +1381,7 @@
                   
 
 
-<p><a href="../index.html">@shellygo/cypress-test-utils - v2.1.10</a> / <a href="../modules.html">Modules</a> / CypressHelper</p>
+<p><a href="../index.html">@shellygo/cypress-test-utils - v2.1.11</a> / <a href="../modules.html">Modules</a> / CypressHelper</p>
 <h1 id="class-cypresshelper">Class: CypressHelper</h1>
 <p><strong><code>Classdes</code></strong></p>
 <p>CypressHelper exposes the following public properties:</p>
@@ -2047,19 +2047,19 @@ If the body was binary content, this will be a buffer.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code>waitForLastCall</code></td>
-<td style="text-align: left;">(<code>alias</code>: <code>string</code>, <code>timeout</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code> | <code>Interception</code>&gt;</td>
+<td style="text-align: left;">(<code>alias</code>: <code>string</code>, <code>timeout</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code> | <code>Interception</code>&lt;<code>any</code>, <code>any</code>&gt;&gt;</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>waitForResponse</code></td>
-<td style="text-align: left;">(<code>alias</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>&gt;</td>
+<td style="text-align: left;">(<code>alias</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>&lt;<code>any</code>, <code>any</code>&gt;&gt;</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>waitForResponses</code></td>
-<td style="text-align: left;">(<code>alias</code>: <code>string</code>, <code>responses</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>[]&gt;</td>
+<td style="text-align: left;">(<code>alias</code>: <code>string</code>, <code>responses</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>&lt;<code>any</code>, <code>any</code>&gt;[]&gt;</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>waitUntil</code></td>
-<td style="text-align: left;"><ReturnType\>(<code>checkFunction</code>: () => <code>Chainable</code>&lt;<code>any</code>&gt; | <code>ReturnType</code> | <code>PromiseLike</code>&lt;<code>ReturnType</code>&gt;, <code>options?</code>: <code>WaitUntilOptions</code>&lt;<code>any</code>&gt;) =&gt; <code>Chainable</code>&lt;<code>undefined</code>&gt;</td>
+<td style="text-align: left;"><ReturnType\>(<code>checkFunction</code>: () => <code>Chainable</code>&lt;<code>any</code>&gt; | <code>ReturnType</code> | <code>PromiseLike</code>&lt;<code>ReturnType</code>&gt;, <code>options?</code>: <code>WaitUntilOptions</code>&lt;<code>any</code>&gt;) =&gt; <code>Chainable</code>&lt;<code>any</code>&gt;</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>within</code></td>
@@ -2213,16 +2213,16 @@ This element must be an html input element with type radio.</p>
 <p><strong>wait</strong>: (<code>ms</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code>&gt;</p>
 <p>Wait for a number of milliseconds.</p>
 <hr />
-<p><strong>waitForLastCall</strong>: (<code>alias</code>: <code>string</code>, <code>timeout</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code> | <code>Interception</code>&gt;</p>
+<p><strong>waitForLastCall</strong>: (<code>alias</code>: <code>string</code>, <code>timeout</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>undefined</code> | <code>Interception</code>&lt;<code>any</code>, <code>any</code>&gt;&gt;</p>
 <p>Wait for a last request to complete.</p>
 <hr />
-<p><strong>waitForResponse</strong>: (<code>alias</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>&gt;</p>
+<p><strong>waitForResponse</strong>: (<code>alias</code>: <code>string</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>&lt;<code>any</code>, <code>any</code>&gt;&gt;</p>
 <p>Wait for a specific request to complete.</p>
 <hr />
-<p><strong>waitForResponses</strong>: (<code>alias</code>: <code>string</code>, <code>responses</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>[]&gt;</p>
+<p><strong>waitForResponses</strong>: (<code>alias</code>: <code>string</code>, <code>responses</code>: <code>number</code>) =&gt; <code>Chainable</code>&lt;<code>Interception</code>&lt;<code>any</code>, <code>any</code>&gt;[]&gt;</p>
 <p>Wait for multiples requests to complete.</p>
 <hr />
-<p><strong>waitUntil</strong>: <ReturnType\>(<code>checkFunction</code>: () => <code>Chainable</code>&lt;<code>any</code>&gt; | <code>ReturnType</code> | <code>PromiseLike</code>&lt;<code>ReturnType</code>&gt;, <code>options?</code>: <code>WaitUntilOptions</code>&lt;<code>any</code>&gt;) =&gt; <code>Chainable</code>&lt;<code>undefined</code>&gt;</p>
+<p><strong>waitUntil</strong>: <ReturnType\>(<code>checkFunction</code>: () => <code>Chainable</code>&lt;<code>any</code>&gt; | <code>ReturnType</code> | <code>PromiseLike</code>&lt;<code>ReturnType</code>&gt;, <code>options?</code>: <code>WaitUntilOptions</code>&lt;<code>any</code>&gt;) =&gt; <code>Chainable</code>&lt;<code>any</code>&gt;</p>
 <p>Wait for something to happen in the DOM.
 Note! you should not have any asserts in the callback function. From cypress-wait-until documentation:
    you cannot put assertions inside checkFunction. There is no way to avoid a test failure if an assertion throws an error.
@@ -2477,7 +2477,7 @@ Note! you should not have any asserts in the callback function. From cypress-wai
     <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "toc.follow", "search.suggest", "navigation.instant", "navigation.sections", "navigation.top"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   </body>
