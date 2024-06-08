@@ -183,9 +183,9 @@ describe("cypress helper tests", () => {
     });
 
     it("should intercept request and test query params", () => {
-      fetch("https:/shellygo/whatever?shelly=go");
+      fetch("https://shellygo.com/whatever?shelly=go");
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo.com/whatever**",
         response: { shelly: "go" },
         alias: "shellygo"
       });
@@ -194,13 +194,13 @@ describe("cypress helper tests", () => {
 
     it("should intercept request and test body", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever",
+        url: "**/shellygo.com/whatever",
         method: "POST",
         response: { shelly: "go" },
         alias: "shellygo"
       });
 
-      fetch("https:/shellygo/whatever", {
+      fetch("https://shellygo.com/whatever", {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -219,12 +219,12 @@ describe("cypress helper tests", () => {
 
     it("should intercept request and test url", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever/**",
+        url: "**/shellygo.com/whatever/**",
         response: { shelly: "go" },
         alias: "shellygo"
       });
 
-      fetch("https:/shellygo/whatever/18?param=value");
+      fetch("https://shellygo.com/whatever/18?param=value");
       then(get.requestUrl("shellygo")).shouldInclude("whatever/18");
     });
 
@@ -241,19 +241,20 @@ describe("cypress helper tests", () => {
 
     it("should intercept request and test header", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever",
+        url: "**/shellygo.com/whatever*",
         method: "POST",
         response: { shelly: "go" },
         alias: "shellygo"
       });
 
-      fetch("https:/shellygo/whatever", {
+      fetch("https://shellygo.com/whatever", {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
           shelly: "go"
         },
         redirect: "follow",
