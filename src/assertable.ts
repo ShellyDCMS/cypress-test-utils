@@ -1,3 +1,5 @@
+import "cypress-pipe";
+
 /** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
  * By using the Assertable class, you can use the same assertions in your tests, regardless of the testing framework you use.
  * All you need to do if you wish to replace Cypress with another testing framework and keep your tests, is to replace the implementation of the Assertable class.
@@ -98,10 +100,9 @@ export class Assertable<T> {
    * ```
    */
   public shouldEndWith = (value: string) =>
-    this.chainable.then(text => {
-      const suffix = (text as string).slice(-value.length);
-      cy.wrap(suffix).should("equal", value);
-    });
+    this.chainable
+      .pipe(text => (text as string).slice(-value.length))
+      .should("equal", value);
 
   /**
    * Asserts that text starts with value
@@ -111,10 +112,9 @@ export class Assertable<T> {
    * ```
    */
   public shouldStartWith = (value: string) =>
-    this.chainable.then(text => {
-      const prefix = (text as string).slice(0, value.length);
-      cy.wrap(prefix).should("equal", value);
-    });
+    this.chainable
+      .pipe(text => (text as string).slice(0, value.length))
+      .should("equal", value);
 
   /**
    * Causes all `.equal`, `.include`, `.members`, `.keys`, and `.property` assertions that follow in the chain to use deep equality instead of strict (`===`) equality. See the `deep-eql` project page for info on the deep equality algorithm: https://github.com/chaijs/deep-eql.

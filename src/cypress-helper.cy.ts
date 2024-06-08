@@ -87,11 +87,11 @@ describe("cypress helper tests", () => {
   describe("interception", () => {
     it("should intercept request and mock response", async () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo.com/whatever**",
         response: { shelly: "go" },
         alias: "whatever"
       });
-      fetch("https:/shellygo/whatever");
+      fetch("https://shellygo.com/whatever");
       then(get.responseBody("whatever")).shouldInclude({
         shelly: "go"
       });
@@ -99,12 +99,12 @@ describe("cypress helper tests", () => {
 
     it("given fixture should intercept request and mock response", async () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo.com/whatever**",
         response: { fixture: "user.json" },
         alias: "whatever"
       });
 
-      fetch("https:/shellygo/whatever");
+      fetch("https://shellygo.com/whatever");
       then(get.responseBody("whatever")).shouldInclude({
         name: "Jane Doe",
         id: "1234",
@@ -118,19 +118,21 @@ describe("cypress helper tests", () => {
     describe("given multiple requests", () => {
       beforeEach(() => {
         given.interceptAndMockResponse({
-          url: "**/shellygo/whatever**",
+          url: "**/shellygo.com/whatever**",
           response: { shelly: "go" },
           alias: "shellygo"
         });
-        fetch("https:/shellygo/whatever");
-        fetch("https:/shellygo/whatever");
+        fetch("https://shellygo.com/whatever?shelly=1").then(() =>
+          fetch("https://shellygo.com/whatever?shelly=2").then(() =>
+            fetch("https://shellygo.com/whatever?shelly=3")
+          )
+        );
       });
 
       it("should wait for multiple responses", () => {
-        fetch("https:/shellygo/whatever?shelly=go");
         when.waitForResponses("shellygo", 2);
         then(get.requestQueryParams("shellygo")).shouldInclude({
-          shelly: "go"
+          shelly: "3"
         });
       });
     });
@@ -165,17 +167,17 @@ describe("cypress helper tests", () => {
     describe("when waiting for last call", () => {
       beforeEach(() => {
         given.interceptAndMockResponse({
-          url: "**/shellygo/whatever**",
+          url: "**/shellygo.com/whatever**",
           response: { shelly: "go" },
           alias: "shellygo"
         });
-        fetch("https:/shellygo/whatever");
-        fetch("https:/shellygo/whatever");
+        fetch("https://shellygo.com/whatever");
+        fetch("https://shellygo.com/whatever");
         when.waitForLastCall("shellygo");
       });
 
       it("should wait for last call", () => {
-        fetch("https:/shellygo/whatever?shelly=go");
+        fetch("https://shellygo.com/whatever?shelly=go");
         then(get.requestQueryParams("shellygo")).shouldInclude({
           shelly: "go"
         });
@@ -183,9 +185,9 @@ describe("cypress helper tests", () => {
     });
 
     it("should intercept request and test query params", () => {
-      fetch("https:/shellygo/whatever?shelly=go");
+      fetch("https://shellygo.com/whatever?shelly=go");
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever**",
+        url: "**/shellygo.com/whatever**",
         response: { shelly: "go" },
         alias: "shellygo"
       });
@@ -194,13 +196,13 @@ describe("cypress helper tests", () => {
 
     it("should intercept request and test body", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever",
+        url: "**/shellygo.com/whatever",
         method: "POST",
         response: { shelly: "go" },
         alias: "shellygo"
       });
 
-      fetch("https:/shellygo/whatever", {
+      fetch("https://shellygo.com/whatever", {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -219,12 +221,12 @@ describe("cypress helper tests", () => {
 
     it("should intercept request and test url", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever/**",
+        url: "**/shellygo.com/whatever/**",
         response: { shelly: "go" },
         alias: "shellygo"
       });
 
-      fetch("https:/shellygo/whatever/18?param=value");
+      fetch("https://shellygo.com/whatever/18?param=value");
       then(get.requestUrl("shellygo")).shouldInclude("whatever/18");
     });
 
@@ -241,19 +243,20 @@ describe("cypress helper tests", () => {
 
     it("should intercept request and test header", () => {
       given.interceptAndMockResponse({
-        url: "**/shellygo/whatever",
+        url: "**/shellygo.com/whatever*",
         method: "POST",
         response: { shelly: "go" },
         alias: "shellygo"
       });
 
-      fetch("https:/shellygo/whatever", {
+      fetch("https://shellygo.com/whatever", {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
           shelly: "go"
         },
         redirect: "follow",
