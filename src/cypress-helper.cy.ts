@@ -122,16 +122,17 @@ describe("cypress helper tests", () => {
           response: { shelly: "go" },
           alias: "shellygo"
         });
-        fetch("https://shellygo.com/whatever");
-        fetch("https://shellygo.com/whatever");
-        when.wait(1000);
+        fetch("https://shellygo.com/whatever?shelly=1").then(() =>
+          fetch("https://shellygo.com/whatever?shelly=2").then(() =>
+            fetch("https://shellygo.com/whatever?shelly=3")
+          )
+        );
       });
 
       it("should wait for multiple responses", () => {
-        fetch("https://shellygo.com/whatever?shelly=go");
         when.waitForResponses("shellygo", 2);
         then(get.requestQueryParams("shellygo")).shouldInclude({
-          shelly: "go"
+          shelly: "3"
         });
       });
     });
