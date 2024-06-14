@@ -9,8 +9,8 @@ import { StubbedInstanceCreator } from "ts-stubber";
 /**
  * Sinon matcher for stubs/spy comparison
  * @example
- * // partial match of spy function params called with
  * ```ts
+ *   // partial match of spy function params called with
  *   let { given, when, get } = new CypressHelper();
  *   it("should partially match spy params", () => {
  *       const obj = {
@@ -127,8 +127,8 @@ export class CypressHelper {
     /**
      * Use interceptAndMockResponse to stub and intercept HTTP requests and responses.
      * @example
-     * // adds token to response header
      * ```ts
+     * // adds token to response header
      * helper.given.interceptAndMockResponse({
      *   url: '** /sysmgmt/2015/bmc/session',
      *   response: {
@@ -140,8 +140,8 @@ export class CypressHelper {
      * })
      * ```
      * @example
-     * // mocks response to login request
      * ```ts
+     * // mocks response to login request
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /login",
@@ -153,8 +153,8 @@ export class CypressHelper {
      * ```
      *
      * @example
-     * // mocks network error
      * ```ts
+     * // mocks network error
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /avamars",
@@ -165,8 +165,8 @@ export class CypressHelper {
      * })
      * ```
      * @example
-     * // mocks missing image
      * ```ts
+     * // mocks missing image
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /image.png",
@@ -175,8 +175,8 @@ export class CypressHelper {
      * })
      * ```
      * @example
-     * // using a fixture
      * ```ts
+     * // using a fixture
      *  helper.given.interceptAndMockResponse({
      *   url: "** /shellygo/whatever**",
      *   response: { fixture: "user.json" },

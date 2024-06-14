@@ -25,16 +25,13 @@ import "cypress-pipe";
  *
  * class Driver {
  *  public given = {
- *  .
- *  .
+ *    // your code here
  *  };
  *  public when = {
- *  .
- *  .
+ *    // your code here
  *  };
  *  public get = {
- *  .
- *  .
+ *    // your code here
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
