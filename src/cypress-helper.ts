@@ -255,6 +255,7 @@ export class CypressHelper {
      *    pokemons: new BehaviorSubject<BetterPokemon[]>([]),
      *  }
      * )
+     * ```
      */
     stubbedInstance: <T>(
       constructor: { new (...args: any[]): T },
@@ -1031,7 +1032,7 @@ export class CypressHelper {
      * ```ts
      * const serviceMock : Service = helper.given.stubbedInstance(Service);
      * helper.get.assertableStub(serviceMock.function).should('have.been.called'));
-     *
+     * ```
      * @deprecated The method should not be used anymore, use `then` instead
      * ```ts
      * then(serviceMock.function).shouldHaveBeenCalled();
@@ -1044,6 +1045,7 @@ export class CypressHelper {
      * @example
      * ```ts
      * helper.get.window().then((win) => { win.localStorage.getItem("key")}
+     * ```
      */
     window: () => cy.window()
   };
