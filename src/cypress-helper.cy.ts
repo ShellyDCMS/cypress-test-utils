@@ -135,6 +135,10 @@ describe("cypress helper tests", () => {
           shelly: "3"
         });
       });
+
+      it("should assert number of calls", () => {
+        then(get.numberOfRequests("shellygo")).shouldEqual(3);
+      });
     });
 
     describe("interception negative tests", () => {

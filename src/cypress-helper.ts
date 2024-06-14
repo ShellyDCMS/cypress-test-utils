@@ -890,6 +890,19 @@ export class CypressHelper {
      */
     numberOfElements: (dataTestID: string): Cypress.Chainable<number> =>
       this.get.bySelector(dataTestID).its("length"),
+
+    /**
+     * Get number of outgoing request with a specific alias
+     * @example
+     * ```ts
+     *  then(helper.get.numberOfCalls("fetch-pokemon")).shouldEqual(2);
+     * ```
+     * @param alias
+     * @returns {Cypress.Chainable<number>}
+     */
+    numberOfRequests: (alias: string): Cypress.Chainable<number> =>
+      cy.get(`@${alias}.all`).its("length"),
+
     /**
      * @example
      * ```ts
