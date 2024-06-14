@@ -201,7 +201,7 @@ export class CypressHelper {
      * helper.given.intercept("/streets/sprite.png", "streetSprite");
      * ```
      */
-    intercept: (url: string, alias: string, method?: string) =>
+    intercept: (url: StringMatcher, alias: string, method?: string) =>
       this.given.interceptAndMockResponse({ url, alias, method }),
 
     /**
