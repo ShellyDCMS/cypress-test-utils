@@ -892,10 +892,8 @@ export class CypressHelper {
      * @param dataTestID
      * @returns {Cypress.Chainable<number>}
      */
-    numberOfElements: (dataTestID: string): Cypress.Chainable<number> => {
-      this.get.bySelector(dataTestID).its("length");
-    },
-
+    numberOfElements: (dataTestID: string): Cypress.Chainable<number> =>
+      this.get.bySelector(dataTestID).its("length"),
     /**
      * Get number of outgoing request with a specific alias
      * @example
