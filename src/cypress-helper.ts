@@ -69,13 +69,15 @@ export class CypressHelper {
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
   }
 
+  /** @private */
   private isGetter = <T>(constructor: sinon.StubbableType<T>, prop: keyof T) =>
     Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
     !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["get"];
+  /** @private */
   private isSetter = <T>(constructor: sinon.StubbableType<T>, prop: keyof T) =>
     Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
     !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["set"];
-
+  /** @private */
   private waitUntilLoadBeforeInvocation = <T>(
     checkFunction: () => Cypress.Chainable<T>,
     options?: WaitUntilOptions
@@ -85,7 +87,7 @@ export class CypressHelper {
     }
     return checkFunction();
   };
-
+  /** @private */
   private getShadowSlotElement = (
     dataTestID: string,
     index: number | undefined
@@ -95,7 +97,7 @@ export class CypressHelper {
       const shadowSlotParent = this.getShadowSlotParent(shadowSlot);
       return cy.wrap(shadowSlotParent ? shadowSlotParent : shadowSlot);
     });
-
+  /** @private */
   private getShadowSlotParent = (shadowSlot: HTMLSlotElement) => {
     let shadowSlotParent;
     try {
@@ -103,6 +105,7 @@ export class CypressHelper {
     } catch {}
     return shadowSlotParent;
   };
+  /** @private */
   private shouldHandleShadowDomSlot = (dataTestID: string) =>
     this.options.handleSlotShadowDOM &&
     dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`);
@@ -171,7 +174,7 @@ export class CypressHelper {
      *   method: "POST",
      *   url: "** /image.png",
      *   alias: "image",
-     *   response: { headers: 404 }
+     *   response: { statusCode: 404 }
      * })
      * ```
      * @example
@@ -889,8 +892,9 @@ export class CypressHelper {
      * @param dataTestID
      * @returns {Cypress.Chainable<number>}
      */
-    numberOfElements: (dataTestID: string): Cypress.Chainable<number> =>
-      this.get.bySelector(dataTestID).its("length"),
+    numberOfElements: (dataTestID: string): Cypress.Chainable<number> => {
+      this.get.bySelector(dataTestID).its("length");
+    },
 
     /**
      * Get number of outgoing request with a specific alias
