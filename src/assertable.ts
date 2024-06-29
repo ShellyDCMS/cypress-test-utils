@@ -38,7 +38,10 @@ import "cypress-pipe";
  * ```
  */
 export class Assertable<T> {
-  constructor(protected readonly chainable: Cypress.Chainable<T>) {}
+  constructor(
+    /** private */
+    protected readonly chainable: Cypress.Chainable<T>
+  ) {}
   public should = (chainer: string, ...rest: any[]) =>
     this.chainable.should(chainer, ...rest);
   /**
