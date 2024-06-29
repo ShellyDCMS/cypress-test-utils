@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.1.15",
+  "version": "2.1.16",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -27,8 +27,8 @@
     "build": "rollup --configPlugin @rollup/plugin-typescript --config rollup.config.ts ",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "generate-md-docs": "typedoc --includeVersion --plugin typedoc-plugin-markdown --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
-    "generate-docs": "typedoc --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
+    "generate-md-docs": "typedoc --excludePrivate --includeVersion --plugin typedoc-plugin-markdown --plugin typedoc-plugin-merge-modules --options typedoc.md.json",
+    "generate-docs": "typedoc --excludePrivate --includeVersion --plugin typedoc-plugin-merge-modules --options typedoc.html.json"
   },
   "peerDependencies": {
     "cypress": ">=12.17.3"
