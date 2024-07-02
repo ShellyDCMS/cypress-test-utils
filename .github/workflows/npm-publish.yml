@@ -24,7 +24,7 @@ jobs:
       - name: Build the Docs
         run: |
           npm run generate-md-docs          
-          docker run --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
+          docker run --user "$(id -u):$(id -g)" --rm -v ${PWD}:/docs squidfunk/mkdocs-material build
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
@@ -43,4 +43,3 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          
