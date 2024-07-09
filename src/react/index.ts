@@ -14,6 +14,7 @@ import React from "react";
  * @property get - enables getting the mounted component
  */
 export class CypressReactComponentHelper {
+  /** @private */
   private component: React.ReactNode;
 
   public when = {

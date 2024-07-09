@@ -13,13 +13,13 @@ export class CypressLitComponentHelper {
      * @example
      * ```ts
      * litComponentHelper.when.mount<SpinnerElement>(
-        new SpinnerElement(),
-        html`<edf-spinner size="${this.props.size}" type="${this.props.type}" label="${this.props.label}"></edf-spinner>`
-      );
-      ```
+     *   new SpinnerElement(),
+     *   html`<edf-spinner size="${this.props.size}" type="${this.props.type}" label="${this.props.label}"></edf-spinner>`
+     * );
+     * ```
      * @template T - element type
-     * @param element 
-     * @param template 
+     * @param element
+     * @param template
      */
     mount: <T extends LitElement>(element: T, template: TemplateResult) => {
       const target = getContainerEl();

@@ -5,13 +5,12 @@ import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
 import { StubbedInstanceCreator } from "ts-stubber";
-export * from "cypress-pipe";
 
 /**
  * Sinon matcher for stubs/spy comparison
  * @example
- * // partial match of spy function params called with
  * ```ts
+ *   // partial match of spy function params called with
  *   let { given, when, get } = new CypressHelper();
  *   it("should partially match spy params", () => {
  *       const obj = {
@@ -70,13 +69,15 @@ export class CypressHelper {
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
   }
 
+  /** @private */
   private isGetter = <T>(constructor: sinon.StubbableType<T>, prop: keyof T) =>
     Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
     !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["get"];
+  /** @private */
   private isSetter = <T>(constructor: sinon.StubbableType<T>, prop: keyof T) =>
     Object.getOwnPropertyDescriptor(constructor.prototype, prop) &&
     !!Object.getOwnPropertyDescriptor(constructor.prototype, prop)!["set"];
-
+  /** @private */
   private waitUntilLoadBeforeInvocation = <T>(
     checkFunction: () => Cypress.Chainable<T>,
     options?: WaitUntilOptions
@@ -86,6 +87,28 @@ export class CypressHelper {
     }
     return checkFunction();
   };
+  /** @private */
+  private getShadowSlotElement = (
+    dataTestID: string,
+    index: number | undefined
+  ) =>
+    this.get.nthBySelector(dataTestID, index).then(slot => {
+      const shadowSlot = Cypress.$(slot as JQuery<HTMLSlotElement>).get(0);
+      const shadowSlotParent = this.getShadowSlotParent(shadowSlot);
+      return cy.wrap(shadowSlotParent ? shadowSlotParent : shadowSlot);
+    });
+  /** @private */
+  private getShadowSlotParent = (shadowSlot: HTMLSlotElement) => {
+    let shadowSlotParent;
+    try {
+      shadowSlotParent = shadowSlot.assignedNodes()[0].parentElement;
+    } catch {}
+    return shadowSlotParent;
+  };
+  /** @private */
+  private shouldHandleShadowDomSlot = (dataTestID: string) =>
+    this.options.handleSlotShadowDOM &&
+    dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`);
 
   beforeAndAfter = () => {
     before(() => {
@@ -107,8 +130,8 @@ export class CypressHelper {
     /**
      * Use interceptAndMockResponse to stub and intercept HTTP requests and responses.
      * @example
-     * // adds token to response header
      * ```ts
+     * // adds token to response header
      * helper.given.interceptAndMockResponse({
      *   url: '** /sysmgmt/2015/bmc/session',
      *   response: {
@@ -120,8 +143,8 @@ export class CypressHelper {
      * })
      * ```
      * @example
-     * // mocks response to login request
      * ```ts
+     * // mocks response to login request
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /login",
@@ -133,8 +156,8 @@ export class CypressHelper {
      * ```
      *
      * @example
-     * // mocks network error
      * ```ts
+     * // mocks network error
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /avamars",
@@ -145,18 +168,18 @@ export class CypressHelper {
      * })
      * ```
      * @example
-     * // mocks missing image
      * ```ts
+     * // mocks missing image
      * helper.given.interceptAndMockResponse({
      *   method: "POST",
      *   url: "** /image.png",
      *   alias: "image",
-     *   response: { headers: 404 }
+     *   response: { statusCode: 404 }
      * })
      * ```
      * @example
-     * // using a fixture
      * ```ts
+     * // using a fixture
      *  helper.given.interceptAndMockResponse({
      *   url: "** /shellygo/whatever**",
      *   response: { fixture: "user.json" },
@@ -181,7 +204,7 @@ export class CypressHelper {
      * helper.given.intercept("/streets/sprite.png", "streetSprite");
      * ```
      */
-    intercept: (url: string, alias: string, method?: string) =>
+    intercept: (url: StringMatcher, alias: string, method?: string) =>
       this.given.interceptAndMockResponse({ url, alias, method }),
 
     /**
@@ -235,6 +258,7 @@ export class CypressHelper {
      *    pokemons: new BehaviorSubject<BetterPokemon[]>([]),
      *  }
      * )
+     * ```
      */
     stubbedInstance: <T>(
       constructor: { new (...args: any[]): T },
@@ -509,7 +533,6 @@ export class CypressHelper {
     type: (dataTestID: string, keys: string, index?: number) =>
       this.get
         .elementByTestId(dataTestID, index)
-        .focus()
         .type(keys, { parseSpecialCharSequences: false }),
 
     /**
@@ -520,7 +543,7 @@ export class CypressHelper {
      * ```
      */
     typeSpecialCharacter: (dataTestID: string, keys: string, index?: number) =>
-      this.get.elementByTestId(dataTestID, index).focus().type(keys),
+      this.get.elementByTestId(dataTestID, index).type(keys),
 
     /**
      * Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
@@ -838,16 +861,17 @@ export class CypressHelper {
      * @param [index]
      */
     elementByTestId: (dataTestID: string, index?: number) =>
-      this.options.handleSlotShadowDOM &&
-      dataTestID.endsWith(`-${this.options.shadowSlotSuffix}`)
-        ? this.get.nthBySelector(dataTestID, index).then(slot =>
-            cy.wrap(
-              Cypress.$(slot as JQuery<HTMLSlotElement>)
-                .get(0)
-                .assignedNodes()[0].parentElement!
-            )
-          )
-        : this.get.nthBySelector(dataTestID, index),
+      this.get
+        .nthBySelector(dataTestID, index)
+        .should(_ => {})
+        .then(elements => {
+          if (elements.length === 0) {
+            return this.get.nthBySelector(dataTestID, index);
+          }
+          return this.shouldHandleShadowDomSlot(dataTestID)
+            ? this.getShadowSlotElement(dataTestID, index)
+            : this.get.nthBySelector(dataTestID, index);
+        }),
     /**
      * Get the element currently focused in the document.
      * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
@@ -894,6 +918,18 @@ export class CypressHelper {
      */
     numberOfElements: (dataTestID: string): Cypress.Chainable<number> =>
       this.get.bySelector(dataTestID).its("length"),
+    /**
+     * Get number of outgoing request with a specific alias
+     * @example
+     * ```ts
+     *  then(helper.get.numberOfCalls("fetch-pokemon")).shouldEqual(2);
+     * ```
+     * @param alias
+     * @returns {Cypress.Chainable<number>}
+     */
+    numberOfRequests: (alias: string): Cypress.Chainable<number> =>
+      cy.get(`@${alias}.all`).its("length"),
+
     /**
      * @example
      * ```ts
@@ -1022,7 +1058,7 @@ export class CypressHelper {
      * ```ts
      * const serviceMock : Service = helper.given.stubbedInstance(Service);
      * helper.get.assertableStub(serviceMock.function).should('have.been.called'));
-     *
+     * ```
      * @deprecated The method should not be used anymore, use `then` instead
      * ```ts
      * then(serviceMock.function).shouldHaveBeenCalled();
@@ -1035,6 +1071,7 @@ export class CypressHelper {
      * @example
      * ```ts
      * helper.get.window().then((win) => { win.localStorage.getItem("key")}
+     * ```
      */
     window: () => cy.window()
   };
