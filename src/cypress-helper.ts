@@ -767,6 +767,30 @@ export class CypressHelper {
           window.getComputedStyle($element.get(0), pseudoElement)
         ),
 
+  /**
+   * Returns a specific style of an element, including pseudo elements if specified.
+   * @example
+   * ```ts
+   * helper.get.elementSpecificStyle('element-test-id', 'backgroundImage', 0, ':before')
+   * ```
+   * @param dataTestID
+   * @param styleProperty
+   * @param [index]
+   * @param [pseudoElement]
+   * @returns {Cypress.Chainable<string>}
+   */
+    elementSpecificStyle: (
+      dataTestID: string,
+      styleProperty: string,
+      index?: number,
+      pseudoElement?: string
+    ): Cypress.Chainable<string> =>
+      this.get
+        .elementByTestId(dataTestID, index)
+        .then($element =>
+          window.getComputedStyle($element.get(0), pseudoElement).getPropertyValue(styleProperty)
+      ),
+
     /**
      * @example
      * ```ts
