@@ -509,6 +509,7 @@ export class CypressHelper {
     type: (dataTestID: string, keys: string, index?: number) =>
       this.get
         .elementByTestId(dataTestID, index)
+        .focus()
         .type(keys, { parseSpecialCharSequences: false }),
 
     /**
@@ -519,7 +520,7 @@ export class CypressHelper {
      * ```
      */
     typeSpecialCharacter: (dataTestID: string, keys: string, index?: number) =>
-      this.get.elementByTestId(dataTestID, index).type(keys),
+      this.get.elementByTestId(dataTestID, index).focus().type(keys),
 
     /**
      * Runs a sequence of native press event (via cy.press) Type event is global. Make sure that it is not attached to any field.
