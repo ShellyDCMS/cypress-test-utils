@@ -135,6 +135,35 @@ describe("cypress helper tests", () => {
       });
     });
 
+    describe("interception negative tests", () => {
+      beforeEach(() => {
+        given.interceptAndMockResponse({
+          url: "**/api/endpoint**",
+          response: {
+            data: {
+              items: [
+                { id: 1, name: "Apple" },
+                { id: 2, name: "Banana" },
+                { id: 3, name: "Cherry" }
+              ]
+            }
+          },
+          alias: "apiCall"
+        });
+        fetch("https://example.com/api/endpoint");
+      });
+    
+      it("should not include a specific item", () => {
+        then(get.responseBody("apiCall")).shouldNotInclude({
+          data: {
+            items: [
+              { id: 4, name: "Durian" }
+            ]
+          }
+        });
+      });
+    });
+
     describe("when waiting for last call", () => {
       beforeEach(() => {
         given.interceptAndMockResponse({
@@ -395,4 +424,8 @@ describe("cypress helper tests", () => {
   it("should get element's attribute", () => {
     then(get.elementsProperty("image", "height")).shouldEqual(142);
   });
+
+  it("Shoule get the given style from the element", () => {
+    then(get.elementSpecificStyle('image', 'height')).shouldEqual('142px');
+  })
 });
