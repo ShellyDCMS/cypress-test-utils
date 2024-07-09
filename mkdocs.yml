@@ -1,7 +1,8 @@
 site_name: Cypress Test Utils
 site_url: ""
 use_directory_urls: false
-plugins: []
+plugins:
+  - search
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -36,3 +37,4 @@ theme:
     - navigation.instant
     - navigation.sections
     - navigation.top # back to top button
+
