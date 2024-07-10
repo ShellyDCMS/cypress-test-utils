@@ -432,7 +432,15 @@ describe("cypress helper tests", () => {
     then(get.elementsProperty("image", "height")).shouldEqual(142);
   });
 
-  it.only("Shoule get the given style from the element", () => {
-    then(get.elementComputedStyleProperty({dataTestID: 'image', styleProperty: 'height'})).shouldEqual('142px');
-  })
+  it("should get the given style from the element", () => {
+    then(get.elementComputedStyleProperty("image", "height")).shouldEqual(
+      "142px"
+    );
+  });
+
+  it("should get the given style from element with index", () => {
+    then(
+      get.elementComputedStyleProperty("image", "height", { index: 0 })
+    ).shouldEqual("142px");
+  });
 });

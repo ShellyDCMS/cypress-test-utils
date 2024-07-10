@@ -791,34 +791,36 @@ export class CypressHelper {
           window.getComputedStyle($element.get(0), pseudoElement)
         ),
 
-  /**
-   * Returns a specific style of an element, including pseudo elements if specified.
-   * @example
-   * ```ts
-   * helper.get.elementSpecificStyle('element-test-id', 'backgroundImage', 0, ':before')
-   * ```
-   * @param dataTestID
-   * @param styleProperty
-   * @param [index]
-   * @param [pseudoElement]
-   * @returns {Cypress.Chainable<string>}
-   */
-  elementComputedStyleProperty: ({
-    dataTestID,
-    styleProperty,
-    index,
-    pseudoElement
-  }: {
-    dataTestID: string,
-    styleProperty: string,
-    index?: number,
-    pseudoElement?: string
-  }): Cypress.Chainable<string> =>
+    /**
+     * Returns a specific style of an element, including pseudo elements if specified.
+     * @example
+     * ```ts
+     * helper.get.elementSpecificStyle('element-test-id', 'backgroundImage')
+     * ```
+     * * ```ts
+     * helper.get.elementSpecificStyle('element-test-id', 'backgroundImage', {index: 3, pseudoElement: ':before'})
+     * ```
+     * @param dataTestID
+     * @param styleProperty
+     * @param [index]
+     * @param [pseudoElement]
+     */
+    elementComputedStyleProperty: (
+      dataTestID: string,
+      styleProperty: keyof CSSStyleDeclaration,
+      {
+        index,
+        pseudoElement
+      }: {
+        index?: number;
+        pseudoElement?: string;
+      } = {}
+    ) =>
       this.get
-        .elementByTestId(dataTestID, index)
-        .then($element =>
-          window.getComputedStyle($element.get(0), pseudoElement).getPropertyValue(styleProperty)
-      ),
+        .elementsComputedStyle(dataTestID, index, pseudoElement)
+        .then((style: CSSStyleDeclaration) =>
+          Cypress.Promise.resolve(style[styleProperty])
+        ),
 
     /**
      * @example
