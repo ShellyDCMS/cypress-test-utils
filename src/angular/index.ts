@@ -9,6 +9,7 @@ import { MountConfig } from "cypress/angular";
  * @property get - enables getting the mounted component
  */
 export class CypressAngularComponentHelper<T> {
+  /** @private */
   private fixture: any;
   public when = {
     /**

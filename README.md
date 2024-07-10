@@ -7,6 +7,19 @@ Making TDD fun in the modular UI area.
 
 CypressHelper makes it saner to write UI testing. It enables creating component drivers that will work on all testing levels (component, integration, e2e).
 
+## Installation
+
+This library provides an API to interact with UI elements - `CypressHelper` that combines the common features.
+To add it to your repo use
+
+`npm i -D @shellygo/cypress-test-utils cypress`
+
+or
+
+`yarn add -D @shellygo/cypress-test-utils cypress`
+
+## Concept
+
 Cypress Helpers can help you develop tests faster
 CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
 ![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/d9aa07d8-2c05-4968-970a-be8445a113c3)
@@ -35,19 +48,7 @@ CypressHelper aims to provide a framework agnostic (angular, lit, react) API for
 This means that the API will not focus on implementation, but on the actual action a user would take.
 For example, a user doesn't mouseUp, he/she hovers.
 
-## [Markdown Documentation](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/modules.md)
-
-[CypressTestHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressHelper.md)
-
-[Assertable](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/Assertable.md)
-
-[CypressAngularComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressAngularComponentHelper.md)
-
-[CypressReactComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressReactComponentHelper.md)
-
-[CypressLitComponentHelper](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/documents/classes/CypressLitComponentHelper.md)
-
-## [HTML Documentation](https://shellydcms.github.io/cypress-test-utils/modules.html)
+## [Documentation](https://shellydcms.github.io/cypress-test-utils)
 
 ## Examples
 
@@ -67,19 +68,6 @@ You may change this behaviour by overriding the default values when creating Cyp
 ### Angular
 
 When mounting an angular component, autoSpyOutputs is set to true, meaning all event emitters are automatically spied on and may be accessed during a test using `helper.get.spy("<EventEmitterName>")`
-
-###
-
-## Usage
-
-This library provides an API to interact with UI elements - `CypressHelper` that combines the common features.
-To add it to your repo use
-
-`npm i -D @shellygo/cypress-test-utils`
-
-or
-
-`yarn add -D @shellygo/cypress-test-utils`
 
 ## Developing
 

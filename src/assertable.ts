@@ -25,23 +25,23 @@ import "cypress-pipe";
  *
  * class Driver {
  *  public given = {
- *  .
- *  .
+ *    // your code here
  *  };
  *  public when = {
- *  .
- *  .
+ *    // your code here
  *  };
  *  public get = {
- *  .
- *  .
+ *    // your code here
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
  * ```
  */
 export class Assertable<T> {
-  constructor(protected readonly chainable: Cypress.Chainable<T>) {}
+  constructor(
+    /** private */
+    protected readonly chainable: Cypress.Chainable<T>
+  ) {}
   public should = (chainer: string, ...rest: any[]) =>
     this.chainable.should(chainer, ...rest);
   /**
@@ -87,7 +87,7 @@ export class Assertable<T> {
    * When the target is a string, `not.include` asserts that the given string val is not a substring of the target.
    * @example
    * ```ts
-   *    then(helper.get.elementsText('selector)).shouldContain('test')
+   *    then(helper.get.elementsText('selector)).shouldNotContain('test')
    * ```
    */
   public shouldNotInclude = (value: any) =>
@@ -99,7 +99,6 @@ export class Assertable<T> {
    *   then(helper.get.elementsText('selector)).shouldEndWith('test')
    * ```
    */
-  
   public shouldEndWith = (value: string) =>
     this.chainable
       .pipe(text => (text as string).slice(-value.length))
@@ -245,10 +244,10 @@ export class Assertable<T> {
    * However, it's often best to assert that the target is equal to its expected value.
    * @example
    * ```ts
-   *    then(get.numberOfElements("radio")).shouldBeGreaterThen(5);
+   *    then(get.numberOfElements("radio")).shouldBeGreaterThan(5);
    * ```
    */
-  public shouldBeGreaterThen = (value: number) =>
+  public shouldBeGreaterThan = (value: number) =>
     this.chainable.should("be.gt", value);
   /** Asserts that the target is a number or a n date less than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
    * @example
@@ -256,23 +255,23 @@ export class Assertable<T> {
    *    then(get.numberOfElements("radio")).shouldBeLessThen(5);
    * ```
    */
-  public shouldBeLessThen = (value: number) =>
+  public shouldBeLessThan = (value: number) =>
     this.chainable.should("be.lt", value);
   /** Asserts that the target is a number or a date greater than or equal to the given number or date n respectively. However, it's often best to assert that the target is equal to its expected value.
    * @example
    * ```ts
-   *   then(get.numberOfElements("radio")).shouldBeGreaterThenOrEqual(5);
+   *   then(get.numberOfElements("radio")).shouldBeGreaterThanOrEqual(5);
    * ```
    */
-  public shouldBeGreaterThenOrEqual = (value: number) =>
+  public shouldBeGreaterThanOrEqual = (value: number) =>
     this.chainable.should("be.gte", value);
   /**
    * Asserts that the target is a number or a date less than or equal to the given number or date n respectively.
    * However, it's often best to assert that the target is equal to its expected value.
    * @example
-   *    then(get.numberOfElements('list-item')).shouldBeLessThenOrEqual(5)
+   *    then(get.numberOfElements('list-item')).shouldBeLessThanOrEqual(5)
    */
-  public shouldBeLessThenOrEqual = (value: number) =>
+  public shouldBeLessThanOrEqual = (value: number) =>
     this.chainable.should("be.lte", value);
   /** Assert that at least one element of the selection is checked, using .is(':checked').
    * @example
@@ -317,7 +316,16 @@ export class Assertable<T> {
    */
   public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
     this.chainable.should("have.attr", attribute, expectedValue);
-
+  /**
+   * Assert that the first element of the selection has the given attribute, using `.prop()`.
+   * Optionally, assert a particular value as well. The return value is available for chaining.
+   * @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldHaveProperty("test")
+   * ```
+   */
+  public shouldHaveProp = (property: string, expectedValue: string | boolean) =>
+    this.chainable.should("have.prop", property, expectedValue);
   /**
    * Assert that an element has a css property with the given value.
    * @example
@@ -342,6 +350,20 @@ export class Assertable<T> {
    * @example
    * ```ts
    * then(get.spy("onSomething")).shouldHaveBeenCalledWithMatch(match({ id: 1 }))
+   * ```
+   *
+   * @example
+   * ```ts
+   *  it('should call the get method of the HTTP client with a URL with query param filter = status', () => {
+   *   healthService.fetchHealthResults(status);
+   *   then(get.mock.httpClientService().get).shouldHaveBeenCalledWith(
+   *     match(baseURL),
+   *     match.hasNested(
+   *       'params.updates[0]',
+   *       match({ param: 'filter', value: `status eq ${status}` })
+   *     )
+   *   );
+   * });
    * ```
    */
   public shouldHaveBeenCalledWithMatch = (...args: any[]) =>
@@ -482,6 +504,7 @@ export class Assertable<T> {
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
+ * ```
  */
 export const then = (subject: Cypress.Chainable<any> | any) => {
   return new Assertable(
