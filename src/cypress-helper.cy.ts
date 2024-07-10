@@ -431,4 +431,16 @@ describe("cypress helper tests", () => {
   it("should get element's attribute", () => {
     then(get.elementsProperty("image", "height")).shouldEqual(142);
   });
+
+  it("should get the given style from the element", () => {
+    then(get.elementComputedStyleProperty("image", "height")).shouldEqual(
+      "142px"
+    );
+  });
+
+  it("should get the given style from element with index", () => {
+    then(
+      get.elementComputedStyleProperty("image", "height", { index: 0 })
+    ).shouldEqual("142px");
+  });
 });

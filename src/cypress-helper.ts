@@ -792,6 +792,37 @@ export class CypressHelper {
         ),
 
     /**
+     * Returns a specific style of an element, including pseudo elements if specified.
+     * @example
+     * ```ts
+     * helper.get.elementSpecificStyle('element-test-id', 'backgroundImage')
+     * ```
+     * * ```ts
+     * helper.get.elementSpecificStyle('element-test-id', 'backgroundImage', {index: 3, pseudoElement: ':before'})
+     * ```
+     * @param dataTestID
+     * @param styleProperty
+     * @param [index]
+     * @param [pseudoElement]
+     */
+    elementComputedStyleProperty: (
+      dataTestID: string,
+      styleProperty: keyof CSSStyleDeclaration,
+      {
+        index,
+        pseudoElement
+      }: {
+        index?: number;
+        pseudoElement?: string;
+      } = {}
+    ) =>
+      this.get
+        .elementsComputedStyle(dataTestID, index, pseudoElement)
+        .then((style: CSSStyleDeclaration) =>
+          Cypress.Promise.resolve(style[styleProperty])
+        ),
+
+    /**
      * @example
      * ```ts
      * then(helper.get.elementsText("parent-job-name", 3)).shouldInclude("Job 3 Name")
