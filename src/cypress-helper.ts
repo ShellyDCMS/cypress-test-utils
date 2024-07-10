@@ -780,12 +780,17 @@ export class CypressHelper {
    * @param [pseudoElement]
    * @returns {Cypress.Chainable<string>}
    */
-    elementSpecificStyle: (
-      dataTestID: string,
-      styleProperty: string,
-      index?: number,
-      pseudoElement?: string
-    ): Cypress.Chainable<string> =>
+  elementComputedStyleProperty: ({
+    dataTestID,
+    styleProperty,
+    index,
+    pseudoElement
+  }: {
+    dataTestID: string,
+    styleProperty: string,
+    index?: number,
+    pseudoElement?: string
+  }): Cypress.Chainable<string> =>
       this.get
         .elementByTestId(dataTestID, index)
         .then($element =>
