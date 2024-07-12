@@ -14,10 +14,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@cypress/mount-utils@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/@cypress/mount-utils/-/mount-utils-4.0.0.tgz"
-  integrity sha512-4w8WZpOALz5+vhJmPfh2HkT4NMsRP2DgVqSXxXu46GR5yUGfqJ0+WgUrmVuujtKKY6n1mDiO1L4AfZ+4bsEYGQ==
+"@cypress/mount-utils@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@cypress/mount-utils/-/mount-utils-4.1.1.tgz#458a664e2d137d98805aaa454320f3ebc6dc1609"
+  integrity sha512-rW49MH5P47LQQ+hr2o+vTD0smht+hSE0vG4Cdai0dLmg0QJ0L+remfikC87omy1VSo0lz226vmW1xOUx350U/w==
 
 "@cypress/request@^3.0.0":
   version "3.0.1"
