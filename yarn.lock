@@ -37,10 +37,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@cypress/mount-utils@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/@cypress/mount-utils/-/mount-utils-4.0.0.tgz"
-  integrity sha512-4w8WZpOALz5+vhJmPfh2HkT4NMsRP2DgVqSXxXu46GR5yUGfqJ0+WgUrmVuujtKKY6n1mDiO1L4AfZ+4bsEYGQ==
+"@cypress/mount-utils@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@cypress/mount-utils/-/mount-utils-4.1.1.tgz#458a664e2d137d98805aaa454320f3ebc6dc1609"
+  integrity sha512-rW49MH5P47LQQ+hr2o+vTD0smht+hSE0vG4Cdai0dLmg0QJ0L+remfikC87omy1VSo0lz226vmW1xOUx350U/w==
 
 "@cypress/request@^3.0.0":
   version "3.0.1"
@@ -213,10 +213,10 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@types/chai-subset@^1.3.3":
-  version "1.3.3"
-  resolved "https://registry.npmjs.org/@types/chai-subset/-/chai-subset-1.3.3.tgz"
-  integrity sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==
+"@types/chai-subset@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@types/chai-subset/-/chai-subset-1.3.5.tgz#3fc044451f26985f45625230a7f22284808b0a9a"
+  integrity sha512-c2mPnw+xHtXDoHmdtcCXGwyLMiauiAyxWMzhGpqHC4nqI/Y5G2XhTampslK2rb59kpcuHon03UH8W6iYUzw88A==
   dependencies:
     "@types/chai" "*"
 
@@ -4100,10 +4100,10 @@ trim-right@^1.0.1:
   resolved "https://registry.npmjs.org/trim-right/-/trim-right-1.0.1.tgz"
   integrity sha512-WZGXGstmCWgeevgTL54hrCuw1dyMQIzWy7ZfqRJfSmJZBwklI15egmQytFP6bPidmw3M8d5yEowl1niq4vmqZw==
 
-ts-stubber@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ts-stubber/-/ts-stubber-1.0.2.tgz#0ec63772c24ab50b7fe4f5ecda18f045ed82d237"
-  integrity sha512-co88e8mQaXB7dyxU0Df9ZmhE8YV5FXpj1x+tAX1+CDB+SND1SKLNIOLMxWE5xze/UvCuE8J0B3tvTJVO0kOe9w==
+ts-stubber@^1.0.5:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/ts-stubber/-/ts-stubber-1.0.14.tgz#d28ec7942f75b6c19dbbe910dfeef111239ff8b8"
+  integrity sha512-wyWp3mwLeob+w3sfqlPPeJd5xBIKknaN/Aq1LDKDWePlG0wtdhLVbZA+92QCuDp9Y4nI5Fcvmakd0VqVeCVkVA==
 
 tslib@^2.1.0:
   version "2.6.3"
