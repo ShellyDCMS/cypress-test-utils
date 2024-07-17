@@ -1,3 +1,5 @@
+import { addMatchImageSnapshotCommand } from "@simonsmith/cypress-image-snapshot/command";
+import type { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
@@ -67,6 +69,9 @@ export class CypressHelper {
       this.options.defaultDataAttribute || "data-cy";
     this.options.shadowSlotSuffix = this.options.shadowSlotSuffix || "slot";
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
+    addMatchImageSnapshotCommand({
+      failureThreshold: 0.2
+    });
   }
 
   /** @private */
@@ -206,6 +211,16 @@ export class CypressHelper {
      */
     intercept: (url: StringMatcher, alias: string, method?: string) =>
       this.given.interceptAndMockResponse({ url, alias, method }),
+
+    /**
+     * Sets specific environment variable's value
+     * @example
+     * // Changing an environment variable
+     *      * ```ts
+     * helper.given.env("password", "changeMe@1");
+     * ```
+     */
+    env: (key: string, value: string) => Cypress.env(key, value),
 
     /**
      * Load a fixture
@@ -731,6 +746,44 @@ export class CypressHelper {
      * @returns {Cypress.Chainable<string>}
      */
     currentLocation: (): Cypress.Chainable<string> => cy.url(),
+
+    /**
+     * Capture a snapshot and compare it to baseline snapshot
+     * Run Cypress with --env updateSnapshots=true in order to update the base image files for all of your tests.
+     * @param name
+     * @param {string} [dataTestID]
+     * @param {number} [index]
+     * @param {CypressImageSnapshotOptions} [rest]
+     * @example
+     * ```ts
+     * // capture entire window
+     * get.imageSnapshot("homepage");
+     * ```
+     * @example
+     * ```ts
+     * // capture an element by DataTestId, with threshold
+     * get.imageSnapshot("radio-group", {
+     *  dataTestID: "radio-group",
+     *  failureThreshold: 0.2
+     * });
+     * ```
+     */
+    imageSnapshot: (
+      name: string,
+      {
+        dataTestID,
+        index,
+        ...rest
+      }: {
+        index?: number;
+        dataTestID?: string;
+      } & CypressImageSnapshotOptions = {}
+    ) =>
+      dataTestID
+        ? this.get
+            .elementByTestId(dataTestID, index)
+            .matchImageSnapshot(name, rest)
+        : cy.matchImageSnapshot(name, rest),
 
     /**
      * Returns element's style attribute

@@ -46,6 +46,7 @@
   "devDependencies": {
     "@angular/core": "^14.2.0",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@simonsmith/cypress-image-snapshot": "^9.1.0",
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
     "cpx": "^1.5.0",
