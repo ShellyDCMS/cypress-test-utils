@@ -14,6 +14,7 @@ describe("cypress helper tests", () => {
     when.visit(
       "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html"
     );
+    when.waitUntil(() => get.elementByTestId("name-input"));
   });
 
   describe("stubbing an spying", () => {
@@ -178,6 +179,7 @@ describe("cypress helper tests", () => {
         fetch("https://shellygo.com/whatever");
         fetch("https://shellygo.com/whatever");
         when.waitForLastCall("shellygo");
+        when.waitUntil(() => get.elementByTestId("name-input"));
       });
 
       it("should wait for last call", () => {
@@ -273,6 +275,14 @@ describe("cypress helper tests", () => {
     });
   });
 
+  it("should take snapshot and compare to previous", () => {
+    get.imageSnapshot("homepage");
+    get.imageSnapshot("radio-group", {
+      dataTestID: "radio-group",
+      failureThreshold: 0.2
+    });
+  });
+
   it("should get current location", () => {
     then(get.currentLocation()).shouldEqual(
       "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html"
@@ -285,7 +295,7 @@ describe("cypress helper tests", () => {
     then(get.inputValue("name-input")).shouldEqual("shelly");
   });
 
-  it.skip("should click button", () => {
+  it("should click button", () => {
     when.waitUntil(() => get.elementByTestId("name-input"));
     when.clear("name-input");
     when.type("name-input", "shelly");
@@ -371,6 +381,11 @@ describe("cypress helper tests", () => {
 
   it("should get env variable", () => {
     then(get.env("env1")).shouldEqual("value1");
+  });
+
+  it("should set env variable", () => {
+    given.env("env1000", "1000");
+    then(get.env("env1000")).shouldEqual("1000");
   });
 
   it("should get number of elements", () => {
