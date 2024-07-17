@@ -180,7 +180,6 @@ describe("cypress helper tests", () => {
         fetch("https://shellygo.com/whatever");
         when.waitForLastCall("shellygo");
         when.waitUntil(() => get.elementByTestId("name-input"));
-        s;
       });
 
       it("should wait for last call", () => {
