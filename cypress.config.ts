@@ -29,8 +29,8 @@ export default defineConfig({
     supportFile: false,
     baseUrl:
       "https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShellyDCMS/cypress-test-utils/main/index.html",
-    viewportHeight: 1000,
-    viewportWidth: 1600,
+    viewportHeight: 720,
+    viewportWidth: 1280,
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     excludeSpecPattern: "cypress/**/*.driver.{js,jsx,ts,tsx}",
     defaultCommandTimeout: 100000,
