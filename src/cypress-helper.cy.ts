@@ -276,7 +276,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should take snapshot and compare to previous", () => {
-    when.wait(100);
+    when.wait(500);
     get.imageSnapshot("homepage", { failureThreshold: 1 });
     get.imageSnapshot("radio-group", {
       dataTestID: "radio-group",
