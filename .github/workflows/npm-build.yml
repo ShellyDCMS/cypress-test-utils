@@ -34,6 +34,11 @@ jobs:
           reporter: mochawesome-json
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cypress_snapshots
-          path: cypress/snapshots/**/__diff_output__
+          path: |
+            cypress/snapshots/**/__diff_output__
+            cypress/scneershots/*
+          overwrite: false
+          if-no-files-found: "ignore"
