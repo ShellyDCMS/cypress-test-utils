@@ -1,12 +1,12 @@
-import { addMatchImageSnapshotCommand } from "@simonsmith/cypress-image-snapshot/command";
-import type { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
-import chaiSubset from "chai-subset";
+const addMatchImageSnapshotCommand = require("@simonsmith/cypress-image-snapshot/command");
+import { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
 import { StubbedInstanceCreator } from "ts-stubber";
+const chaiSubset = require("chai-subset");
 
 /**
  * Sinon matcher for stubs/spy comparison
