@@ -1,4 +1,4 @@
-// import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "rollup-plugin-commonjs";
 import { generateDtsBundle } from "rollup-plugin-dts-bundle-generator";
@@ -23,8 +23,9 @@ export default [
         // if false then skip sourceMap generation for CommonJS modules
         sourceMap: false // Default: true
       }),
-
-      // nodeResolve(),
+      nodeResolve({
+        modulesOnly: false
+      }),
       generateDtsBundle({
         entry: [{ filePath: "src/index.ts" }]
       })

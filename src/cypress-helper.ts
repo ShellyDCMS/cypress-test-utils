@@ -1,4 +1,4 @@
-import { addMatchImageSnapshotCommand } from "@simonsmith/cypress-image-snapshot/command";
+import { addMatchImageSnapshotCommand } from "@simonsmith/cypress-image-snapshot/command.js";
 import type { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
 import chaiSubset from "chai-subset";
 import "cypress-real-events";
