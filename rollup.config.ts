@@ -1,5 +1,6 @@
-import { nodeResolve } from "@rollup/plugin-node-resolve";
+// import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import commonjs from "rollup-plugin-commonjs";
 import { generateDtsBundle } from "rollup-plugin-dts-bundle-generator";
 
 export default [
@@ -11,7 +12,19 @@ export default [
     },
     plugins: [
       typescript(),
-      nodeResolve(),
+      commonjs({
+        // non-CommonJS modules will be ignored, but you can also
+        // specifically include/exclude files
+        include: ["./index.js", "node_modules/**"], // Default: undefined
+
+        // if true then uses of `global` won't be dealt with by this plugin
+        ignoreGlobal: false, // Default: false
+
+        // if false then skip sourceMap generation for CommonJS modules
+        sourceMap: false // Default: true
+      }),
+
+      // nodeResolve(),
       generateDtsBundle({
         entry: [{ filePath: "src/index.ts" }]
       })
