@@ -1,12 +1,12 @@
-const addMatchImageSnapshotCommand = require("@simonsmith/cypress-image-snapshot/command.js");
-import { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
+import { addMatchImageSnapshotCommand } from "@simonsmith/cypress-image-snapshot/command";
+import type { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
+import chaiSubset from "chai-subset";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
 import { StubbedInstanceCreator } from "ts-stubber";
-const chaiSubset = require("chai-subset");
 
 /**
  * Sinon matcher for stubs/spy comparison
@@ -69,7 +69,7 @@ export class CypressHelper {
       this.options.defaultDataAttribute || "data-cy";
     this.options.shadowSlotSuffix = this.options.shadowSlotSuffix || "slot";
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
-    addMatchImageSnapshotCommand.addMatchImageSnapshotCommand({
+    addMatchImageSnapshotCommand({
       failureThreshold: 0.2
     });
   }
