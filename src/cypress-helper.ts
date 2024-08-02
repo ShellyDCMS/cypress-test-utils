@@ -1,4 +1,4 @@
-const addMatchImageSnapshotCommand = require("@simonsmith/cypress-image-snapshot/command");
+const addMatchImageSnapshotCommand = require("@simonsmith/cypress-image-snapshot/command.js");
 import { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
@@ -69,7 +69,7 @@ export class CypressHelper {
       this.options.defaultDataAttribute || "data-cy";
     this.options.shadowSlotSuffix = this.options.shadowSlotSuffix || "slot";
     this.options.handleSlotShadowDOM = this.options.handleSlotShadowDOM || true;
-    addMatchImageSnapshotCommand({
+    addMatchImageSnapshotCommand.addMatchImageSnapshotCommand({
       failureThreshold: 0.2
     });
   }
