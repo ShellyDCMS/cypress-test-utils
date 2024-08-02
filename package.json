@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.1.22",
+  "version": "2.1.23",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@angular/core": "^14.2.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
