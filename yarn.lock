@@ -1644,10 +1644,10 @@ cypress-wait-if-happens@^1.3.3:
   resolved "https://registry.yarnpkg.com/cypress-wait-if-happens/-/cypress-wait-if-happens-1.3.3.tgz#609803d8bc264f1e29e20144f37f13e33b523847"
   integrity sha512-1+fxadD2UFlJWZMzs2/1OA9ZUqMQ+I1Z86Gc2ifZrDZ6GmYihzTbixNAzt++t46to6qHsiXeYQ48gBg1UjYhyQ==
 
-cypress-wait-until@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/cypress-wait-until/-/cypress-wait-until-3.0.1.tgz#6a697a600f4fb8cd2897489a15fda77c9857abec"
-  integrity sha512-kpoa8yL6Bi/JNsThGBbrrm7g4SNzYyBUv9M5pF6/NTVm/ClY0HnJzeuWnHiAUZKIZ5l86Oedb12wQyjx7/CWPg==
+cypress-wait-until@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/cypress-wait-until/-/cypress-wait-until-3.0.2.tgz#c90dddfa4c46a2c422f5b91d486531c560bae46e"
+  integrity sha512-iemies796dD5CgjG5kV0MnpEmKSH+s7O83ZoJLVzuVbZmm4lheMsZqAVT73hlMx4QlkwhxbyUzhOBUOZwoOe0w==
 
 cypress@^13.11.0:
   version "13.11.0"
