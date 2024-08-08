@@ -6,8 +6,12 @@ import "cypress-wait-if-happens";
 import "cypress-wait-until";
 import { StringMatcher } from "cypress/types/net-stubbing";
 import type { SinonStub } from "cypress/types/sinon";
-import { StubbedInstanceCreator } from "ts-stubber";
+import {
+  StubbedInstance as GenericStubbedInstance,
+  StubbedInstanceCreator
+} from "ts-stubber";
 
+export type StubbedInstance<T> = GenericStubbedInstance<T, SinonStub>;
 /**
  * Sinon matcher for stubs/spy comparison
  * @example
