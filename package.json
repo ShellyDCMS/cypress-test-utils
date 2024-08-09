@@ -42,7 +42,7 @@
     "cypress-real-events": "^1.13.0",
     "cypress-wait-if-happens": "^1.3.3",
     "cypress-wait-until": "^3.0.1",
-    "ts-stubber": "^1.0.5"
+    "ts-stubber": "^1.0.15"
   },
   "devDependencies": {
     "@angular/core": "^14.2.0",
