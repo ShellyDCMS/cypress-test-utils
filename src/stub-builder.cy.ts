@@ -1,4 +1,4 @@
-import { CypressHelper } from ".";
+import { CypressHelper, type StubbedInstance } from ".";
 import { then } from "./assertable";
 
 describe("stub builder tests", () => {
@@ -178,7 +178,8 @@ describe("stub builder tests", () => {
 
     describe("Given inherited class", () => {
       it("should assert stub async function calls", async () => {
-        const mockMyInheritedClass = given.stubbedInstance(MyInheritedClass);
+        const mockMyInheritedClass: StubbedInstance<MyInheritedClass> =
+          given.stubbedInstance(MyInheritedClass);
         mockMyInheritedClass.asynFunc.resolves(7);
         await mockMyInheritedClass.asynFunc(3);
         then(mockMyInheritedClass.asynFunc).shouldHaveBeenCalledWith(3);
