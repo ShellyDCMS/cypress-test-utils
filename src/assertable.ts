@@ -1,5 +1,4 @@
 import "cypress-axe";
-import type { Options } from "cypress-axe";
 import "cypress-pipe";
 
 /** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
@@ -290,19 +289,6 @@ export class Assertable<T> {
    */
   public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
 
-  /**
-   *
-   * Assert that at least one element of the selection is focused.
-   * @example
-   * ```ts
-   * then(get.elementByTestId("selector")).shouldBeFocused()
-   * ```
-   */
-  public shouldBeAccessible = (
-    options: Options = {
-      includedImpacts: ["critical"]
-    }
-  ) => this.chainable.checkA11y(undefined, options);
   /**
    * Assert that the text of the first element of the selection is equal to the given text, using .text().
    * @example
