@@ -1,4 +1,3 @@
-import "cypress-axe";
 import "cypress-pipe";
 
 /** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
