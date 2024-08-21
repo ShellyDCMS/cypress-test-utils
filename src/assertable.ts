@@ -1,3 +1,5 @@
+import "cypress-axe";
+import type { Options } from "cypress-axe";
 import "cypress-pipe";
 
 /** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
@@ -289,6 +291,19 @@ export class Assertable<T> {
   public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
 
   /**
+   *
+   * Assert that at least one element of the selection is focused.
+   * @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldBeFocused()
+   * ```
+   */
+  public shouldBeAccessible = (
+    options: Options = {
+      includedImpacts: ["critical"]
+    }
+  ) => this.chainable.checkA11y(undefined, options);
+  /**
    * Assert that the text of the first element of the selection is equal to the given text, using .text().
    * @example
    * ```ts
@@ -316,6 +331,17 @@ export class Assertable<T> {
    */
   public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
     this.chainable.should("have.attr", attribute, expectedValue);
+
+  /**
+   * Assert that the first element of the selection does not has the given attribute, using `.attr()`.
+   * Optionally, assert a particular value as well. The return value is available for chaining.
+   * @example
+   * ```ts
+   *  then(get.elementByTestId("selector")).shouldNotHaveAttribute("test")
+   * ```
+   */
+  public shouldNotHaveAttribute = (attribute: string, expectedValue: string) =>
+    this.chainable.should("not.have.attr", attribute, expectedValue);
   /**
    * Assert that the first element of the selection has the given attribute, using `.prop()`.
    * Optionally, assert a particular value as well. The return value is available for chaining.
@@ -491,16 +517,13 @@ export class Assertable<T> {
  *
  * class Driver {
  *  public given = {
- *  .
- *  .
+ *    // methods for setting test pre-conditions
  *  };
  *  public when = {
- *  .
- *  .
+ *    // methods for test "actions", such as click, darg & drop, etc.
  *  };
  *  public get = {
- *  .
- *  .
+ *    // getter, for exploring the outcome, such as getting a text color a span
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
