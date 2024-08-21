@@ -316,6 +316,17 @@ export class Assertable<T> {
    */
   public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
     this.chainable.should("have.attr", attribute, expectedValue);
+
+  /**
+   * Assert that the first element of the selection does not has the given attribute, using `.attr()`.
+   * Optionally, assert a particular value as well. The return value is available for chaining.
+   * @example
+   * ```ts
+   *  then(get.elementByTestId("selector")).shouldNotHaveAttribute("test")
+   * ```
+   */
+  public shouldNotHaveAttribute = (attribute: string, expectedValue: string) =>
+    this.chainable.should("not.have.attr", attribute, expectedValue);
   /**
    * Assert that the first element of the selection has the given attribute, using `.prop()`.
    * Optionally, assert a particular value as well. The return value is available for chaining.
@@ -491,16 +502,13 @@ export class Assertable<T> {
  *
  * class Driver {
  *  public given = {
- *  .
- *  .
+ *    // methods for setting test pre-conditions
  *  };
  *  public when = {
- *  .
- *  .
+ *    // methods for test "actions", such as click, darg & drop, etc.
  *  };
  *  public get = {
- *  .
- *  .
+ *    // getter, for exploring the outcome, such as getting a text color a span
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
