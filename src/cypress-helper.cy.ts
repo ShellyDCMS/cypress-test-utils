@@ -275,6 +275,12 @@ describe("cypress helper tests", () => {
     });
   });
 
+  it.only("should test a11y", () => {
+    get.elementByTestId("header");
+    cy.injectAxe();
+    then(get.elementByTestId("header")).shouldBeAccessible();
+  });
+
   it("should take snapshot and compare to previous", () => {
     get.imageSnapshot("homepage", { failureThreshold: 1 });
     get.imageSnapshot("radio-group", {
