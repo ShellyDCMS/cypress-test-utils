@@ -11,6 +11,11 @@ import {
   StubbedInstanceCreator
 } from "ts-stubber";
 
+export type snapshotOptions = {
+  index?: number;
+  dataTestID?: string;
+} & CypressImageSnapshotOptions;
+
 export type StubbedInstance<T> = GenericStubbedInstance<T, SinonStub>;
 /**
  * Sinon matcher for stubs/spy comparison
@@ -774,14 +779,7 @@ export class CypressHelper {
      */
     imageSnapshot: (
       name: string,
-      {
-        dataTestID,
-        index,
-        ...rest
-      }: {
-        index?: number;
-        dataTestID?: string;
-      } & CypressImageSnapshotOptions = {}
+      { dataTestID, index, ...rest }: snapshotOptions = {}
     ) =>
       dataTestID
         ? this.get
