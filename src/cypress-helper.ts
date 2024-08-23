@@ -11,7 +11,7 @@ import {
   StubbedInstanceCreator
 } from "ts-stubber";
 
-export type snapshotOptions = {
+export type SnapshotOptions = {
   index?: number;
   dataTestID?: string;
 } & CypressImageSnapshotOptions;
@@ -779,7 +779,7 @@ export class CypressHelper {
      */
     imageSnapshot: (
       name: string,
-      { dataTestID, index, ...rest }: snapshotOptions = {}
+      { dataTestID, index, ...rest }: SnapshotOptions = {}
     ) =>
       dataTestID
         ? this.get
