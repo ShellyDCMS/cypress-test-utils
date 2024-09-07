@@ -229,7 +229,7 @@ export class CypressHelper {
      * helper.given.env("password", "changeMe@1");
      * ```
      */
-    env: (key: string, value: string) => Cypress.env(key, value),
+    env: (key: string, value: any) => Cypress.env(key, value),
 
     /**
      * Load a fixture
