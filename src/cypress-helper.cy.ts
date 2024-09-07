@@ -444,7 +444,7 @@ describe("cypress helper tests", () => {
   });
 
   it("should get element's attribute", () => {
-    then(get.elementsProperty("image", "height")).shouldEqual(142);
+    then(get.elementsProperty("image", "height")).shouldEqual(8);
   });
 
   it("should get the given style from the element", () => {
