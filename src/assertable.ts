@@ -101,7 +101,7 @@ export class Assertable<T> {
    */
 
   /**
-   * When the target is a string, `not.include` asserts that the given string val is not a substring of the target.
+   * When the target is a string, shouldNotInclude asserts that the given string val is not a substring of the target.
    * @example
    * ```ts
    *    then(helper.get.elementsText('selector)).shouldNotInclude('test')
@@ -109,6 +109,17 @@ export class Assertable<T> {
    */
   public shouldNotContain = (value: any) =>
     this.chainable.should("not.contain", value);
+
+  /**
+   * shouldNotHaveText asserts that the given string val is not a substring of the target.
+   * @example
+   * ```ts
+   *    then(helper.get.elementsText('selector)).shouldNotHaveText('test')
+   * ```
+   */
+  public shouldNotHaveText = (value: string) =>
+    this.chainable.should("not.have.text", value);
+
   /**
    * Asserts that text ends with value
    * @example
