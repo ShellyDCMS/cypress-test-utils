@@ -447,7 +447,7 @@ describe("cypress helper tests", () => {
     then(get.elementsProperty("image", "height")).shouldEqual(142);
   });
 
-  it.only("should not have text", () => {
+  it("should not have text", () => {
     then(get.elementByTestId("header")).shouldNotHaveText("TEST");
   });
 
