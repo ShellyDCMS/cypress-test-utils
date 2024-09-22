@@ -49,7 +49,7 @@ export class CypressLitComponentHelper {
           .shadow({ log: false })
       );
     },
-    unmount: <T extends LitElement>(element: T) =>
+    unmount: <T extends LitElement>(element: T | undefined) =>
       this.when.mount(element, html`<slot></slot>`)
   };
   public get = {};
