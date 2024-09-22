@@ -4181,10 +4181,10 @@ trim-right@^1.0.1:
   resolved "https://registry.npmjs.org/trim-right/-/trim-right-1.0.1.tgz"
   integrity sha512-WZGXGstmCWgeevgTL54hrCuw1dyMQIzWy7ZfqRJfSmJZBwklI15egmQytFP6bPidmw3M8d5yEowl1niq4vmqZw==
 
-ts-stubber@^1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/ts-stubber/-/ts-stubber-1.0.15.tgz#8c4cf7a7b29fdac28d06585b2f29c69ecceda34a"
-  integrity sha512-VUuTi/3FRaIJAEepm9IT8AHcBBnT47+NuKr3+JLGNNXMET/2mFq5gN4vjeRFslBNoTsEWNhbaeiua38EGgpIPA==
+ts-stubber@^1.0.17:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/ts-stubber/-/ts-stubber-1.0.18.tgz#c3e28470a7f999b43889180e5687efa04337a6d8"
+  integrity sha512-Qyb4uC/A78B5N9KY4DNqQ0rjat0r67jCh5m491bIdlhItBiW3zk3YwqABrv7Wbld2T9cjlmWFFULqMex96E58w==
 
 tslib@^2.1.0:
   version "2.6.3"
