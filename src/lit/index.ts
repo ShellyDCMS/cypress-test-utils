@@ -33,7 +33,7 @@ export class CypressLitComponentHelper {
         cy
           .wait(0, { log: false })
           .then(() => {
-            const mountMessage = `<${String(constructor?.name)} ... />`;
+            const mountMessage = `<${String(constructor?.name) || "empty"} />`;
 
             Cypress.log({
               name: "mount",
