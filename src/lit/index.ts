@@ -21,7 +21,10 @@ export class CypressLitComponentHelper {
      * @param element
      * @param template
      */
-    mount: <T extends LitElement>(element: T, template: TemplateResult) => {
+    mount: <T extends LitElement>(
+      element: T | undefined,
+      template: TemplateResult
+    ) => {
       const target = getContainerEl();
 
       render(template, target);
@@ -30,7 +33,7 @@ export class CypressLitComponentHelper {
         cy
           .wait(0, { log: false })
           .then(() => {
-            const mountMessage = `<${String(element.constructor.name)} ... />`;
+            const mountMessage = `<${String(element?.constructor.name)} ... />`;
 
             Cypress.log({
               name: "mount",
