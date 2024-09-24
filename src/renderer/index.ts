@@ -88,12 +88,14 @@ export class Renderer<T> {
       const litComponentHelper = new CypressLitComponentHelper();
       if (template) {
         litComponentHelper.when.unmount();
+        // @ts-ignore
         litComponentHelper.when.mount<T>(template, element);
       } else {
         const templateResult = html`<${unsafeStatic(selector!)} ${spread(
           props!
         )}>${this.get.litChildren(children!)}</${unsafeStatic(selector!)}>`;
         litComponentHelper.when.unmount();
+        // @ts-ignore
         litComponentHelper.when.mount<T>(templateResult, element);
       }
     },
@@ -104,12 +106,13 @@ export class Renderer<T> {
      **/
     renderReact: (
       // @ts-ignore
-      type: ReactWebComponent<T>,
+      type: ReactWebComponent<T> | T,
       // @ts-ignore
       props?: (Attributes & Partial<ReactWebComponent<T>["props"]>) | null
     ) => {
       const reactComponentHelper = new CypressReactComponentHelper();
       reactComponentHelper.when.mount(
+        // @ts-ignore
         type,
         props,
         this.get.reactChildren(props.children)
