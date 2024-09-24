@@ -137,8 +137,8 @@ export class Renderer<T> {
     }
   };
 
-  public get = {
-    reactChildren: (children: string) => {
+  private get = {
+    reactChildren: (children: string): React.ReactElement[] => {
       return ReactHtmlParser(children);
     },
     litChildren: (children: string) => {
