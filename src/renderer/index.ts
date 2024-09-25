@@ -1,15 +1,15 @@
 import type { Type } from "@angular/core";
-import type { MountConfig } from "cypress/angular";
-import { CypressHelper } from "../";
-import { CypressAngularComponentHelper } from "../angular";
-import { CypressReactComponentHelper } from "../react";
-
+import { ReactWebComponent } from "@lit/react";
 import { spread } from "@open-wc/lit-helpers";
+import type { MountConfig } from "cypress/angular";
 import type { LitElement, TemplateResult } from "lit";
 import { templateContent } from "lit-html/directives/template-content.js";
 import { html, unsafeStatic } from "lit/static-html.js";
 import ReactHtmlParser from "react-html-parser";
+import { CypressHelper } from "../";
+import { CypressAngularComponentHelper } from "../angular";
 import { CypressLitComponentHelper } from "../lit";
+import { CypressReactComponentHelper } from "../react";
 
 export interface IRenderer {
   render: () => void;
