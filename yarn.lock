@@ -107,7 +107,7 @@
 
 "@lit/react@^1.0.5":
   version "1.0.5"
-  resolved "https://dps.artifactory.cec.lab.emc.com:443/artifactory/api/npm/dps-npm-public/@lit/react/-/react-1.0.5.tgz#9c53a8d719f91ef7edca0bdd68f5589ea579ffc1"
+  resolved "https://registry.yarnpkg.com/@lit/react/-/react-1.0.5.tgz#9c53a8d719f91ef7edca0bdd68f5589ea579ffc1"
   integrity sha512-RSHhrcuSMa4vzhqiTenzXvtQ6QDq3hSPsnHHO3jaPmmvVFeoNNm4DHoQ0zLdKAUvY3wP3tTENSUf7xpyVfrDEA==
 
 "@lit/reactive-element@^1.3.0", "@lit/reactive-element@^1.6.0":
