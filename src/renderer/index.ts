@@ -1,40 +1,44 @@
 import type { Type } from "@angular/core";
-import { ReactWebComponent } from "@lit/react";
 import { spread } from "@open-wc/lit-helpers";
 import type { MountConfig } from "cypress/angular";
 import type { LitElement, TemplateResult } from "lit";
 import { templateContent } from "lit-html/directives/template-content.js";
 import { html, unsafeStatic } from "lit/static-html.js";
+import type { Attributes } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { CypressHelper } from "../";
 import { CypressAngularComponentHelper } from "../angular";
 import { CypressLitComponentHelper } from "../lit";
 import { CypressReactComponentHelper } from "../react";
-
 export interface IRenderer {
   render: () => void;
 }
 
-export interface getPropsAndchildren {}
+export interface AngularOptions<T> {
+  type: Type<T>;
+  config: MountConfig<T>;
+  props?: Partial<T>;
+}
+
+export interface ReactOptions<T> {
+  type: T;
+  // @ts-ignore
+  props?: (Attributes & Partial<T>["props"]) | null;
+  children?: string;
+}
+
+export interface LitOptions<T> {
+  element?: { new (...args: any[]): LitElement };
+  selector?: string;
+  children?: string;
+  props?: Partial<T>;
+  template?: TemplateResult;
+}
+
 export interface Options {
-  getAngularOptions?: <T>() => {
-    type: Type<T>;
-    config: MountConfig<T>;
-    props?: Partial<T>;
-  };
-  getReactOptions?: <T extends LitElement>() => {
-    // @ts-ignore
-    type: ReactWebComponent<T> | T;
-    // @ts-ignore
-    props?: (Attributes & Partial<ReactWebComponent<T>["props"]>) | null;
-  };
-  getLitOptions?: <T extends LitElement>() => {
-    element?: { new (...args: any[]): LitElement };
-    selector?: string;
-    children?: string;
-    props?: Partial<T>;
-    template?: TemplateResult;
-  };
+  getAngularOptions?: <T>() => AngularOptions<T>;
+  getReactOptions?: <T>() => ReactOptions<T>;
+  getLitOptions?: <T>() => LitOptions<T>;
 }
 
 /**
@@ -109,13 +113,7 @@ export class RenderFactory {
     props,
     children = "",
     template
-  }: {
-    element?: { new (...args: any[]): T };
-    selector?: string;
-    children?: string;
-    props?: Partial<T>;
-    template?: TemplateResult;
-  }) {
+  }: LitOptions<T>) {
     const litComponentHelper = new CypressLitComponentHelper();
     if (template) {
       litComponentHelper.when.unmount();
@@ -131,33 +129,18 @@ export class RenderFactory {
     }
   }
 
-  private renderReact<T extends LitElement>({
-    type,
-    props
-  }: {
-    // @ts-ignore
-    type: ReactWebComponent<T> | T;
-    // @ts-ignore
-    props?: (Attributes & Partial<ReactWebComponent<T>["props"]>) | null;
-  }) {
+  private renderReact<T>({ type, props, children }: ReactOptions<T>) {
     const reactComponentHelper = new CypressReactComponentHelper();
     reactComponentHelper.when.mount(
       // @ts-ignore
       type,
       props,
-      this.get.reactChildren(props.children)
+      // @ts-ignore
+      this.get.reactChildren(children)
     );
   }
 
-  private renderAngular<T>({
-    type,
-    config,
-    props
-  }: {
-    type: Type<T>;
-    config: MountConfig<T>;
-    props?: Partial<T>;
-  }) {
+  private renderAngular<T>({ type, config, props }: AngularOptions<T>) {
     const angularComponentHelper = new CypressAngularComponentHelper();
     angularComponentHelper.when.mount(type, config, props);
   }
