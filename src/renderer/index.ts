@@ -4,7 +4,7 @@ import type { MountConfig } from "cypress/angular";
 import type { LitElement, TemplateResult } from "lit";
 import { templateContent } from "lit-html/directives/template-content.js";
 import { html, unsafeStatic } from "lit/static-html.js";
-import type { Attributes } from "react";
+import type { Attributes, ComponentClass, FunctionComponent } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { CypressHelper } from "../";
 import { CypressAngularComponentHelper } from "../angular";
@@ -20,14 +20,19 @@ export interface AngularOptions<T> {
   props?: Partial<T>;
 }
 
-export interface ReactOptions<T> {
+export interface ReactOptions<
+  P extends {},
+  T extends
+    | FunctionComponent<P>
+    | ComponentClass<P>
+    | ((props: P) => JSX.Element)
+> {
   type: T;
-  // @ts-ignore
-  props?: (Attributes & Partial<T>["props"]) | null;
+  props?: (Attributes & P) | null;
   children?: string;
 }
 
-export interface LitOptions<T> {
+export interface LitOptions<T extends LitElement> {
   element?: { new (...args: any[]): LitElement };
   selector?: string;
   children?: string;
@@ -37,8 +42,14 @@ export interface LitOptions<T> {
 
 export interface Options {
   getAngularOptions?: <T>() => AngularOptions<T>;
-  getReactOptions?: <T>() => ReactOptions<T>;
-  getLitOptions?: <T>() => LitOptions<T>;
+  getReactOptions?: <
+    P extends {},
+    T extends
+      | FunctionComponent<P>
+      | ComponentClass<P>
+      | ((props: P) => JSX.Element)
+  >() => ReactOptions<P, T>;
+  getLitOptions?: <T extends LitElement>() => LitOptions<T>;
 }
 
 /**
@@ -117,25 +128,27 @@ export class RenderFactory {
     const litComponentHelper = new CypressLitComponentHelper();
     if (template) {
       litComponentHelper.when.unmount();
-      // @ts-ignore
-      litComponentHelper.when.mount<T>(template, element);
+      litComponentHelper.when.mount(template, element);
     } else {
       const templateResult = html`<${unsafeStatic(selector!)} ${spread(
         props!
       )}>${this.get.litChildren(children!)}</${unsafeStatic(selector!)}>`;
       litComponentHelper.when.unmount();
-      // @ts-ignore
-      litComponentHelper.when.mount<T>(templateResult, element);
+      litComponentHelper.when.mount(templateResult, element);
     }
   }
 
-  private renderReact<T>({ type, props, children }: ReactOptions<T>) {
+  private renderReact<
+    P extends {},
+    T extends
+      | FunctionComponent<P>
+      | ComponentClass<P>
+      | ((props: P) => JSX.Element)
+  >({ type, props, children = "" }: ReactOptions<P, T>) {
     const reactComponentHelper = new CypressReactComponentHelper();
     reactComponentHelper.when.mount(
-      // @ts-ignore
       type,
       props,
-      // @ts-ignore
       this.get.reactChildren(children)
     );
   }
