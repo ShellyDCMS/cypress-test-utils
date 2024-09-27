@@ -353,8 +353,8 @@ export class Assertable<T> {
    *  then(get.elementByTestId("selector")).shouldNotHaveAttribute("test")
    * ```
    */
-  public shouldNotHaveAttribute = (attribute: string, expectedValue: string) =>
-    this.chainable.should("not.have.attr", attribute, expectedValue);
+  public shouldNotHaveAttribute = (attribute: string) =>
+    this.chainable.should("not.have.attr", attribute);
   /**
    * Assert that the first element of the selection has the given attribute, using `.prop()`.
    * Optionally, assert a particular value as well. The return value is available for chaining.
