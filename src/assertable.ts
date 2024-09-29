@@ -101,6 +101,34 @@ export class Assertable<T> {
    *   then(helper.get.elementsText('selector)).shouldEndWith('test')
    * ```
    */
+
+  /**
+   * When the target is a string, shouldNotInclude asserts that the given string val is not a substring of the target.
+   * @example
+   * ```ts
+   *    then(helper.get.elementsText('selector)).shouldNotInclude('test')
+   * ```
+   */
+  public shouldNotContain = (value: any) =>
+    this.chainable.should("not.contain", value);
+
+  /**
+   * shouldNotHaveText asserts that the given string val is not a substring of the target.
+   * @example
+   * ```ts
+   *    then(helper.get.elementsText('selector)).shouldNotHaveText('test')
+   * ```
+   */
+  public shouldNotHaveText = (value: string) =>
+    this.chainable.should("not.have.text", value);
+
+  /**
+   * Asserts that text ends with value
+   * @example
+   * ```ts
+   *   then(helper.get.elementsText('selector)).shouldEndWith('test')
+   * ```
+   */
   public shouldEndWith = (value: string) =>
     this.chainable
       .pipe(text => (text as string).slice(-value.length))
@@ -331,6 +359,17 @@ export class Assertable<T> {
    */
   public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
     this.chainable.should("have.attr", attribute, expectedValue);
+
+  /**
+   * Assert that the first element of the selection does not has the given attribute, using `.attr()`.
+   * Optionally, assert a particular value as well. The return value is available for chaining.
+   * @example
+   * ```ts
+   *  then(get.elementByTestId("selector")).shouldNotHaveAttribute("test")
+   * ```
+   */
+  public shouldNotHaveAttribute = (attribute: string) =>
+    this.chainable.should("not.have.attr", attribute);
   /**
    * Assert that the first element of the selection has the given attribute, using `.prop()`.
    * Optionally, assert a particular value as well. The return value is available for chaining.
@@ -506,16 +545,13 @@ export class Assertable<T> {
  *
  * class Driver {
  *  public given = {
- *  .
- *  .
+ *    // methods for setting test pre-conditions
  *  };
  *  public when = {
- *  .
- *  .
+ *    // methods for test "actions", such as click, darg & drop, etc.
  *  };
  *  public get = {
- *  .
- *  .
+ *    // getter, for exploring the outcome, such as getting a text color a span
  *  };
  *  public then = (chainable: Cypress.Chainable<any>) => new MyAssertable(chainable);
  * }
