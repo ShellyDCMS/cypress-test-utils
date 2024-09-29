@@ -39,7 +39,7 @@
     "@open-wc/lit-helpers": "^0.7.0",
     "@simonsmith/cypress-image-snapshot": "^9.1.0",
     "@types/chai-subset": "^1.3.5",
-    "@types/react": "^18.2.7",
+    "@types/react": "^18.3.5",
     "@types/react-html-parser": "^2.0.6",
     "chai-subset": "^1.6.0",
     "cypress-pipe": "^2.0.0",
@@ -47,10 +47,10 @@
     "cypress-wait-if-happens": "^1.3.3",
     "cypress-wait-until": "^3.0.2",
     "lit": "^2.7.4",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-html-parser": "^2.0.2",
-    "react-router-dom": "^6.21.3",
+    "react-router-dom": "^6.26.1",
     "ts-stubber": "^1.0.17"
   },
   "devDependencies": {
