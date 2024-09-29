@@ -383,6 +383,7 @@ export class CypressHelper {
      */
     visit: (url: string) => {
       cy.visit(url);
+      cy.injectAxe();
     },
     /**
      * Wait for a number of milliseconds.
