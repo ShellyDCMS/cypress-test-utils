@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.1.47",
+  "version": "3.1.1",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -34,7 +34,7 @@
     "cypress": ">=12.17.3"
   },
   "dependencies": {
-    "@angular/common": "14",
+    "@angular/common": "17.3.12",
     "@cypress/mount-utils": "^4.1.1",
     "@lit/react": "^1.0.5",
     "@open-wc/lit-helpers": "^0.7.0",
@@ -55,7 +55,7 @@
     "ts-stubber": "^1.0.19"
   },
   "devDependencies": {
-    "@angular/core": "^14.2.0",
+    "@angular/core": "17.3.12",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.2.5",

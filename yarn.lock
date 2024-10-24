@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@angular/common@14":
-  version "14.3.0"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-14.3.0.tgz#dcf675e1db3016cdb605a05be6182a8cea71e139"
-  integrity sha512-pV9oyG3JhGWeQ+TFB0Qub6a1VZWMNZ6/7zEopvYivdqa5yDLLDSBRWb6P80RuONXyGnM1pa7l5nYopX+r/23GQ==
+"@angular/common@17.3.12":
+  version "17.3.12"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-17.3.12.tgz#49327f1d4fe5ff3ae31fadf742e258f5f9f00b48"
+  integrity sha512-vabJzvrx76XXFrm1RJZ6o/CyG32piTB/1sfFfKHdlH1QrmArb8It4gyk9oEjZ1IkAD0HvBWlfWmn+T6Vx3pdUw==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^14.2.0":
-  version "14.3.0"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-14.3.0.tgz"
-  integrity sha512-wYiwItc0Uyn4FWZ/OAx/Ubp2/WrD3EgUJ476y1XI7yATGPF8n9Ld5iCXT08HOvc4eBcYlDfh90kTXR6/MfhzdQ==
+"@angular/core@17.3.12":
+  version "17.3.12"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-17.3.12.tgz#d66ee14071c9f157f68907cff461f235e6eaffe1"
+  integrity sha512-MuFt5yKi161JmauUta4Dh0m8ofwoq6Ino+KoOtkYMBGsSx+A7dSm+DUxxNwdj7+DNyg3LjVGCFgBFnq4g8z06A==
   dependencies:
     tslib "^2.3.0"
 
