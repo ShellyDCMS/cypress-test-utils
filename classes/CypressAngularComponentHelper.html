@@ -874,7 +874,7 @@
                   
 
 
-<p><a href="../index.html">@shellygo/cypress-test-utils - v2.1.45</a> / <a href="../modules.html">Modules</a> / CypressAngularComponentHelper</p>
+<p><a href="../index.html">@shellygo/cypress-test-utils - v2.1.46</a> / <a href="../modules.html">Modules</a> / CypressAngularComponentHelper</p>
 <h1 id="class-cypressangularcomponenthelpert">Class: CypressAngularComponentHelper&lt;T&gt;</h1>
 <p><strong><code>Classdes</code></strong></p>
 <p>CypressAngularComponentHelper exposes the following public properties:</p>
@@ -956,11 +956,11 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><code>mount</code></td>
-<td style="text-align: left;">(<code>componentType</code>: <code>string</code> | <code>Type</code>&lt;<code>T</code>&gt;, <code>config</code>: <code>MountConfig</code>&lt;<code>T</code>&gt;, <code>componentProperties?</code>: <code>Partial</code>&lt;{ [P in string | number | symbol]: T[P] }&gt;) =&gt; <code>PromiseLike</code>&lt;<code>ComponentFixture</code>&lt;<code>T</code>&gt;&gt;</td>
+<td style="text-align: left;">(<code>component</code>: <code>string</code> | <code>Type</code>&lt;<code>T</code>&gt;, <code>config</code>: <code>MountConfig</code>&lt;<code>T</code>&gt;, <code>props?</code>: <code>Partial</code>&lt;{ [P in string | number | symbol]: T[P] }&gt;) =&gt; <code>PromiseLike</code>&lt;<code>ComponentFixture</code>&lt;<code>T</code>&gt;&gt;</td>
 </tr>
 </tbody>
 </table>
-<p><strong>mount</strong>: (<code>componentType</code>: <code>string</code> | <code>Type</code>&lt;<code>T</code>&gt;, <code>config</code>: <code>MountConfig</code>&lt;<code>T</code>&gt;, <code>componentProperties?</code>: <code>Partial</code>&lt;{ [P in string | number | symbol]: T[P] }&gt;) =&gt; <code>PromiseLike</code>&lt;<code>ComponentFixture</code>&lt;<code>T</code>&gt;&gt;</p>
+<p><strong>mount</strong>: (<code>component</code>: <code>string</code> | <code>Type</code>&lt;<code>T</code>&gt;, <code>config</code>: <code>MountConfig</code>&lt;<code>T</code>&gt;, <code>props?</code>: <code>Partial</code>&lt;{ [P in string | number | symbol]: T[P] }&gt;) =&gt; <code>PromiseLike</code>&lt;<code>ComponentFixture</code>&lt;<code>T</code>&gt;&gt;</p>
 <p>mount an angular component, with autoSpyOutputs set to true, meaning all event emitters are automatically spied on
 and be accessed during a test using
 <div class="language-ts highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">helper</span><span class="p">.</span><span class="nx">get</span><span class="p">.</span><span class="nx">spy</span><span class="p">(</span><span class="s2">&quot;&lt;EventEmitterName&gt;&quot;</span><span class="p">)</span>
