@@ -18,6 +18,9 @@ export interface AngularOptions<T> {
   type: Type<T>;
   config: MountConfig<T>;
   props?: Partial<T>;
+  children?: string;
+  template?: string;
+  selector?: string;
 }
 
 export interface ReactOptions<
@@ -86,6 +89,7 @@ export interface Options {
  * const renderFactory: RenderFactory = new RenderFactory({
  *           getLitOptions: () => ({ element: AlertElement, selector: 'my-alert', props: {type: "inline", status: "danger"}, children }),
  *           getReactOptions: () => ({ type: MyAlert, props: { type: "inline", status: "danger" , children} }),
+ *           getAngularOptions: () => ({ type: AlertComponent, config: {declarations: [AlertComponent]}, props: get.props() })
  *       });
  * const renderer = renderFactory.createRenderer()
  * renderer.render()
@@ -153,9 +157,24 @@ export class RenderFactory {
     );
   }
 
-  private renderAngular<T>({ type, config, props }: AngularOptions<T>) {
+  private renderAngular<T>({
+    type,
+    config,
+    props,
+    children = "",
+    template,
+    selector
+  }: AngularOptions<T>) {
     const angularComponentHelper = new CypressAngularComponentHelper();
-    angularComponentHelper.when.mount(type, config, props);
+    if (selector)
+      return angularComponentHelper.when.mount(
+        `<${selector!}>${children}</${selector!}>`,
+        config,
+        props
+      );
+    if (template)
+      return angularComponentHelper.when.mount(template, config, props);
+    return angularComponentHelper.when.mount(type, config, props);
   }
 
   private get = {
