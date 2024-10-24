@@ -1,4 +1,12 @@
-import type { Type } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import {
+  Component,
+  inject,
+  ViewChild,
+  ViewContainerRef,
+  type TemplateRef,
+  type Type
+} from "@angular/core";
 import { spread } from "@open-wc/lit-helpers";
 import type { MountConfig } from "cypress/angular";
 import type { LitElement, TemplateResult } from "lit";
@@ -165,10 +173,41 @@ export class RenderFactory {
     template,
     selector
   }: AngularOptions<T>) {
+    @Component({
+      selector: "ng-component-outlet-simple-example",
+      template: `<ng-template #ref> ${children} </ng-template>
+        <ng-container
+          *ngComponentOutlet="
+            dynamicComponent;
+            inputs: inputs;
+            content: projectedContent
+          "
+        ></ng-container>`,
+      standalone: true,
+      imports: [CommonModule]
+    })
+    class NgComponentOutlet {
+      dynamicComponent = type;
+
+      inputs = props;
+
+      @ViewChild("ref", { static: true }) template!: TemplateRef<any>;
+
+      vcr = inject(ViewContainerRef);
+
+      ngOnInit() {
+        this.projectedContent = [
+          this.vcr.createEmbeddedView(this.template).rootNodes
+        ];
+      }
+
+      projectedContent: any[][] = [];
+    }
+
     const angularComponentHelper = new CypressAngularComponentHelper();
     if (selector)
       return angularComponentHelper.when.mount(
-        `<${selector!}>${children}</${selector!}>`,
+        NgComponentOutlet,
         config,
         props
       );
