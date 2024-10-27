@@ -1,9 +1,10 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
+  EventEmitter,
   inject,
   ViewChild,
   ViewContainerRef,
+  type ComponentRef,
   type TemplateRef,
   type Type
 } from "@angular/core";
@@ -12,6 +13,7 @@ import type { MountConfig } from "cypress/angular";
 import type { LitElement, TemplateResult } from "lit";
 import { templateContent } from "lit-html/directives/template-content.js";
 import { html, unsafeStatic } from "lit/static-html.js";
+import { DynamicModule } from "ng-dynamic-component";
 import type { Attributes, ComponentClass, FunctionComponent } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { CypressHelper } from "../";
@@ -174,21 +176,19 @@ export class RenderFactory {
     selector
   }: AngularOptions<T>) {
     @Component({
-      selector: "ng-component-outlet-simple-example",
+      selector: "ng-component-outlet",
       template: `<ng-template #ref> ${children} </ng-template>
-        <ng-container
-          *ngComponentOutlet="
-            dynamicComponent;
-            inputs: inputs;
-            content: projectedContent
-          "
-        ></ng-container>`,
+        <ndc-dynamic
+          [ndcDynamicComponent]="component"
+          [ndcDynamicInputs]="inputs"
+          [ndcDynamicContent]="projectedContent"
+          (ndcDynamicCreated)="componentCreated($event)"
+        ></ndc-dynamic>`,
       standalone: true,
-      imports: [CommonModule]
+      imports: [DynamicModule]
     })
     class NgComponentOutlet {
-      dynamicComponent = type;
-
+      component = type;
       inputs = props;
 
       @ViewChild("ref", { static: true }) template!: TemplateRef<any>;
@@ -202,6 +202,14 @@ export class RenderFactory {
       }
 
       projectedContent: any[][] = [];
+
+      componentCreated(compRef: ComponentRef<any>) {
+        const helper = new CypressHelper();
+        for (const key of Object.keys(compRef.instance)) {
+          if (compRef.instance[key] instanceof EventEmitter)
+            compRef.instance[key].subscribe(helper.given.spy(key));
+        }
+      }
     }
 
     const angularComponentHelper = new CypressAngularComponentHelper();
