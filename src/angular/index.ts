@@ -31,24 +31,24 @@ export class CypressAngularComponentHelper<T> {
      *  }
      * )
      * ```
-     * @param componentType
+     * @param component
      * @param config
-     * @param componentProperties
+     * @param props
      */
     mount: (
-      componentType: Type<T> | string,
+      component: Type<T> | string,
       config: MountConfig<T>,
-      componentProperties?: Partial<{
+      props?: Partial<{
         [P in keyof T]: T[P];
       }>
     ) => {
       // @ts-ignore
-      const mountResponse = cy.mount<T>(componentType, {
+      const mountResponse = cy.mount<T>(component, {
         ...config,
         autoSpyOutputs: true,
         componentProperties: {
           ...config.componentProperties,
-          ...componentProperties
+          ...props
         }
       });
       return mountResponse

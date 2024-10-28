@@ -1,9 +1,19 @@
-import type { Type } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  inject,
+  ViewChild,
+  ViewContainerRef,
+  type ComponentRef,
+  type TemplateRef,
+  type Type
+} from "@angular/core";
 import { spread } from "@open-wc/lit-helpers";
 import type { MountConfig } from "cypress/angular";
 import type { LitElement, TemplateResult } from "lit";
 import { templateContent } from "lit-html/directives/template-content.js";
 import { html, unsafeStatic } from "lit/static-html.js";
+import { DynamicModule } from "ng-dynamic-component";
 import type { Attributes, ComponentClass, FunctionComponent } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { CypressHelper } from "../";
@@ -18,6 +28,9 @@ export interface AngularOptions<T> {
   type: Type<T>;
   config: MountConfig<T>;
   props?: Partial<T>;
+  children?: string;
+  template?: string;
+  selector?: string;
 }
 
 export interface ReactOptions<
@@ -86,6 +99,7 @@ export interface Options {
  * const renderFactory: RenderFactory = new RenderFactory({
  *           getLitOptions: () => ({ element: AlertElement, selector: 'my-alert', props: {type: "inline", status: "danger"}, children }),
  *           getReactOptions: () => ({ type: MyAlert, props: { type: "inline", status: "danger" , children} }),
+ *           getAngularOptions: () => ({ type: AlertComponent, config: {declarations: [AlertComponent]}, props: get.props() })
  *       });
  * const renderer = renderFactory.createRenderer()
  * renderer.render()
@@ -153,9 +167,61 @@ export class RenderFactory {
     );
   }
 
-  private renderAngular<T>({ type, config, props }: AngularOptions<T>) {
+  private renderAngular<T>({
+    type,
+    config,
+    props,
+    children = "",
+    template,
+    selector
+  }: AngularOptions<T>) {
+    @Component({
+      selector: "ng-component-outlet",
+      template: `<ng-template #ref> ${children} </ng-template>
+        <ndc-dynamic
+          [ndcDynamicComponent]="component"
+          [ndcDynamicInputs]="inputs"
+          [ndcDynamicContent]="projectedContent"
+          (ndcDynamicCreated)="componentCreated($event)"
+        ></ndc-dynamic>`,
+      standalone: true,
+      imports: [DynamicModule]
+    })
+    class NgComponentOutlet {
+      component = type;
+      inputs = props;
+
+      @ViewChild("ref", { static: true }) template!: TemplateRef<any>;
+
+      vcr = inject(ViewContainerRef);
+
+      ngOnInit() {
+        this.projectedContent = [
+          this.vcr.createEmbeddedView(this.template).rootNodes
+        ];
+      }
+
+      projectedContent: any[][] = [];
+
+      componentCreated(compRef: ComponentRef<any>) {
+        const helper = new CypressHelper();
+        for (const key of Object.keys(compRef.instance)) {
+          if (compRef.instance[key] instanceof EventEmitter)
+            compRef.instance[key].subscribe(helper.given.spy(key));
+        }
+      }
+    }
+
     const angularComponentHelper = new CypressAngularComponentHelper();
-    angularComponentHelper.when.mount(type, config, props);
+    if (selector)
+      return angularComponentHelper.when.mount(
+        NgComponentOutlet,
+        config,
+        props
+      );
+    if (template)
+      return angularComponentHelper.when.mount(template, config, props);
+    return angularComponentHelper.when.mount(type, config, props);
   }
 
   private get = {
