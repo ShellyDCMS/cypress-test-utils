@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 18.18.2
           registry-url: https://registry.npmjs.org/
-      - run: npx yarn install --frozen-lockfile
+      - run: npx yarn install --frozen-lockfile --network-timeout 1000000
       - run: npm run build
       - run: npm run cy:run
       - name: Tests Report

@@ -82,5 +82,18 @@ export default [
         entry: [{ filePath: "src/assertable.ts" }]
       })
     ]
+  },
+  {
+    input: "src/renderer/index.ts",
+    output: {
+      dir: "dist/renderer",
+      format: "esm"
+    },
+    plugins: [
+      typescript(),
+      generateDtsBundle({
+        entry: [{ filePath: "src/renderer/index.ts" }]
+      })
+    ]
   }
 ];

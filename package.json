@@ -1,7 +1,7 @@
 {
   "name": "@shellygo/cypress-test-utils",
   "description": "Cypress Test Automation Utilities",
-  "version": "2.1.29",
+  "version": "3.1.2",
   "author": "Shelly Goldblit",
   "private": false,
   "license": "MIT",
@@ -34,30 +34,37 @@
     "cypress": ">=12.17.3"
   },
   "dependencies": {
+    "@angular/common": "17.3.12",
     "@cypress/mount-utils": "^4.1.1",
+    "@lit/react": "^1.0.5",
+    "@open-wc/lit-helpers": "^0.7.0",
     "@simonsmith/cypress-image-snapshot": "^9.1.0",
     "@types/chai-subset": "^1.3.5",
+    "@types/react": "^18.3.10",
+    "@types/react-html-parser": "^2.0.6",
     "chai-subset": "^1.6.0",
     "cypress-pipe": "^2.0.0",
     "cypress-real-events": "^1.13.0",
     "cypress-wait-if-happens": "^1.3.3",
     "cypress-wait-until": "^3.0.2",
-    "ts-stubber": "^1.0.15"
+    "lit": "^2.7.4",
+    "ng-dynamic-component": "^10.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-html-parser": "^2.0.2",
+    "react-router-dom": "^6.26.1",
+    "ts-stubber": "^1.0.19"
   },
   "devDependencies": {
-    "@angular/core": "^14.2.0",
+    "@angular/core": "17.3.12",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.2.5",
-    "@types/react": "^18.2.7",
     "cpx": "^1.5.0",
     "cross-var": "^1.1.0",
     "cypress": "^13.11.0",
     "gh-pages": "^5.0.0",
-    "lit": "^2.7.4",
     "mochawesome": "^7.1.3",
-    "react": "^18.2.0",
-    "react-router-dom": "^6.21.3",
     "rollup": "^4.9.6",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-dts-bundle-generator": "^1.4.0",
@@ -95,6 +102,10 @@
     "./assertable": {
       "types": "./dist/assertable/index.d.ts",
       "default": "./dist/assertable/index.js"
+    },
+    "./renderer": {
+      "types": "./dist/renderer/index.d.ts",
+      "default": "./dist/renderer/index.js"
     }
   },
   "typesVersions": {
@@ -113,6 +124,9 @@
       ],
       "assertable": [
         "./dist/assertable/index.d.ts"
+      ],
+      "renderer": [
+        "./dist/renderer/index.d.ts"
       ]
     }
   },

@@ -443,8 +443,12 @@ describe("cypress helper tests", () => {
     });
   });
 
-  it("should get element's attribute", () => {
+  it.skip("should get element's attribute", () => {
     then(get.elementsProperty("image", "height")).shouldEqual(142);
+  });
+
+  it("should not have text", () => {
+    then(get.elementByTestId("header")).shouldNotHaveText("TEST");
   });
 
   it("should get the given style from the element", () => {

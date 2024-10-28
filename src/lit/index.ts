@@ -13,41 +13,41 @@ export class CypressLitComponentHelper {
      * @example
      * ```ts
      * litComponentHelper.when.mount<SpinnerElement>(
-     *   new SpinnerElement(),
      *   html`<edf-spinner size="${this.props.size}" type="${this.props.type}" label="${this.props.label}"></edf-spinner>`
+     *   SpinnerElement,
      * );
      * ```
-     * @template T - element type
-     * @param element
+     * 
      * @param template
+     * @param element
+
      */
-    mount: <T extends LitElement>(element: T, template: TemplateResult) => {
+    mount: <T extends LitElement>(
+      template: TemplateResult,
+      constructor?: { new (...args: any[]): T }
+    ) => {
       const target = getContainerEl();
 
       render(template, target);
 
-      return (
-        cy
-          .wait(0, { log: false })
-          .then(() => {
-            const mountMessage = `<${String(element.constructor.name)} ... />`;
+      return cy
+        .wait(0, { log: false })
+        .then(() => {
+          const mountMessage = `<${String(constructor?.name) || "empty"} />`;
 
-            Cypress.log({
-              name: "mount",
-              message: [mountMessage]
-            })
-              .snapshot("mounted")
-              .end();
+          Cypress.log({
+            name: "mount",
+            message: [mountMessage]
           })
-          .get("[data-cy-root]", { log: false })
-          .children({ log: false })
-          .first({ log: false })
-          // @ts-ignore
-          .shadow({ log: false })
-      );
+            .snapshot("mounted")
+            .end();
+        })
+        .get("[data-cy-root]", { log: false })
+        .children({ log: false })
+        .first({ log: false })
+        .shadow();
     },
-    unmount: <T extends LitElement>(element: T) =>
-      this.when.mount(element, html`<slot></slot>`)
+    unmount: () => this.when.mount(html`<slot></slot>`)
   };
   public get = {};
 }

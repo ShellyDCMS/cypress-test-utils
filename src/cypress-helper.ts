@@ -11,6 +11,11 @@ import {
   StubbedInstanceCreator
 } from "ts-stubber";
 
+export type SnapshotOptions = {
+  index?: number;
+  dataTestID?: string;
+} & CypressImageSnapshotOptions;
+
 export type StubbedInstance<T> = GenericStubbedInstance<T, SinonStub>;
 /**
  * Sinon matcher for stubs/spy comparison
@@ -224,7 +229,7 @@ export class CypressHelper {
      * helper.given.env("password", "changeMe@1");
      * ```
      */
-    env: (key: string, value: string) => Cypress.env(key, value),
+    env: (key: string, value: any) => Cypress.env(key, value),
 
     /**
      * Load a fixture
@@ -774,14 +779,7 @@ export class CypressHelper {
      */
     imageSnapshot: (
       name: string,
-      {
-        dataTestID,
-        index,
-        ...rest
-      }: {
-        index?: number;
-        dataTestID?: string;
-      } & CypressImageSnapshotOptions = {}
+      { dataTestID, index, ...rest }: SnapshotOptions = {}
     ) =>
       dataTestID
         ? this.get
