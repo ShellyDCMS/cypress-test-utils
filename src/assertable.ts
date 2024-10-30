@@ -327,7 +327,7 @@ export class Assertable<T> {
    * This enabled you to see violations while allowing your tests to pass. This should be used as a temporary measure while you address accessibility violations
    * @example
    * ```ts
-   * then(get.elementByTestId("selector")).shouldBeAccessible()
+   * then(get.element("html")).shouldBeAccessible()
    * ```
    *  @example
    * ```ts
