@@ -1,6 +1,8 @@
 import { addMatchImageSnapshotCommand } from "@simonsmith/cypress-image-snapshot/command.js";
 import type { CypressImageSnapshotOptions } from "@simonsmith/cypress-image-snapshot/types";
+import type axe from "axe-core";
 import chaiSubset from "chai-subset";
+import type { Options as AxeOptions } from "cypress-axe";
 import "cypress-real-events";
 import "cypress-wait-if-happens";
 import "cypress-wait-until";
@@ -15,6 +17,17 @@ export type SnapshotOptions = {
   index?: number;
   dataTestID?: string;
 } & CypressImageSnapshotOptions;
+
+export type A11yOptions = {
+  /**
+   * Allows you to define a callback that receives the violations for custom side-effects, such as adding custom output to the terminal.
+   */
+  violationCallback?: ((violations: axe.Result[]) => void) | undefined;
+  /**
+   * Disables assertions based on violations and only logs violations to the console output.
+   */
+  skipFailures?: boolean;
+} & AxeOptions;
 
 export type StubbedInstance<T> = GenericStubbedInstance<T, SinonStub>;
 /**
