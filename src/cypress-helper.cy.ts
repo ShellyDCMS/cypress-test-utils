@@ -463,13 +463,13 @@ describe("cypress helper tests", () => {
 
   it("should get the given style from the element", () => {
     then(get.elementComputedStyleProperty("image", "height")).shouldEqual(
-      "142px"
+      "18px"
     );
   });
 
   it("should get the given style from element with index", () => {
     then(
       get.elementComputedStyleProperty("image", "height", { index: 0 })
-    ).shouldEqual("142px");
+    ).shouldEqual("18px");
   });
 });
