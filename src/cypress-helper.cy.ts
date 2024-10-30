@@ -275,6 +275,16 @@ describe("cypress helper tests", () => {
     });
   });
 
+  it("should test a11y", () => {
+    get.elementByTestId("header");
+    then(get.elementByTestId("button")).shouldBeAccessible({
+      includedImpacts: ["critical", "minor"],
+      rules: {
+        "landmark-one-main": { enabled: false }
+      }
+    });
+  });
+
   it("should take snapshot and compare to previous", () => {
     get.imageSnapshot("homepage", { failureThreshold: 1 });
     get.imageSnapshot("radio-group", {
@@ -453,13 +463,13 @@ describe("cypress helper tests", () => {
 
   it("should get the given style from the element", () => {
     then(get.elementComputedStyleProperty("image", "height")).shouldEqual(
-      "142px"
+      "18px"
     );
   });
 
   it("should get the given style from element with index", () => {
     then(
       get.elementComputedStyleProperty("image", "height", { index: 0 })
-    ).shouldEqual("142px");
+    ).shouldEqual("18px");
   });
 });

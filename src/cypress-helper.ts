@@ -56,6 +56,11 @@ export class CypressHelperOptions {
    * when set to true, waits until elements are loaded before returning them
    */
   waitForElementsToLoad?: boolean = true;
+
+  /**
+   * when set to true, injects Axe (A11y test tool) before all tests
+   */
+  injectA11yChecker?: boolean = true;
 }
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
@@ -127,6 +132,7 @@ export class CypressHelper {
   beforeAndAfter = () => {
     before(() => {
       chai.use(chaiSubset);
+      if (this.options.injectA11yChecker) cy.injectAxe();
     });
     beforeEach(() => {
       cy.on("uncaught:exception", (err, runnable) => {
@@ -383,6 +389,7 @@ export class CypressHelper {
      */
     visit: (url: string) => {
       cy.visit(url);
+      cy.injectAxe();
     },
     /**
      * Wait for a number of milliseconds.

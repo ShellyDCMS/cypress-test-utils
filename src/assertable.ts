@@ -1,3 +1,6 @@
+import type axe from "axe-core";
+import "cypress-axe";
+import type { Options } from "cypress-axe";
 import "cypress-pipe";
 
 /** Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
@@ -316,6 +319,43 @@ export class Assertable<T> {
    */
   public shouldNotBeChecked = () => this.chainable.should("not.be.checked");
 
+  /**
+   *
+   * Assert that there are no A11y violations.
+   * This will run axe against the document at the point in which it is called.
+   * This means you can call this after interacting with your page and uncover accessibility issues introduced as a result of rendering in response to user actions
+   * @param options Set of options passed into rules or checks, temporarily modifying them. This contrasts with axe.configure, which is more permanent.
+   * @param violationCallback Allows you to define a callback that receives the violations for custom side-effects, such as adding custom output to the terminal.
+   * @param skipFailures Disables assertions based on violations and only logs violations to the console output.
+   * This enabled you to see violations while allowing your tests to pass. This should be used as a temporary measure while you address accessibility violations
+   * @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldBeAccessible()
+   * ```
+   *  @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldBeAccessible({
+   *  includedImpacts: ["critical", "minor"],
+   *  rules: {
+   *    "landmark-one-main": { enabled: false }
+   *  }
+   * })
+   * ```
+   */
+  public shouldBeAccessible = (
+    options: Options = {
+      includedImpacts: ["moderate", "serious", "critical", "minor"]
+    },
+    violationCallback?: ((violations: axe.Result[]) => void) | undefined,
+    skipFailures?: boolean
+  ) => {
+    this.chainable.checkA11y(
+      undefined,
+      options,
+      violationCallback,
+      skipFailures
+    );
+  };
   /**
    * Assert that the text of the first element of the selection is equal to the given text, using .text().
    * @example

@@ -185,7 +185,7 @@ export class RenderFactory {
           (ndcDynamicCreated)="componentCreated($event)"
         ></ndc-dynamic>`,
       standalone: true,
-      imports: [DynamicModule]
+      imports: [DynamicModule, ...(config.imports as any)]
     })
     class NgComponentOutlet {
       component = type;
