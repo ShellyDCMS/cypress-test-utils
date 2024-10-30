@@ -1,3 +1,4 @@
+import type axe from "axe-core";
 import "cypress-axe";
 import type { Options } from "cypress-axe";
 import "cypress-pipe";
@@ -320,17 +321,41 @@ export class Assertable<T> {
 
   /**
    *
-   * Assert that at least one element of the selection is focused.
+   * Assert that there are no A11y violations.
+   * This will run axe against the document at the point in which it is called.
+   * This means you can call this after interacting with your page and uncover accessibility issues introduced as a result of rendering in response to user actions
+   * @param options Set of options passed into rules or checks, temporarily modifying them. This contrasts with axe.configure, which is more permanent.
+   * @param violationCallback Allows you to define a callback that receives the violations for custom side-effects, such as adding custom output to the terminal.
+   * @param skipFailures Disables assertions based on violations and only logs violations to the console output.
+   * This enabled you to see violations while allowing your tests to pass. This should be used as a temporary measure while you address accessibility violations
    * @example
    * ```ts
-   * then(get.elementByTestId("selector")).shouldBeFocused()
+   * then(get.elementByTestId("selector")).shouldBeAccessible()
+   * ```
+   *  @example
+   * ```ts
+   * then(get.elementByTestId("selector")).shouldBeAccessible({
+   *  includedImpacts: ["critical", "minor"],
+   *  rules: {
+   *    "landmark-one-main": { enabled: false }
+   *  }
+   * })
    * ```
    */
   public shouldBeAccessible = (
     options: Options = {
-      includedImpacts: ["critical"]
-    }
-  ) => this.chainable.checkA11y(undefined, options);
+      includedImpacts: ["moderate", "serious", "critical", "minor"]
+    },
+    violationCallback?: ((violations: axe.Result[]) => void) | undefined,
+    skipFailures?: boolean
+  ) => {
+    this.chainable.checkA11y(
+      undefined,
+      options,
+      violationCallback,
+      skipFailures
+    );
+  };
   /**
    * Assert that the text of the first element of the selection is equal to the given text, using .text().
    * @example
@@ -516,6 +541,26 @@ export class Assertable<T> {
    */
   public shouldThrow = (value?: string | RegExp | undefined) =>
     this.chainable.should("throw", value);
+
+  private terminalLog = (violations: any[]) => {
+    cy.task(
+      "log",
+      `${violations.length} accessibility violation${
+        violations.length === 1 ? "" : "s"
+      } ${violations.length === 1 ? "was" : "were"} detected`
+    );
+    // pluck specific keys to keep the table readable
+    const violationData = violations.map(
+      ({ id, impact, description, nodes }) => ({
+        id,
+        impact,
+        description,
+        nodes: nodes.length
+      })
+    );
+
+    cy.task("table", violationData);
+  };
 }
 
 /** Wraps Cypress.Chainable and returns Assertable, decoupling test code form cypress 'should' assertions.

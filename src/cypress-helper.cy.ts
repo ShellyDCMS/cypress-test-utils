@@ -275,10 +275,14 @@ describe("cypress helper tests", () => {
     });
   });
 
-  it.only("should test a11y", () => {
+  it("should test a11y", () => {
     get.elementByTestId("header");
-    cy.injectAxe();
-    then(get.elementByTestId("header")).shouldBeAccessible();
+    then(get.elementByTestId("button")).shouldBeAccessible({
+      includedImpacts: ["critical", "minor"],
+      rules: {
+        "landmark-one-main": { enabled: false }
+      }
+    });
   });
 
   it("should take snapshot and compare to previous", () => {
