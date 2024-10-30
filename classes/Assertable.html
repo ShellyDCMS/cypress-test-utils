@@ -3592,7 +3592,7 @@
                   
 
 
-<p><a href="../index.html">@shellygo/cypress-test-utils - v3.1.6</a> / <a href="../modules.html">Modules</a> / Assertable</p>
+<p><a href="../index.html">@shellygo/cypress-test-utils - v4.1.1</a> / <a href="../modules.html">Modules</a> / Assertable</p>
 <h1 id="class-assertablet">Class: Assertable&lt;T&gt;</h1>
 <p>Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
 By using the Assertable class, you can use the same assertions in your tests, regardless of the testing framework you use.
@@ -3788,7 +3788,7 @@ This means you can call this after interacting with your page and uncover access
 <h4 id="returns_1">Returns</h4>
 <p><code>void</code></p>
 <p><strong><code>Example</code></strong></p>
-<div class="language-ts highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s2">&quot;selector&quot;</span><span class="p">)).</span><span class="nx">shouldBeAccessible</span><span class="p">()</span>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">get</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="s2">&quot;html&quot;</span><span class="p">)).</span><span class="nx">shouldBeAccessible</span><span class="p">()</span>
 </span></code></pre></div>
 <p><strong><code>Example</code></strong></p>
 <div class="language-ts highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">then</span><span class="p">(</span><span class="nx">get</span><span class="p">.</span><span class="nx">elementByTestId</span><span class="p">(</span><span class="s2">&quot;selector&quot;</span><span class="p">)).</span><span class="nx">shouldBeAccessible</span><span class="p">({</span>
