@@ -3592,7 +3592,7 @@
                   
 
 
-<p><a href="../index.html">@shellygo/cypress-test-utils - v3.1.3</a> / <a href="../modules.html">Modules</a> / Assertable</p>
+<p><a href="../index.html">@shellygo/cypress-test-utils - v3.1.4</a> / <a href="../modules.html">Modules</a> / Assertable</p>
 <h1 id="class-assertablet">Class: Assertable&lt;T&gt;</h1>
 <p>Assertable wraps Cypress.Chainable so that your tests are as decoupled as possible from Cypress.
 By using the Assertable class, you can use the same assertions in your tests, regardless of the testing framework you use.
@@ -3764,7 +3764,7 @@ You can also add assertions of your own, by extending Assertable class.</p>
 <p><code>Chainable</code>&lt;<code>T</code>&gt;</p>
 <hr />
 <h3 id="shouldbeaccessible">shouldBeAccessible</h3>
-<p>▸ <strong>shouldBeAccessible</strong>(<code>options?</code>, <code>violationCallback?</code>, <code>skipFailures?</code>): <code>void</code></p>
+<p>▸ <strong>shouldBeAccessible</strong>(<code>options?</code>): <code>void</code></p>
 <p>Assert that there are no A11y violations.
 This will run axe against the document at the point in which it is called.
 This means you can call this after interacting with your page and uncover accessibility issues introduced as a result of rendering in response to user actions</p>
@@ -3780,18 +3780,8 @@ This means you can call this after interacting with your page and uncover access
 <tbody>
 <tr>
 <td style="text-align: left;"><code>options</code></td>
-<td style="text-align: left;"><code>Options</code></td>
-<td style="text-align: left;">Set of options passed into rules or checks, temporarily modifying them. This contrasts with axe.configure, which is more permanent.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>violationCallback?</code></td>
-<td style="text-align: left;">(<code>violations</code>: <code>Result</code>[]) =&gt; <code>void</code></td>
-<td style="text-align: left;">Allows you to define a callback that receives the violations for custom side-effects, such as adding custom output to the terminal.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>skipFailures?</code></td>
-<td style="text-align: left;"><code>boolean</code></td>
-<td style="text-align: left;">Disables assertions based on violations and only logs violations to the console output. This enabled you to see violations while allowing your tests to pass. This should be used as a temporary measure while you address accessibility violations</td>
+<td style="text-align: left;"><a href="../modules.html#a11yoptions"><code>A11yOptions</code></a></td>
+<td style="text-align: left;">Set of options passed into rules or checks, temporarily modifying them. This enabled you to see violations while allowing your tests to pass. This should be used as a temporary measure while you address accessibility violations</td>
 </tr>
 </tbody>
 </table>
