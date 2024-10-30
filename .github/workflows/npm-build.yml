@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.18.2
+          node-version: 20.11.1
           registry-url: https://registry.npmjs.org/
       - run: npx yarn install --frozen-lockfile --network-timeout 1000000
       - run: npm run build
