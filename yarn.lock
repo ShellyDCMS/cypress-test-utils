@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@angular/common@~18.0.0":
-  version "18.0.7"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-18.0.7.tgz#0e9f32ba69ea73675e1765f393acaabb7e0a3949"
-  integrity sha512-jT6Md/igkhSBKYrSouk/BkEFXDXW7BeiXiJ/B2/8/t0BRLqLghn1Y5w9lJz5dEGWt759PiFAgzMT0ePeeynxPA==
+"@angular/common@~18.2.8":
+  version "18.2.10"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-18.2.10.tgz#7c6196c21c05f0428130436d4dbcd4e63dc3f2b4"
+  integrity sha512-YzTCmuqLiOuT+Yv07vuKymDWiebOVZ8BuXakJiz4EM7FMoOw5gICHJ04jepZSjDNWpA16e7kJSdt5ucnmvCFDQ==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/compiler@~18.0.0":
-  version "18.0.7"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-18.0.7.tgz#aea197e2bc01e49c0d5b6722fecc6d8de96414f5"
-  integrity sha512-NTNF3wEkkn4C952Y251yhfewmxSH1fvSfERpDPITVzVwUBMSJbBcOSjY8kWBc+BTNST1OJYVKiOgLhJiycIeAQ==
+"@angular/compiler@~18.2.8":
+  version "18.2.10"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-18.2.10.tgz#8c75411d651a7dbc836f68242da6dea8da3f3d56"
+  integrity sha512-cu+Uq1nnyl00Glg0+2uvm+Xpaq5b4YvWpaLGGtit7uGETAJ4L/frlBVeaTRhEoaIAGBI+RRlyuFLae+etQDA0w==
   dependencies:
     tslib "^2.3.0"
 
@@ -119,10 +119,10 @@
   resolved "https://registry.npmjs.org/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.1.2.tgz"
   integrity sha512-jnOD+/+dSrfTWYfSXBXlo5l5f0q1UuJo3tkbMDCYA2lKUYq79jaxqtGEvnRoh049nt1vdo1+45RinipU6FGY2g==
 
-"@lit/react@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@lit/react/-/react-1.0.5.tgz"
-  integrity sha512-RSHhrcuSMa4vzhqiTenzXvtQ6QDq3hSPsnHHO3jaPmmvVFeoNNm4DHoQ0zLdKAUvY3wP3tTENSUf7xpyVfrDEA==
+"@lit/react@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@lit/react/-/react-1.0.6.tgz#9518ba471157becd1a3e6fb7ddc16bcef16be64e"
+  integrity sha512-QIss8MPh6qUoFJmuaF4dSHts3qCsA36S3HcOLiNPShxhgYPr4XJRnCBKPipk85sR9xr6TQrOcDMfexwbNdJHYA==
 
 "@lit/reactive-element@^1.3.0", "@lit/reactive-element@^1.6.0":
   version "1.6.3"
@@ -136,10 +136,10 @@
   resolved "https://registry.npmjs.org/@open-wc/lit-helpers/-/lit-helpers-0.7.0.tgz"
   integrity sha512-4NBlx5ve0EvZplCRJbESm0MdMbRCw16alP2y76KAAAwzmFFXXrUj5hFwhw55+sSg5qaRRx6sY+s7usKgnNo3TQ==
 
-"@remix-run/router@1.19.2":
-  version "1.19.2"
-  resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.19.2.tgz"
-  integrity sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==
+"@remix-run/router@1.20.0":
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.20.0.tgz#03554155b45d8b529adf635b2f6ad1165d70d8b4"
+  integrity sha512-mUnk8rPJBI9loFDZ+YzPGdeniYK+FTmRD1TMCz7ev2SNIozyKKpnGgsxO34u6Z4z/t0ITuu7voi/AshfsGsgFg==
 
 "@rollup/plugin-node-resolve@^15.2.3":
   version "15.2.3"
@@ -3673,20 +3673,20 @@ react-is@^18.0.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
-react-router-dom@^6.26.1:
-  version "6.26.2"
-  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.26.2.tgz"
-  integrity sha512-z7YkaEW0Dy35T3/QKPYB1LjMK2R1fxnHO8kWpUMTBdfVzZrWOiY9a7CtN8HqdWtDUWd5FY6Dl8HFsqVwH4uOtQ==
+react-router-dom@^6.27.0:
+  version "6.27.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.27.0.tgz#8d7972a425fd75f91c1e1ff67e47240c5752dc3f"
+  integrity sha512-+bvtFWMC0DgAFrfKXKG9Fc+BcXWRUO1aJIihbB79xaeq0v5UzfvnM5houGUm1Y461WVRcgAQ+Clh5rdb1eCx4g==
   dependencies:
-    "@remix-run/router" "1.19.2"
-    react-router "6.26.2"
+    "@remix-run/router" "1.20.0"
+    react-router "6.27.0"
 
-react-router@6.26.2:
-  version "6.26.2"
-  resolved "https://registry.npmjs.org/react-router/-/react-router-6.26.2.tgz"
-  integrity sha512-tvN1iuT03kHgOFnLPfLJ8V95eijteveqdOSk+srqfePtQvqCExB8eHOYnlilbOcyJyKnYkr1vJvf7YqotAJu1A==
+react-router@6.27.0:
+  version "6.27.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.27.0.tgz#db292474926c814c996c0ff3ef0162d1f9f60ed4"
+  integrity sha512-YA+HGZXz4jaAkVoYBE98VQl+nVzI+cVI2Oj/06F5ZM+0u3TgedN9Y9kmMRo2mnkSK2nCpNQn0DVob4HCsY/WLw==
   dependencies:
-    "@remix-run/router" "1.19.2"
+    "@remix-run/router" "1.20.0"
 
 react@^18.3.1:
   version "18.3.1"
