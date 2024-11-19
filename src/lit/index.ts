@@ -44,8 +44,7 @@ export class CypressLitComponentHelper {
         })
         .get("[data-cy-root]", { log: false })
         .children({ log: false })
-        .first({ log: false })
-        .shadow();
+        .first({ log: false });
     },
     unmount: () => this.when.mount(html`<slot></slot>`)
   };
