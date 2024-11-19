@@ -599,6 +599,10 @@ export class CypressHelper {
      */
     scrollToBottom: () => cy.scrollTo("bottom", { ensureScrollable: false }),
     /**
+     * Scroll to the top.
+     */
+    scrollToTop: () => cy.scrollTo("top", { ensureScrollable: false }),
+    /**
      * Check checkbox(es) or radio(s).
      * This element must be an html input element with type checkbox or radio.
      */
