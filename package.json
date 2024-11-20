@@ -109,6 +109,10 @@
     "./renderer": {
       "types": "./dist/renderer/index.d.ts",
       "default": "./dist/renderer/index.js"
+    },
+    "./base-driver": {
+      "types": "./dist/base-driver/index.d.ts",
+      "default": "./dist/base-driver/index.js"
     }
   },
   "typesVersions": {
@@ -130,6 +134,9 @@
       ],
       "renderer": [
         "./dist/renderer/index.d.ts"
+      ],
+      "base-driver": [
+        "./dist/base-driver/index.d.ts"
       ]
     }
   },

@@ -95,5 +95,18 @@ export default [
         entry: [{ filePath: "src/renderer/index.ts" }]
       })
     ]
+  },
+  {
+    input: "src/base-driver/index.ts",
+    output: {
+      dir: "dist/base-driver",
+      format: "esm"
+    },
+    plugins: [
+      typescript(),
+      generateDtsBundle({
+        entry: [{ filePath: "src/base-driver/index.ts" }]
+      })
+    ]
   }
 ];
