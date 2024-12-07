@@ -9,10 +9,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/compiler@~18.2.8":
-  version "18.2.10"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-18.2.10.tgz#8c75411d651a7dbc836f68242da6dea8da3f3d56"
-  integrity sha512-cu+Uq1nnyl00Glg0+2uvm+Xpaq5b4YvWpaLGGtit7uGETAJ4L/frlBVeaTRhEoaIAGBI+RRlyuFLae+etQDA0w==
+"@angular/compiler@~18.2.11":
+  version "18.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-18.2.13.tgz#cf5d67254bd04a49ecfce0d2d6dc3d9f2234de3c"
+  integrity sha512-TzWcrkopyjFF+WeDr2cRe8CcHjU72KfYV3Sm2TkBkcXrkYX5sDjGWrBGrG3hRB4e4okqchrOCvm1MiTdy2vKMA==
   dependencies:
     tslib "^2.3.0"
 
