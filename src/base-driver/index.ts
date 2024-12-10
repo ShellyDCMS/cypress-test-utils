@@ -43,7 +43,7 @@ export class BaseTestDriver<T extends LitElement> {
       if (typeof value === "function") target[`@${prop}`] = value;
     },
     set(target: Partial<T> & any, prop: string, value: any) {
-      if (this.isAngularSpy(value)) return;
+      if (this.isAngularSpy(value)) return value;
       this.setProps(target, prop, value);
       return (target[prop] = value);
     }
