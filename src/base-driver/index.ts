@@ -35,10 +35,16 @@ export class BaseTestDriver<T extends LitElement> {
    */
   private propsHandler = {
     framework: this.framework,
-    set(target: Partial<T> & any, prop: string, value: any) {
+    isAngularSpy: (value: any) =>
+      this.framework === "angular" && typeof value === "function",
+    setProps: (target: any, prop: string, value: any) => {
       target[prop] = value;
       if (typeof value === "object") target[`.${prop}`] = value;
       if (typeof value === "function") target[`@${prop}`] = value;
+    },
+    set(target: Partial<T> & any, prop: string, value: any) {
+      if (this.isAngularSpy(value)) return;
+      this.setProps(target, prop, value);
       return (target[prop] = value);
     }
   };
