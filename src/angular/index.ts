@@ -1,8 +1,6 @@
-import type { OutputEmitterRef, Type } from "@angular/core";
+import type { Type } from "@angular/core";
 import { ComponentFixture } from "@angular/core/testing";
 import { MountConfig } from "cypress/angular";
-import type { SinonStub } from "cypress/types/sinon";
-import { StubbedInstanceCreator } from "ts-stubber";
 
 /**
  * @class CypressAngularComponentHelper was designed designed for mounting angular components
@@ -72,21 +70,9 @@ export class CypressAngularComponentHelper<T> {
 
   private stubAngularOutputSignals(fixture: ComponentFixture<any>) {
     const component = fixture.componentInstance;
-    const createStub = (prop: string) =>
-      cy.stub().as("OutputEventEmitterRef." + prop) as unknown as SinonStub;
-    const stubbedInstanceCreator = StubbedInstanceCreator<
-      OutputEmitterRef<any>,
-      SinonStub
-    >(createStub);
-
-    Object.keys(component)
-      .filter(key =>
-        component[key].constructor.name.startsWith("OutputEmitter")
-      )
-      .forEach(key => {
-        if (!component[key].emit.isSinonProxy)
-          component[key] = stubbedInstanceCreator.createStubbedInstance();
-        component[key].emit = cy.spy().as(`${key}Spy`);
-      });
+    Object.keys(component).forEach(key => {
+      if (component[key].subscribe)
+        component[key].subscribe(cy.spy().as(`${key}Spy`));
+    });
   }
 }
