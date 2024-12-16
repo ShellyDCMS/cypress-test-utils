@@ -1,7 +1,6 @@
 import "@angular/compiler";
 import {
   Component,
-  EventEmitter,
   inject,
   ViewChild,
   ViewContainerRef,
@@ -207,7 +206,7 @@ export class RenderFactory {
       componentCreated(compRef: ComponentRef<any>) {
         const helper = new CypressHelper();
         for (const key of Object.keys(compRef.instance)) {
-          if (compRef.instance[key] instanceof EventEmitter)
+          if (compRef.instance[key]?.subscribe)
             compRef.instance[key].subscribe(helper.given.spy(key));
         }
       }

@@ -71,7 +71,7 @@ export class CypressAngularComponentHelper<T> {
   private stubAngularOutputSignals(fixture: ComponentFixture<any>) {
     const component = fixture.componentInstance;
     Object.keys(component).forEach(key => {
-      if (component[key].subscribe)
+      if (component[key]?.subscribe)
         component[key].subscribe(cy.spy().as(`${key}Spy`));
     });
   }
