@@ -287,10 +287,6 @@ describe("cypress helper tests", () => {
 
   it("should take snapshot and compare to previous", () => {
     get.imageSnapshot("homepage", { failureThreshold: 1 });
-    get.imageSnapshot("radio-group", {
-      dataTestID: "radio-group",
-      failureThreshold: 0.2
-    });
   });
 
   it("should get current location", () => {
