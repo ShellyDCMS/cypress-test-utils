@@ -107,7 +107,7 @@ export interface Options {
  *
  **/
 export class RenderFactory {
-  constructor(private readonly options: Options) {}
+  constructor(protected readonly options: Options) {}
 
   /**
    * @returns IRenderer
@@ -132,7 +132,7 @@ export class RenderFactory {
     return { render: () => {} };
   }
 
-  private renderLit<T extends LitElement>({
+  protected renderLit<T extends LitElement>({
     element,
     selector,
     props,
@@ -152,7 +152,7 @@ export class RenderFactory {
     }
   }
 
-  private renderReact<
+  protected renderReact<
     P extends {},
     T extends
       | FunctionComponent<P>
@@ -167,7 +167,7 @@ export class RenderFactory {
     );
   }
 
-  private renderAngular<T>({
+  protected renderAngular<T>({
     type,
     config,
     props,
@@ -224,7 +224,7 @@ export class RenderFactory {
     return angularComponentHelper.when.mount(type, config, props);
   }
 
-  private get = {
+  protected get = {
     reactChildren: (children: string): React.ReactElement[] => {
       return ReactHtmlParser(children);
     },
