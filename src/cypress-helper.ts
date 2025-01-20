@@ -580,7 +580,8 @@ export class CypressHelper {
 
       this.get
         .elementByTestId(dataTestID, index)
-        .type(keys, { parseSpecialCharSequences: false, ...options }),
+        .type(keys, { parseSpecialCharSequences: false, force: true }),
+
 
     /**
      * Type into a DOM element, including special characters
