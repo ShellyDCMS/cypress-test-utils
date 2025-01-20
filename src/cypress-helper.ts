@@ -552,8 +552,9 @@ export class CypressHelper {
      * helper.when.focus('credentials-password')
      * ```
      */
-    focus: (dataTestID: string, index?: number, options?: Partial<Cypress.TypeOptions>) =>
-      this.get.elementByTestId(dataTestID, index).focus(options),
+    focus: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).focus({ force: true }),
+
     /**
      * Blur a focused element.
      * This element must currently be in focus.
