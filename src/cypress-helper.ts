@@ -553,7 +553,8 @@ export class CypressHelper {
      * ```
      */
     focus: (dataTestID: string, index?: number) =>
-      this.get.elementByTestId(dataTestID, index).focus({ force: true }),
+      this.get.elementByTestId(dataTestID, index).focus(),
+
 
     /**
      * Blur a focused element.
