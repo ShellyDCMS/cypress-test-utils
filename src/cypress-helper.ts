@@ -576,7 +576,8 @@ export class CypressHelper {
      * helper.when.type('credentials-password', 'new password')
      * ```
      */
-    type: (dataTestID: string, keys: string, index?: number, options?: Partial<Cypress.TypeOptions>) =>
+    type: (dataTestID: string, keys: string, index?: number) =>
+
       this.get
         .elementByTestId(dataTestID, index)
         .type(keys, { parseSpecialCharSequences: false, ...options }),
