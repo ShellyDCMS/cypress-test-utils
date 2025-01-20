@@ -554,6 +554,8 @@ export class CypressHelper {
      */
     focus: (dataTestID: string, index?: number) =>
       this.get.elementByTestId(dataTestID, index).focus(),
+
+
     /**
      * Blur a focused element.
      * This element must currently be in focus.
@@ -561,7 +563,8 @@ export class CypressHelper {
      * try using helper.when.focus() before helper.when.blur().
      */
     blur: (dataTestID: string, index?: number) =>
-      this.get.elementByTestId(dataTestID, index).blur(),
+      this.get.elementByTestId(dataTestID, index).blur({ force: true }),
+
     /**
      * Clear the value of an input or textarea
      */
@@ -575,9 +578,11 @@ export class CypressHelper {
      * ```
      */
     type: (dataTestID: string, keys: string, index?: number) =>
+
       this.get
         .elementByTestId(dataTestID, index)
-        .type(keys, { parseSpecialCharSequences: false }),
+        .type(keys, { parseSpecialCharSequences: false, force: true }),
+
 
     /**
      * Type into a DOM element, including special characters
