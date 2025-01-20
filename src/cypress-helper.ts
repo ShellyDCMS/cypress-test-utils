@@ -561,8 +561,9 @@ export class CypressHelper {
      * If you want to ensure an element is focused before blurring,
      * try using helper.when.focus() before helper.when.blur().
      */
-    blur: (dataTestID: string, index?: number, options?: Partial<Cypress.TypeOptions>) =>
-      this.get.elementByTestId(dataTestID, index).blur(options),
+    blur: (dataTestID: string, index?: number) =>
+      this.get.elementByTestId(dataTestID, index).blur({ force: true }),
+
     /**
      * Clear the value of an input or textarea
      */
