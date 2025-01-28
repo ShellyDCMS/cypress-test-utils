@@ -3333,10 +3333,10 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-dynamic-component@^10.7.0:
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/ng-dynamic-component/-/ng-dynamic-component-10.7.0.tgz#454ae427a484c95c8b4220fcb0d569321256dc72"
-  integrity sha512-shkht4L2nA632qo5GNendZdQXoHUBuKz6SLLh20qi5oESBm3b5AWyhHu0fb/7tb+f+zAcwtVVe1M0819/bnK9A==
+ng-dynamic-component@^10.8.0:
+  version "10.8.2"
+  resolved "https://registry.yarnpkg.com/ng-dynamic-component/-/ng-dynamic-component-10.8.2.tgz#34b338523d548b510e41f67faec219f6d0084de8"
+  integrity sha512-iBj2xHp72lFp/pv7NsY4SMtH03Rpyt4ebReb35lj/6WtjRA+7mZySSLyDKF7qF9l/1cHYE2MstFwIWnoqDCtdg==
   dependencies:
     tslib "^2.0.0"
 
