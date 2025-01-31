@@ -8,7 +8,8 @@ describe("cypress helper tests", () => {
   beforeAndAfter();
   beforeEach(() => {
     ({ given, when, get } = new CypressHelper({
-      defaultDataAttribute: "data-hook"
+      defaultDataAttribute: "data-hook",
+      injectA11yChecker: true
     }));
 
     when.visit(
