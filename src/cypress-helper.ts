@@ -73,7 +73,7 @@ export class CypressHelperOptions {
   /**
    * when set to true, injects Axe (A11y test tool) before all tests
    */
-  injectA11yChecker?: boolean = true;
+  injectA11yChecker?: boolean = false;
 }
 /**
  * @class CypressHelper was designed to help you develop cypress tests faster.
@@ -145,7 +145,6 @@ export class CypressHelper {
   beforeAndAfter = () => {
     before(() => {
       chai.use(chaiSubset);
-      if (this.options.injectA11yChecker) cy.injectAxe();
     });
     beforeEach(() => {
       cy.on("uncaught:exception", (err, runnable) => {
@@ -402,7 +401,7 @@ export class CypressHelper {
      */
     visit: (url: string) => {
       cy.visit(url);
-      cy.injectAxe();
+      if (this.options.injectA11yChecker) cy.injectAxe();
     },
     /**
      * Wait for a number of milliseconds.
@@ -555,7 +554,6 @@ export class CypressHelper {
     focus: (dataTestID: string, index?: number) =>
       this.get.elementByTestId(dataTestID, index).focus(),
 
-
     /**
      * Blur a focused element.
      * This element must currently be in focus.
@@ -578,11 +576,9 @@ export class CypressHelper {
      * ```
      */
     type: (dataTestID: string, keys: string, index?: number) =>
-
       this.get
         .elementByTestId(dataTestID, index)
         .type(keys, { parseSpecialCharSequences: false, force: true }),
-
 
     /**
      * Type into a DOM element, including special characters
