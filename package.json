@@ -37,7 +37,7 @@
     "@angular/common": "~18.2.11",
     "@angular/core": "~18.2.13",
     "@angular/compiler": "~18.2.11",
-    "@cypress/mount-utils": "^4.1.1",
+    "@cypress/mount-utils": "^4.1.2",
     "@lit/react": "^1.0.6",
     "@open-wc/lit-helpers": "^0.7.0",
     "@simonsmith/cypress-image-snapshot": "^9.1.0",
