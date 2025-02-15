@@ -722,8 +722,12 @@ export class CypressHelper {
      */
     elementBySelector: (
       selector: string,
-      attribute: string = this.options.defaultDataAttribute!
-    ) => this.get.bySelector(selector, attribute),
+      attribute: string = this.options.defaultDataAttribute!,
+      index?: number
+    ) =>
+      index
+        ? this.get.bySelector(selector, attribute).eq(index)
+        : this.get.bySelector(selector, attribute),
 
     /**
      * Get one or more DOM elements by attribute.
@@ -736,8 +740,10 @@ export class CypressHelper {
      * @param selector
      * @param attribute
      */
-    elementByAttribute: (attribute: string, selector: string) =>
-      this.get.bySelector(selector, attribute),
+    elementByAttribute: (attribute: string, selector: string, index?: number) =>
+      index
+        ? this.get.bySelector(selector, attribute).eq(index)
+        : this.get.bySelector(selector, attribute),
 
     /**
      * Get A DOM element at a specific index from elements.
