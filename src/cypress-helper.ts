@@ -389,7 +389,22 @@ export class CypressHelper {
      * ```
      */
     spyOnObject: <T>(obj: T, method: keyof T) =>
-      cy.spy(obj, method).as(`${String(method)}Spy`)
+      cy.spy(obj, method).as(`${String(method)}Spy`),
+
+    /**
+     *
+     * @param width
+     * @param height
+     * Set viewport to the given resolution.
+     *
+     * @example
+     *
+     * // Set viewport to 550px x 750px
+     * given.viewport(550, 750)
+     */
+    viewport: (width: number, height: number) => {
+      cy.viewport(width, height);
+    }
   };
 
   /**
