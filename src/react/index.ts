@@ -1,4 +1,4 @@
-import { mount } from "cypress/react18";
+import { mount } from "cypress/react";
 import type {
   Attributes,
   ComponentClass,
@@ -30,7 +30,7 @@ export class CypressReactComponentHelper {
       T extends
         | FunctionComponent<P>
         | ComponentClass<P>
-        | ((props: P) => JSX.Element)
+        | ((props: P) => React.JSX.Element)
     >(
       type: T | string,
       props?: (Attributes & P) | null,
