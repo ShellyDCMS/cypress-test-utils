@@ -30,7 +30,7 @@ export class CypressReactComponentHelper {
       T extends
         | FunctionComponent<P>
         | ComponentClass<P>
-        | ((props: P) => JSX.Element)
+        | ((props: P) => React.JSX.Element)
     >(
       type: T | string,
       props?: (Attributes & P) | null,
