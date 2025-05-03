@@ -2,24 +2,24 @@
 # yarn lockfile v1
 
 
-"@angular/common@~18.2.11":
-  version "18.2.13"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-18.2.13.tgz#cb277651585a6d5aa17c9c1f8e4bbcd85c770517"
-  integrity sha512-4ZqrNp1PoZo7VNvW+sbSc2CB2axP1sCH2wXl8B0wdjsj8JY1hF1OhuugwhpAHtGxqewed2kCXayE+ZJqSTV4jw==
+"@angular/common@~19.2.7":
+  version "19.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-19.2.9.tgz#35d18e0afbd3112aaf6ad6d1a6072b5408e45301"
+  integrity sha512-4Lio3nRp13sTU15hsVcv8Zkj+7OKZ6Pc6CIIkQYHs9KisSwwvwmRZDU1wFhKlH+ogebLgOcNurIPdqeYWWnLjQ==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/compiler@~18.2.11":
-  version "18.2.13"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-18.2.13.tgz#cf5d67254bd04a49ecfce0d2d6dc3d9f2234de3c"
-  integrity sha512-TzWcrkopyjFF+WeDr2cRe8CcHjU72KfYV3Sm2TkBkcXrkYX5sDjGWrBGrG3hRB4e4okqchrOCvm1MiTdy2vKMA==
+"@angular/compiler@~19.2.7":
+  version "19.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-19.2.9.tgz#0af6a48fc0db9f981e1d662a1c9cf299d3ac92d9"
+  integrity sha512-K6wtAsJhQeD2OjoupV03gWHBqnqhEP9llzFzlnQoXAAZzM1eIT/KAtQEdNY75NO+BESKxaXvQBAU16Tg/1I6uw==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@~18.2.13":
-  version "18.2.13"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-18.2.13.tgz#50a4269386201b31105dffd6e14c84ca29859cd9"
-  integrity sha512-8mbWHMgO95OuFV1Ejy4oKmbe9NOJ3WazQf/f7wks8Bck7pcihd0IKhlPBNjFllbF5o+04EYSwFhEtvEgjMDClA==
+"@angular/core@~19.2.7":
+  version "19.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-19.2.9.tgz#5fd899f07884a5ee69a8ca24fb17a75dd3bfe556"
+  integrity sha512-73WMvxWll8/nQiAbigDhR27dQ+GjciODY5JVADdneNBSEwcQxi0HirlGzm5wy1TonOu4eTTWkvgV/3YlTOmo4A==
   dependencies:
     tslib "^2.3.0"
 
