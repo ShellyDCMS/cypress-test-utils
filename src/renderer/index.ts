@@ -10,12 +10,12 @@ import {
 } from "@angular/core";
 import { spread } from "@open-wc/lit-helpers";
 import type { MountConfig } from "cypress/angular";
+import parse from "html-react-parser";
 import type { LitElement, TemplateResult } from "lit";
 import { templateContent } from "lit-html/directives/template-content.js";
 import { html, unsafeStatic } from "lit/static-html.js";
 import { DynamicModule } from "ng-dynamic-component";
-import type { Attributes, ComponentClass, FunctionComponent } from "react";
-import ReactHtmlParser from "react-html-parser";
+import type { Attributes, ComponentClass, FunctionComponent, JSX } from "react";
 import { CypressHelper } from "../";
 import { CypressAngularComponentHelper } from "../angular";
 import { CypressLitComponentHelper } from "../lit";
@@ -225,8 +225,8 @@ export class RenderFactory {
   }
 
   protected get = {
-    reactChildren: (children: string): React.ReactElement[] => {
-      return ReactHtmlParser(children);
+    reactChildren: (children: string) => {
+      return parse(children);
     },
     litChildren: (children: string) => {
       const template = document.createElement("template");
