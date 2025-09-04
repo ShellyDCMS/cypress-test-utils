@@ -8,6 +8,7 @@ import {
   type TemplateRef,
   type Type
 } from "@angular/core";
+import { SIGNAL, signalSetFn } from "@angular/core/primitives/signals";
 import { spread } from "@open-wc/lit-helpers";
 import type { MountConfig } from "cypress/angular";
 import parse from "html-react-parser";
@@ -205,10 +206,24 @@ export class RenderFactory {
 
       componentCreated(compRef: ComponentRef<any>) {
         const helper = new CypressHelper();
-        for (const key of Object.keys(compRef.instance)) {
-          if (compRef.instance[key]?.subscribe)
-            compRef.instance[key].subscribe(helper.given.spy(key));
-        }
+        const setInputs = (
+          componentRef: ComponentRef<T>,
+          inputs: Record<string, any> = {}
+        ) => {
+          Object.keys(this.inputs || {}).forEach((key: string) => {
+            const instance = componentRef.instance as any;
+            if (key !== "children" && inputs[key] && instance[key])
+              signalSetFn(instance[key][SIGNAL] as any, inputs[key]);
+          });
+        };
+        const spyOnOutputs = (componentRef: ComponentRef<T>) => {
+          for (const key of Object.keys(compRef.instance)) {
+            if (compRef.instance[key]?.subscribe)
+              compRef.instance[key].subscribe(helper.given.spy(key));
+          }
+        };
+        setInputs(compRef, this.inputs);
+        spyOnOutputs(compRef);
       }
     }
 
