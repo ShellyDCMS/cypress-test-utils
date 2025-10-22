@@ -29,7 +29,7 @@ Understanding well-written, human-readable test code is easier than deciphering 
 The methodology involves first generating the tests, reviewing them to ensure requirements are met, then generating code until all tests pass, followed by refactoring.
 This process relies heavily on the readability and clarity of the test code.
 The cypress helper was designed with this mindset. AI-ready helper that can be used by AI code assistants to generate human-readable tests based on acceptance criteria.
-See this set of [useful prompts](prompts.md) that can help developers describe the requirements clearly, enabling the assistant to generate a robust safety net of quality checks.
+See this set of [useful prompts](https://github.com/ShellyDCMS/cypress-test-utils/blob/main/prompts.md) that can help developers describe the requirements clearly, enabling the assistant to generate a robust safety net of quality checks.
 
 The pattern and clarity of the test code also help AI systems pinpoint what went wrong during failures.
 Another powerful application is identifying uncovered areas or use cases. By analyzing production defects and service requests (SRs), AI can detect gaps in test coverage and generate the missing test cases.
