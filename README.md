@@ -24,11 +24,24 @@ or
 
 ## Concept
 
-Cypress Helpers can help you develop tests faster
+Nowadays, much of the software code is generated and developers increasingly take on the role of code reviewers, Test-Driven Development (TDD) has become more crucial than ever.
+Understanding well-written, human-readable test code is easier than deciphering complex production code.
+The methodology involves first generating the tests, reviewing them to ensure requirements are met, then generating code until all tests pass, followed by refactoring.
+This process relies heavily on the readability and clarity of the test code.
+The cypress helper was designed with this mindset. AI-ready helper that can be used by AI code assistants to generate human-readable tests based on acceptance criteria.
+See this set of [useful prompts](prompts.md) that can help developers describe the requirements clearly, enabling the assistant to generate a robust safety net of quality checks.
+
+The pattern and clarity of the test code also help AI systems pinpoint what went wrong during failures.
+Another powerful application is identifying uncovered areas or use cases. By analyzing production defects and service requests (SRs), AI can detect gaps in test coverage and generate the missing test cases.
+
+Also, by leveraging the AI-ready testing foundations, developers and automation systems can now select relevant test subsets, with the assistance of AI, reducing wait times and boosting productivity.
+As the test code is written in a human-readable format, it serves as a form of documentation.
+This dual purpose not only helps developers understand the system behavior and requirements but also enables automated document generation.
+Last but not least, by structuring tests to reflect acceptance criteria and expected outcomes, we create a living specification that can be parsed and transformed into formal documentation artifacts.
+
+Cypress Helpers can help you develop tests faster.
 CypressHelper is designed to be used in any test level, and holds common methods used in Cypress tests
 ![image](https://github.com/ShellyDCMS/cypress-test-utils/assets/60476837/d9aa07d8-2c05-4968-970a-be8445a113c3)
-
-CypressComponent helpers are designed to be used in component tests and are NOT framework agnostic, their sole purpose is to mount components into the browser.
 
 ## Component Drivers
 
