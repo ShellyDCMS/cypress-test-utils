@@ -10,6 +10,7 @@ Each test should only test one thing (one assertion).
 Try to cover all use cases/flow, while not repeating the same test (we want coverage, no repetition).
 Use methods from the **_component name_** test driver.
 In case any are missing, add them to the test driver.
+Use the "given,when,then" terms in the test name.
 Use the button component test file as an example.
 Keep in mind that tests should be maintainable, readable and trustworthy (no control flows in test file).
 
