@@ -36,7 +36,7 @@
   "dependencies": {
     "@angular/common": "^20.2.3",
     "@angular/compiler": "^20.2.3",
-    "@angular/core": "^20.2.3",
+    "@angular/core": "^20.3.3",
     "@cypress/mount-utils": "^4.1.2",
     "@lit/react": "^1.0.8",
     "@open-wc/lit-helpers": "^0.7.0",
