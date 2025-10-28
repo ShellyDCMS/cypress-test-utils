@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@angular/common@^20.2.3":
-  version "20.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-20.2.4.tgz#3af6feb6d51b229314e2a6ae9c0a30d4cb7a11c7"
-  integrity sha512-mc6Sq1cYjaPJYThnvG6x0f/E27pWksqwaNJxT1RtwhAGc1i2jsc0su6b7e5NnXEgVbdPqu1MZHAEFdXZ5+/MwQ==
+"@angular/common@^20.3.3":
+  version "20.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-20.3.7.tgz#5e0b1740e5f8bba45c0e6abcde0d15e34309435e"
+  integrity sha512-uf8dXYTJbedk/wudkt2MfbtvN/T97aEZBtOTq8/IFQQZ3722rag6D+Cg76e5hBccROOn+ueGJX2gpxz02phTwA==
   dependencies:
     tslib "^2.3.0"
 
@@ -3639,13 +3639,6 @@ randomatic@^3.0.0:
     kind-of "^6.0.0"
     math-random "^1.0.1"
 
-react-dom@^19.1.1:
-  version "19.1.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.1.tgz#2daa9ff7f3ae384aeb30e76d5ee38c046dc89893"
-  integrity sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==
-  dependencies:
-    scheduler "^0.26.0"
-
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -3914,11 +3907,6 @@ safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-
-scheduler@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
-  integrity sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==
 
 semver@^6.0.0:
   version "6.3.1"
