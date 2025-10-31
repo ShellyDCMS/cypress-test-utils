@@ -273,6 +273,26 @@ export class CypressHelper {
       cy.fixture(filename).as(alias),
 
     /**
+     *
+     */
+    openFileByFixture: (fixture: string, buttonTestId: string, inputTestId: string) => {
+      cy.window().then((win) => {
+        const file = {
+          text: cy.stub().resolves(cy.fixture(fixture).then(JSON.stringify)),
+        }
+        const fileHandle = {
+          getFile: cy.stub().resolves(file),
+        }
+        if (!win.showOpenFilePicker) {
+          this.helper.get.elementByTestId(inputTestId).selectFile("cypress/fixtures/" + fixture, { force: true });
+        } else {
+          cy.stub(win, 'showOpenFilePicker').resolves([fileHandle])
+          this.helper.get.elementByTestId(buttonTestId).click();
+        }
+      });
+    },
+    
+    /**
      * Creates a new object with the given functions as the prototype and stubs all implemented functions.
      *
      * @example
@@ -1184,3 +1204,4 @@ export class CypressHelper {
     window: () => cy.window()
   };
 }
+
