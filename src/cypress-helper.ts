@@ -273,21 +273,58 @@ export class CypressHelper {
       cy.fixture(filename).as(alias),
 
     /**
-     *
+     * This will load a file into an input type="file" element from the fixtures.
+     * See {@link selectFileWithShowPickerWithFallback} for a more versatile option.
+     * @param filename - name of the file in the fixtures folder
+     * @param inputTestId - dataTestID of the input type="file" element
+     * @example
+     * ```ts
+     * <label>
+     *   <a>Open File</a>
+     *   <input type="file" style={{ display: "none" }} onChange="handle-file-change-method" />
+     * </label>
+     * 
+     * helper.given.fixture("data.json", "data.json");
+     * helper.given.selectFile("data.json", "file-input");
+     * ```
      */
-    openFileByFixture: (fixture: string, buttonTestId: string, inputTestId: string) => {
-      cy.window().then((win) => {
+    selectFile: (filename: string, inputTestId: string) => {
+      this.get.elementByTestId(inputTestId).selectFile("cypress/fixtures/" + filename, { force: true });
+    },
+
+    /**
+     * This will load a file into an input type="file" element from the fixtures.
+     * If the browser supports the File System Access API, it will stub the showOpenFilePicker function instead.
+     * So it can support both options and is the currenly recommended way to open files in an web application.
+     * @param filename - name of the file in the fixtures folder
+     * @param buttonTestId - dataTestID of the button that opens the file picker
+     * @param inputTestId - dataTestID of the input type="file" element
+     * @example
+     * ```ts
+     * <button onClick="use-window.showOpenFilePicker">Open File</button>
+     * With fallback to:
+     * <label>
+     *   <a>Open File</a>
+     *   <input type="file" style={{ display: "none" }} onChange="handle-file-change-method" />
+     * </label>
+     * 
+     * helper.given.fixture("data.json", "data.json");
+     * helper.given.selectFileWithShowPickerWithFallback("data.json", "open-file-button", "file-input");
+     * ```
+     */
+    selectFileWithShowPickerWithFallback: (filename: string, buttonTestId: string, inputTestId: string) => {
+      cy.window().then((win: Cypress.AUTWindow & { showOpenFilePicker?: () => Promise<FileSystemFileHandle[]> }) => {
         const file = {
-          text: cy.stub().resolves(cy.fixture(fixture).then(JSON.stringify)),
+          text: cy.stub().resolves(cy.fixture(filename).then(JSON.stringify)),
         }
         const fileHandle = {
           getFile: cy.stub().resolves(file),
         }
         if (!win.showOpenFilePicker) {
-          this.helper.get.elementByTestId(inputTestId).selectFile("cypress/fixtures/" + fixture, { force: true });
+          this.get.elementByTestId(inputTestId).selectFile("cypress/fixtures/" + filename, { force: true });
         } else {
           cy.stub(win, 'showOpenFilePicker').resolves([fileHandle])
-          this.helper.get.elementByTestId(buttonTestId).click();
+          this.get.elementByTestId(buttonTestId).click();
         }
       });
     },
