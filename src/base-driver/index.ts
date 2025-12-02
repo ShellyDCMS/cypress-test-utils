@@ -1,4 +1,3 @@
-import { type LitElement } from "lit";
 import type { HTMLAttributes } from "react";
 import { CypressHelper } from "src/cypress-helper";
 import type { IRenderer } from "src/renderer";
@@ -8,7 +7,7 @@ import type { IRenderer } from "src/renderer";
  */
 const capitalizeFirstLetter = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
-export class BaseTestDriver<T extends LitElement> {
+export class BaseTestDriver<T> {
   /**
    * @private
    */
@@ -65,7 +64,11 @@ export class BaseTestDriver<T extends LitElement> {
   protected _get = {
     children: () => this.children,
     props: () => this.props as Partial<T>,
-    cssPixel2Number: (value: string) => Number(value.replace("px", ""))
+    cssPixel2Number: (value: string) => Number(value.replace("px", "")),
+    elementByText: (text: string, index?: number) =>
+      this.helper.get.elementByText(text, index),
+    waitUntil: (condition: () => boolean) =>
+      this.helper.when.waitUntil(condition)
   };
   /**
    * @private
