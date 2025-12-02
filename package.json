@@ -34,7 +34,7 @@
     "cypress": ">=12.17.3"
   },
   "dependencies": {
-    "@angular/common": "^20.2.3",
+    "@angular/common": "^20.3.14",
     "@angular/compiler": "^20.2.3",
     "@angular/core": "^20.2.3",
     "@cypress/mount-utils": "^4.1.2",
