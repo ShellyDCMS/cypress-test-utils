@@ -377,7 +377,7 @@ export class Assertable<T> {
    *  then(get.elementByTestId("selector")).shouldHaveAttribute("test")
    * ```
    */
-  public shouldHaveAttribute = (attribute: string, expectedValue: string) =>
+  public shouldHaveAttribute = (attribute: string, expectedValue?: string) =>
     this.chainable.should("have.attr", attribute, expectedValue);
 
   /**
