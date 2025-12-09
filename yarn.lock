@@ -9,10 +9,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/compiler@^20.2.3":
-  version "20.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-20.2.4.tgz#b1aec5cf2e3bf6d4c3387402e2c49436a7f80f8f"
-  integrity sha512-LQzf+Azb/Ms+BavpCFIat+f1C0gUJpby2RW4yebF3JkBFKfJ7M8d49TQpF8rSnGxMRTf49mln7laz4nBYTLDGA==
+"@angular/compiler@^20.3.3":
+  version "20.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-20.3.7.tgz#6373d8301b5fb17b120695748a623e6812caae54"
+  integrity sha512-EouHO15dUsgnFArj0M25R8cOPVoUfiFYSt6iXnMO8+S4dY1fDEmbFqkW5smlP66HL5Gys59Nwb5inejfIWHrLw==
   dependencies:
     tslib "^2.3.0"
 
@@ -3639,13 +3639,6 @@ randomatic@^3.0.0:
     kind-of "^6.0.0"
     math-random "^1.0.1"
 
-react-dom@^19.1.1:
-  version "19.1.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.1.tgz#2daa9ff7f3ae384aeb30e76d5ee38c046dc89893"
-  integrity sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==
-  dependencies:
-    scheduler "^0.26.0"
-
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -3914,11 +3907,6 @@ safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-
-scheduler@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
-  integrity sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==
 
 semver@^6.0.0:
   version "6.3.1"
